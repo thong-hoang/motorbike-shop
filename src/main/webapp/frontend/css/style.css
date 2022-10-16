@@ -783,7 +783,7 @@ ol {
   Instagram
 -----------------------*/
 
-.comming_soon__item {
+.instagram__item {
 	height: 320px;
 	display: -webkit-box;
 	display: -ms-flexbox;
@@ -798,16 +798,16 @@ ol {
 	z-index: 1;
 }
 
-.comming_soon__item:hover:after {
+.instagram__item:hover:after {
 	opacity: 1;
 }
 
-.comming_soon__item:hover .comming_soon__text {
+.instagram__item:hover .instagram__text {
 	opacity: 1;
 	visibility: visible;
 }
 
-.comming_soon__item:after {
+.instagram__item:after {
 	position: absolute;
 	left: 0;
 	top: 0;
@@ -822,7 +822,7 @@ ol {
 	transition: all, 0.3s;
 }
 
-.comming_soon__text {
+.instagram__text {
 	text-align: center;
 	opacity: 0;
 	visibility: hidden;
@@ -831,13 +831,13 @@ ol {
 	transition: all, 0.3s;
 }
 
-.comming_soon__text i {
+.instagram__text i {
 	font-size: 30px;
 	color: #0d0d0d;
 }
 
-.comming_soon__text span{
-	font-size:27px;
+.instagram__text a {
+	font-size: 16px;
 	color: #0d0d0d;
 	font-weight: 500;
 	display: block;
@@ -1159,11 +1159,9 @@ ol {
 }
 
 .product__item__pic {
-	height: 250px;
-	width: 350px;
+	height: 360px;
 	position: relative;
 	overflow: hidden;
-
 }
 
 .product__item__pic .label {
@@ -1466,7 +1464,7 @@ ol {
 .filter-range-wrap .range-slider .price-input input {
 	font-size: 16px;
 	color: #0d0d0d;
-	max-width:40%;
+	max-width: 16%;
 	border: none;
 }
 
@@ -1498,9 +1496,6 @@ ol {
 .filter-range-wrap .price-range .ui-slider-range {
 	background: #ca1515;
 	border-radius: 0;
-}
-.btn-filter{
-	margin-right: 180px;
 }
 
 .sidebar__sizes,
