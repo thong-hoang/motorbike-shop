@@ -850,6 +850,7 @@ ol {
 
 .footer {
     padding-top: 55px;
+    box-shadow: 15px 0px 10px 5px rgba(91, 91, 91, 0.1);
 }
 
 .footer__about {
