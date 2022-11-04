@@ -6,12 +6,10 @@ CREATE TABLE `users` (
   `address` varchar(256) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `image` varchar(64) DEFAULT NULL,
   `email` varchar(128) NOT NULL,
-  `password_id` int NOT NULL,
+  `password` varchar(64) NOT NULL,
   `enabled` bit(1) NOT NULL,
   PRIMARY KEY (`id`),
-  UNIQUE KEY `email_UNIQUE` (`email`),
-  KEY `FK_user_password_idx` (`password_id`),
-  CONSTRAINT `fk_user_password` FOREIGN KEY (`password_id`) REFERENCES `passwords` (`id`)
+  UNIQUE KEY `email_UNIQUE` (`email`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 CREATE TABLE `roles` (
@@ -32,14 +30,6 @@ CREATE TABLE `user_role` (
   CONSTRAINT `fk_user` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
-CREATE TABLE `passwords` (
-  `id` int NOT NULL,
-  `password` varchar(45) NOT NULL,
-  `created_time` varchar(45) NOT NULL,
-  `reset_password_token` varchar(30) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
 CREATE TABLE `customers` (
   `id` int NOT NULL AUTO_INCREMENT,
   `first_name` varchar(100) NOT NULL,
@@ -47,15 +37,13 @@ CREATE TABLE `customers` (
   `phone_number` varchar(10) DEFAULT NULL,
   `address` varchar(256) DEFAULT NULL,
   `email` varchar(128) NOT NULL,
-  `password_id` int NOT NULL,
+  `password` varchar(64) NOT NULL,
   `created_time` datetime NOT NULL,
   `authentication_type` varchar(10) NOT NULL,
   `verification_code` varchar(64) DEFAULT NULL,
   `enabled` bit(1) NOT NULL,
   PRIMARY KEY (`id`),
-  UNIQUE KEY `email_UNIQUE` (`email`),
-  KEY `fk_customer_password_idx` (`password_id`),
-  CONSTRAINT `fk_customer_password` FOREIGN KEY (`password_id`) REFERENCES `passwords` (`id`)
+  UNIQUE KEY `email_UNIQUE` (`email`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 CREATE TABLE `banners` (
