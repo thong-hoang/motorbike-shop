@@ -367,7 +367,7 @@ ol {
 	position: absolute;
 	left: 0;
 	top: 56px;
-	width: 150px;
+	width: 170px;
 	background: #111111;
 	text-align: left;
 	padding: 2px 0;
@@ -390,6 +390,10 @@ ol {
 	font-weight: 400;
 	padding: 8px 20px;
 	text-transform: capitalize;
+}
+.header__menu ul li .dropdown li a:hover{
+	background-color: darkgrey;
+	color: white;
 }
 
 .header__menu ul li .dropdown li a:after {
