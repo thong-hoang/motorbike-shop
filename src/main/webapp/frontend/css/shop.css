@@ -1415,6 +1415,8 @@ ol {
 
 .filter-range-wrap .range-slider .price-input {
     position: relative;
+    margin-left: -8px;
+    width: 315px;
 }
 
 .filter-range-wrap .range-slider .price-input p {
@@ -1427,7 +1429,7 @@ ol {
 
 .filter-range-wrap .range-slider .price-input:after {
     position: absolute;
-    left: 81px;
+    left: 145px;
     top: 12px;
     height: 1px;
     width: 5px;
@@ -1472,9 +1474,12 @@ ol {
     border-radius: 0;
 }
 .btn-filter{
-    margin-right: 180px;
+    margin-right: 190px;
 }
-
+.btn-filter:hover{
+    background-color: #e8715b;
+    color: white;
+}
 .sidebar__sizes,
 .sidebar__color {
     margin-bottom: 40px;
@@ -3656,4 +3661,7 @@ ol {
         width: 100%;
         font-size: 24px;
     }
+}
+.filter-range-wrap .range-slider .price-input input{
+    font-size: 14px;
 }
