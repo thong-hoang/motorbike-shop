@@ -253,7 +253,6 @@ function renderProduct(product) {
             html += '<div class="content__product__item" >';
             html += '<a href="./product-details.html">';
             html += '<img src=' + item.image + '>';
-
             html += '<h6>' + item.title + '<br><br>' + '<p class="price-text"><span class="price-sale"> ' + item.priceOrigin + '</span>' + item.price + '</p></h6>';
             html += '</a>';
             html += '</div>';
@@ -342,20 +341,15 @@ $('.btn-prev').on('click', () => {
     getCurrentPage(idPage);
     renderProduct(productArr);
 });
+
+
 $('.number-page li').on('click', () => {
-    idPage;
-    if (idPage <= 0) {
-        idPage = 1;
-    }
-    if (idPage == 1) {
-        $('.number-page li').addClass('btn-active');
-    } else {
-        $('.number-page li').removeClass('btn-active');
-    }
-    const numPage= document.querySelector('.number-page li');
-    numPage.classList.remove('btn-active');
-    $('.number-page li').removeClass('active');
-    $(`.number-page li:eq(${idPage - 1})`).addClass('active');
-    getCurrentPage(idPage);
-    renderProduct(productArr);
+        $('.number-page li').removeClass('active');
+        const numPage= document.querySelector('.number-page li');
+        numPage.classList.remove('btn-active');
+        getCurrentPage(idPage);
+        $(`.number-page li:eq(${idPage-1})`).addClass('active');
+        getCurrentPage(idPage);
+        renderProduct(productArr);
+
 });
