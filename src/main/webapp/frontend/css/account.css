@@ -17,6 +17,62 @@ body {
     font-family: "Montserrat", sans-serif;
     -webkit-font-smoothing: antialiased;
 }
+.row-btn .btn-save{
+    width: 120px;
+    height: 40px;
+    border: none;
+    background-color: #007bff;
+    color: white;
+    cursor: pointer;
+    border-radius: 3px;
+    float: left;
+    margin-left: 180px;
+}
+.row-btn .btn-cancel{
+    width: 120px;
+    height: 40px;
+    border: none;
+    background-color: #de4437;
+    color: white;
+    cursor: pointer;
+    border-radius: 3px;
+    float: right;
+    margin-right: 180px;
+}
+.row-btn .btn-save:hover{
+    background-color: #0053ee;
+}
+.row-btn .btn-cancel:hover {
+    background-color: #ab3529;
+}
+img{
+    cursor: pointer;
+}
+.active{
+    color: #007bff;
+}
+.text-muted{
+    border: none;
+    width: 470px;
+}
+.change-pass .text-muted{
+    border: none;
+    border-left: 1px solid;
+    width: 470px;
+    padding-left: 20px;
+}
+
+.card-body ul li button{
+    background-color: white;
+    border: none;
+}
+.card-body ul li button:hover{
+    color: #007bff;
+}
+
+.change-pass .col-sm-3 p{
+    width: 220px;
+}
 
 h1,
 h2,
@@ -831,6 +887,7 @@ ol {
 .footer {
     padding-top: 55px;
     box-shadow: 15px 0px 10px 5px rgba(91, 91, 91, 0.1);
+    background-color: white;
 }
 
 .footer__about {
