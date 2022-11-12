@@ -1,143 +1,159 @@
-CREATE TABLE `users` (
+CREATE TABLE `users`  (
   `id` int NOT NULL,
   `first_name` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `last_name` varchar(45) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
-  `phone_number` varchar(10) NOT NULL,
+  `phone_number` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `address` varchar(256) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
-  `image` varchar(64) DEFAULT NULL,
-  `email` varchar(128) NOT NULL,
-  `password` varchar(64) NOT NULL,
+  `image` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
+  `email` varchar(128) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `password` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `enabled` bit(1) NOT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `email_UNIQUE` (`email`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  PRIMARY KEY (`id`) USING BTREE,
+  UNIQUE INDEX `email_UNIQUE`(`email` ASC) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
 
-CREATE TABLE `roles` (
+CREATE TABLE `roles`  (
   `id` int NOT NULL AUTO_INCREMENT,
   `name` varchar(40) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
-  `description` varchar(150) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `name_UNIQUE` (`name`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  PRIMARY KEY (`id`) USING BTREE,
+  UNIQUE INDEX `name_UNIQUE`(`name` ASC) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
 
-CREATE TABLE `user_role` (
+CREATE TABLE `user_role`  (
   `user_id` int NOT NULL,
   `role_id` int NOT NULL,
-  PRIMARY KEY (`user_id`,`role_id`),
-  KEY `fk_role_idx` (`role_id`),
-  KEY `fk_user_idx` (`user_id`),
-  CONSTRAINT `fk_role` FOREIGN KEY (`role_id`) REFERENCES `roles` (`id`),
-  CONSTRAINT `fk_user` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  PRIMARY KEY (`user_id`, `role_id`) USING BTREE,
+  INDEX `fk_role_idx`(`role_id` ASC) USING BTREE,
+  INDEX `fk_user_idx`(`user_id` ASC) USING BTREE,
+  CONSTRAINT `fk_role` FOREIGN KEY (`role_id`) REFERENCES `roles` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
+  CONSTRAINT `fk_user` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
 
-CREATE TABLE `customers` (
+CREATE TABLE `customers`  (
   `id` int NOT NULL AUTO_INCREMENT,
-  `first_name` varchar(100) NOT NULL,
-  `last_name` varchar(45) NOT NULL,
-  `phone_number` varchar(10) DEFAULT NULL,
-  `address` varchar(256) DEFAULT NULL,
-  `email` varchar(128) NOT NULL,
-  `password` varchar(64) NOT NULL,
+  `first_name` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `last_name` varchar(45) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `phone_number` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
+  `address` varchar(256) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
+  `email` varchar(128) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `password` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `created_time` datetime NOT NULL,
-  `authentication_type` varchar(10) NOT NULL,
-  `verification_code` varchar(64) DEFAULT NULL,
+  `authentication_type` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `verification_code` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
   `enabled` bit(1) NOT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `email_UNIQUE` (`email`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  PRIMARY KEY (`id`) USING BTREE,
+  UNIQUE INDEX `email_UNIQUE`(`email` ASC) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
 
-CREATE TABLE `banners` (
+CREATE TABLE `banners`  (
   `id` int NOT NULL AUTO_INCREMENT,
-  `image` varchar(255) NOT NULL,
-  `name` varchar(256) NOT NULL,
-  `alias` varchar(256) NOT NULL,
+  `image_path` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `enabled` bit(1) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
 
-CREATE TABLE `brands` (
+CREATE TABLE `brands`  (
   `id` int NOT NULL AUTO_INCREMENT,
-  `name` varchar(45) NOT NULL,
-  `image` varchar(45) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  `name` varchar(45) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `image` varchar(45) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
 
-CREATE TABLE `categories` (
+CREATE TABLE `categories`  (
   `id` int NOT NULL AUTO_INCREMENT,
-  `name` varchar(45) NOT NULL,
-  `alias` varchar(45) NOT NULL,
-  `parent_id` int DEFAULT NULL,
+  `name` varchar(45) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `alias` varchar(45) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `parent_id` int NULL DEFAULT NULL,
   `enabled` bit(1) NOT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `name_UNIQUE` (`name`),
-  KEY `fk_category_idx` (`parent_id`),
-  CONSTRAINT `fk_category` FOREIGN KEY (`parent_id`) REFERENCES `categories` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  PRIMARY KEY (`id`) USING BTREE,
+  UNIQUE INDEX `name_UNIQUE`(`name` ASC) USING BTREE,
+  INDEX `fk_category_idx`(`parent_id` ASC) USING BTREE,
+  CONSTRAINT `fk_category` FOREIGN KEY (`parent_id`) REFERENCES `categories` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT
+) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
 
-CREATE TABLE `brand_category` (
+CREATE TABLE `brand_category`  (
   `brand_id` int NOT NULL,
   `category_id` int NOT NULL,
-  PRIMARY KEY (`brand_id`,`category_id`),
-  KEY `fk_category_idx` (`category_id`),
-  CONSTRAINT `fk_brand_category` FOREIGN KEY (`brand_id`) REFERENCES `brands` (`id`),
-  CONSTRAINT `fk_category_brand` FOREIGN KEY (`category_id`) REFERENCES `categories` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  PRIMARY KEY (`brand_id`, `category_id`) USING BTREE,
+  INDEX `fk_category_idx`(`category_id` ASC) USING BTREE,
+  CONSTRAINT `fk_brand_category` FOREIGN KEY (`brand_id`) REFERENCES `brands` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
+  CONSTRAINT `fk_category_brand` FOREIGN KEY (`category_id`) REFERENCES `categories` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
 
-CREATE TABLE `products` (
+CREATE TABLE `products`  (
   `id` int NOT NULL,
-  `main_image` varchar(255) NOT NULL,
-  `name` varchar(256) NOT NULL,
-  `alias` varchar(256) NOT NULL,
+  `main_image` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `name` varchar(256) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `alias` varchar(256) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `brand_id` int NOT NULL,
   `category_id` int NOT NULL,
-  `short_description` text,
-  `full_description` text,
+  `short_description` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL,
+  `full_description` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL,
   `created_time` datetime NOT NULL,
-  `updated_time` datetime DEFAULT NULL,
+  `updated_time` datetime NULL DEFAULT NULL,
   `price` float NOT NULL,
-  `percent_discount` float DEFAULT '0',
+  `percent_discount` float NULL DEFAULT 0,
   `quantity` int NOT NULL,
-  `status` bit(1) NOT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `name_UNIQUE` (`name`),
-  KEY `fk_product_brand_idx` (`brand_id`),
-  KEY `fk_product_category_idx` (`category_id`),
-  CONSTRAINT `fk_product_brand` FOREIGN KEY (`brand_id`) REFERENCES `brands` (`id`),
-  CONSTRAINT `fk_product_category` FOREIGN KEY (`category_id`) REFERENCES `categories` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  PRIMARY KEY (`id`) USING BTREE,
+  UNIQUE INDEX `name_UNIQUE`(`name` ASC) USING BTREE,
+  INDEX `fk_product_brand_idx`(`brand_id` ASC) USING BTREE,
+  INDEX `fk_product_category_idx`(`category_id` ASC) USING BTREE,
+  CONSTRAINT `fk_product_brand` FOREIGN KEY (`brand_id`) REFERENCES `brands` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
+  CONSTRAINT `fk_product_category` FOREIGN KEY (`category_id`) REFERENCES `categories` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
 
-CREATE TABLE `product_details` (
+CREATE TABLE `product_details`  (
   `id` int NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) NOT NULL,
-  `value` varchar(255) NOT NULL,
+  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `value` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `product_id` int NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `fk_product_detail_idx` (`product_id`),
-  CONSTRAINT `fk_product_detail` FOREIGN KEY (`product_id`) REFERENCES `products` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  PRIMARY KEY (`id`) USING BTREE,
+  INDEX `fk_product_detail_idx`(`product_id` ASC) USING BTREE,
+  CONSTRAINT `fk_product_detail` FOREIGN KEY (`product_id`) REFERENCES `products` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT
+) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
 
-CREATE TABLE `product_images` (
+CREATE TABLE `product_images`  (
   `id` int NOT NULL AUTO_INCREMENT,
-  `image` varchar(255) NOT NULL,
+  `image` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `product_id` int NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `fk_product_image_idx` (`product_id`),
-  CONSTRAINT `fk_product_image` FOREIGN KEY (`product_id`) REFERENCES `products` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  PRIMARY KEY (`id`) USING BTREE,
+  INDEX `fk_product_image_idx`(`product_id` ASC) USING BTREE,
+  CONSTRAINT `fk_product_image` FOREIGN KEY (`product_id`) REFERENCES `products` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT
+) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
 
-CREATE TABLE `cart_items` (
+CREATE TABLE `status`  (
   `id` int NOT NULL AUTO_INCREMENT,
+  `name` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
+
+CREATE TABLE `product_status`  (
   `product_id` int NOT NULL,
-  `quantity` int NOT NULL,
+  `status_id` int NOT NULL,
+  PRIMARY KEY (`product_id`, `status_id`) USING BTREE,
+  INDEX `fk_status_product`(`status_id` ASC) USING BTREE,
+  CONSTRAINT `fk_product_status` FOREIGN KEY (`product_id`) REFERENCES `products` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
+  CONSTRAINT `fk_status_product` FOREIGN KEY (`status_id`) REFERENCES `status` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
+
+CREATE TABLE `reviews`  (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `comment` varchar(300) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `headline` varchar(128) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `rating` int NOT NULL,
+  `review_time` datetime NOT NULL,
+  `votes` int NOT NULL,
   `customer_id` int NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `fk_cart_product_idx` (`product_id`),
-  KEY `fk_cart_customer_idx` (`customer_id`),
-  CONSTRAINT `fk_cart_customer` FOREIGN KEY (`customer_id`) REFERENCES `customers` (`id`),
-  CONSTRAINT `fk_cart_product` FOREIGN KEY (`product_id`) REFERENCES `products` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  `product_id` int NOT NULL,
+  PRIMARY KEY (`id`) USING BTREE,
+  INDEX `fk_review_customer`(`customer_id` ASC) USING BTREE,
+  INDEX `fk_review_product`(`product_id` ASC) USING BTREE,
+  CONSTRAINT `fk_review_customer` FOREIGN KEY (`customer_id`) REFERENCES `customers` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
+  CONSTRAINT `fk_review_product` FOREIGN KEY (`product_id`) REFERENCES `products` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
 
-CREATE TABLE `orders` (
+CREATE TABLE `orders`  (
   `id` int NOT NULL AUTO_INCREMENT,
   `customer_id` int NOT NULL,
   `order_time` datetime NOT NULL,
@@ -147,32 +163,32 @@ CREATE TABLE `orders` (
   `tax` float NOT NULL,
   `total` float NOT NULL,
   `delivery_form` bit(1) NOT NULL,
-  `status_order` bit(1) NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `fk_order_customer_idx` (`customer_id`),
-  CONSTRAINT `fk_order_customer` FOREIGN KEY (`customer_id`) REFERENCES `customers` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  `status` tinyint NOT NULL,
+  PRIMARY KEY (`id`) USING BTREE,
+  INDEX `fk_order_customer_idx`(`customer_id` ASC) USING BTREE,
+  CONSTRAINT `fk_order_customer` FOREIGN KEY (`customer_id`) REFERENCES `customers` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
 
-CREATE TABLE `order_details` (
+CREATE TABLE `order_details`  (
   `id` int NOT NULL AUTO_INCREMENT,
   `order_id` int NOT NULL,
   `product_id` int NOT NULL,
   `quantity` int NOT NULL,
   `product_cost` float NOT NULL,
   `total` float NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `fk_order_detail_idx` (`order_id`),
-  KEY `fk_order_product_idx` (`product_id`),
-  CONSTRAINT `fk_order_detail` FOREIGN KEY (`order_id`) REFERENCES `orders` (`id`),
-  CONSTRAINT `fk_order_product` FOREIGN KEY (`product_id`) REFERENCES `products` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  PRIMARY KEY (`id`) USING BTREE,
+  INDEX `fk_order_detail_idx`(`order_id` ASC) USING BTREE,
+  INDEX `fk_order_product_idx`(`product_id` ASC) USING BTREE,
+  CONSTRAINT `fk_order_detail` FOREIGN KEY (`order_id`) REFERENCES `orders` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
+  CONSTRAINT `fk_order_product` FOREIGN KEY (`product_id`) REFERENCES `products` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
 
-CREATE TABLE `settings` (
-  `key` varchar(128) NOT NULL,
-  `value` varchar(1024) NOT NULL,
-  `category` varchar(45) NOT NULL,
-  PRIMARY KEY (`key`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+CREATE TABLE `settings`  (
+  `key` varchar(128) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `value` varchar(1024) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `category` varchar(45) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  PRIMARY KEY (`key`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
 
 
 
