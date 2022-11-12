@@ -57,7 +57,6 @@ img{
 }
 .change-pass .text-muted{
     border: none;
-    border-left: 1px solid;
     width: 470px;
     padding-left: 20px;
 }
@@ -3190,6 +3189,16 @@ ol {
     width: 100%;
 }
 
+.change-pass  .ip-change-pass {
+    width: 68%;
+    display: inline-block;
+}
+
+.change-pass .btn-mxm {
+    background-color: #fbfbfb;
+    border: 1px solid rgba(0,0,0,.14);
+}
+
 /*--------------------------------- Responsive Media Quaries -----------------------------*/
 
 @media only screen and (min-width: 1600px) and (max-width: 1900px) {
@@ -3726,3 +3735,4 @@ ol {
         font-size: 24px;
     }
 }
+
