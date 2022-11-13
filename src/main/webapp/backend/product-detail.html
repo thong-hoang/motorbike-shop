@@ -27,6 +27,232 @@
 
 <script src="assets\vendor\hs-navbar-vertical-aside\hs-navbar-vertical-aside-mini-cache.js"></script>
 
+<!-- Builder -->
+<div id="styleSwitcherDropdown" class="hs-unfold-content sidebar sidebar-bordered sidebar-box-shadow"
+     style="width: 35rem;">
+    <div class="card card-lg border-0 h-100">
+        <div class="card-header align-items-start">
+            <div class="mr-2">
+                <h3 class="card-header-title">Front Builder</h3>
+                <p>Customize your overview page layout. Choose the one that best fits your needs.</p>
+            </div>
+
+            <!-- Toggle Button -->
+            <a class="js-hs-unfold-invoker btn btn-icon btn-xs btn-ghost-dark" href="javascript:;" data-hs-unfold-options='{
+                  "target": "#styleSwitcherDropdown",
+                  "type": "css-animation",
+                  "animationIn": "fadeInRight",
+                  "animationOut": "fadeOutRight",
+                  "hasOverlay": true,
+                  "smartPositionOff": true
+                 }'>
+                <i class="tio-clear tio-lg"></i>
+            </a>
+            <!-- End Toggle Button -->
+        </div>
+
+        <!-- Body -->
+        <div class="card-body sidebar-scrollbar">
+            <h4 class="mb-1">Layout skins <span id="js-builder-disabled" class="badge badge-soft-danger"
+                                                style="opacity: 0">Disabled</span></h4>
+            <p>3 kinds of layout skins to choose from.</p>
+
+            <div class="row gx-2 mb-5">
+                <!-- Custom Radio -->
+                <div class="col-4 text-center">
+                    <div class="text-center">
+                        <div class="custom-checkbox-card mb-2">
+                            <input type="radio" class="custom-checkbox-card-input" name="layoutSkinsRadio" id="layoutSkinsRadio1"
+                                   checked="" value="default">
+                            <label class="custom-checkbox-card-label" for="layoutSkinsRadio1">
+                                <img class="custom-checkbox-card-img" src="assets\svg\layouts\layouts-sidebar-default.svg"
+                                     alt="Image Description">
+                            </label>
+                            <span class="custom-checkbox-card-text">Default</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- End Custom Radio -->
+
+                <!-- Custom Radio -->
+                <div class="col-4 text-center">
+                    <div class="text-center">
+                        <div class="custom-checkbox-card mb-2">
+                            <input type="radio" class="custom-checkbox-card-input" name="layoutSkinsRadio" id="layoutSkinsRadio2"
+                                   value="navbar-dark">
+                            <label class="custom-checkbox-card-label" for="layoutSkinsRadio2">
+                                <img class="custom-checkbox-card-img" src="assets\svg\layouts\layouts-sidebar-dark.svg"
+                                     alt="Image Description">
+                            </label>
+                            <span class="custom-checkbox-card-text">Dark</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- End Custom Radio -->
+
+                <!-- Custom Radio -->
+                <div class="col-4 text-center">
+                    <div class="text-center">
+                        <div class="custom-checkbox-card mb-2">
+                            <input type="radio" class="custom-checkbox-card-input" name="layoutSkinsRadio" id="layoutSkinsRadio3"
+                                   value="navbar-light">
+                            <label class="custom-checkbox-card-label" for="layoutSkinsRadio3">
+                                <img class="custom-checkbox-card-img" src="assets\svg\layouts\layouts-sidebar-light.svg"
+                                     alt="Image Description">
+                            </label>
+                            <span class="custom-checkbox-card-text">Light</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- End Custom Radio -->
+            </div>
+            <!-- End Row -->
+
+            <h4 class="mb-1">Sidebar layout options</h4>
+            <p>Choose between standard navigation sizing, mini or even compact with icons.</p>
+
+            <div class="row gx-2 mb-5">
+                <!-- Custom Radio -->
+                <div class="col-4 text-center">
+                    <div class="text-center">
+                        <div class="custom-checkbox-card mb-2">
+                            <input type="radio" class="custom-checkbox-card-input" name="sidebarLayoutOptions"
+                                   id="sidebarLayoutOptions1" checked="" value="default">
+                            <label class="custom-checkbox-card-label" for="sidebarLayoutOptions1">
+                                <img class="custom-checkbox-card-img" src="assets\svg\layouts\sidebar-default-classic.svg"
+                                     alt="Image Description">
+                            </label>
+                            <span class="custom-checkbox-card-text">Default</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- End Custom Radio -->
+
+                <!-- Custom Radio -->
+                <div class="col-4 text-center">
+                    <div class="text-center">
+                        <div class="custom-checkbox-card mb-2">
+                            <input type="radio" class="custom-checkbox-card-input" name="sidebarLayoutOptions"
+                                   id="sidebarLayoutOptions2" value="navbar-vertical-aside-compact-mode">
+                            <label class="custom-checkbox-card-label" for="sidebarLayoutOptions2">
+                                <img class="custom-checkbox-card-img" src="assets\svg\layouts\sidebar-compact.svg"
+                                     alt="Image Description">
+                            </label>
+                            <span class="custom-checkbox-card-text">Compact</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- End Custom Radio -->
+
+                <!-- Custom Radio -->
+                <div class="col-4 text-center">
+                    <div class="text-center">
+                        <div class="custom-checkbox-card mb-2">
+                            <input type="radio" class="custom-checkbox-card-input" name="sidebarLayoutOptions"
+                                   id="sidebarLayoutOptions3" value="navbar-vertical-aside-mini-mode">
+                            <label class="custom-checkbox-card-label" for="sidebarLayoutOptions3">
+                                <img class="custom-checkbox-card-img" src="assets\svg\layouts\sidebar-mini.svg"
+                                     alt="Image Description">
+                            </label>
+                            <span class="custom-checkbox-card-text">Mini</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- End Custom Radio -->
+            </div>
+            <!-- End Row -->
+
+            <h4 class="mb-1">Header layout options</h4>
+            <p>Choose the primary navigation of your header layout.</p>
+
+            <div class="row gx-2">
+                <!-- Custom Radio -->
+                <div class="col-4 text-center">
+                    <div class="text-center">
+                        <div class="custom-checkbox-card mb-2">
+                            <input type="radio" class="custom-checkbox-card-input" name="headerLayoutOptions"
+                                   id="headerLayoutOptions1" value="single">
+                            <label class="custom-checkbox-card-label" for="headerLayoutOptions1">
+                                <img class="custom-checkbox-card-img" src="assets\svg\layouts\header-default-fluid.svg"
+                                     alt="Image Description">
+                            </label>
+                            <span class="custom-checkbox-card-text">Default (Fluid)</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- End Custom Radio -->
+
+                <!-- Custom Radio -->
+                <div class="col-4 text-center">
+                    <div class="text-center">
+                        <div class="custom-checkbox-card mb-2">
+                            <input type="radio" class="custom-checkbox-card-input" name="headerLayoutOptions"
+                                   id="headerLayoutOptions2" value="single-container">
+                            <label class="custom-checkbox-card-label" for="headerLayoutOptions2">
+                                <img class="custom-checkbox-card-img" src="assets\svg\layouts\header-default-container.svg"
+                                     alt="Image Description">
+                            </label>
+                            <span class="custom-checkbox-card-text">Default (Container)</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- End Custom Radio -->
+
+                <!-- Custom Radio -->
+                <div class="col-4 text-center">
+                    <div class="text-center">
+                        <div class="custom-checkbox-card mb-2">
+                            <input type="radio" class="custom-checkbox-card-input" name="headerLayoutOptions"
+                                   id="headerLayoutOptions3" value="double">
+                            <label class="custom-checkbox-card-label" for="headerLayoutOptions3">
+                                <img class="custom-checkbox-card-img" src="assets\svg\layouts\header-double-line-fluid.svg"
+                                     alt="Image Description">
+                            </label>
+                            <span class="custom-checkbox-card-text">Double line (Fluid)</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- End Custom Radio -->
+
+                <!-- Custom Radio -->
+                <div class="col-4 text-center mt-2">
+                    <div class="text-center">
+                        <div class="custom-checkbox-card mb-2">
+                            <input type="radio" class="custom-checkbox-card-input" name="headerLayoutOptions"
+                                   id="headerLayoutOptions4" value="double-container">
+                            <label class="custom-checkbox-card-label" for="headerLayoutOptions4">
+                                <img class="custom-checkbox-card-img" src="assets\svg\layouts\header-double-line-container.svg"
+                                     alt="Image Description">
+                            </label>
+                            <span class="custom-checkbox-card-text">Double line (Container)</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- End Custom Radio -->
+            </div>
+            <!-- End Row -->
+        </div>
+        <!-- End Body -->
+
+        <!-- Footer -->
+        <div class="card-footer">
+            <div class="row gx-2">
+                <div class="col">
+                    <button type="button" id="js-builder-reset" class="btn btn-block btn-lg btn-white">
+                        <i class="tio-restore"></i> Reset
+                    </button>
+                </div>
+                <div class="col">
+                    <button type="button" id="js-builder-preview" class="btn btn-block btn-lg btn-primary">
+                        <i class="tio-visible"></i> Preview
+                    </button>
+                </div>
+            </div>
+            <!-- End Row -->
+        </div>
+        <!-- End Footer -->
+    </div>
+</div>
 
 <!-- JS Preview mode only -->
 <div id="headerMain" class="d-none">
@@ -45,11 +271,12 @@
                 <!-- Navbar Vertical Toggle -->
                 <button type="button" class="js-navbar-vertical-aside-toggle-invoker close mr-3">
                     <i class="tio-first-page navbar-vertical-aside-toggle-short-align" data-toggle="tooltip"
-                       data-placement="right" title="Collapse"></i>
+                       data-placement="right" title="Thu nhỏ"></i>
                     <i class="tio-last-page navbar-vertical-aside-toggle-full-align"
                        data-template='<div class="tooltip d-none d-sm-block" role="tooltip"><div class="arrow"></div><div class="tooltip-inner"></div></div>'
-                       data-toggle="tooltip" data-placement="right" title="Expand"></i>
+                       data-toggle="tooltip" data-placement="right" title="Mở rộng"></i>
                 </button>
+                <!-- End Navbar Vertical Toggle -->
 
                 <!-- Search Form -->
                 <div class="d-none d-md-block">
@@ -75,8 +302,7 @@
                     <li class="nav-item d-md-none">
                         <!-- Search Trigger -->
                         <div class="hs-unfold">
-                            <a class="js-hs-unfold-invoker btn btn-icon btn-ghost-secondary rounded-circle"
-                               href="javascript:;"
+                            <a class="js-hs-unfold-invoker btn btn-icon btn-ghost-secondary rounded-circle" href="javascript:;"
                                data-hs-unfold-options='{
                  "target": "#searchDropdown",
                  "type": "css-animation",
@@ -109,8 +335,7 @@
                                 <div class="dropdown-item-text">
                                     <div class="media align-items-center">
                                         <div class="avatar avatar-sm avatar-dark avatar-circle mr-2">
-                                            <img class="avatar-img" src="../images/test/admin1.jpg"
-                                                 alt="Image Description">
+                                            <img class="avatar-img" src="../images/test/admin1.jpg" alt="Image Description">
                                             <!-- <span class="avatar-initials">A</span> -->
                                         </div>
                                         <div class="media-body">
@@ -121,8 +346,7 @@
                                 </div>
                                 <div class="dropdown-divider"></div>
                                 <a class="dropdown-item" href="#">
-                                    <span class="text-truncate pr-2"
-                                          title="Profile &amp; account">Hồ Sơ Tài Khoản</span>
+                                    <span class="text-truncate pr-2" title="Profile &amp; account">Hồ Sơ Tài Khoản</span>
                                 </a>
                                 <a class="dropdown-item" href="#">
                                     <span class="text-truncate pr-2" title="Sign out">Đăng Xuất</span>
@@ -135,34 +359,27 @@
         </div>
     </header>
 </div>
-<div id="headerFluid" class="d-none">
 
-</div>
-<div id="headerDouble" class="d-none">
+<div id="headerFluid" class="d-none"></div>
+<div id="headerDouble" class="d-none"></div>
 
-</div>
-
-<!-- chỉnh ở đây, Menu chính bên trái -->
+<!-- Thanh menu -->
 <div id="sidebarMain" class="d-none">
     <aside
             class="js-navbar-vertical-aside navbar navbar-vertical-aside navbar-vertical navbar-vertical-fixed navbar-expand-xl navbar-bordered  ">
         <div class="navbar-vertical-container">
             <div class="navbar-vertical-footer-offset">
                 <div class="navbar-brand-wrapper justify-content-between">
-
                     <!-- Logo -->
                     <a class="navbar-brand" href="index.html" aria-label="Front">
                         <img class="navbar-brand-logo" src="../images/logo/logo.png" alt="Logo">
-                        <img class="navbar-brand-logo-mini" src="assets\svg\logos\logo-short.svg" alt="Logo">
                     </a>
-                    <!-- End Logo -->
 
                     <!-- Navbar Vertical Toggle -->
                     <button type="button"
                             class="js-navbar-vertical-aside-toggle-invoker navbar-vertical-aside-toggle btn btn-icon btn-xs btn-ghost-dark">
                         <i class="tio-clear tio-lg"></i>
                     </button>
-                    <!-- End Navbar Vertical Toggle -->
                 </div>
 
                 <!-- Content -->
@@ -176,103 +393,126 @@
                                 <span class="navbar-vertical-aside-mini-mode-hidden-elements text-truncate">Trang chủ</span>
                             </a>
                         </li>
-                        <!-- End Dashboards -->
 
                         <!-- Pages -->
                         <li class="navbar-vertical-aside-has-menu ">
-                            <a class="js-navbar-vertical-aside-menu-link nav-link nav-link-toggle " href="javascript:;"
+                            <a class="js-navbar-vertical-aside-menu-link nav-link nav-link-toggle" href="javascript:;"
                                title="Pages">
-                                <i class="tio-pages-outlined nav-icon"></i>
+                                <i class="tio-users-switch nav-icon"></i>
                                 <span class="navbar-vertical-aside-mini-mode-hidden-elements text-truncate">Nhân viên</span>
                             </a>
 
                             <ul class="js-navbar-vertical-aside-submenu nav nav-sub">
                                 <li class="nav-item">
-                                    <a class="nav-link " href="../backend/employees.html" title="Referrals">
+                                    <a class="nav-link " href="../backend/employee.html" title="Referrals">
                                         <span class="tio-circle nav-indicator-icon"></span>
                                         <span class="text-truncate">Xem danh sách</span>
                                     </a>
-                                    <a class="nav-link " href="#" title="Referrals">
+                                    <a class="nav-link " href="../backend/add-user.html" title="Referrals">
                                         <span class="tio-circle nav-indicator-icon"></span>
                                         <span class="text-truncate">Thêm nhân viên</span>
                                     </a>
                                 </li>
                             </ul>
                         </li>
+
                         <li class="navbar-vertical-aside-has-menu ">
                             <a class="js-navbar-vertical-aside-menu-link nav-link nav-link-toggle " href="javascript:;"
                                title="Pages">
-                                <i class="tio-pages-outlined nav-icon"></i>
+                                <i class="tio-user-big-outlined nav-icon"></i>
                                 <span class="navbar-vertical-aside-mini-mode-hidden-elements text-truncate">Khách hàng</span>
                             </a>
 
                             <ul class="js-navbar-vertical-aside-submenu nav nav-sub">
                                 <li class="nav-item">
-                                    <a class="nav-link " href="../backend/customers.html" title="Referrals">
+                                    <a class="nav-link " href="../backend/customer.html" title="Referrals">
                                         <span class="tio-circle nav-indicator-icon"></span>
                                         <span class="text-truncate">Xem danh sách</span>
                                     </a>
-                                    <a class="nav-link " href="#" title="Referrals">
+                                    <a class="nav-link " href="../backend/add-user.html" title="Referrals">
                                         <span class="tio-circle nav-indicator-icon"></span>
                                         <span class="text-truncate">Thêm khách hàng</span>
                                     </a>
                                 </li>
                             </ul>
                         </li>
+
                         <li class="navbar-vertical-aside-has-menu ">
                             <a class="js-navbar-vertical-aside-menu-link nav-link nav-link-toggle " href="javascript:;"
                                title="Pages">
-                                <i class="tio-pages-outlined nav-icon"></i>
+                                <i class="tio-label nav-icon"></i>
                                 <span class="navbar-vertical-aside-mini-mode-hidden-elements text-truncate">Nhãn hiệu</span>
                             </a>
 
                             <ul class="js-navbar-vertical-aside-submenu nav nav-sub">
                                 <li class="nav-item">
-                                    <a class="nav-link " href="#" title="Referrals">
+                                    <a class="nav-link " href="../backend/brand.html" title="Referrals">
                                         <span class="tio-circle nav-indicator-icon"></span>
                                         <span class="text-truncate">Xem danh sách</span>
                                     </a>
-                                    <a class="nav-link " href="#" title="Referrals">
+                                    <a class="nav-link " href="../backend/brand-form.html" title="Referrals">
                                         <span class="tio-circle nav-indicator-icon"></span>
-                                        <span class="text-truncate">Thêm nhân viên</span>
+                                        <span class="text-truncate">Thêm nhãn hiệu</span>
                                     </a>
                                 </li>
                             </ul>
                         </li>
+
                         <li class="navbar-vertical-aside-has-menu ">
                             <a class="js-navbar-vertical-aside-menu-link nav-link nav-link-toggle " href="javascript:;"
                                title="Pages">
-                                <i class="tio-pages-outlined nav-icon"></i>
+                                <i class="tio-panorama-image nav-icon"></i>
+                                <span class="navbar-vertical-aside-mini-mode-hidden-elements text-truncate">Banner</span>
+                            </a>
+
+                            <ul class="js-navbar-vertical-aside-submenu nav nav-sub">
+                                <li class="nav-item">
+                                    <a class="nav-link " href="../backend/banner.html" title="Referrals">
+                                        <span class="tio-circle nav-indicator-icon"></span>
+                                        <span class="text-truncate">Xem danh sách</span>
+                                    </a>
+                                    <a class="nav-link " href="../backend/banner-form.html" title="Referrals">
+                                        <span class="tio-circle nav-indicator-icon"></span>
+                                        <span class="text-truncate">Thêm banner</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+
+                        <li class="navbar-vertical-aside-has-menu ">
+                            <a class="js-navbar-vertical-aside-menu-link nav-link nav-link-toggle " href="javascript:;"
+                               title="Pages">
+                                <i class="tio-category nav-icon"></i>
                                 <span class="navbar-vertical-aside-mini-mode-hidden-elements text-truncate">Thể loại</span>
                             </a>
 
                             <ul class="js-navbar-vertical-aside-submenu nav nav-sub">
                                 <li class="nav-item">
-                                    <a class="nav-link " href="#" title="Referrals">
+                                    <a class="nav-link" href="../backend/category.html" title="Referrals">
                                         <span class="tio-circle nav-indicator-icon"></span>
                                         <span class="text-truncate">Xem danh sách</span>
                                     </a>
-                                    <a class="nav-link " href="#" title="Referrals">
+                                    <a class="nav-link " href="../backend/category-form.html" title="Referrals">
                                         <span class="tio-circle nav-indicator-icon"></span>
-                                        <span class="text-truncate">Thêm nhân viên</span>
+                                        <span class="text-truncate">Thêm thể loại</span>
                                     </a>
                                 </li>
                             </ul>
                         </li>
-                        <li class="navbar-vertical-aside-has-menu show ">
-                            <a class="js-navbar-vertical-aside-menu-link nav-link nav-link-toggle " href="#"
+                        <li class="navbar-vertical-aside-has-menu active">
+                            <a class="js-navbar-vertical-aside-menu-link nav-link nav-link-toggle " href="javascript:;"
                                title="Pages">
-                                <i class="tio-pages-outlined nav-icon"></i>
+                                <i class="tio-motocycle nav-icon"></i>
                                 <span class="navbar-vertical-aside-mini-mode-hidden-elements text-truncate">Sản phẩm</span>
                             </a>
 
                             <ul class="js-navbar-vertical-aside-submenu nav nav-sub">
-                                <li class="nav-item ">
-                                    <a class="nav-link " href="#" title="Referrals">
+                                <li class="nav-item">
+                                    <a class="nav-link " href="../backend/product.html" title="Referrals">
                                         <span class="tio-circle nav-indicator-icon"></span>
-                                        <span class="text-truncate">Kho sản phẩm</span>
+                                        <span class="text-truncate">Xem danh sách</span>
                                     </a>
-                                    <a class="nav-link active" href="#" title="Referrals">
+                                    <a class="nav-link " href="../backend/product-form.html" title="Referrals">
                                         <span class="tio-circle nav-indicator-icon"></span>
                                         <span class="text-truncate">Thêm sản phẩm</span>
                                     </a>
@@ -282,19 +522,15 @@
                         <li class="navbar-vertical-aside-has-menu ">
                             <a class="js-navbar-vertical-aside-menu-link nav-link nav-link-toggle " href="javascript:;"
                                title="Pages">
-                                <i class="tio-pages-outlined nav-icon"></i>
+                                <i class="tio-receipt-outlined nav-icon"></i>
                                 <span class="navbar-vertical-aside-mini-mode-hidden-elements text-truncate">Đơn hàng</span>
                             </a>
 
                             <ul class="js-navbar-vertical-aside-submenu nav nav-sub">
                                 <li class="nav-item">
-                                    <a class="nav-link " href="#" title="Referrals">
+                                    <a class="nav-link " href="../backend/order.html" title="Referrals">
                                         <span class="tio-circle nav-indicator-icon"></span>
-                                        <span class="text-truncate">Xem danh sách</span>
-                                    </a>
-                                    <a class="nav-link " href="#" title="Referrals">
-                                        <span class="tio-circle nav-indicator-icon"></span>
-                                        <span class="text-truncate">Thêm nhân viên</span>
+                                        <span class="text-truncate">Xem đơn hàng</span>
                                     </a>
                                 </li>
                             </ul>
@@ -302,19 +538,15 @@
                         <li class="navbar-vertical-aside-has-menu ">
                             <a class="js-navbar-vertical-aside-menu-link nav-link nav-link-toggle " href="javascript:;"
                                title="Pages">
-                                <i class="tio-pages-outlined nav-icon"></i>
-                                <span class="navbar-vertical-aside-mini-mode-hidden-elements text-truncate">Bình luận</span>
+                                <i class="tio-comment-vs-outlined nav-icon"></i>
+                                <span class="navbar-vertical-aside-mini-mode-hidden-elements text-truncate">Đánh giá</span>
                             </a>
 
                             <ul class="js-navbar-vertical-aside-submenu nav nav-sub">
                                 <li class="nav-item">
-                                    <a class="nav-link " href="#" title="Referrals">
+                                    <a class="nav-link " href="../backend/review.html" title="Referrals">
                                         <span class="tio-circle nav-indicator-icon"></span>
-                                        <span class="text-truncate">Xem danh sách</span>
-                                    </a>
-                                    <a class="nav-link " href="#" title="Referrals">
-                                        <span class="tio-circle nav-indicator-icon"></span>
-                                        <span class="text-truncate">Thêm nhân viên</span>
+                                        <span class="text-truncate">Xem đánh giá</span>
                                     </a>
                                 </li>
                             </ul>
@@ -322,19 +554,15 @@
                         <li class="navbar-vertical-aside-has-menu ">
                             <a class="js-navbar-vertical-aside-menu-link nav-link nav-link-toggle " href="javascript:;"
                                title="Pages">
-                                <i class="tio-pages-outlined nav-icon"></i>
+                                <i class="tio-chart-bar-1 nav-icon"></i>
                                 <span class="navbar-vertical-aside-mini-mode-hidden-elements text-truncate">Thống kê</span>
                             </a>
 
                             <ul class="js-navbar-vertical-aside-submenu nav nav-sub">
                                 <li class="nav-item">
-                                    <a class="nav-link " href="#" title="Referrals">
+                                    <a class="nav-link " href="../backend/statistic.html" title="Referrals">
                                         <span class="tio-circle nav-indicator-icon"></span>
-                                        <span class="text-truncate">Xem danh sách</span>
-                                    </a>
-                                    <a class="nav-link " href="#" title="Referrals">
-                                        <span class="tio-circle nav-indicator-icon"></span>
-                                        <span class="text-truncate">Thêm nhân viên</span>
+                                        <span class="text-truncate">Xem thống kê</span>
                                     </a>
                                 </li>
                             </ul>
@@ -342,28 +570,21 @@
                         <li class="navbar-vertical-aside-has-menu ">
                             <a class="js-navbar-vertical-aside-menu-link nav-link nav-link-toggle " href="javascript:;"
                                title="Pages">
-                                <i class="tio-pages-outlined nav-icon"></i>
+                                <i class="tio-settings nav-icon"></i>
                                 <span class="navbar-vertical-aside-mini-mode-hidden-elements text-truncate">Cấu hình</span>
                             </a>
 
                             <ul class="js-navbar-vertical-aside-submenu nav nav-sub">
                                 <li class="nav-item">
-                                    <a class="nav-link " href="#" title="Referrals">
+                                    <a class="nav-link" href="../backend/setting.html" title="Referrals">
                                         <span class="tio-circle nav-indicator-icon"></span>
-                                        <span class="text-truncate">Xem danh sách</span>
-                                    </a>
-                                    <a class="nav-link " href="#" title="Referrals">
-                                        <span class="tio-circle nav-indicator-icon"></span>
-                                        <span class="text-truncate">Thêm nhân viên</span>
+                                        <span class="text-truncate">Xem cấu hình</span>
                                     </a>
                                 </li>
                             </ul>
                         </li>
-                        <!-- End Pages -->
-
                     </ul>
                 </div>
-                <!-- End Content -->
             </div>
         </div>
     </aside>
@@ -415,11 +636,11 @@
                         <ol class="breadcrumb breadcrumb-no-gutter">
                             <li class="breadcrumb-item"><a class="breadcrumb-link" href="ecommerce-products.html">Kho
                                 sản phẩm</a></li>
-                            <li class="breadcrumb-item active" aria-current="page">Thêm sản phẩm</li>
+                            <li class="breadcrumb-item active" aria-current="page">Chi tiết sản phẩm</li>
                         </ol>
                     </nav>
 
-                    <h1 class="page-header-title">Thêm sản phẩm</h1>
+                    <h1 class="page-header-title">Chỉ tiết sản phẩm</h1>
                 </div>
             </div>
             <!-- End Row -->
@@ -440,10 +661,12 @@
                     <div class="card-body">
                         <!-- Form Group -->
                         <div class="form-group">
-                            <label for="productNameLabel" class="input-label">Tên xe </label>
+                            <label for="productNameLabel" class="input-label">Tên xe <i
+                                    class="tio-help-outlined text-body ml-1" data-toggle="tooltip" data-placement="top"
+                                    title="Nhập tên xe"></i></label>
 
                             <input type="text" class="form-control" name="productName" id="productNameLabel"
-                                   placeholder="Nhập tên xe" aria-label="Shirt, t-shirts, etc.">
+                                   placeholder="Nhập tên xe" aria-label="Shirt, t-shirts, etc." value="Sirius xanh đen">
                         </div>
                         <!-- End Form Group -->
 
@@ -451,9 +674,9 @@
                             <div class="col-sm-6">
                                 <!-- Form Group -->
                                 <div class="form-group">
-                                    <label class="input-label" for="exampleFormControlSelect2">Hãng xe <span class="input-label-secondary"></span></label>
+                                    <label class="input-label" for="exampleFormControlSelect2">Hãng xe <span
+                                            class="input-label-secondary"></span></label>
                                     <select id="exampleFormControlSelect2" class="form-control">
-                                        <option></option>
                                         <option>Yamaha</option>
                                         <option>Suzuki</option>
                                         <option>Honda</option>
@@ -465,9 +688,9 @@
                             <div class="col-sm-6">
                                 <!-- Form Group -->
                                 <div class="form-group">
-                                    <label class="input-label" for="exampleFormControlSelect1">Chọn loại xe <span class="input-label-secondary"></span></label>
+                                    <label class="input-label" for="exampleFormControlSelect1">Chọn loại xe <span
+                                            class="input-label-secondary"></span></label>
                                     <select id="exampleFormControlSelect1" class="form-control">
-                                        <option></option>
                                         <option>Xe số</option>
                                         <option>Xe tay ga</option>
                                     </select>
@@ -555,8 +778,9 @@
                                  data-hs-quill-options="{
                           &quot;placeholder&quot;: &quot;Type your description...&quot;
                          }">
-                                <div class="ql-editor ql-blank" data-gramm="false" contenteditable="true"
-                                     data-placeholder="Type your description..."><p><br></p></div>
+                                <div class="ql-editor" data-gramm="false" contenteditable="true"
+                                     data-placeholder="Type your description..."><p>Chính thức xuất hiện tại Việt Nam, Xe Yamaha dòng “ Sirius Dark Blue “ thế hệ mới.</p>
+                                </div>
                                 <div class="ql-clipboard" contenteditable="true" tabindex="-1"></div>
                                 <div class="ql-tooltip ql-hidden"><a class="ql-preview" rel="noopener noreferrer"
                                                                      target="_blank" href="about:blank"></a><input
@@ -601,6 +825,127 @@
 
                     <!-- Body -->
                     <div class="card-body">
+                        <div id="fancyboxGallery" class="js-fancybox row justify-content-sm-center gx-2"
+                             data-hs-fancybox-options="{
+                       &quot;selector&quot;: &quot;#fancyboxGallery .js-fancybox-item&quot;
+                     }">
+                            <div class="col-6 col-sm-4 col-md-3 mb-3 mb-lg-5">
+                                <!-- Card -->
+                                <div class="card card-sm">
+                                    <img class="card-img-top" src="../images/yamaha/xeso/7/sirius-dark-blue-007.png" alt="Image Description">
+
+                                    <div class="card-body">
+                                        <div class="row text-center">
+                                            <div class="col">
+                                                <a class="js-fancybox-item text-body"
+                                                   data-toggle="tooltip" data-placement="top" title=""
+                                                   data-src="../images/yamaha/xeso/7/sirius-dark-blue-007.png" data-caption="Image #01"
+                                                   data-original-title="View">
+                                                    <i class="tio-visible-outlined"></i>
+                                                </a>
+                                            </div>
+
+                                            <div class="col column-divider">
+                                                <a class="text-danger" href="javascript:;" data-toggle="tooltip"
+                                                   data-placement="top" title="" data-original-title="Delete">
+                                                    <i class="tio-delete-outlined"></i>
+                                                </a>
+                                            </div>
+                                        </div>
+                                        <!-- End Row -->
+                                    </div>
+                                </div>
+                                <!-- End Card -->
+                            </div>
+
+                            <div class="col-6 col-sm-4 col-md-3 mb-3 mb-lg-5">
+                                <!-- Card -->
+                                <div class="card card-sm">
+                                    <img class="card-img-top" src="../images/yamaha/xeso/7/sirius-dark-blue-007.png" alt="Image Description">
+
+                                    <div class="card-body">
+                                        <div class="row text-center">
+                                            <div class="col">
+                                                <a class="js-fancybox-item text-body" href="javascript:;"
+                                                   data-toggle="tooltip" data-placement="top" title=""
+                                                   data-src="./assets/img/1920x1080/img1.jpg" data-caption="Image #02"
+                                                   data-original-title="View">
+                                                    <i class="tio-visible-outlined"></i>
+                                                </a>
+                                            </div>
+
+                                            <div class="col column-divider">
+                                                <a class="text-danger" href="javascript:;" data-toggle="tooltip"
+                                                   data-placement="top" title="" data-original-title="Delete">
+                                                    <i class="tio-delete-outlined"></i>
+                                                </a>
+                                            </div>
+                                        </div>
+                                        <!-- End Row -->
+                                    </div>
+                                </div>
+                                <!-- End Card -->
+                            </div>
+
+                            <div class="col-6 col-sm-4 col-md-3 mb-3 mb-lg-5">
+                                <!-- Card -->
+                                <div class="card card-sm">
+                                    <img class="card-img-top" src="../images/yamaha/xeso/7/sirius-dark-blue-007.png" alt="Image Description">
+
+                                    <div class="card-body">
+                                        <div class="row text-center">
+                                            <div class="col">
+                                                <a class="js-fancybox-item text-body" href="javascript:;"
+                                                   data-toggle="tooltip" data-placement="top" title=""
+                                                   data-src="./assets/img/1920x1080/img2.jpg" data-caption="Image #03"
+                                                   data-original-title="View">
+                                                    <i class="tio-visible-outlined"></i>
+                                                </a>
+                                            </div>
+
+                                            <div class="col column-divider">
+                                                <a class="text-danger" href="javascript:;" data-toggle="tooltip"
+                                                   data-placement="top" title="" data-original-title="Delete">
+                                                    <i class="tio-delete-outlined"></i>
+                                                </a>
+                                            </div>
+                                        </div>
+                                        <!-- End Row -->
+                                    </div>
+                                </div>
+                                <!-- End Card -->
+                            </div>
+
+                            <div class="col-6 col-sm-4 col-md-3 mb-3 mb-lg-5">
+                                <!-- Card -->
+                                <div class="card card-sm">
+                                    <img class="card-img-top" src="../images/yamaha/xeso/7/sirius-dark-blue-007.png"
+                                         alt="Image Description">
+
+                                    <div class="card-body">
+                                        <div class="row text-center">
+                                            <div class="col">
+                                                <a class="js-fancybox-item text-body" href="javascript:;"
+                                                   data-toggle="tooltip" data-placement="top" title=""
+                                                   data-src="./assets/img/1920x1080/img3.jpg" data-caption="Image #04"
+                                                   data-original-title="View">
+                                                    <i class="tio-visible-outlined"></i>
+                                                </a>
+                                            </div>
+
+                                            <div class="col column-divider">
+                                                <a class="text-danger" href="javascript:;" data-toggle="tooltip"
+                                                   data-placement="top" title="" data-original-title="Delete">
+                                                    <i class="tio-delete-outlined"></i>
+                                                </a>
+                                            </div>
+                                        </div>
+                                        <!-- End Row -->
+                                    </div>
+                                </div>
+                                <!-- End Card -->
+                            </div>
+                        </div>
                         <!-- Dropzone -->
                         <div id="attachFilesNewProjectLabel" class="js-dropzone dropzone-custom custom-file-boxed">
                             <div class="dz-message custom-file-boxed-label">
@@ -620,10 +965,10 @@
                 <!-- Card -->
                 <div class="card">
                     <!-- Header -->
-                        <div class="card-header" style="display:-webkit-inline-box;">
+                    <div class="card-header" style="display:-webkit-inline-box;">
                         <h4 class="card-header-title">Thông số</h4><i
-                                class="tio-help-outlined text-body ml-1" data-toggle="tooltip" data-placement="top"
-                                title="Căng nặng: kg, Kích thước mm"></i>
+                            class="tio-help-outlined text-body ml-1" data-toggle="tooltip" data-placement="top"
+                            title="Căng nặng: kg, Kích thước mm"></i>
                     </div>
                     <!-- End Header -->
                     <div class="table-responsive datatable-custom">
@@ -653,7 +998,64 @@
                             </thead>
 
                             <tbody>
+                            <tr>
+                                <td>Màu săc</td>
+                                <td>Xanh đen</td>
 
+                                <td>
+                                    <div class="btn-group" role="group">
+                                        <a class="btn btn-sm btn-white" href="ecommerce-product-details.html">
+                                            <i class="tio-edit"></i> Chỉnh sửa
+                                        </a>
+
+                                        <!-- Unfold -->
+                                        <div class="hs-unfold btn-group">
+                                            <a class="js-hs-unfold-invoker btn btn-icon btn-sm btn-white dropdown-toggle dropdown-toggle-empty" data-hs-unfold-options='{
+                             "target": "#productsEditDropdown2",
+                             "type": "css-animation",
+                             "smartPositionOffEl": "#datatable"
+                           }'></a>
+
+                                            <div id="productsEditDropdown2" class="hs-unfold-content dropdown-unfold dropdown-menu dropdown-menu-right mt-1">
+                                                <a class="dropdown-item" href="#">
+                                                    <i class="tio-delete-outlined dropdown-item-icon"></i> xóa
+                                                </a>
+
+                                            </div>
+                                        </div>
+                                        <!-- End Unfold -->
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Câng nặng</td>
+                                <td>94</td>
+
+                                <td>
+                                    <div class="btn-group" role="group">
+                                        <a class="btn btn-sm btn-white" href="ecommerce-product-details.html">
+                                            <i class="tio-edit"></i> Chỉnh sửa
+                                        </a>
+
+                                        <!-- Unfold -->
+                                        <div class="hs-unfold btn-group">
+                                            <a class="js-hs-unfold-invoker btn btn-icon btn-sm btn-white dropdown-toggle dropdown-toggle-empty" data-hs-unfold-options='{
+                             "target": "#productsEditDropdown3",
+                             "type": "css-animation",
+                             "smartPositionOffEl": "#datatable"
+                           }'></a>
+
+                                            <div id="productsEditDropdown3" class="hs-unfold-content dropdown-unfold dropdown-menu dropdown-menu-right mt-1">
+                                                <a class="dropdown-item" href="#">
+                                                    <i class="tio-delete-outlined dropdown-item-icon"></i> xóa
+                                                </a>
+
+                                            </div>
+                                        </div>
+                                        <!-- End Unfold -->
+                                    </div>
+                                </td>
+                            </tr>
                             </tbody>
                         </table>
                     </div>
@@ -751,10 +1153,10 @@
                     <div class="card-body">
                         <!-- Form Group -->
                         <div class="form-group">
-<!--                            <label for="priceNameLabel" class="input-label">Giá</label>-->
+                            <!--                            <label for="priceNameLabel" class="input-label">Giá</label>-->
 
                             <div class="input-group">
-                                <input type="number" class="form-control" name="priceName" id="priceNameLabel"
+                                <input value="27000000" type="number" class="form-control" name="priceName" id="priceNameLabel"
                                        placeholder="0" aria-label="0.00">
 
                                 <div class="input-group-append">
@@ -793,9 +1195,9 @@
                     <div class="card-body">
                         <!-- Form Group -->
                         <div class="form-group">
-<!--                            <label for="vendorLabel" class="input-label">Vendor</label>-->
+                            <!--                            <label for="vendorLabel" class="input-label">Vendor</label>-->
 
-                            <input type="number" class="form-control" name="vendor" id="vendorLabel"
+                            <input value="15" type="number" class="form-control" name="vendor" id="vendorLabel"
                                    placeholder="0" aria-label="eg. Nike">
                         </div>
                         <!-- End Form Group -->
