@@ -194,7 +194,7 @@
             <a id="builderPopover" class="js-hs-unfold-invoker btn btn-sm btn-soft-dark py-3" href="javascript:;"
                data-template='<div class="d-none d-md-block popover" role="tooltip"><div class="arrow"></div><h3 class="popover-header"></h3><div class="popover-body"></div></div>'
                data-toggle="popover" data-placement="left"
-               title="<div class='d-flex align-items-center'>Front Builder <a href='#!' class='close close-light ml-auto'><i id='closeBuilderPopover' class='tio-clear'></i></a></div>"
+               title="<div class='d-flex align-items-center'>Tùy chỉnh <a href='#!' class='close close-light ml-auto'><i id='closeBuilderPopover' class='tio-clear'></i></a></div>"
                data-content="Customize your overview page layout. Choose the one that best fits your needs."
                data-html="true" data-hs-unfold-options='{
                 "target": "#styleSwitcherDropdown",
@@ -3458,7 +3458,7 @@
                                         <span class="tio-circle nav-indicator-icon"></span>
                                         <span class="text-truncate">Xem danh sách</span>
                                     </a>
-                                    <a class="nav-link " href=../backend/employee-form.html" title="Referrals">
+                                    <a class="nav-link " href=../backend/add-user.html" title="Referrals">
                                         <span class="tio-circle nav-indicator-icon"></span>
                                         <span class="text-truncate">Thêm nhân viên</span>
                                     </a>
@@ -3479,7 +3479,7 @@
                                         <span class="tio-circle nav-indicator-icon"></span>
                                         <span class="text-truncate">Xem danh sách</span>
                                     </a>
-                                    <a class="nav-link " href="../backend/customer-form.html" title="Referrals">
+                                    <a class="nav-link " href="../backend/add-user.html" title="Referrals">
                                         <span class="tio-circle nav-indicator-icon"></span>
                                         <span class="text-truncate">Thêm khách hàng</span>
                                     </a>
@@ -4394,7 +4394,7 @@
                     <div class="col-sm-6">
                         <div class="d-sm-flex justify-content-sm-end align-items-sm-center">
                             <!-- Datatable Info -->
-                            <div id="datatableCounterInfo" class="mr-2 mb-2 mb-sm-0" style="display: none;">
+                            <div id="datatableCounterInfo" class="mr-2 mb-2 mb-sm-0" >
                                 <div class="d-flex align-items-center">
                       <span class="font-size-sm mr-3">
                                                     Đã chọn
@@ -4403,6 +4403,9 @@
                                     <a class="btn btn-sm btn-outline-danger" href="javascript:;">
                                         <i class="tio-delete-outlined"></i> Xóa
                                     </a>
+<!--                                    <a class="btn btn-sm btn-outline-danger mb-2 mb-sm-0 mr-2" href="#">-->
+<!--                                        <i class="tio-delete-outlined"></i> Xóa-->
+<!--                                    </a>-->
                                 </div>
                             </div>
                             <!-- End Datatable Info -->
@@ -4600,7 +4603,7 @@
                         <th>Số điện thoại</th>
                         <th>Tổng chi tiêu</th>
                         <th>Tổng SL đơn hàng</th>
-                        <th></th>
+                        <th>Thao tác</th>
                     </tr>
                     </thead>
 
@@ -5217,11 +5220,11 @@
                             </select>
                             <!-- End Select -->
 
-                            <span class="text-secondary mr-2">trên</span>
+                            <span class="text-secondary ml-2 mr-2">trên</span>
 
                             <!-- Pagination Quantity -->
-                            <span id="datatableWithPaginationInfoTotalQty"></span>
-                            <span class="text-secondary mr-2 pl-2"> khách hàng</span>
+<!--                            <span id="datatableWithPaginationInfoTotalQty"></span>-->
+                            <span>15</span>
                         </div>
                     </div>
 
@@ -5414,7 +5417,8 @@
 
                             <!-- Form Group -->
                             <div class="row form-group">
-                                <label for="editFirstNameModalLabel" class="col-sm-3 col-form-label input-label">Họ tên</label>
+                                <label for="editFirstNameModalLabel" class="col-sm-3 col-form-label input-label">Họ
+                                    tên</label>
 
                                 <div class="col-sm-9">
                                     <div class="js-form-message input-group input-group-sm-down-break">
@@ -5446,7 +5450,8 @@
 
                             <!-- Form Group -->
                             <div class="row form-group">
-                                <label for="editPhoneLabel" class="col-sm-3 col-form-label input-label">Số điện thoại</label>
+                                <label for="editPhoneLabel" class="col-sm-3 col-form-label input-label">Số điện
+                                    thoại</label>
 
                                 <div class="col-sm-9">
                                     <div class="input-group input-group-sm-down-break align-items-center">
@@ -5613,7 +5618,8 @@
 
                             <!-- Form Group -->
                             <div class="row form-group">
-                                <label for="editUserModalNewPassword" class="col-sm-3 col-form-label input-label">Mật khẩu mới</label>
+                                <label for="editUserModalNewPassword" class="col-sm-3 col-form-label input-label">Mật
+                                    khẩu mới</label>
 
                                 <div class="col-sm-9">
                                     <input type="password" class="js-toggle-password form-control"
