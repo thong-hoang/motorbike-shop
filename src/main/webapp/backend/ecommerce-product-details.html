@@ -744,11 +744,100 @@
                 <!-- Card -->
                 <div class="card">
                     <!-- Header -->
-                    <div class="card-header">
-                        <h4 class="card-header-title">Thông số</h4>
+                    <div class="card-header" style="display:-webkit-inline-box;">
+                        <h4 class="card-header-title">Thông số</h4><i
+                            class="tio-help-outlined text-body ml-1" data-toggle="tooltip" data-placement="top"
+                            title="Căng nặng: kg, Kích thước mm"></i>
                     </div>
                     <!-- End Header -->
+                    <div class="table-responsive datatable-custom">
+                        <table style="overflow: hidden" id="datatable" class="table table-borderless table-thead-bordered table-nowrap table-align-middle card-table" data-hs-datatables-options='{
+                     "columnDefs": [{
+                        "targets": [0, 4, 9],
+                        "width": "5%",
+                        "orderable": false
+                      }],
+                     "order": [],
+                     "info": {
+                       "totalQty": "#datatableWithPaginationInfoTotalQty"
+                     },
+                     "search": "#datatableSearch",
+                     "entries": "#datatableEntries",
+                     "pageLength": #,
+                     "isResponsive": false,
+                     "isShowPaging": false,
+                     "pagination": "datatablePagination"
+                   }'>
+                            <thead class="thead-light">
+                            <tr>
+                                <th>Tên thông số</th>
+                                <th>Giá trị</th>
+                                <th></th>
+                            </tr>
+                            </thead>
 
+                            <tbody>
+                            <tr>
+                                <td>Màu săc</td>
+                                <td>Xanh đen</td>
+
+                                <td>
+                                    <div class="btn-group" role="group">
+                                        <a class="btn btn-sm btn-white" href="ecommerce-product-details.html">
+                                            <i class="tio-edit"></i> Chỉnh sửa
+                                        </a>
+
+                                        <!-- Unfold -->
+                                        <div class="hs-unfold btn-group">
+                                            <a class="js-hs-unfold-invoker btn btn-icon btn-sm btn-white dropdown-toggle dropdown-toggle-empty" data-hs-unfold-options='{
+                             "target": "#productsEditDropdown2",
+                             "type": "css-animation",
+                             "smartPositionOffEl": "#datatable"
+                           }'></a>
+
+                                            <div id="productsEditDropdown2" class="hs-unfold-content dropdown-unfold dropdown-menu dropdown-menu-right mt-1">
+                                                <a class="dropdown-item" href="#">
+                                                    <i class="tio-delete-outlined dropdown-item-icon"></i> xóa
+                                                </a>
+
+                                            </div>
+                                        </div>
+                                        <!-- End Unfold -->
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Câng nặng</td>
+                                <td>94</td>
+
+                                <td>
+                                    <div class="btn-group" role="group">
+                                        <a class="btn btn-sm btn-white" href="ecommerce-product-details.html">
+                                            <i class="tio-edit"></i> Chỉnh sửa
+                                        </a>
+
+                                        <!-- Unfold -->
+                                        <div class="hs-unfold btn-group">
+                                            <a class="js-hs-unfold-invoker btn btn-icon btn-sm btn-white dropdown-toggle dropdown-toggle-empty" data-hs-unfold-options='{
+                             "target": "#productsEditDropdown3",
+                             "type": "css-animation",
+                             "smartPositionOffEl": "#datatable"
+                           }'></a>
+
+                                            <div id="productsEditDropdown3" class="hs-unfold-content dropdown-unfold dropdown-menu dropdown-menu-right mt-1">
+                                                <a class="dropdown-item" href="#">
+                                                    <i class="tio-delete-outlined dropdown-item-icon"></i> xóa
+                                                </a>
+
+                                            </div>
+                                        </div>
+                                        <!-- End Unfold -->
+                                    </div>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
                     <!-- Body -->
                     <div class="card-body">
                         <h6 class="text-cap"></h6>
@@ -763,14 +852,14 @@
                                 <div class="row">
                                     <div class="col-4">
                                         <div class="input-group-prepend">
-                                            <input value="Màu sắc" type="text" class="form-control" name="vendor"
+                                            <input type="text" class="form-control" name="vendor"
                                                    placeholder="Tên thông số" aria-label="">
                                         </div>
                                     </div>
 
                                     <div class="col-8">
-                                        <input value="Xanh đen" type="text" class="form-control" name="vendor"
-                                               placeholder="Chi tiết thông số" aria-label="">
+                                        <input type="text" class="form-control" name="vendor"
+                                               placeholder="Giá trị" aria-label="">
                                     </div>
                                 </div>
                             </div>

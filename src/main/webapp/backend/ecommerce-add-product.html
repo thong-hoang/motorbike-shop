@@ -440,9 +440,7 @@
                     <div class="card-body">
                         <!-- Form Group -->
                         <div class="form-group">
-                            <label for="productNameLabel" class="input-label">Tên xe <i
-                                    class="tio-help-outlined text-body ml-1" data-toggle="tooltip" data-placement="top"
-                                    title="Nhập tên xe"></i></label>
+                            <label for="productNameLabel" class="input-label">Tên xe </label>
 
                             <input type="text" class="form-control" name="productName" id="productNameLabel"
                                    placeholder="Nhập tên xe" aria-label="Shirt, t-shirts, etc.">
@@ -622,11 +620,43 @@
                 <!-- Card -->
                 <div class="card">
                     <!-- Header -->
-                    <div class="card-header">
-                        <h4 class="card-header-title">Thông số</h4>
+                        <div class="card-header" style="display:-webkit-inline-box;">
+                        <h4 class="card-header-title">Thông số</h4><i
+                                class="tio-help-outlined text-body ml-1" data-toggle="tooltip" data-placement="top"
+                                title="Căng nặng: kg, Kích thước mm"></i>
                     </div>
                     <!-- End Header -->
+                    <div class="table-responsive datatable-custom">
+                        <table style="overflow: hidden" id="datatable" class="table table-borderless table-thead-bordered table-nowrap table-align-middle card-table" data-hs-datatables-options='{
+                     "columnDefs": [{
+                        "targets": [0, 4, 9],
+                        "width": "5%",
+                        "orderable": false
+                      }],
+                     "order": [],
+                     "info": {
+                       "totalQty": "#datatableWithPaginationInfoTotalQty"
+                     },
+                     "search": "#datatableSearch",
+                     "entries": "#datatableEntries",
+                     "pageLength": #,
+                     "isResponsive": false,
+                     "isShowPaging": false,
+                     "pagination": "datatablePagination"
+                   }'>
+                            <thead class="thead-light">
+                            <tr>
+                                <th>Tên thông số</th>
+                                <th>Giá trị</th>
+                                <th></th>
+                            </tr>
+                            </thead>
 
+                            <tbody>
+
+                            </tbody>
+                        </table>
+                    </div>
                     <!-- Body -->
                     <div class="card-body">
                         <h6 class="text-cap"></h6>
@@ -648,7 +678,7 @@
 
                                     <div class="col-8">
                                         <input type="text" class="form-control" name="vendor"
-                                               placeholder="Chi tiết thông số" aria-label="">
+                                               placeholder="Giá trị" aria-label="">
                                     </div>
                                 </div>
                             </div>
