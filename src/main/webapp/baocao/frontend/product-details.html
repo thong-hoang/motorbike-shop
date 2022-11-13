@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="zxx">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="Ashion Template">
+    <meta name="keywords" content="Ashion, unica, creative, html">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>VTV | Sirius xanh đen</title>
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Cookie&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+
+    <!-- Css Styles -->
+    <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css">
+    <link rel="stylesheet" href="css/font-awesome.min.css" type="text/css">
+    <link rel="stylesheet" href="css/elegant-icons.css" type="text/css">
+    <link rel="stylesheet" href="css/jquery-ui.min.css" type="text/css">
+    <link rel="stylesheet" href="css/magnific-popup.css" type="text/css">
+    <link rel="stylesheet" href="css/owl.carousel.min.css" type="text/css">
+    <link rel="stylesheet" href="css/slicknav.min.css" type="text/css">
+    <link rel="stylesheet" href="css/style.css" type="text/css">
+</head>
+<style>
+    .product__item__pic {
+        height: 220px;
+    }
+
+    .product__details__button .buy-btn {
+        display: inline-block;
+        font-size: 14px;
+        color: #ca1515;
+        border-style: solid;
+        border-color: #ca1515;
+        background: #ffffff;
+        font-weight: 600;
+        text-transform: uppercase;
+        padding: 14px 30px 15px;
+        margin-right: 10px;
+        margin-bottom: 10px;
+    }
+
+    .product__details__button .cart-btn {
+        border-radius: 0px;
+        border-style: solid;
+        border-color: #ca1515;
+    }
+</style>
+
+<body>
+    <!-- Page Preloder -->
+    <div id="preloder">
+        <div class="loader"></div>
+    </div>
+
+    <!-- Offcanvas Menu Begin -->
+    <div class="offcanvas-menu-overlay"></div>
+    <div class="offcanvas-menu-wrapper">
+        <div class="offcanvas__close">+</div>
+        <ul class="offcanvas__widget">
+            <li><span class="icon_search search-switch"></span></li>
+            <li><a href="#"><span class="icon_heart_alt"></span>
+                    <div class="tip">2</div>
+                </a></li>
+            <li><a href="#"><span class="icon_bag_alt"></span>
+                    <div class="tip">2</div>
+                </a></li>
+        </ul>
+        <div class="offcanvas__logo">
+            <a href="./index.html"><img src="../images/logo/logo.png" alt=""></a>
+        </div>
+        <div id="mobile-menu-wrap"></div>
+        <div class="offcanvas__auth">
+            <a href="#">Đăng nhập</a>
+        </div>
+    </div>
+    <!-- Offcanvas Menu End -->
+
+    <!-- Header Section Begin -->
+    <header class="header">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-xl-3 col-lg-2">
+                    <div class="header__logo">
+                        <a href="./index.html"><img src="../images/logo/logo.png" alt=""></a>
+                    </div>
+                </div>
+                <div class="col-xl-6 col-lg-7">
+                    <nav class="header__menu">
+                        <ul>
+                            <li class="active"><a href="./index.html">Trang chủ</a></li>
+                            <li><a href="./shop2.html">Xe Máy</a>
+                                <ul class="dropdown">
+                                    <li><a href="./product-details.html">Xe số</a></li>
+                                    <li><a href="./product-details.html">Xe tay ga</a></li>
+                                    <li><a href="./product-details.html">Xe côn tay</a></li>
+                                    <li><a href="./product-details.html">Xe phân khối lớn</a></li>
+                                </ul>
+                            </li>
+                            <!-- <li><a href="./blog.html">Tin tức</a></li>
+                        <li><a href="./contact.html">Liên hệ</a></li> -->
+                        </ul>
+                    </nav>
+                </div>
+                <div class="col-lg-3">
+                    <div class="header__right">
+
+                        <div class="header__right__auth">
+                            <a href="./login.html">Đăng nhập</a>
+                        </div>
+                        <ul class="header__right__widget">
+                            <li><span class="icon_search search-switch"></span></li>
+                            <li><a href="./shop-cart.html"><span class="icon_bag_alt"></span>
+                                    <div class="tip">2</div>
+                                </a></li>
+                        </ul>
+
+                        <!-- đăng nhập thành công -->
+                        <!-- <ul class="header__right__widget">
+                        <span class="header__menu">
+                            <ul>
+                                <li><a href="#">hoàng phạm thông</a>
+                                    <ul class="dropdown">
+                                        <li><a href="./account.html">Tài khoản</a></li>
+                                        <li><a href="./order.html">Đơn mua</a></li>
+                                        <li><a href="#">Đăng xuất</a></li>
+                                    </ul>
+                                </li>
+                                <li><span class="icon_search search-switch"></span></li>
+                                <li>
+                                    <a href="./shop-cart.html">
+                                        <span class="icon_bag_alt"></span>
+                                        <div class="tip">2</div>
+                                    </a>
+                                </li>
+                            </ul>
+                        </span>
+                    </ul> -->
+
+                    </div>
+                </div>
+            </div>
+            <div class="canvas__open">
+                <i class="fa fa-bars"></i>
+            </div>
+        </div>
+    </header>
+    <!-- Header Section End -->
+
+    <!-- Breadcrumb Begin -->
+    <div class="breadcrumb-option">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="breadcrumb__links">
+                        <a href="./index.html"><i class="fa fa-home"></i> Trang chủ</a>
+                        <a href="./shop2.html">Xe máy </a>
+                        <a href="./shop2.html">Xe số </a>
+
+                        <span>Sirius xanh đen</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Breadcrumb End -->
+
+    <!-- Product Details Section Begin -->
+    <section class="product-details spad">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="product__details__pic">
+                        <div class="product__details__pic__left product__thumb nice-scroll">
+                            <a class="pt active" href="#product-1">
+                                <img src="../images/yamaha/xeso/7/sirius-dark-blue-007.png" alt="">
+                            </a>
+                            <a class="pt" href="#product-2">
+                                <img src="../images/test/2.jpg" alt="">
+                            </a>
+                            <a class="pt" href="#product-3">
+                                <img src="../images/test/3.jpg" alt="">
+                            </a>
+                        </div>
+                        <div class="product__details__slider__content">
+                            <div class="product__details__pic__slider owl-carousel">
+                                <img data-hash="product-1" class="product__big__img"
+                                    src="../images/yamaha/xeso/7/sirius-dark-blue-007.png" alt="">
+                                <img data-hash="product-2" class="product__big__img" src="../images/test/2.jpg" alt="">
+                                <img data-hash="product-3" class="product__big__img" src="../images/test/3.jpg" alt="">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="product__details__text">
+                        <h3>Sirius xanh đen <span>Xe chất lượng cao</span></h3>
+                        <div class="rating">
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <span>( 138 lượt xem )</span>
+                        </div>
+                        <div class="product__details__price">27.000.000 VNĐ <span></span></div>
+                        <p></p>
+                        <div class="product__details__button">
+                            <div class="quantity">
+                                <span>Số lượng</span>
+                                <div class="pro-qty">
+                                    <input type="text" value="1">
+                                </div>
+
+                            </div>
+                            <br><br><br>
+                            <a href="./shop-cart.html" class="buy-btn"> Mua ngay</a>
+                            <a href="./shop-cart.html" class="cart-btn"><span class="icon_bag_alt"></span> Thêm vào giỏ hàng</a>
+                            <!--    <ul>
+                                  <li><a href="#"><span class="icon_heart_alt"></span></a></li>
+                                   <li><a href="#"><span class="icon_adjust-horiz"></span></a></li>
+                               </ul> -->
+                        </div>
+                        <div class="product__details__widget">
+                            <ul>
+                                <!--      <li>
+                                        <span>Khả dụng:</span>
+                                         <div class="stock__checkbox">
+                                             <label for="stockin">
+                                                 Có trong kho
+                                                 <input type="checkbox" id="stockin">
+                                                 <span class="checkmark"></span>
+                                             </label>
+                                         </div>
+                                     </li>   -->
+                                <li>
+                                    <span>Thương hiệu:</span>
+                                    <p>Yamaha</p>
+                                </li>
+                                <li>
+                                    <span>Loại xe:</span>
+                                    <p>Xe số</p>
+                                </li>
+                                <li>
+                                    <span>Màu sắc:</span>
+                                    <p>Xanh đen</p>
+                                </li>
+                                <li>
+                                    <span>Bảo hành:</span>
+                                    <p>12 tháng</p>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-12">
+                    <div class="product__details__tab">
+                        <ul class="nav nav-tabs" role="tablist">
+                            <li class="nav-item">
+                                <a class="nav-link active" data-toggle="tab" href="#tabs-1" role="tab">Mô tả chi
+                                    tiết</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" data-toggle="tab" href="#tabs-2" role="tab">Thông số kỹ thuật</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" data-toggle="tab" href="#tabs-3" role="tab">Kết quả đánh giá</a>
+                            </li>
+                        </ul>
+                        <div class="tab-content">
+                            <div class="tab-pane active" id="tabs-1" role="tabpanel">
+                                <h6>Mô tả</h6>
+                                <p>Chính thức xuất hiện tại Việt Nam, Xe Yamaha dòng “ Sirius Dark Blue “ thế hệ mới
+                                    nhất của YAMAHA vừa được ra mắt và bán chính thức tại thị trường Việt Nam
+                                    ,lắp ráp trong nước. Đây là sản phẩm xe số phổ thông thứ ba của Yamaha tại Việt Nam
+                                    và lần đầu xuất hiện ở thị trường trong nước. Trước đó, mẫu xe này đã bán ở Thái Lan
+                                    từ 2017. Xe Sirius hướng tới đối tượng khách hàng từ trẻ tuổi tới trung niên thích
+                                    sự gọn nhẹ, động cơ vận hành êm ái và đặc biệt tiết kiệm xăng.</p>
+                            </div>
+                            <div class="tab-pane" id="tabs-2" role="tabpanel">
+                                <h6>Thông số kỹ thuât</h6>
+                                <p>Khối lượng bản thân
+                                    97 kg
+                                    <br>
+                                    Dài x Rộng x Cao
+                                    1.914 mm x 688 mm x 1.075 mm
+                                    <br>
+                                    Khoảng cách trục bánh xe
+                                    1.224 mm
+                                    <br>
+                                    Độ cao yên
+                                    769 mm
+                                    <br>
+                                    Khoảng sáng gầm xe
+                                    138 mm
+                                    <br>
+                                    Dung tích bình xăng
+                                    3,7 L
+                                    <br>
+                                    Kích cỡ lớp trước/ sau
+                                    Lốp trước 70/90-17M/C 38P
+                                    Lốp sau 80/90-17M/C 50P
+                                    <br>
+                                    Phuộc trước
+                                    Ống lồng, giảm chấn thủy lực
+                                    <br>
+                                    Phuộc sau
+                                    Lò xo trụ, giảm chấn thủy lực
+                                    <br>
+                                    Loại động cơ
+                                    4 kỳ, 1 xilanh, làm mát bằng không khí
+                                    <br>
+                                    Công suất tối đa
+                                    6,12kW/7.500rpm
+                                    <br>
+                                    Dung tích nhớt máy
+                                    Sau khi xả 0,8 L
+                                    Sau khi rã máy 1,0 L
+                                    <br>
+                                    Mức tiêu thụ nhiên liệu
+                                    1,90 l/100km
+                                    <br>
+                                    Hệ thống khởi động
+                                    Điện
+                                    <br>
+                                    Moment cực đại
+                                    8,44 N・m (5.500rmp)
+                                    <br>
+                                    Dung tích xy-lanh
+                                    109,1 cm3
+                                    <br>
+                                    Đường kính x Hành trình pít tông
+                                    50,0 x 55,6 mm
+                                    <br>
+                                    Tỷ số nén
+                                    9,0 : 1
+                                </p>
+                            </div>
+                            <div class="tab-pane" id="tabs-3" role="tabpanel">
+                                <h6>Đánh giá</h6>
+                                <p>
+
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <div class="related__title">
+                        <h5>Sản phẩm liên quan</h5>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-4 col-sm-6">
+                    <div class="product__item">
+                        <div class="product__item__pic set-bg"
+                            data-setbg="../images/yamaha/xeso/11/sirius-black-drum-004-1.png">
+                            <ul class="product__hover">
+                                <li><a href="../images/yamaha/xeso/11/sirius-black-drum-004-1.png"
+                                        class="image-popup"><span class="arrow_expand"></span></a></li>
+                                <li><a href="#"><span class="icon_heart_alt"></span></a></li>
+                                <li><a href="#"><span class="icon_bag_alt"></span></a></li>
+                            </ul>
+                        </div>
+                        <div class="product__item__text">
+                            <h6><a href="#">Sirius Drum</a></h6>
+                            <div class="rating">
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                            </div>
+                            <div class="product__price">30.000.000 VNĐ</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-4 col-sm-6">
+                    <div class="product__item">
+                        <div class="product__item__pic set-bg"
+                            data-setbg="../images/yamaha/xecontay/7/ex155-yellow-grey-004.png">
+                            <ul class="product__hover">
+                                <li><a href="../images/yamaha/xecontay/7/ex155-yellow-grey-004.png"
+                                        class="image-popup"><span class="arrow_expand"></span></a></li>
+                                <li><a href="#"><span class="icon_heart_alt"></span></a></li>
+                                <li><a href="#"><span class="icon_bag_alt"></span></a></li>
+                            </ul>
+                        </div>
+                        <div class="product__item__text">
+                            <h6><a href="#">Exciter 155</a></h6>
+                            <div class="rating">
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                            </div>
+                            <div class="product__price">47.000.000 VNĐ</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-4 col-sm-6">
+                    <div class="product__item">
+                        <div class="product__item__pic set-bg"
+                            data-setbg="../images/yamaha/xecontay/12/exciter-150-pearl-white-004.png">
+                            <ul class="product__hover">
+                                <li><a href="../images/yamaha/xecontay/12/exciter-150-pearl-white-004.png"
+                                        class="image-popup"><span class="arrow_expand"></span></a></li>
+                                <li><a href="#"><span class="icon_heart_alt"></span></a></li>
+                                <li><a href="#"><span class="icon_bag_alt"></span></a></li>
+                            </ul>
+                        </div>
+                        <div class="product__item__text">
+                            <h6><a href="#">Exciter 150 pearl</a></h6>
+                            <div class="rating">
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                            </div>
+                            <div class="product__price">49.000.000 VNĐ</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-4 col-sm-6">
+                    <div class="product__item">
+                        <div class="product__item__pic set-bg"
+                            data-setbg="../images/yamaha/xetayga/7/latte-dark-grey-004.png">
+                            <ul class="product__hover">
+                                <li><a href="../images/yamaha/xetayga/7/latte-dark-grey-004.png"
+                                        class="image-popup"><span class="arrow_expand"></span></a></li>
+                                <li><a href="#"><span class="icon_heart_alt"></span></a></li>
+                                <li><a href="#"><span class="icon_bag_alt"></span></a></li>
+                            </ul>
+                        </div>
+                        <div class="product__item__text">
+                            <h6><a href="#">Latte xám đen</a></h6>
+                            <div class="rating">
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                            </div>
+                            <div class="product__price">39.000.000 VNĐ</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Product Details Section End -->
+
+    <!-- Footer Section Begin -->
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 col-md-6 col-sm-7">
+                    <div class="footer__about">
+                        <div class="footer__logo">
+                            <a href="./index.html"><img src="../images/logo/logo.png" alt=""></a>
+                        </div>
+                        <div>
+                            <p class="font-weight-bold">Công ty VTV Việt Nam.</p>
+                            <p>Đăng ký lần đầu: Ngày 10/10/2022</p>
+                            <p> Đăng ký thay đổi lần thứ 1: Ngày 10/10/2022.</p>
+                            <p>Cơ quan cấp: Phòng Đăng ký kinh doanh – Sở Kế hoạch và Đầu tư TP Hồ Chí Minh
+                            <p>Địa chỉ: Khu phố 6, Phường Linh Trung, TP. Thủ Đức, Việt Nam</p>
+                        </div>
+                        <div class="footer__payment">
+                            <a><img src="img/payment/payment-1.png" alt=""></a>
+                            <a><img src="img/payment/payment-2.png" alt=""></a>
+                            <a><img src="img/payment/payment-3.png" alt=""></a>
+                            <a><img src="img/payment/payment-4.png" alt=""></a>
+                            <a><img src="img/payment/payment-5.png" alt=""></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-3 col-sm-5">
+                    <div class="footer__widget">
+                        <a href="#">
+                            <h6>Liên hệ</h6>
+                        </a>
+                        <ul>
+                            <li><a>Hotline (miễn phí): 1800....</a></li>
+                            <li><a>Email: cskhvtv@gmail.com</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-3 col-sm-4">
+                    <div class="footer__widget">
+                        <a href="#">
+                            <h6>Chính sách bảo mật</h6>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                    <div class="footer__copyright__text">
+                        <p>Copyright &copy;
+                            <script>document.write(new Date().getFullYear());</script> Copyright by VTV VietNam
+                        </p>
+                    </div>
+                    <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- Footer Section End -->
+
+    <!-- Search bar -->
+    <div class="search-model">
+        <div class="h-100 d-flex align-items-center justify-content-center">
+            <div class="search-close-switch">+</div>
+            <form class="search-model-form">
+                <input type="text" id="search-input" placeholder="Tìm kiếm">
+            </form>
+        </div>
+    </div>
+    <!-- Search bar -->
+
+    <!-- Js Plugins -->
+    <script src="js/jquery-3.3.1.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/jquery.magnific-popup.min.js"></script>
+    <script src="js/jquery-ui.min.js"></script>
+    <script src="js/mixitup.min.js"></script>
+    <script src="js/jquery.countdown.min.js"></script>
+    <script src="js/jquery.slicknav.js"></script>
+    <script src="js/owl.carousel.min.js"></script>
+    <script src="js/jquery.nicescroll.min.js"></script>
+    <script src="js/main.js"></script>
+</body>
+
+</html>
