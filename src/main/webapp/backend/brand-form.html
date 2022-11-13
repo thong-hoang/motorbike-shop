@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <!-- Required Meta Tags Always Come First -->
@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <!-- Title -->
-    <title>VTV | Admin - Chi tiết xe</title>
+    <title>VTV | Admin - Thêm thương hiệu xe</title>
 
     <!-- Favicon -->
     <link rel="shortcut icon" href="favicon.ico">
@@ -272,9 +272,9 @@
                                         <span class="tio-circle nav-indicator-icon"></span>
                                         <span class="text-truncate">Kho sản phẩm</span>
                                     </a>
-                                    <a class="nav-link " href="#" title="Referrals">
+                                    <a class="nav-link active" href="#" title="Referrals">
                                         <span class="tio-circle nav-indicator-icon"></span>
-                                        <span class="text-truncate">Chi tiết sản phẩm</span>
+                                        <span class="text-truncate">Thêm sản phẩm</span>
                                     </a>
                                 </li>
                             </ul>
@@ -413,13 +413,12 @@
                 <div class="col-sm mb-2 mb-sm-0">
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb breadcrumb-no-gutter">
-                            <li class="breadcrumb-item"><a class="breadcrumb-link" href="ecommerce-products.html">Kho
-                                sản phẩm</a></li>
-                            <li class="breadcrumb-item active" aria-current="page">Chi tiết sản phẩm</li>
+                            <li class="breadcrumb-item"><a class="breadcrumb-link" href="ecommerce-products.html">Thương hiệu</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">Thêm thương hiệu</li>
                         </ol>
                     </nav>
 
-                    <h1 class="page-header-title">Chỉ tiết sản phẩm</h1>
+                    <h1 class="page-header-title">Thêm thương hiệu</h1>
                 </div>
             </div>
             <!-- End Row -->
@@ -427,7 +426,7 @@
         <!-- End Page Header -->
 
         <div class="row">
-            <div class="col-lg-8">
+            <div class="col-lg-12">
                 <!-- Card -->
                 <div class="card mb-3 mb-lg-5">
                     <!-- Header -->
@@ -440,466 +439,22 @@
                     <div class="card-body">
                         <!-- Form Group -->
                         <div class="form-group">
-                            <label for="productNameLabel" class="input-label">Tên xe <i
+                            <label for="productNameLabel" class="input-label">Tên thương hiệu <i
                                     class="tio-help-outlined text-body ml-1" data-toggle="tooltip" data-placement="top"
-                                    title="Nhập tên xe"></i></label>
+                                    title="Nhập "></i></label>
 
                             <input type="text" class="form-control" name="productName" id="productNameLabel"
-                                   placeholder="Nhập tên xe" aria-label="Shirt, t-shirts, etc." value="Sirius xanh đen">
+                                   placeholder="Nhập tên thương hiệu" aria-label="Shirt, t-shirts, etc.">
                         </div>
                         <!-- End Form Group -->
-
-                        <div class="row">
-                            <div class="col-sm-6">
-                                <!-- Form Group -->
-                                <div class="form-group">
-                                    <label class="input-label" for="exampleFormControlSelect2">Hãng xe <span
-                                            class="input-label-secondary"></span></label>
-                                    <select id="exampleFormControlSelect2" class="form-control">
-                                        <option>Yamaha</option>
-                                        <option>Suzuki</option>
-                                        <option>Honda</option>
-                                    </select>
-                                </div>
-                                <!-- End Form Group -->
-                            </div>
-
-                            <div class="col-sm-6">
-                                <!-- Form Group -->
-                                <div class="form-group">
-                                    <label class="input-label" for="exampleFormControlSelect1">Chọn loại xe <span
-                                            class="input-label-secondary"></span></label>
-                                    <select id="exampleFormControlSelect1" class="form-control">
-                                        <option>Xe số</option>
-                                        <option>Xe tay ga</option>
-                                    </select>
-                                </div>
-                                <!-- End Form Group -->
-                            </div>
-                        </div>
-                        <!-- End Row -->
-
-                        <label class="input-label">Mô tả <span class="input-label-secondary">(Đặc điểm)</span></label>
-
-                        <!-- Quill -->
-                        <div class="quill-custom">
-                            <div class="ql-toolbar ql-snow"><span class="ql-formats"><span
-                                    class="ql-header ql-picker"><span class="ql-picker-label" tabindex="0" role="button"
-                                                                      aria-expanded="false"
-                                                                      aria-controls="ql-picker-options-0"><svg
-                                    viewBox="0 0 18 18"> <polygon class="ql-stroke"
-                                                                  points="7 11 9 13 11 11 7 11"></polygon> <polygon
-                                    class="ql-stroke" points="7 7 9 5 11 7 7 7"></polygon> </svg></span><span
-                                    class="ql-picker-options" aria-hidden="true" tabindex="-1" id="ql-picker-options-0"><span
-                                    tabindex="0" role="button" class="ql-picker-item" data-value="1"></span><span
-                                    tabindex="0" role="button" class="ql-picker-item" data-value="2"></span><span
-                                    tabindex="0" role="button" class="ql-picker-item" data-value="3"></span><span
-                                    tabindex="0" role="button" class="ql-picker-item"></span></span></span><select
-                                    class="ql-header" style="display: none;"><option value="1"></option><option
-                                    value="2"></option><option value="3"></option><option selected="selected"></option></select></span><span
-                                    class="ql-formats"><button type="button" class="ql-bold"><svg viewBox="0 0 18 18"> <path
-                                    class="ql-stroke"
-                                    d="M5,4H9.5A2.5,2.5,0,0,1,12,6.5v0A2.5,2.5,0,0,1,9.5,9H5A0,0,0,0,1,5,9V4A0,0,0,0,1,5,4Z"></path> <path
-                                    class="ql-stroke"
-                                    d="M5,9h5.5A2.5,2.5,0,0,1,13,11.5v0A2.5,2.5,0,0,1,10.5,14H5a0,0,0,0,1,0,0V9A0,0,0,0,1,5,9Z"></path> </svg></button><button
-                                    type="button" class="ql-italic"><svg viewBox="0 0 18 18"> <line class="ql-stroke"
-                                                                                                    x1="7" x2="13"
-                                                                                                    y1="4"
-                                                                                                    y2="4"></line> <line
-                                    class="ql-stroke" x1="5" x2="11" y1="14" y2="14"></line> <line class="ql-stroke"
-                                                                                                   x1="8" x2="10"
-                                                                                                   y1="14"
-                                                                                                   y2="4"></line> </svg></button><button
-                                    type="button" class="ql-underline"><svg viewBox="0 0 18 18"> <path class="ql-stroke"
-                                                                                                       d="M5,3V9a4.012,4.012,0,0,0,4,4H9a4.012,4.012,0,0,0,4-4V3"></path> <rect
-                                    class="ql-fill" height="1" rx="0.5" ry="0.5" width="12" x="3" y="15"></rect> </svg></button><button
-                                    type="button" class="ql-link"><svg viewBox="0 0 18 18"> <line class="ql-stroke"
-                                                                                                  x1="7" x2="11" y1="7"
-                                                                                                  y2="11"></line> <path
-                                    class="ql-even ql-stroke"
-                                    d="M8.9,4.577a3.476,3.476,0,0,1,.36,4.679A3.476,3.476,0,0,1,4.577,8.9C3.185,7.5,2.035,6.4,4.217,4.217S7.5,3.185,8.9,4.577Z"></path> <path
-                                    class="ql-even ql-stroke"
-                                    d="M13.423,9.1a3.476,3.476,0,0,0-4.679-.36,3.476,3.476,0,0,0,.36,4.679c1.392,1.392,2.5,2.542,4.679.36S14.815,10.5,13.423,9.1Z"></path> </svg></button></span><span
-                                    class="ql-formats"><button type="button" class="ql-list" value="ordered"><svg
-                                    viewBox="0 0 18 18"> <line class="ql-stroke" x1="7" x2="15" y1="4" y2="4"></line> <line
-                                    class="ql-stroke" x1="7" x2="15" y1="9" y2="9"></line> <line class="ql-stroke"
-                                                                                                 x1="7" x2="15" y1="14"
-                                                                                                 y2="14"></line> <line
-                                    class="ql-stroke ql-thin" x1="2.5" x2="4.5" y1="5.5" y2="5.5"></line> <path
-                                    class="ql-fill"
-                                    d="M3.5,6A0.5,0.5,0,0,1,3,5.5V3.085l-0.276.138A0.5,0.5,0,0,1,2.053,3c-0.124-.247-0.023-0.324.224-0.447l1-.5A0.5,0.5,0,0,1,4,2.5v3A0.5,0.5,0,0,1,3.5,6Z"></path> <path
-                                    class="ql-stroke ql-thin"
-                                    d="M4.5,10.5h-2c0-.234,1.85-1.076,1.85-2.234A0.959,0.959,0,0,0,2.5,8.156"></path> <path
-                                    class="ql-stroke ql-thin"
-                                    d="M2.5,14.846a0.959,0.959,0,0,0,1.85-.109A0.7,0.7,0,0,0,3.75,14a0.688,0.688,0,0,0,.6-0.736,0.959,0.959,0,0,0-1.85-.109"></path> </svg></button><button
-                                    type="button" class="ql-list" value="bullet"><svg viewBox="0 0 18 18"> <line
-                                    class="ql-stroke" x1="6" x2="15" y1="4" y2="4"></line> <line class="ql-stroke"
-                                                                                                 x1="6" x2="15" y1="9"
-                                                                                                 y2="9"></line> <line
-                                    class="ql-stroke" x1="6" x2="15" y1="14" y2="14"></line> <line class="ql-stroke"
-                                                                                                   x1="3" x2="3" y1="4"
-                                                                                                   y2="4"></line> <line
-                                    class="ql-stroke" x1="3" x2="3" y1="9" y2="9"></line> <line class="ql-stroke" x1="3"
-                                                                                                x2="3" y1="14"
-                                                                                                y2="14"></line> </svg></button></span><span
-                                    class="ql-formats"><button type="button" class="ql-clean"><svg class=""
-                                                                                                   viewBox="0 0 18 18"> <line
-                                    class="ql-stroke" x1="5" x2="13" y1="3" y2="3"></line> <line class="ql-stroke"
-                                                                                                 x1="6" x2="9.35"
-                                                                                                 y1="12" y2="3"></line> <line
-                                    class="ql-stroke" x1="11" x2="15" y1="11" y2="15"></line> <line class="ql-stroke"
-                                                                                                    x1="15" x2="11"
-                                                                                                    y1="11"
-                                                                                                    y2="15"></line> <rect
-                                    class="ql-fill" height="1" rx="0.5" ry="0.5" width="7" x="2"
-                                    y="14"></rect> </svg></button></span></div>
-                            <div class="js-quill ql-container ql-snow" style="min-height: 15rem;"
-                                 data-hs-quill-options="{
-                          &quot;placeholder&quot;: &quot;Type your description...&quot;
-                         }">
-                                <div class="ql-editor" data-gramm="false" contenteditable="true"
-                                     data-placeholder="Type your description..."><p>Chính thức xuất hiện tại Việt Nam, Xe Yamaha dòng “ Sirius Dark Blue “ thế hệ mới.</p>
-                                </div>
-                                <div class="ql-clipboard" contenteditable="true" tabindex="-1"></div>
-                                <div class="ql-tooltip ql-hidden"><a class="ql-preview" rel="noopener noreferrer"
-                                                                     target="_blank" href="about:blank"></a><input
-                                        type="text" data-formula="e=mc^2" data-link="https://quilljs.com"
-                                        data-video="Embed URL"><a class="ql-action"></a><a class="ql-remove"></a></div>
-                            </div>
-                        </div>
-                        <!-- End Quill -->
                     </div>
                     <!-- Body -->
                 </div>
                 <!-- End Card -->
 
-                <!-- Card -->
-                <div class="card mb-3 mb-lg-5">
-                    <!-- Header -->
-                    <div class="card-header">
-                        <h4 class="card-header-title">Hình ảnh</h4>
-
-                        <!-- Unfold -->
-                        <div class="hs-unfold">
-                            <a class="js-hs-unfold-invoker btn btn-sm btn-ghost-secondary" data-hs-unfold-options='{
-                       "target": "#mediaDropdown",
-                       "type": "css-animation"
-                     }'>
-                                Thêm từ URL <i class="tio-chevron-down"></i>
-                            </a>
-
-                            <div id="mediaDropdown"
-                                 class="hs-unfold-content dropdown-unfold dropdown-menu dropdown-menu-right mt-1">
-                                <a class="dropdown-item" data-toggle="modal" data-target="#addImageFromURLModal">
-                                    <i class="tio-link dropdown-item-icon"></i> URL
-                                </a>
-                                <a class="dropdown-item" data-toggle="modal" data-target="#embedVideoModal">
-                                    <i class="tio-save dropdown-item-icon"></i> Từ bộ nhớ
-                                </a>
-                            </div>
-                        </div>
-                        <!-- End Unfold -->
-                    </div>
-                    <!-- End Header -->
-
-                    <!-- Body -->
-                    <div class="card-body">
-                        <div id="fancyboxGallery" class="js-fancybox row justify-content-sm-center gx-2"
-                             data-hs-fancybox-options="{
-                       &quot;selector&quot;: &quot;#fancyboxGallery .js-fancybox-item&quot;
-                     }">
-                            <div class="col-6 col-sm-4 col-md-3 mb-3 mb-lg-5">
-                                <!-- Card -->
-                                <div class="card card-sm">
-                                    <img class="card-img-top" src="../images/yamaha/xeso/7/sirius-dark-blue-007.png" alt="Image Description">
-
-                                    <div class="card-body">
-                                        <div class="row text-center">
-                                            <div class="col">
-                                                <a class="js-fancybox-item text-body"
-                                                   data-toggle="tooltip" data-placement="top" title=""
-                                                   data-src="../images/yamaha/xeso/7/sirius-dark-blue-007.png" data-caption="Image #01"
-                                                   data-original-title="View">
-                                                    <i class="tio-visible-outlined"></i>
-                                                </a>
-                                            </div>
-
-                                            <div class="col column-divider">
-                                                <a class="text-danger" href="javascript:;" data-toggle="tooltip"
-                                                   data-placement="top" title="" data-original-title="Delete">
-                                                    <i class="tio-delete-outlined"></i>
-                                                </a>
-                                            </div>
-                                        </div>
-                                        <!-- End Row -->
-                                    </div>
-                                </div>
-                                <!-- End Card -->
-                            </div>
-
-                            <div class="col-6 col-sm-4 col-md-3 mb-3 mb-lg-5">
-                                <!-- Card -->
-                                <div class="card card-sm">
-                                    <img class="card-img-top" src="../images/yamaha/xeso/7/sirius-dark-blue-007.png" alt="Image Description">
-
-                                    <div class="card-body">
-                                        <div class="row text-center">
-                                            <div class="col">
-                                                <a class="js-fancybox-item text-body" href="javascript:;"
-                                                   data-toggle="tooltip" data-placement="top" title=""
-                                                   data-src="./assets/img/1920x1080/img1.jpg" data-caption="Image #02"
-                                                   data-original-title="View">
-                                                    <i class="tio-visible-outlined"></i>
-                                                </a>
-                                            </div>
-
-                                            <div class="col column-divider">
-                                                <a class="text-danger" href="javascript:;" data-toggle="tooltip"
-                                                   data-placement="top" title="" data-original-title="Delete">
-                                                    <i class="tio-delete-outlined"></i>
-                                                </a>
-                                            </div>
-                                        </div>
-                                        <!-- End Row -->
-                                    </div>
-                                </div>
-                                <!-- End Card -->
-                            </div>
-
-                            <div class="col-6 col-sm-4 col-md-3 mb-3 mb-lg-5">
-                                <!-- Card -->
-                                <div class="card card-sm">
-                                    <img class="card-img-top" src="../images/yamaha/xeso/7/sirius-dark-blue-007.png" alt="Image Description">
-
-                                    <div class="card-body">
-                                        <div class="row text-center">
-                                            <div class="col">
-                                                <a class="js-fancybox-item text-body" href="javascript:;"
-                                                   data-toggle="tooltip" data-placement="top" title=""
-                                                   data-src="./assets/img/1920x1080/img2.jpg" data-caption="Image #03"
-                                                   data-original-title="View">
-                                                    <i class="tio-visible-outlined"></i>
-                                                </a>
-                                            </div>
-
-                                            <div class="col column-divider">
-                                                <a class="text-danger" href="javascript:;" data-toggle="tooltip"
-                                                   data-placement="top" title="" data-original-title="Delete">
-                                                    <i class="tio-delete-outlined"></i>
-                                                </a>
-                                            </div>
-                                        </div>
-                                        <!-- End Row -->
-                                    </div>
-                                </div>
-                                <!-- End Card -->
-                            </div>
-
-                            <div class="col-6 col-sm-4 col-md-3 mb-3 mb-lg-5">
-                                <!-- Card -->
-                                <div class="card card-sm">
-                                    <img class="card-img-top" src="../images/yamaha/xeso/7/sirius-dark-blue-007.png"
-                                         alt="Image Description">
-
-                                    <div class="card-body">
-                                        <div class="row text-center">
-                                            <div class="col">
-                                                <a class="js-fancybox-item text-body" href="javascript:;"
-                                                   data-toggle="tooltip" data-placement="top" title=""
-                                                   data-src="./assets/img/1920x1080/img3.jpg" data-caption="Image #04"
-                                                   data-original-title="View">
-                                                    <i class="tio-visible-outlined"></i>
-                                                </a>
-                                            </div>
-
-                                            <div class="col column-divider">
-                                                <a class="text-danger" href="javascript:;" data-toggle="tooltip"
-                                                   data-placement="top" title="" data-original-title="Delete">
-                                                    <i class="tio-delete-outlined"></i>
-                                                </a>
-                                            </div>
-                                        </div>
-                                        <!-- End Row -->
-                                    </div>
-                                </div>
-                                <!-- End Card -->
-                            </div>
-                        </div>
-                        <!-- Dropzone -->
-                        <div id="attachFilesNewProjectLabel" class="js-dropzone dropzone-custom custom-file-boxed">
-                            <div class="dz-message custom-file-boxed-label">
-                                <img class="avatar avatar-xl avatar-4by3 mb-3" src="assets\svg\illustrations\browse.svg"
-                                     alt="Image Description">
-                                <h5 class="mb-1">Chọn ảnh trên máy</h5>
-                                <p class="mb-2">hoặc</p>
-                                <span data-target="#addImageFromURLModal" class="btn btn-sm btn-primary">Tải ảnh bằng URL</span>
-                            </div>
-                        </div>
-                        <!-- End Dropzone -->
-                    </div>
-                    <!-- Body -->
-                </div>
-                <!-- End Card -->
-
-                <!-- Card -->
-                <div class="card">
-                    <!-- Header -->
-                    <div class="card-header">
-                        <h4 class="card-header-title">Thông số</h4>
-                    </div>
-                    <!-- End Header -->
-
-                    <!-- Body -->
-                    <div class="card-body">
-                        <h6 class="text-cap"></h6>
-
-                        <div class="js-add-field" data-hs-add-field-options='{
-                      "template": "#addAnotherOptionFieldTemplate",
-                      "container": "#addAnotherOptionFieldContainer",
-                      "defaultCreated": 0
-                    }'>
-                            <!-- Form Group -->
-                            <div class="form-group">
-                                <div class="row">
-                                    <div class="col-4">
-                                        <div class="input-group-prepend">
-                                            <input value="Màu sắc" type="text" class="form-control" name="vendor"
-                                                   placeholder="Tên thông số" aria-label="">
-                                        </div>
-                                    </div>
-
-                                    <div class="col-8">
-                                        <input value="Xanh đen" type="text" class="form-control" name="vendor"
-                                               placeholder="Chi tiết thông số" aria-label="">
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- End Form Group -->
-
-                            <!-- Container For Input Field -->
-                            <div id="addAnotherOptionFieldContainer"></div>
-
-                            <a href="#" class="js-create-field btn btn-sm btn-no-focus btn-ghost-primary">
-                                <i class="tio-add"></i> Thêm thông số
-                            </a>
-                        </div>
-
-                        <!-- Add Another Option Input Field -->
-                        <div id="addAnotherOptionFieldTemplate" style="display: none;">
-                            <!-- Form Group -->
-                            <div class="form-group">
-                                <div class="row">
-                                    <div class="col-4">
-                                        <div class="input-group-prepend">
-                                            <!-- Select -->
-                                            <select class="js-select2-custom-dynamic custom-select" size="1"
-                                                    style="opacity: 0;" data-hs-select2-options='{
-                                    "minimumResultsForSearch": "Infinity"
-                                  }'>
-                                                <option value="Size">Size</option>
-                                                <option value="Color">Color</option>
-                                                <option value="Material">Material</option>
-                                                <option value="Style">Style</option>
-                                                <option value="Title">Title</option>
-                                            </select>
-                                            <!-- End Select -->
-                                        </div>
-                                    </div>
-
-                                    <div class="col-8">
-                                        <!-- Select2 -->
-                                        <select class="js-select2-custom-dynamic custom-select" size="1"
-                                                style="opacity: 0;" multiple="" data-hs-select2-options='{
-                                  "minimumResultsForSearch": "Infinity",
-                                  "placeholder": "Separate options with enter",
-                                  "tags": true
-                                }'>
-                                            <option label="empty"></option>
-                                        </select>
-                                        <!-- End Select2 -->
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- End Form Group -->
-                        </div>
-                        <!-- End Add Another Option Input Field -->
-                    </div>
-                    <!-- Body -->
-                </div>
-                <!-- End Card -->
-            </div>
-
-            <div class="col-lg-4">
-                <!-- Card -->
-                <div class="card mb-3 mb-lg-5">
-                    <!-- Header -->
-                    <div class="card-header">
-                        <h4 class="card-header-title">Giá xe</h4>
-                    </div>
-                    <!-- End Header -->
-
-                    <!-- Body -->
-                    <div class="card-body">
-                        <!-- Form Group -->
-                        <div class="form-group">
-                            <!--                            <label for="priceNameLabel" class="input-label">Giá</label>-->
-
-                            <div class="input-group">
-                                <input value="27000000" type="number" class="form-control" name="priceName" id="priceNameLabel"
-                                       placeholder="0" aria-label="0.00">
-
-                                <div class="input-group-append">
-                                    <!-- Select -->
-                                    <div id="priceSelect" class="select2-custom select2-custom-right">
-                                        <select class="js-select2-custom custom-select" size="1" style="opacity: 0;"
-                                                data-hs-select2-options='{
-                                    "dropdownParent": "#priceSelect",
-                                    "dropdownAutoWidth": true,
-                                    "width": true
-                                  }'>
-                                            <option value="USD" selected="">VNĐ</option>
-                                        </select>
-                                    </div>
-                                    <!-- End Select -->
-                                </div>
-                            </div>
-                        </div>
-                        <!-- End Form Group -->
-
-                        <!-- End Toggle Switch -->
-                    </div>
-                    <!-- Body -->
-                </div>
-                <!-- End Card -->
-
-                <!-- Card -->
-                <div class="card">
-                    <!-- Header -->
-                    <div class="card-header">
-                        <h4 class="card-header-title">Số lượng tồn kho</h4>
-                    </div>
-                    <!-- End Header -->
-
-                    <!-- Body -->
-                    <div class="card-body">
-                        <!-- Form Group -->
-                        <div class="form-group">
-                            <!--                            <label for="vendorLabel" class="input-label">Vendor</label>-->
-
-                            <input value="15" type="number" class="form-control" name="vendor" id="vendorLabel"
-                                   placeholder="0" aria-label="eg. Nike">
-                        </div>
-                        <!-- End Form Group -->
-
-                    </div>
-                    <!-- End Body -->
-                </div>
-                <!-- End Card -->
             </div>
         </div>
         <!-- End Row -->
-
         <div class="position-fixed bottom-0 content-centered-x w-100 z-index-99 mb-3" style="max-width: 40rem;">
             <!-- Card -->
             <div class="card card-sm bg-dark border-dark mx-2">

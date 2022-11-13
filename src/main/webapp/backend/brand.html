@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <!-- Required Meta Tags Always Come First -->
@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <!-- Title -->
-    <title>VTV | Admin - Chi tiết xe</title>
+    <title>VTV | Admin - Thương hiệu</title>
 
     <!-- Favicon -->
     <link rel="shortcut icon" href="favicon.ico">
@@ -75,8 +75,7 @@
                     <li class="nav-item d-md-none">
                         <!-- Search Trigger -->
                         <div class="hs-unfold">
-                            <a class="js-hs-unfold-invoker btn btn-icon btn-ghost-secondary rounded-circle"
-                               href="javascript:;"
+                            <a class="js-hs-unfold-invoker btn btn-icon btn-ghost-secondary rounded-circle" href="javascript:;"
                                data-hs-unfold-options='{
                  "target": "#searchDropdown",
                  "type": "css-animation",
@@ -109,8 +108,7 @@
                                 <div class="dropdown-item-text">
                                     <div class="media align-items-center">
                                         <div class="avatar avatar-sm avatar-dark avatar-circle mr-2">
-                                            <img class="avatar-img" src="../images/test/admin1.jpg"
-                                                 alt="Image Description">
+                                            <img class="avatar-img" src="../images/test/admin1.jpg" alt="Image Description">
                                             <!-- <span class="avatar-initials">A</span> -->
                                         </div>
                                         <div class="media-body">
@@ -121,8 +119,7 @@
                                 </div>
                                 <div class="dropdown-divider"></div>
                                 <a class="dropdown-item" href="#">
-                                    <span class="text-truncate pr-2"
-                                          title="Profile &amp; account">Hồ Sơ Tài Khoản</span>
+                                    <span class="text-truncate pr-2" title="Profile &amp; account">Hồ Sơ Tài Khoản</span>
                                 </a>
                                 <a class="dropdown-item" href="#">
                                     <span class="text-truncate pr-2" title="Sign out">Đăng Xuất</span>
@@ -169,7 +166,7 @@
                 <div class="navbar-vertical-content">
                     <ul class="navbar-nav navbar-nav-lg nav-tabs">
                         <!-- Dashboards -->
-                        <li class="navbar-vertical-aside-has-menu">
+                        <li class="navbar-vertical-aside-has-menu show">
                             <a class="js-navbar-vertical-aside-menu-link nav-link " href="../backend/index.html"
                                title="Dashboards">
                                 <i class="tio-home-vs-1-outlined nav-icon"></i>
@@ -268,11 +265,11 @@
 
                             <ul class="js-navbar-vertical-aside-submenu nav nav-sub">
                                 <li class="nav-item ">
-                                    <a class="nav-link " href="#" title="Referrals">
+                                    <a class="nav-link active" href="#" title="Referrals">
                                         <span class="tio-circle nav-indicator-icon"></span>
                                         <span class="text-truncate">Kho sản phẩm</span>
                                     </a>
-                                    <a class="nav-link active" href="#" title="Referrals">
+                                    <a class="nav-link " href="#" title="Referrals">
                                         <span class="tio-circle nav-indicator-icon"></span>
                                         <span class="text-truncate">Thêm sản phẩm</span>
                                     </a>
@@ -374,6 +371,8 @@
 </div>
 
 
+
+
 <div id="searchDropdown" class="hs-unfold-content dropdown-unfold search-fullwidth d-md-none">
     <form class="input-group input-group-merge input-group-borderless">
         <div class="input-group-prepend">
@@ -409,442 +408,336 @@
     <div class="content container-fluid">
         <!-- Page Header -->
         <div class="page-header">
-            <div class="row align-items-center">
+            <div class="row align-items-center mb-3">
                 <div class="col-sm mb-2 mb-sm-0">
-                    <nav aria-label="breadcrumb">
-                        <ol class="breadcrumb breadcrumb-no-gutter">
-                            <li class="breadcrumb-item"><a class="breadcrumb-link" href="ecommerce-products.html">Kho
-                                sản phẩm</a></li>
-                            <li class="breadcrumb-item active" aria-current="page">Thêm sản phẩm</li>
-                        </ol>
-                    </nav>
+                    <h1 class="page-header-title">Danh sách thương hiệu <span class="badge badge-soft-dark ml-2">6</span></h1>
 
-                    <h1 class="page-header-title">Thêm sản phẩm</h1>
+                    <div class="mt-2">
+
+                    </div>
+                </div>
+
+                <div class="col-sm-auto">
+                    <a class="btn btn-primary" href="brand-form.html">Thêm thương hiệu</a>
                 </div>
             </div>
             <!-- End Row -->
+
         </div>
         <!-- End Page Header -->
 
-        <div class="row">
-            <div class="col-lg-8">
-                <!-- Card -->
-                <div class="card mb-3 mb-lg-5">
-                    <!-- Header -->
-                    <div class="card-header">
-                        <h4 class="card-header-title">Thông tin cơ bản</h4>
+        <!-- End Row -->
+
+        <!-- Card -->
+        <div class="card">
+            <!-- Header -->
+            <div class="card-header">
+                <div class="row justify-content-between align-items-center flex-grow-1">
+                    <div class="col-md-4 mb-3 mb-md-0">
+                        <form>
+                            <!-- Search -->
+                            <div class="input-group input-group-merge input-group-flush">
+                                <div class="input-group-prepend">
+                                    <div class="input-group-text">
+                                        <i class="tio-search"></i>
+                                    </div>
+                                </div>
+                                <input id="datatableSearch" type="search" class="form-control"
+                                       placeholder="Tìm kiếm thương hiệu" aria-label="Tìm kiếm sản phẩm">
+                            </div>
+                            <!-- End Search -->
+                        </form>
                     </div>
-                    <!-- End Header -->
+
+                    <div class="col-auto">
+                        <!-- Unfold -->
+                        <div class="hs-unfold mr-2">
+                            <a class="js-hs-unfold-invoker btn btn-white" data-hs-unfold-options='{
+                      "target": "#datatableFilterSidebar",
+                      "type": "css-animation",
+                      "animationIn": "fadeInRight",
+                      "animationOut": "fadeOutRight",
+                      "hasOverlay": true,
+                      "smartPositionOff": true
+                     }'>
+                                <i class="tio-filter-list mr-1"></i> Lọc
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <!-- End Row -->
+            </div>
+            <!-- End Header -->
+            <div id="datatableFilterSidebar" class="hs-unfold-content sidebar sidebar-bordered sidebar-box-shadow">
+                <div class="card card-lg sidebar-card sidebar-footer-fixed">
+                    <div class="card-header">
+                        <h4 class="card-header-title">Lọc</h4>
+
+                        <!-- Toggle Button -->
+                        <a class="js-hs-unfold-invoker btn btn-icon btn-xs btn-ghost-dark ml-2"  data-hs-unfold-options='{
+                "target": "#datatableFilterSidebar",
+                "type": "css-animation",
+                "animationIn": "fadeInRight",
+                "animationOut": "fadeOutRight",
+                "hasOverlay": true,
+                "smartPositionOff": true
+               }'>
+                            <i class="tio-clear tio-lg"></i>
+                        </a>
+                        <!-- End Toggle Button -->
+                    </div>
 
                     <!-- Body -->
-                    <div class="card-body">
-                        <!-- Form Group -->
-                        <div class="form-group">
-                            <label for="productNameLabel" class="input-label">Tên xe <i
-                                    class="tio-help-outlined text-body ml-1" data-toggle="tooltip" data-placement="top"
-                                    title="Nhập tên xe"></i></label>
-
-                            <input type="text" class="form-control" name="productName" id="productNameLabel"
-                                   placeholder="Nhập tên xe" aria-label="Shirt, t-shirts, etc.">
-                        </div>
-                        <!-- End Form Group -->
+                    <div class="card-body sidebar-body sidebar-scrollbar">
+                        <small class="text-cap mb-3">Hãng xe</small>
 
                         <div class="row">
-                            <div class="col-sm-6">
-                                <!-- Form Group -->
-                                <div class="form-group">
-                                    <label class="input-label" for="exampleFormControlSelect2">Hãng xe <span class="input-label-secondary"></span></label>
-                                    <select id="exampleFormControlSelect2" class="form-control">
-                                        <option></option>
-                                        <option>Yamaha</option>
-                                        <option>Suzuki</option>
-                                        <option>Honda</option>
-                                    </select>
+                            <div class="col-6">
+                                <!-- Custom Checkbox -->
+                                <div class="custom-control custom-radio mb-2">
+                                    <input type="checkbox" id="productVendorFilterRadio1" name="productVendorFilterRadio" class="custom-control-input">
+                                    <label class="custom-control-label" for="productVendorFilterRadio1">Yamaha</label>
                                 </div>
-                                <!-- End Form Group -->
+                                <div class="custom-control custom-radio mb-2">
+                                    <input type="checkbox" id="productVendorFilterRadio2" name="productVendorFilterRadio" class="custom-control-input">
+                                    <label class="custom-control-label" for="productVendorFilterRadio2">Honda</label>
+                                </div>
+
+                                <!-- End Custom Checkbox -->
                             </div>
 
-                            <div class="col-sm-6">
-                                <!-- Form Group -->
-                                <div class="form-group">
-                                    <label class="input-label" for="exampleFormControlSelect1">Chọn loại xe <span class="input-label-secondary"></span></label>
-                                    <select id="exampleFormControlSelect1" class="form-control">
-                                        <option></option>
-                                        <option>Xe số</option>
-                                        <option>Xe tay ga</option>
-                                    </select>
+                            <div class="col-6">
+                                <!-- Custom Checkbox -->
+                                <div class="custom-control custom-radio mb-2">
+                                    <input type="checkbox" id="productVendorFilterRadio9" name="productVendorFilterRadio" class="custom-control-input">
+                                    <label class="custom-control-label" for="productVendorFilterRadio9">Suzuki</label>
                                 </div>
-                                <!-- End Form Group -->
+
+                                <!-- End Custom Checkbox -->
                             </div>
                         </div>
                         <!-- End Row -->
 
-                        <label class="input-label">Mô tả <span class="input-label-secondary">(Đặc điểm)</span></label>
+                        <a class="link mt-2" >
+                            <i class="tio-clear"></i> Clear
+                        </a>
 
-                        <!-- Quill -->
-                        <div class="quill-custom">
-                            <div class="ql-toolbar ql-snow"><span class="ql-formats"><span
-                                    class="ql-header ql-picker"><span class="ql-picker-label" tabindex="0" role="button"
-                                                                      aria-expanded="false"
-                                                                      aria-controls="ql-picker-options-0"><svg
-                                    viewBox="0 0 18 18"> <polygon class="ql-stroke"
-                                                                  points="7 11 9 13 11 11 7 11"></polygon> <polygon
-                                    class="ql-stroke" points="7 7 9 5 11 7 7 7"></polygon> </svg></span><span
-                                    class="ql-picker-options" aria-hidden="true" tabindex="-1" id="ql-picker-options-0"><span
-                                    tabindex="0" role="button" class="ql-picker-item" data-value="1"></span><span
-                                    tabindex="0" role="button" class="ql-picker-item" data-value="2"></span><span
-                                    tabindex="0" role="button" class="ql-picker-item" data-value="3"></span><span
-                                    tabindex="0" role="button" class="ql-picker-item"></span></span></span><select
-                                    class="ql-header" style="display: none;"><option value="1"></option><option
-                                    value="2"></option><option value="3"></option><option selected="selected"></option></select></span><span
-                                    class="ql-formats"><button type="button" class="ql-bold"><svg viewBox="0 0 18 18"> <path
-                                    class="ql-stroke"
-                                    d="M5,4H9.5A2.5,2.5,0,0,1,12,6.5v0A2.5,2.5,0,0,1,9.5,9H5A0,0,0,0,1,5,9V4A0,0,0,0,1,5,4Z"></path> <path
-                                    class="ql-stroke"
-                                    d="M5,9h5.5A2.5,2.5,0,0,1,13,11.5v0A2.5,2.5,0,0,1,10.5,14H5a0,0,0,0,1,0,0V9A0,0,0,0,1,5,9Z"></path> </svg></button><button
-                                    type="button" class="ql-italic"><svg viewBox="0 0 18 18"> <line class="ql-stroke"
-                                                                                                    x1="7" x2="13"
-                                                                                                    y1="4"
-                                                                                                    y2="4"></line> <line
-                                    class="ql-stroke" x1="5" x2="11" y1="14" y2="14"></line> <line class="ql-stroke"
-                                                                                                   x1="8" x2="10"
-                                                                                                   y1="14"
-                                                                                                   y2="4"></line> </svg></button><button
-                                    type="button" class="ql-underline"><svg viewBox="0 0 18 18"> <path class="ql-stroke"
-                                                                                                       d="M5,3V9a4.012,4.012,0,0,0,4,4H9a4.012,4.012,0,0,0,4-4V3"></path> <rect
-                                    class="ql-fill" height="1" rx="0.5" ry="0.5" width="12" x="3" y="15"></rect> </svg></button><button
-                                    type="button" class="ql-link"><svg viewBox="0 0 18 18"> <line class="ql-stroke"
-                                                                                                  x1="7" x2="11" y1="7"
-                                                                                                  y2="11"></line> <path
-                                    class="ql-even ql-stroke"
-                                    d="M8.9,4.577a3.476,3.476,0,0,1,.36,4.679A3.476,3.476,0,0,1,4.577,8.9C3.185,7.5,2.035,6.4,4.217,4.217S7.5,3.185,8.9,4.577Z"></path> <path
-                                    class="ql-even ql-stroke"
-                                    d="M13.423,9.1a3.476,3.476,0,0,0-4.679-.36,3.476,3.476,0,0,0,.36,4.679c1.392,1.392,2.5,2.542,4.679.36S14.815,10.5,13.423,9.1Z"></path> </svg></button></span><span
-                                    class="ql-formats"><button type="button" class="ql-list" value="ordered"><svg
-                                    viewBox="0 0 18 18"> <line class="ql-stroke" x1="7" x2="15" y1="4" y2="4"></line> <line
-                                    class="ql-stroke" x1="7" x2="15" y1="9" y2="9"></line> <line class="ql-stroke"
-                                                                                                 x1="7" x2="15" y1="14"
-                                                                                                 y2="14"></line> <line
-                                    class="ql-stroke ql-thin" x1="2.5" x2="4.5" y1="5.5" y2="5.5"></line> <path
-                                    class="ql-fill"
-                                    d="M3.5,6A0.5,0.5,0,0,1,3,5.5V3.085l-0.276.138A0.5,0.5,0,0,1,2.053,3c-0.124-.247-0.023-0.324.224-0.447l1-.5A0.5,0.5,0,0,1,4,2.5v3A0.5,0.5,0,0,1,3.5,6Z"></path> <path
-                                    class="ql-stroke ql-thin"
-                                    d="M4.5,10.5h-2c0-.234,1.85-1.076,1.85-2.234A0.959,0.959,0,0,0,2.5,8.156"></path> <path
-                                    class="ql-stroke ql-thin"
-                                    d="M2.5,14.846a0.959,0.959,0,0,0,1.85-.109A0.7,0.7,0,0,0,3.75,14a0.688,0.688,0,0,0,.6-0.736,0.959,0.959,0,0,0-1.85-.109"></path> </svg></button><button
-                                    type="button" class="ql-list" value="bullet"><svg viewBox="0 0 18 18"> <line
-                                    class="ql-stroke" x1="6" x2="15" y1="4" y2="4"></line> <line class="ql-stroke"
-                                                                                                 x1="6" x2="15" y1="9"
-                                                                                                 y2="9"></line> <line
-                                    class="ql-stroke" x1="6" x2="15" y1="14" y2="14"></line> <line class="ql-stroke"
-                                                                                                   x1="3" x2="3" y1="4"
-                                                                                                   y2="4"></line> <line
-                                    class="ql-stroke" x1="3" x2="3" y1="9" y2="9"></line> <line class="ql-stroke" x1="3"
-                                                                                                x2="3" y1="14"
-                                                                                                y2="14"></line> </svg></button></span><span
-                                    class="ql-formats"><button type="button" class="ql-clean"><svg class=""
-                                                                                                   viewBox="0 0 18 18"> <line
-                                    class="ql-stroke" x1="5" x2="13" y1="3" y2="3"></line> <line class="ql-stroke"
-                                                                                                 x1="6" x2="9.35"
-                                                                                                 y1="12" y2="3"></line> <line
-                                    class="ql-stroke" x1="11" x2="15" y1="11" y2="15"></line> <line class="ql-stroke"
-                                                                                                    x1="15" x2="11"
-                                                                                                    y1="11"
-                                                                                                    y2="15"></line> <rect
-                                    class="ql-fill" height="1" rx="0.5" ry="0.5" width="7" x="2"
-                                    y="14"></rect> </svg></button></span></div>
-                            <div class="js-quill ql-container ql-snow" style="min-height: 15rem;"
-                                 data-hs-quill-options="{
-                          &quot;placeholder&quot;: &quot;Type your description...&quot;
-                         }">
-                                <div class="ql-editor ql-blank" data-gramm="false" contenteditable="true"
-                                     data-placeholder="Type your description..."><p><br></p></div>
-                                <div class="ql-clipboard" contenteditable="true" tabindex="-1"></div>
-                                <div class="ql-tooltip ql-hidden"><a class="ql-preview" rel="noopener noreferrer"
-                                                                     target="_blank" href="about:blank"></a><input
-                                        type="text" data-formula="e=mc^2" data-link="https://quilljs.com"
-                                        data-video="Embed URL"><a class="ql-action"></a><a class="ql-remove"></a></div>
-                            </div>
+                        <hr class="my-4">
+
+                        <small class="text-cap mb-3">Loại xe</small>
+
+                        <!-- Custom Checkbox -->
+                        <div class="custom-control custom-radio mb-2">
+                            <input type="checkbox" id="productAvailabilityFilterRadio1" name="productAvailabilityFilterRadio" class="custom-control-input">
+                            <label class="custom-control-label" for="productAvailabilityFilterRadio1">Se xố</label>
                         </div>
-                        <!-- End Quill -->
-                    </div>
-                    <!-- Body -->
-                </div>
-                <!-- End Card -->
-
-                <!-- Card -->
-                <div class="card mb-3 mb-lg-5">
-                    <!-- Header -->
-                    <div class="card-header">
-                        <h4 class="card-header-title">Hình ảnh</h4>
-
-                        <!-- Unfold -->
-                        <div class="hs-unfold">
-                            <a class="js-hs-unfold-invoker btn btn-sm btn-ghost-secondary" data-hs-unfold-options='{
-                       "target": "#mediaDropdown",
-                       "type": "css-animation"
-                     }'>
-                                Thêm từ URL <i class="tio-chevron-down"></i>
-                            </a>
-
-                            <div id="mediaDropdown"
-                                 class="hs-unfold-content dropdown-unfold dropdown-menu dropdown-menu-right mt-1">
-                                <a class="dropdown-item" data-toggle="modal" data-target="#addImageFromURLModal">
-                                    <i class="tio-link dropdown-item-icon"></i> URL
-                                </a>
-                                <a class="dropdown-item" data-toggle="modal" data-target="#embedVideoModal">
-                                    <i class="tio-save dropdown-item-icon"></i> Từ bộ nhớ
-                                </a>
-                            </div>
+                        <div class="custom-control custom-radio mb-2">
+                            <input type="checkbox" id="productAvailabilityFilterRadio2" name="productAvailabilityFilterRadio" class="custom-control-input">
+                            <label class="custom-control-label" for="productAvailabilityFilterRadio2">Xe tay ga</label>
                         </div>
-                        <!-- End Unfold -->
-                    </div>
-                    <!-- End Header -->
+                        <!-- End Custom Checkbox -->
 
-                    <!-- Body -->
-                    <div class="card-body">
-                        <!-- Dropzone -->
-                        <div id="attachFilesNewProjectLabel" class="js-dropzone dropzone-custom custom-file-boxed">
-                            <div class="dz-message custom-file-boxed-label">
-                                <img class="avatar avatar-xl avatar-4by3 mb-3" src="assets\svg\illustrations\browse.svg"
-                                     alt="Image Description">
-                                <h5 class="mb-1">Chọn ảnh trên máy</h5>
-                                <p class="mb-2">hoặc</p>
-                                <span data-target="#addImageFromURLModal" class="btn btn-sm btn-primary">Tải ảnh bằng URL</span>
-                            </div>
+                        <a class="link mt-2" href="#">
+                            <i class="tio-clear"></i> Clear
+                        </a>
+                        <hr class="my-4">
+
+                        <small class="text-cap mb-3">Giá xe</small>
+
+                        <!-- Custom Checkbox -->
+                        <div class="custom-control custom-radio mb-2">
+                            <input type="radio" id="productAvailabilityFilterRadio11" name="productAvailabilityFilterRadio" class="custom-control-input">
+                            <label class="custom-control-label" for="productAvailabilityFilterRadio11">Tăng dần</label>
                         </div>
-                        <!-- End Dropzone -->
-                    </div>
-                    <!-- Body -->
-                </div>
-                <!-- End Card -->
-
-                <!-- Card -->
-                <div class="card">
-                    <!-- Header -->
-                    <div class="card-header">
-                        <h4 class="card-header-title">Thông số</h4>
-                    </div>
-                    <!-- End Header -->
-
-                    <!-- Body -->
-                    <div class="card-body">
-                        <h6 class="text-cap"></h6>
-
-                        <div class="js-add-field" data-hs-add-field-options='{
-                      "template": "#addAnotherOptionFieldTemplate",
-                      "container": "#addAnotherOptionFieldContainer",
-                      "defaultCreated": 0
-                    }'>
-                            <!-- Form Group -->
-                            <div class="form-group">
-                                <div class="row">
-                                    <div class="col-4">
-                                        <div class="input-group-prepend">
-                                            <input type="text" class="form-control" name="vendor"
-                                                   placeholder="Tên thông số" aria-label="">
-                                        </div>
-                                    </div>
-
-                                    <div class="col-8">
-                                        <input type="text" class="form-control" name="vendor"
-                                               placeholder="Chi tiết thông số" aria-label="">
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- End Form Group -->
-
-                            <!-- Container For Input Field -->
-                            <div id="addAnotherOptionFieldContainer"></div>
-
-                            <a href="#" class="js-create-field btn btn-sm btn-no-focus btn-ghost-primary">
-                                <i class="tio-add"></i> Thêm thông số
-                            </a>
+                        <div class="custom-control custom-radio mb-2">
+                            <input type="radio" id="productAvailabilityFilterRadio22" name="productAvailabilityFilterRadio" class="custom-control-input">
+                            <label class="custom-control-label" for="productAvailabilityFilterRadio22">Giảm dần</label>
                         </div>
+                        <!-- End Custom Checkbox -->
 
-                        <!-- Add Another Option Input Field -->
-                        <div id="addAnotherOptionFieldTemplate" style="display: none;">
-                            <!-- Form Group -->
-                            <div class="form-group">
-                                <div class="row">
-                                    <div class="col-4">
-                                        <div class="input-group-prepend">
-                                            <!-- Select -->
-                                            <select class="js-select2-custom-dynamic custom-select" size="1"
-                                                    style="opacity: 0;" data-hs-select2-options='{
-                                    "minimumResultsForSearch": "Infinity"
-                                  }'>
-                                                <option value="Size">Size</option>
-                                                <option value="Color">Color</option>
-                                                <option value="Material">Material</option>
-                                                <option value="Style">Style</option>
-                                                <option value="Title">Title</option>
-                                            </select>
-                                            <!-- End Select -->
-                                        </div>
-                                    </div>
-
-                                    <div class="col-8">
-                                        <!-- Select2 -->
-                                        <select class="js-select2-custom-dynamic custom-select" size="1"
-                                                style="opacity: 0;" multiple="" data-hs-select2-options='{
-                                  "minimumResultsForSearch": "Infinity",
-                                  "placeholder": "Separate options with enter",
-                                  "tags": true
-                                }'>
-                                            <option label="empty"></option>
-                                        </select>
-                                        <!-- End Select2 -->
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- End Form Group -->
-                        </div>
-                        <!-- End Add Another Option Input Field -->
-                    </div>
-                    <!-- Body -->
-                </div>
-                <!-- End Card -->
-            </div>
-
-            <div class="col-lg-4">
-                <!-- Card -->
-                <div class="card mb-3 mb-lg-5">
-                    <!-- Header -->
-                    <div class="card-header">
-                        <h4 class="card-header-title">Giá xe</h4>
-                    </div>
-                    <!-- End Header -->
-
-                    <!-- Body -->
-                    <div class="card-body">
-                        <!-- Form Group -->
-                        <div class="form-group">
-<!--                            <label for="priceNameLabel" class="input-label">Giá</label>-->
-
-                            <div class="input-group">
-                                <input type="number" class="form-control" name="priceName" id="priceNameLabel"
-                                       placeholder="0" aria-label="0.00">
-
-                                <div class="input-group-append">
-                                    <!-- Select -->
-                                    <div id="priceSelect" class="select2-custom select2-custom-right">
-                                        <select class="js-select2-custom custom-select" size="1" style="opacity: 0;"
-                                                data-hs-select2-options='{
-                                    "dropdownParent": "#priceSelect",
-                                    "dropdownAutoWidth": true,
-                                    "width": true
-                                  }'>
-                                            <option value="USD" selected="">VNĐ</option>
-                                        </select>
-                                    </div>
-                                    <!-- End Select -->
-                                </div>
-                            </div>
-                        </div>
-                        <!-- End Form Group -->
-
-                        <!-- End Toggle Switch -->
-                    </div>
-                    <!-- Body -->
-                </div>
-                <!-- End Card -->
-
-                <!-- Card -->
-                <div class="card">
-                    <!-- Header -->
-                    <div class="card-header">
-                        <h4 class="card-header-title">Số lượng tồn kho</h4>
-                    </div>
-                    <!-- End Header -->
-
-                    <!-- Body -->
-                    <div class="card-body">
-                        <!-- Form Group -->
-                        <div class="form-group">
-<!--                            <label for="vendorLabel" class="input-label">Vendor</label>-->
-
-                            <input type="number" class="form-control" name="vendor" id="vendorLabel"
-                                   placeholder="0" aria-label="eg. Nike">
-                        </div>
-                        <!-- End Form Group -->
+                        <a class="link mt-2" href="#">
+                            <i class="tio-clear"></i> Clear
+                        </a>
 
                     </div>
                     <!-- End Body -->
-                </div>
-                <!-- End Card -->
-            </div>
-        </div>
-        <!-- End Row -->
 
-        <div class="position-fixed bottom-0 content-centered-x w-100 z-index-99 mb-3" style="max-width: 40rem;">
-            <!-- Card -->
-            <div class="card card-sm bg-dark border-dark mx-2">
-                <div class="card-body">
-                    <div class="row justify-content-center justify-content-sm-between">
-                        <div class="col">
-                            <button type="button" class="btn btn-ghost-danger">Xóa</button>
+                    <!-- Footer -->
+                    <div class="card-footer sidebar-footer">
+                        <div class="row gx-2">
+                            <div class="col">
+                                <button type="button" class="btn btn-block btn-white">Clear all filters</button>
+                            </div>
+                            <div class="col">
+                                <button type="button" class="btn btn-block btn-primary">Save</button>
+                            </div>
                         </div>
-                        <div class="col-auto">
-                            <button type="button" class="btn btn-ghost-light mr-2">Hủy</button>
-                            <button type="button" class="btn btn-primary">Lưu</button>
+                        <!-- End Row -->
+                    </div>
+                    <!-- End Footer -->
+                </div>
+            </div>
+            <!-- Table -->
+            <div class="table-responsive datatable-custom">
+                <table style="overflow: hidden" id="datatable" class="table table-borderless table-thead-bordered table-nowrap table-align-middle card-table" data-hs-datatables-options='{
+                     "columnDefs": [{
+                        "targets": [0, 4, 9],
+                        "width": "5%",
+                        "orderable": false
+                      }],
+                     "order": [],
+                     "info": {
+                       "totalQty": "#datatableWithPaginationInfoTotalQty"
+                     },
+                     "search": "#datatableSearch",
+                     "entries": "#datatableEntries",
+                     "pageLength": #,
+                     "isResponsive": false,
+                     "isShowPaging": false,
+                     "pagination": "datatablePagination"
+                   }'>
+                    <thead class="thead-light">
+                    <tr>
+                        <th>Tên hãng xe</th>
+                        <th>Tổng số xe tồn kho</th>
+                        <th></th>
+                    </tr>
+                    </thead>
+
+                    <tbody>
+                    <tr>
+                        <td>Yamaha</td>
+                        <td>96</td>
+
+                        <td>
+                            <div class="btn-group" role="group">
+                                <a class="btn btn-sm btn-white" href="ecommerce-product-details.html">
+                                    <i class="tio-edit"></i> Chỉnh sửa
+                                </a>
+
+                                <!-- Unfold -->
+                                <div class="hs-unfold btn-group">
+                                    <a class="js-hs-unfold-invoker btn btn-icon btn-sm btn-white dropdown-toggle dropdown-toggle-empty" data-hs-unfold-options='{
+                             "target": "#productsEditDropdown1",
+                             "type": "css-animation",
+                             "smartPositionOffEl": "#datatable"
+                           }'></a>
+
+                                    <div id="productsEditDropdown1" class="hs-unfold-content dropdown-unfold dropdown-menu dropdown-menu-right mt-1">
+                                        <a class="dropdown-item" href="#">
+                                            <i class="tio-delete-outlined dropdown-item-icon"></i> xóa
+                                        </a>
+
+                                    </div>
+                                </div>
+                                <!-- End Unfold -->
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Honda</td>
+                        <td>120</td>
+
+                        <td>
+                            <div class="btn-group" role="group">
+                                <a class="btn btn-sm btn-white" href="ecommerce-product-details.html">
+                                    <i class="tio-edit"></i> Chỉnh sửa
+                                </a>
+
+                                <!-- Unfold -->
+                                <div class="hs-unfold btn-group">
+                                    <a class="js-hs-unfold-invoker btn btn-icon btn-sm btn-white dropdown-toggle dropdown-toggle-empty" data-hs-unfold-options='{
+                             "target": "#productsEditDropdown2",
+                             "type": "css-animation",
+                             "smartPositionOffEl": "#datatable"
+                           }'></a>
+
+                                    <div id="productsEditDropdown2" class="hs-unfold-content dropdown-unfold dropdown-menu dropdown-menu-right mt-1">
+                                        <a class="dropdown-item" href="#">
+                                            <i class="tio-delete-outlined dropdown-item-icon"></i> xóa
+                                        </a>
+
+                                    </div>
+                                </div>
+                                <!-- End Unfold -->
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Suzuki</td>
+                        <td>23</td>
+
+                        <td>
+                            <div class="btn-group" role="group">
+                                <a class="btn btn-sm btn-white" href="ecommerce-product-details.html">
+                                    <i class="tio-edit"></i> Chỉnh sửa
+                                </a>
+
+                                <!-- Unfold -->
+                                <div class="hs-unfold btn-group">
+                                    <a class="js-hs-unfold-invoker btn btn-icon btn-sm btn-white dropdown-toggle dropdown-toggle-empty" data-hs-unfold-options='{
+                             "target": "#productsEditDropdown3",
+                             "type": "css-animation",
+                             "smartPositionOffEl": "#datatable"
+                           }'></a>
+
+                                    <div id="productsEditDropdown3" class="hs-unfold-content dropdown-unfold dropdown-menu dropdown-menu-right mt-1">
+                                        <a class="dropdown-item" href="#">
+                                            <i class="tio-delete-outlined dropdown-item-icon"></i> xóa
+                                        </a>
+
+                                    </div>
+                                </div>
+                                <!-- End Unfold -->
+                            </div>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+            <!-- End Table -->
+
+            <!-- Footer -->
+            <div class="card-footer" style="display: flex">
+                <!-- Pagination -->
+                <div  style="display:contents;" class="row justify-content-center justify-content-sm-between align-items-sm-center">
+
+                    <div class="col-sm mb-2 mb-sm-0">
+                        <div class="d-flex justify-content-center justify-content-sm-start align-items-center">
+                            <span class="mr-2">Hiện</span>
+
+                            <!-- Select -->
+                            <select id="" class="" >
+                                <option value="6" selected="">3</option>
+                                <option value="12">6</option>
+                            </select>
+                            <!-- End Select -->
+
+                            <span class="text-secondary mr-2">/</span>
+
+                            <!-- Pagination Quantity -->
+                            <span id="">6</span>
                         </div>
                     </div>
-                    <!-- End Row -->
+                    <div  class="col-sm-auto">
+                        <div class="d-flex justify-content-center justify-content-sm-end">
+                            <!-- Pagination -->
+                            <nav id="datatablePagination" aria-label="Activity pagination"><div class="dataTables_paginate paging_simple_numbers" id="datatable_paginate"><ul id="datatable_pagination" class="pagination datatable-custom-pagination"><li class="paginate_item page-item disabled"><a class="paginate_button previous page-link" aria-controls="datatable" data-dt-idx="0" tabindex="0" id="datatable_previous"><span aria-hidden="true">Prev</span></a></li><li class="paginate_item page-item active"><a class="paginate_button page-link" aria-controls="datatable" data-dt-idx="1" tabindex="0">1</a></li><li class="paginate_item page-item"><a class="paginate_button page-link" aria-controls="datatable" data-dt-idx="2" tabindex="0">2</a></li><li class="paginate_item page-item"><a class="paginate_button next page-link" aria-controls="datatable" data-dt-idx="3" tabindex="0" id="datatable_next"><span aria-hidden="true">Next</span></a></li></ul></div></nav>
+                        </div>
+                    </div>
                 </div>
+                <!-- Pagination -->
+
+                <!-- End Pagination -->
+                <!-- End Pagination -->
             </div>
-            <!-- End Card -->
+            <!-- End Footer -->
         </div>
+        <!-- End Card -->
     </div>
     <!-- End Content -->
 
-    <!-- Footer -->
 
-    <div class="footer">
-        <div class="row justify-content-between align-items-center">
-            <div class="col">
-                <p class="font-size-sm mb-0">&copy; Front. <span
-                        class="d-none d-sm-inline-block">2020 Htmlstream.</span></p>
-            </div>
-            <div class="col-auto">
-                <div class="d-flex justify-content-end">
-                    <!-- List Dot -->
-                    <ul class="list-inline list-separator">
-                        <li class="list-inline-item">
-                            <a class="list-separator-link" href="#">FAQ</a>
-                        </li>
-
-                        <li class="list-inline-item">
-                            <a class="list-separator-link" href="#">License</a>
-                        </li>
-
-                        <li class="list-inline-item">
-                            <!-- Keyboard Shortcuts Toggle -->
-                            <div class="hs-unfold">
-                                <a class="js-hs-unfold-invoker btn btn-icon btn-ghost-secondary rounded-circle"
-                                   href="javascript:;" data-hs-unfold-options='{
-                              "target": "#keyboardShortcutsSidebar",
-                              "type": "css-animation",
-                              "animationIn": "fadeInRight",
-                              "animationOut": "fadeOutRight",
-                              "hasOverlay": true,
-                              "smartPositionOff": true
-                             }'>
-                                    <i class="tio-command-key"></i>
-                                </a>
-                            </div>
-                            <!-- End Keyboard Shortcuts Toggle -->
-                        </li>
-                    </ul>
-                    <!-- End List Dot -->
-                </div>
-            </div>
-        </div>
-    </div>
-
-
-    <!-- End Footer -->
 </main>
 
 <script src="assets\js\demo.js"></script>
