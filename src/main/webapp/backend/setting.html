@@ -409,137 +409,54 @@
                         <h1 class="page-header-title">Cấu hình</h1>
                     </div>
                 </div>
-
-                <div class="js-nav-scroller hs-nav-scroller-horizontal">
-                    <ul class="nav nav-tabs page-header-tabs" id="projectsTab" role="tablist">
-                        <li class="nav-item">
-                            <a class="nav-link active" href="./setting.html">Chung</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link " href="#">Email</a>
-                        </li>
-                    </ul>
-                </div>
             </div>
 
-            <div class="row justify-content-lg-center">
-                <div class="col-lg-9">
+            <div class="row">
+                <div class="col-sm-6 col-lg-3 mb-3 mb-lg-6">
                     <!-- Card -->
-                    <div class="card card-lg mb-3 mb-lg-5">
-                        <div class="card-header">
-                            <h4 class="card-header-title">Chung</h4>
-                        </div>
-
-                        <!-- Body -->
+                    <div class="card card-sm">
                         <div class="card-body">
-                            <!-- Form Group -->
-                            <div class="form-group">
-                                <label class="input-label">Logo</label>
+                            <div class="row">
+                                <div class="col">
+                                    <!-- Media -->
+                                    <div class="media">
+                                        <i class="tio-poi nav-icon"></i>
 
-                                <div class="d-flex align-items-center">
-                                    <!-- Avatar -->
-                                    <label class="avatar avatar-xl avatar-circle avatar-uploader mr-5"
-                                        for="avatarUploader">
-                                        <img id="avatarProjectSettingsImg" class="avatar-img"
-                                            src="../images/logo/logo.png" alt="Image Description">
-
-                                        <input type="file" class="js-file-attach avatar-uploader-input"
-                                            id="avatarUploader" data-hs-file-attach-options='{
-                                "textTarget": "#avatarProjectSettingsImg",
-                                "mode": "image",
-                                "targetAttr": "src",
-                                "resetTarget": ".js-file-attach-reset-img",
-                                "resetImg": "../images/logo/default.jpg",
-                                "allowTypes": [".png", ".jpeg", ".jpg"]
-                             }'>
-
-                                        <span class="avatar-uploader-trigger">
-                                            <i class="tio-edit avatar-uploader-icon shadow-soft"></i>
-                                        </span>
-                                    </label>
-
-                                    <button type="button" class="js-file-attach-reset-img btn btn-white">Xóa</button>
-                                </div>
-                            </div>
-                            <!-- End Form Group -->
-
-                            <!-- Form Group -->
-                            <div class="form-group">
-                                <label for="projectNameProjectSettingsLabel" class="input-label">Tên công ty <i
-                                        class="tio-help-outlined text-body ml-1" data-toggle="tooltip"
-                                        data-placement="top" title="Hiển thị tên công ty ở shop."></i></label>
-
-                                <div class="input-group input-group-merge">
-                                    <div class="input-group-prepend">
-                                        <div class="input-group-text">
-                                            <i class="tio-briefcase-outlined"></i>
+                                        <div class="media-body">
+                                            <h4 class="mb-1"><a href="./setting-store.html">Thông tin cửa hàng</a></h4>
+                                            <span class="d-block">Quản lý thông tin liên hệ và
+                                                địa chỉ của cửa hàng</span>
                                         </div>
                                     </div>
-                                    <input type="text" class="form-control" name="projectName"
-                                        id="projectNameProjectSettingsLabel" placeholder="Nhập vào tên công ty"
-                                        aria-label="Enter project name here" value="Công ty VTV Việt Nam.">
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="projectNameProjectSettingsLabel" class="input-label">Địa chỉ <i
-                                        class="tio-help-outlined text-body ml-1" data-toggle="tooltip"
-                                        data-placement="top" title="Hiển thị địa chỉ ở shop."></i></label>
-
-                                <div class="input-group input-group-merge">
-                                    <div class="input-group-prepend">
-                                        <div class="input-group-text">
-                                            <i class="tio-briefcase-outlined"></i>
-                                        </div>
-                                    </div>
-                                    <input type="text" class="form-control" name="projectName"
-                                        id="projectNameProjectSettingsLabel" placeholder="Nhập vào địa chỉ"
-                                        aria-label="Enter project name here"
-                                        value="Khu phố 6, Phường Linh Trung, TP. Thủ Đức, Việt Nam.">
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="projectNameProjectSettingsLabel" class="input-label">Số điện thoại <i
-                                        class="tio-help-outlined text-body ml-1" data-toggle="tooltip"
-                                        data-placement="top" title="Hiển thị số điện thoại ở shop."></i></label>
-
-                                <div class="input-group input-group-merge">
-                                    <div class="input-group-prepend">
-                                        <div class="input-group-text">
-                                            <i class="tio-briefcase-outlined"></i>
-                                        </div>
-                                    </div>
-                                    <input type="text" class="form-control" name="projectName"
-                                        id="projectNameProjectSettingsLabel" placeholder="Nhập vào số điện thoại"
-                                        aria-label="Enter project name here" value="1800....">
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="projectNameProjectSettingsLabel" class="input-label">Email cskh <i
-                                        class="tio-help-outlined text-body ml-1" data-toggle="tooltip"
-                                        data-placement="top" title="Hiển thị email cskh ở shop."></i></label>
-
-                                <div class="input-group input-group-merge">
-                                    <div class="input-group-prepend">
-                                        <div class="input-group-text">
-                                            <i class="tio-briefcase-outlined"></i>
-                                        </div>
-                                    </div>
-                                    <input type="text" class="form-control" name="projectName"
-                                        id="projectNameProjectSettingsLabel" placeholder="Nhập vào email cskh"
-                                        aria-label="Enter project name here" value="cskhvtv@gmail.com">
                                 </div>
                             </div>
                         </div>
-                        <!-- End Body -->
+                    </div>
+                </div>
 
-                        <!-- Footer -->
-                        <div class="card-footer d-flex justify-content-end align-items-center">
-                            <button type="button" class="btn btn-primary mr-2">Lưu</button>
-                            <button type="button" class="btn btn-danger">Hủy</button>
+                <div class="col-sm-6 col-lg-3 mb-3 mb-lg-6">
+                    <!-- Card -->
+                    <div class="card card-sm">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col">
+                                    <!-- Media -->
+                                    <div class="media">
+                                        <i class="tio-category nav-icon"></i>
+
+                                        <div class="media-body">
+                                            <h4 class="mb-1"><a href="./setting-role.html">Phân quyền vai trò</a></h4>
+                                            <span class="d-block">Tạo, phân quyền và quản lý các
+                                                vai trò của cửa hàng</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
+        </div>
         </div>
 
         <!-- Footer -->
@@ -563,45 +480,11 @@
     <!-- JS Plugins Init. -->
     <script>
         $(document).on('ready', function () {
-            // ONLY DEV
-            // =======================================================
-
-            if (window.localStorage.getItem('hs-builder-popover') === null) {
-                $('#builderPopover').popover('show')
-                    .on('shown.bs.popover', function () {
-                        $('.popover').last().addClass('popover-dark')
-                    });
-
-                $(document).on('click', '#closeBuilderPopover', function () {
-                    window.localStorage.setItem('hs-builder-popover', true);
-                    $('#builderPopover').popover('dispose');
-                });
-            } else {
-                $('#builderPopover').on('show.bs.popover', function () {
-                    return false
-                });
-            }
-
-            // END ONLY DEV
-            // =======================================================
-
-
             // BUILDER TOGGLE INVOKER
             // =======================================================
             $('.js-navbar-vertical-aside-toggle-invoker').click(function () {
                 $('.js-navbar-vertical-aside-toggle-invoker i').tooltip('hide');
             });
-
-
-            // INITIALIZATION OF MEGA MENU
-            // =======================================================
-            var megaMenu = new HSMegaMenu($('.js-mega-menu'), {
-                desktop: {
-                    position: 'left'
-                }
-            }).init();
-
-
 
             // INITIALIZATION OF NAVBAR VERTICAL NAVIGATION
             // =======================================================
@@ -618,88 +501,17 @@
                 }
             });
 
-
             // INITIALIZATION OF UNFOLD
             // =======================================================
             $('.js-hs-unfold-invoker').each(function () {
                 var unfold = new HSUnfold($(this)).init();
             });
 
-
             // INITIALIZATION OF FORM SEARCH
             // =======================================================
             $('.js-form-search').each(function () {
                 new HSFormSearch($(this)).init()
             });
-
-
-            // INITIALIZATION OF FILE ATTACH
-            // =======================================================
-            $('.js-file-attach').each(function () {
-                var customFile = new HSFileAttach($(this)).init();
-            });
-
-
-            // INITIALIZATION OF SELECT2
-            // =======================================================
-            $('.js-select2-custom').each(function () {
-                var select2 = $.HSCore.components.HSSelect2.init($(this));
-            });
-
-
-            // INITIALIZATION OF QUILLJS EDITOR
-            // =======================================================
-            var quill = $.HSCore.components.HSQuill.init('.js-quill');
-
-
-            // INITIALIZATION OF NAV SCROLLER
-            // =======================================================
-            $('.js-nav-scroller').each(function () {
-                new HsNavScroller($(this)).init()
-            });
-
-
-            // INITIALIZATION OF FORM VALIDATION
-            // =======================================================
-            $('.js-validate').each(function () {
-                $.HSCore.components.HSValidation.init($(this));
-            });
-
-
-            // INITIALIZATION OF DATERANGEPICKER
-            // =======================================================
-            $('.js-daterangepicker').daterangepicker();
-
-            $('.js-daterangepicker-times').daterangepicker({
-                timePicker: true,
-                startDate: moment().startOf('hour'),
-                endDate: moment().startOf('hour').add(32, 'hour'),
-                locale: {
-                    format: 'M/DD hh:mm A'
-                }
-            });
-
-            var start = moment();
-            var end = moment();
-
-            function cb(start, end) {
-                $('#js-daterangepicker-predefined .js-daterangepicker-predefined-preview').html(start.format('MMM D') + ' - ' + end.format('MMM D, YYYY'));
-            }
-
-            $('#js-daterangepicker-predefined').daterangepicker({
-                startDate: start,
-                endDate: end,
-                ranges: {
-                    'Today': [moment(), moment()],
-                    'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
-                    'Last 7 Days': [moment().subtract(6, 'days'), moment()],
-                    'Last 30 Days': [moment().subtract(29, 'days'), moment()],
-                    'This Month': [moment().startOf('month'), moment().endOf('month')],
-                    'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
-                }
-            }, cb);
-
-            cb(start, end);
         });
     </script>
 
