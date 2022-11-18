@@ -1,6 +1,5 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
-
 <head>
     <!-- Required Meta Tags Always Come First -->
     <meta charset="utf-8">
@@ -17,11 +16,12 @@
     <link rel="stylesheet" href="assets\vendor\icon-set\style.css">
 
 
+
     <!-- CSS Front Template -->
     <link rel="stylesheet" href="assets\css\theme.min.css?v=1.0">
 </head>
 
-<body class="footer-offset">
+<body class="   footer-offset">
 
 <script src="assets\vendor\hs-navbar-vertical-aside\hs-navbar-vertical-aside-mini-cache.js"></script>
 
@@ -29,23 +29,229 @@
 <div id="styleSwitcherDropdown" class="hs-unfold-content sidebar sidebar-bordered sidebar-box-shadow"
      style="width: 35rem;">
     <div class="card card-lg border-0 h-100">
+        <div class="card-header align-items-start">
+            <div class="mr-2">
+                <h3 class="card-header-title">Front Builder</h3>
+                <p>Customize your overview page layout. Choose the one that best fits your needs.</p>
+            </div>
+
+            <!-- Toggle Button -->
+            <a class="js-hs-unfold-invoker btn btn-icon btn-xs btn-ghost-dark" href="javascript:;" data-hs-unfold-options='{
+                  "target": "#styleSwitcherDropdown",
+                  "type": "css-animation",
+                  "animationIn": "fadeInRight",
+                  "animationOut": "fadeOutRight",
+                  "hasOverlay": true,
+                  "smartPositionOff": true
+                 }'>
+                <i class="tio-clear tio-lg"></i>
+            </a>
+            <!-- End Toggle Button -->
+        </div>
+
+        <!-- Body -->
+        <div class="card-body sidebar-scrollbar">
+            <h4 class="mb-1">Layout skins <span id="js-builder-disabled" class="badge badge-soft-danger"
+                                                style="opacity: 0">Disabled</span></h4>
+            <p>3 kinds of layout skins to choose from.</p>
+
+            <div class="row gx-2 mb-5">
+                <!-- Custom Radio -->
+                <div class="col-4 text-center">
+                    <div class="text-center">
+                        <div class="custom-checkbox-card mb-2">
+                            <input type="radio" class="custom-checkbox-card-input" name="layoutSkinsRadio" id="layoutSkinsRadio1"
+                                   checked="" value="default">
+                            <label class="custom-checkbox-card-label" for="layoutSkinsRadio1">
+                                <img class="custom-checkbox-card-img" src="assets\svg\layouts\layouts-sidebar-default.svg"
+                                     alt="Image Description">
+                            </label>
+                            <span class="custom-checkbox-card-text">Default</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- End Custom Radio -->
+
+                <!-- Custom Radio -->
+                <div class="col-4 text-center">
+                    <div class="text-center">
+                        <div class="custom-checkbox-card mb-2">
+                            <input type="radio" class="custom-checkbox-card-input" name="layoutSkinsRadio" id="layoutSkinsRadio2"
+                                   value="navbar-dark">
+                            <label class="custom-checkbox-card-label" for="layoutSkinsRadio2">
+                                <img class="custom-checkbox-card-img" src="assets\svg\layouts\layouts-sidebar-dark.svg"
+                                     alt="Image Description">
+                            </label>
+                            <span class="custom-checkbox-card-text">Dark</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- End Custom Radio -->
+
+                <!-- Custom Radio -->
+                <div class="col-4 text-center">
+                    <div class="text-center">
+                        <div class="custom-checkbox-card mb-2">
+                            <input type="radio" class="custom-checkbox-card-input" name="layoutSkinsRadio" id="layoutSkinsRadio3"
+                                   value="navbar-light">
+                            <label class="custom-checkbox-card-label" for="layoutSkinsRadio3">
+                                <img class="custom-checkbox-card-img" src="assets\svg\layouts\layouts-sidebar-light.svg"
+                                     alt="Image Description">
+                            </label>
+                            <span class="custom-checkbox-card-text">Light</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- End Custom Radio -->
+            </div>
+            <!-- End Row -->
+
+            <h4 class="mb-1">Sidebar layout options</h4>
+            <p>Choose between standard navigation sizing, mini or even compact with icons.</p>
+
+            <div class="row gx-2 mb-5">
+                <!-- Custom Radio -->
+                <div class="col-4 text-center">
+                    <div class="text-center">
+                        <div class="custom-checkbox-card mb-2">
+                            <input type="radio" class="custom-checkbox-card-input" name="sidebarLayoutOptions"
+                                   id="sidebarLayoutOptions1" checked="" value="default">
+                            <label class="custom-checkbox-card-label" for="sidebarLayoutOptions1">
+                                <img class="custom-checkbox-card-img" src="assets\svg\layouts\sidebar-default-classic.svg"
+                                     alt="Image Description">
+                            </label>
+                            <span class="custom-checkbox-card-text">Default</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- End Custom Radio -->
+
+                <!-- Custom Radio -->
+                <div class="col-4 text-center">
+                    <div class="text-center">
+                        <div class="custom-checkbox-card mb-2">
+                            <input type="radio" class="custom-checkbox-card-input" name="sidebarLayoutOptions"
+                                   id="sidebarLayoutOptions2" value="navbar-vertical-aside-compact-mode">
+                            <label class="custom-checkbox-card-label" for="sidebarLayoutOptions2">
+                                <img class="custom-checkbox-card-img" src="assets\svg\layouts\sidebar-compact.svg"
+                                     alt="Image Description">
+                            </label>
+                            <span class="custom-checkbox-card-text">Compact</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- End Custom Radio -->
+
+                <!-- Custom Radio -->
+                <div class="col-4 text-center">
+                    <div class="text-center">
+                        <div class="custom-checkbox-card mb-2">
+                            <input type="radio" class="custom-checkbox-card-input" name="sidebarLayoutOptions"
+                                   id="sidebarLayoutOptions3" value="navbar-vertical-aside-mini-mode">
+                            <label class="custom-checkbox-card-label" for="sidebarLayoutOptions3">
+                                <img class="custom-checkbox-card-img" src="assets\svg\layouts\sidebar-mini.svg"
+                                     alt="Image Description">
+                            </label>
+                            <span class="custom-checkbox-card-text">Mini</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- End Custom Radio -->
+            </div>
+            <!-- End Row -->
+
+            <h4 class="mb-1">Header layout options</h4>
+            <p>Choose the primary navigation of your header layout.</p>
+
+            <div class="row gx-2">
+                <!-- Custom Radio -->
+                <div class="col-4 text-center">
+                    <div class="text-center">
+                        <div class="custom-checkbox-card mb-2">
+                            <input type="radio" class="custom-checkbox-card-input" name="headerLayoutOptions"
+                                   id="headerLayoutOptions1" value="single">
+                            <label class="custom-checkbox-card-label" for="headerLayoutOptions1">
+                                <img class="custom-checkbox-card-img" src="assets\svg\layouts\header-default-fluid.svg"
+                                     alt="Image Description">
+                            </label>
+                            <span class="custom-checkbox-card-text">Default (Fluid)</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- End Custom Radio -->
+
+                <!-- Custom Radio -->
+                <div class="col-4 text-center">
+                    <div class="text-center">
+                        <div class="custom-checkbox-card mb-2">
+                            <input type="radio" class="custom-checkbox-card-input" name="headerLayoutOptions"
+                                   id="headerLayoutOptions2" value="single-container">
+                            <label class="custom-checkbox-card-label" for="headerLayoutOptions2">
+                                <img class="custom-checkbox-card-img" src="assets\svg\layouts\header-default-container.svg"
+                                     alt="Image Description">
+                            </label>
+                            <span class="custom-checkbox-card-text">Default (Container)</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- End Custom Radio -->
+
+                <!-- Custom Radio -->
+                <div class="col-4 text-center">
+                    <div class="text-center">
+                        <div class="custom-checkbox-card mb-2">
+                            <input type="radio" class="custom-checkbox-card-input" name="headerLayoutOptions"
+                                   id="headerLayoutOptions3" value="double">
+                            <label class="custom-checkbox-card-label" for="headerLayoutOptions3">
+                                <img class="custom-checkbox-card-img" src="assets\svg\layouts\header-double-line-fluid.svg"
+                                     alt="Image Description">
+                            </label>
+                            <span class="custom-checkbox-card-text">Double line (Fluid)</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- End Custom Radio -->
+
+                <!-- Custom Radio -->
+                <div class="col-4 text-center mt-2">
+                    <div class="text-center">
+                        <div class="custom-checkbox-card mb-2">
+                            <input type="radio" class="custom-checkbox-card-input" name="headerLayoutOptions"
+                                   id="headerLayoutOptions4" value="double-container">
+                            <label class="custom-checkbox-card-label" for="headerLayoutOptions4">
+                                <img class="custom-checkbox-card-img" src="assets\svg\layouts\header-double-line-container.svg"
+                                     alt="Image Description">
+                            </label>
+                            <span class="custom-checkbox-card-text">Double line (Container)</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- End Custom Radio -->
+            </div>
+            <!-- End Row -->
+        </div>
+        <!-- End Body -->
+
         <!-- Footer -->
         <div class="card-footer">
             <div class="row gx-2">
                 <div class="col">
                     <button type="button" id="js-builder-reset" class="btn btn-block btn-lg btn-white">
-                        <i class="tio-restore"></i> Cài lại
+                        <i class="tio-restore"></i> Reset
                     </button>
                 </div>
                 <div class="col">
                     <button type="button" id="js-builder-preview" class="btn btn-block btn-lg btn-primary">
-                        <i class="tio-visible"></i> Xem trước
+                        <i class="tio-visible"></i> Preview
                     </button>
                 </div>
             </div>
+            <!-- End Row -->
         </div>
+        <!-- End Footer -->
     </div>
 </div>
+<!-- ONLY DEV -->
 
 <!-- JS Preview mode only -->
 <div id="headerMain" class="d-none">
@@ -154,10 +360,8 @@
         </div>
     </header>
 </div>
-
 <div id="headerFluid" class="d-none"></div>
 <div id="headerDouble" class="d-none"></div>
-
 <!-- Thanh menu -->
 <div id="sidebarMain" class="d-none">
     <aside
@@ -391,34 +595,650 @@
         </div>
     </aside>
 </div>
-
 <!-- chỉnh ở đây -->
-<div id="sidebarCompact" class="d-none"></div>
+<div id="sidebarCompact" class="d-none"><aside class="js-navbar-vertical-aside navbar navbar-vertical-aside navbar-vertical navbar-vertical-fixed navbar-expand-xl navbar-bordered  ">
+    <div class="navbar-vertical-container">
+        <div class="navbar-brand d-flex justify-content-center">
+            <!-- Logo -->
+
+
+            <a class="navbar-brand" href="index.html" aria-label="Front">
+                <img class="navbar-brand-logo-short" src="assets\svg\logos\logo-short.svg" alt="Logo">
+            </a>
+
+            <!-- End Logo -->
+        </div>
+
+        <!-- Content -->
+        <div class="navbar-vertical-content">
+            <ul class="navbar-nav nav-compact">
+                <!-- Dashboards -->
+                <li class="navbar-vertical-aside-has-menu nav-item">
+                    <a class="js-navbar-vertical-aside-menu-link nav-link " href="javascript:;" title="Dashboards">
+                        <i class="tio-home-vs-1-outlined nav-icon"></i>
+                        <span class="nav-compact-title text-truncate">Dashboards</span>
+                    </a>
+
+                    <ul class="js-navbar-vertical-aside-submenu nav nav-sub">
+                        <li class="nav-item">
+                            <a class="nav-link " href="index.html" title="Default">
+                                <span class="tio-circle nav-indicator-icon"></span>
+                                <span class="text-truncate">Default</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link " href="dashboard-alternative.html" title="Alternative">
+                                <span class="tio-circle nav-indicator-icon"></span>
+                                <span class="text-truncate">Alternative</span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <!-- End Dashboards -->
+
+                <!-- Pages -->
+                <li class="navbar-vertical-aside-has-menu nav-item">
+                    <a class="js-navbar-vertical-aside-menu-link nav-link " href="javascript:;" title="Pages">
+                        <i class="tio-pages-outlined nav-icon"></i>
+                        <span class="nav-compact-title text-truncate">Pages</span>
+                    </a>
+
+                    <ul class="js-navbar-vertical-aside-submenu nav nav-sub">
+                        <li class="navbar-vertical-aside-has-menu ">
+                            <a class="js-navbar-vertical-aside-menu-link nav-link nav-link-toggle" href="javascript:;" title="Users">
+                                <span class="tio-circle nav-indicator-icon"></span>
+                                <span class="text-truncate">Users</span>
+                            </a>
+
+                            <ul class="js-navbar-vertical-aside-submenu nav nav-sub">
+                                <li class="nav-item">
+                                    <a class="nav-link " href="users.html" title="Overview">
+                                        <span class="tio-circle-outlined nav-indicator-icon"></span>
+                                        <span class="text-truncate">Overview</span>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link " href="users-leaderboard.html" title="Leaderboard">
+                                        <span class="tio-circle-outlined nav-indicator-icon"></span>
+                                        <span class="text-truncate">Leaderboard</span>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link " href="users-add-user.html" title="Add User">
+                                        <span class="tio-circle-outlined nav-indicator-icon"></span>
+                                        <span class="text-truncate">Add User <span class="badge badge-info badge-pill ml-1">Hot</span></span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+
+                        <li class="navbar-vertical-aside-has-menu ">
+                            <a class="js-navbar-vertical-aside-menu-link nav-link nav-link-toggle" href="javascript:;" title="User Profile">
+                                <span class="tio-circle nav-indicator-icon"></span>
+                                <span class="text-truncate">User Profile <span class="badge badge-primary badge-pill ml-1">5</span></span>
+                            </a>
+
+                            <ul class="js-navbar-vertical-aside-submenu nav nav-sub">
+                                <li class="nav-item">
+                                    <a class="nav-link " href="user-profile.html" title="Profile">
+                                        <span class="tio-circle-outlined nav-indicator-icon"></span>
+                                        <span class="text-truncate">Profile</span>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link " href="user-profile-teams.html" title="Teams">
+                                        <span class="tio-circle-outlined nav-indicator-icon"></span>
+                                        <span class="text-truncate">Teams</span>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link " href="user-profile-projects.html" title="Projects">
+                                        <span class="tio-circle-outlined nav-indicator-icon"></span>
+                                        <span class="text-truncate">Projects</span>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link " href="user-profile-connections.html" title="Connections">
+                                        <span class="tio-circle-outlined nav-indicator-icon"></span>
+                                        <span class="text-truncate">Connections</span>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link " href="user-profile-my-profile.html" title="My Profile">
+                                        <span class="tio-circle-outlined nav-indicator-icon"></span>
+                                        <span class="text-truncate">My Profile</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+
+                        <li class="navbar-vertical-aside-has-menu ">
+                            <a class="js-navbar-vertical-aside-menu-link nav-link nav-link-toggle" href="javascript:;" title="Account">
+                                <span class="tio-circle nav-indicator-icon"></span>
+                                <span class="text-truncate">Account</span>
+                            </a>
+
+                            <ul class="js-navbar-vertical-aside-submenu nav nav-sub">
+                                <li class="nav-item">
+                                    <a class="nav-link " href="account-settings.html" title="Settings">
+                                        <span class="tio-circle-outlined nav-indicator-icon"></span>
+                                        <span class="text-truncate">Settings</span>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link " href="account-billing.html" title="Billing">
+                                        <span class="tio-circle-outlined nav-indicator-icon"></span>
+                                        <span class="text-truncate">Billing</span>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link " href="account-invoice.html" title="Invoice">
+                                        <span class="tio-circle-outlined nav-indicator-icon"></span>
+                                        <span class="text-truncate">Invoice</span>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link " href="account-api-keys.html" title="API Keys">
+                                        <span class="tio-circle-outlined nav-indicator-icon"></span>
+                                        <span class="text-truncate">API Keys</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+
+                        <li class="navbar-vertical-aside-has-menu ">
+                            <a class="js-navbar-vertical-aside-menu-link nav-link nav-link-toggle" href="javascript:;" title="E-commerce">
+                                <span class="tio-circle nav-indicator-icon"></span>
+                                <span class="text-truncate">E-commerce</span>
+                            </a>
+
+                            <ul class="js-navbar-vertical-aside-submenu nav nav-sub">
+                                <li class="nav-item">
+                                    <a class="nav-link " href="ecommerce.html" title="Overview">
+                                        <span class="tio-circle-outlined nav-indicator-icon"></span>
+                                        <span class="text-truncate">Overview</span>
+                                    </a>
+                                </li>
+
+                                <li class="navbar-vertical-aside-has-menu ">
+                                    <a class="js-navbar-vertical-aside-menu-link nav-link nav-link-toggle" href="javascript:;" title="Products">
+                                        <span class="tio-circle-outlined nav-indicator-icon"></span>
+                                        <span class="text-truncate">Products</span>
+                                    </a>
+
+                                    <ul class="js-navbar-vertical-aside-submenu nav nav-sub">
+                                        <li class="nav-item">
+                                            <a class="nav-link " href="ecommerce-products.html" title="Products">
+                                                <span class="tio-circle nav-indicator-icon"></span>
+                                                <span class="text-truncate">Products</span>
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link " href="ecommerce-product-details.html" title="Product Details">
+                                                <span class="tio-circle nav-indicator-icon"></span>
+                                                <span class="text-truncate">Product Details</span>
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link " href="ecommerce-add-product.html" title="Add Product">
+                                                <span class="tio-circle-outlined nav-indicator-icon"></span>
+                                                <span class="text-truncate">Add Product</span>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </li>
+
+                                <li class="navbar-vertical-aside-has-menu ">
+                                    <a class="js-navbar-vertical-aside-menu-link nav-link nav-link-toggle" href="javascript:;" title="Orders">
+                                        <span class="tio-circle-outlined nav-indicator-icon"></span>
+                                        <span class="text-truncate">Orders</span>
+                                    </a>
+
+                                    <ul class="js-navbar-vertical-aside-submenu nav nav-sub">
+                                        <li class="nav-item">
+                                            <a class="nav-link " href="ecommerce-orders.html" title="Orders">
+                                                <span class="tio-circle nav-indicator-icon"></span>
+                                                <span class="text-truncate">Orders</span>
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link " href="ecommerce-order-details.html" title="Order Details">
+                                                <span class="tio-circle nav-indicator-icon"></span>
+                                                <span class="text-truncate">Order Details</span>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </li>
+
+                                <li class="navbar-vertical-aside-has-menu ">
+                                    <a class="js-navbar-vertical-aside-menu-link nav-link nav-link-toggle" href="javascript:;" title="Customers">
+                                        <span class="tio-circle-outlined nav-indicator-icon"></span>
+                                        <span class="text-truncate">Customers</span>
+                                    </a>
+
+                                    <ul class="js-navbar-vertical-aside-submenu nav nav-sub">
+                                        <li class="nav-item">
+                                            <a class="nav-link " href="ecommerce-customers.html" title="Customers">
+                                                <span class="tio-circle nav-indicator-icon"></span>
+                                                <span class="text-truncate">Customers</span>
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link " href="customer-detail.html" title="Customer Details">
+                                                <span class="tio-circle nav-indicator-icon"></span>
+                                                <span class="text-truncate">Customer Details</span>
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link " href="ecommerce-add-customers.html" title="Add Customers">
+                                                <span class="tio-circle nav-indicator-icon"></span>
+                                                <span class="text-truncate">Add Customers</span>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </li>
+
+                                <li class="nav-item">
+                                    <a class="nav-link " href="ecommerce-manage-reviews.html" title="Manage Reviews">
+                                        <span class="tio-circle-outlined nav-indicator-icon"></span>
+                                        <span class="text-truncate">Manage Reviews</span>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link " href="ecommerce-checkout.html" title="Checkout">
+                                        <span class="tio-circle-outlined nav-indicator-icon"></span>
+                                        <span class="text-truncate">Checkout</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+
+                        <li class="navbar-vertical-aside-has-menu ">
+                            <a class="js-navbar-vertical-aside-menu-link nav-link nav-link-toggle" href="javascript:;" title="Projects">
+                                <span class="tio-circle nav-indicator-icon"></span>
+                                <span class="text-truncate">Projects</span>
+                            </a>
+
+                            <ul class="js-navbar-vertical-aside-submenu nav nav-sub">
+                                <li class="nav-item">
+                                    <a class="nav-link " href="projects.html" title="Overview">
+                                        <span class="tio-circle-outlined nav-indicator-icon"></span>
+                                        <span class="text-truncate">Overview</span>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link " href="projects-timeline.html" title="Timeline">
+                                        <span class="tio-circle-outlined nav-indicator-icon"></span>
+                                        <span class="text-truncate">Timeline</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+
+                        <li class="navbar-vertical-aside-has-menu ">
+                            <a class="js-navbar-vertical-aside-menu-link nav-link nav-link-toggle" href="javascript:;" title="Project">
+                                <span class="tio-circle nav-indicator-icon"></span>
+                                <span class="text-truncate">Project</span>
+                            </a>
+
+                            <ul class="js-navbar-vertical-aside-submenu nav nav-sub">
+                                <li class="nav-item">
+                                    <a class="nav-link " href="project.html" title="Overview">
+                                        <span class="tio-circle-outlined nav-indicator-icon"></span>
+                                        <span class="text-truncate">Overview</span>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link " href="project-files.html" title="Files">
+                                        <span class="tio-circle-outlined nav-indicator-icon"></span>
+                                        <span class="text-truncate">Files <span class="badge badge-info badge-pill ml-1">Hot</span></span>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link " href="project-activity.html" title="Activity">
+                                        <span class="tio-circle-outlined nav-indicator-icon"></span>
+                                        <span class="text-truncate">Activity</span>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link " href="project-teams.html" title="Teams">
+                                        <span class="tio-circle-outlined nav-indicator-icon"></span>
+                                        <span class="text-truncate">Teams</span>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link " href="project-settings.html" title="Settings">
+                                        <span class="tio-circle-outlined nav-indicator-icon"></span>
+                                        <span class="text-truncate">Settings</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link " href="referrals.html" title="Referrals">
+                                <span class="tio-circle nav-indicator-icon"></span>
+                                <span class="text-truncate">Referrals</span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <!-- End Pages -->
+
+                <!-- Apps -->
+                <li class="navbar-vertical-aside-has-menu nav-item">
+                    <a class="js-navbar-vertical-aside-menu-link nav-link " href="javascript:;" title="Apps">
+                        <i class="tio-apps nav-icon"></i>
+                        <span class="nav-compact-title text-truncate">Apps</span>
+                    </a>
+
+                    <ul class="js-navbar-vertical-aside-submenu nav nav-sub">
+                        <li class="nav-item">
+                            <a class="nav-link " href="apps-kanban.html" title="Kanban">
+                                <span class="tio-circle nav-indicator-icon"></span>
+                                <span class="text-truncate">Kanban</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link " href="apps-calendar.html" title="Calendar">
+                                <span class="tio-circle nav-indicator-icon"></span>
+                                <span class="text-truncate">Calendar <span class="badge badge-info badge-pill ml-1">New</span></span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link " href="apps-invoice-generator.html" title="Invoice Generator">
+                                <span class="tio-circle nav-indicator-icon"></span>
+                                <span class="text-truncate">Invoice Generator</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link " href="apps-file-manager.html" title="File Manager">
+                                <span class="tio-circle nav-indicator-icon"></span>
+                                <span class="text-truncate">File Manager</span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <!-- End Apps -->
+
+                <!-- Authentication -->
+                <li class="navbar-vertical-aside-has-menu nav-item">
+                    <a class="js-navbar-vertical-aside-menu-link nav-link " href="javascript:;" title="Authentication">
+                        <i class="tio-lock-outlined nav-icon"></i>
+                        <span class="nav-compact-title text-truncate">Authentication</span>
+                    </a>
+
+                    <ul class="js-navbar-vertical-aside-submenu nav nav-sub">
+                        <li class="navbar-vertical-aside-has-menu nav-item">
+                            <a class="js-navbar-vertical-aside-menu-link nav-link nav-link-toggle" href="javascript:;" title="Sign In">
+                                <span class="tio-circle nav-indicator-icon"></span>
+                                <span class="text-truncate">Sign In</span>
+                            </a>
+
+                            <ul class="js-navbar-vertical-aside-submenu nav nav-sub">
+                                <li class="nav-item">
+                                    <a class="nav-link " href="authentication-signin-basic.html" title="Basic">
+                                        <span class="tio-circle-outlined nav-indicator-icon"></span>
+                                        <span class="text-truncate">Basic</span>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link " href="authentication-signin-cover.html" title="Cover">
+                                        <span class="tio-circle-outlined nav-indicator-icon"></span>
+                                        <span class="text-truncate">Cover</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+
+                        <li class="navbar-vertical-aside-has-menu nav-item">
+                            <a class="js-navbar-vertical-aside-menu-link nav-link nav-link-toggle" href="javascript:;" title="Sign Up">
+                                <span class="tio-circle nav-indicator-icon"></span>
+                                <span class="text-truncate">Sign Up</span>
+                            </a>
+
+                            <ul class="js-navbar-vertical-aside-submenu nav nav-sub">
+                                <li class="nav-item">
+                                    <a class="nav-link " href="authentication-signup-basic.html" title="Basic">
+                                        <span class="tio-circle-outlined nav-indicator-icon"></span>
+                                        <span class="text-truncate">Basic</span>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link " href="authentication-signup-cover.html" title="Cover">
+                                        <span class="tio-circle-outlined nav-indicator-icon"></span>
+                                        <span class="text-truncate">Cover</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+
+                        <li class="navbar-vertical-aside-has-menu nav-item">
+                            <a class="js-navbar-vertical-aside-menu-link nav-link nav-link-toggle" href="javascript:;" title="Reset Password">
+                                <span class="tio-circle nav-indicator-icon"></span>
+                                <span class="text-truncate">Reset Password</span>
+                            </a>
+
+                            <ul class="js-navbar-vertical-aside-submenu nav nav-sub">
+                                <li class="nav-item">
+                                    <a class="nav-link " href="authentication-reset-password-basic.html" title="Basic">
+                                        <span class="tio-circle-outlined nav-indicator-icon"></span>
+                                        <span class="text-truncate">Basic</span>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link " href="authentication-reset-password-cover.html" title="Cover">
+                                        <span class="tio-circle-outlined nav-indicator-icon"></span>
+                                        <span class="text-truncate">Cover</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+
+                        <li class="navbar-vertical-aside-has-menu nav-item">
+                            <a class="js-navbar-vertical-aside-menu-link nav-link nav-link-toggle" href="javascript:;" title="Email Verification">
+                                <span class="tio-circle nav-indicator-icon"></span>
+                                <span class="text-truncate">Email Verification</span>
+                            </a>
+
+                            <ul class="js-navbar-vertical-aside-submenu nav nav-sub">
+                                <li class="nav-item">
+                                    <a class="nav-link " href="authentication-email-verification-basic.html" title="Basic">
+                                        <span class="tio-circle-outlined nav-indicator-icon"></span>
+                                        <span class="text-truncate">Basic</span>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link " href="authentication-email-verification-cover.html" title="Cover">
+                                        <span class="tio-circle-outlined nav-indicator-icon"></span>
+                                        <span class="text-truncate">Cover</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+
+                        <li class="navbar-vertical-aside-has-menu nav-item">
+                            <a class="js-navbar-vertical-aside-menu-link nav-link nav-link-toggle" href="javascript:;" title="2-step Verification">
+                                <span class="tio-circle nav-indicator-icon"></span>
+                                <span class="text-truncate">2-step Verification</span>
+                            </a>
+
+                            <ul class="js-navbar-vertical-aside-submenu nav nav-sub">
+                                <li class="nav-item">
+                                    <a class="nav-link " href="authentication-two-step-verification-basic.html" title="Basic">
+                                        <span class="tio-circle-outlined nav-indicator-icon"></span>
+                                        <span class="text-truncate">Basic</span>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link " href="authentication-two-step-verification-cover.html" title="Cover">
+                                        <span class="tio-circle-outlined nav-indicator-icon"></span>
+                                        <span class="text-truncate">Cover</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="javascript:;" data-toggle="modal" data-target="#welcomeMessageModal" title="Welcome Message">
+                                <span class="tio-circle nav-indicator-icon"></span>
+                                <span class="text-truncate">Welcome Message</span>
+                            </a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link " href="error-404.html" title="Error 404">
+                                <span class="tio-circle nav-indicator-icon"></span>
+                                <span class="text-truncate">Error 404</span>
+                            </a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link " href="error-500.html" title="Error 500">
+                                <span class="tio-circle nav-indicator-icon"></span>
+                                <span class="text-truncate">Error 500</span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <!-- End Authentication -->
+
+                <li class="nav-item">
+                    <a class="nav-link " href="welcome-page.html" title="Welcome Page">
+                        <i class="tio-visible-outlined nav-icon"></i>
+                        <span class="nav-compact-title text-truncate">Welcome Page</span>
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link " href="layouts\layouts.html" title="Layouts">
+                        <i class="tio-dashboard-vs-outlined nav-icon"></i>
+                        <span class="nav-compact-title text-truncate">Layouts</span>
+                    </a>
+                </li>
+
+                <li class="nav-item ">
+                    <a class="nav-link" href="documentation\index.html" title="Documentation">
+                        <i class="tio-book-opened nav-icon"></i>
+                        <span class="nav-compact-title text-truncate">Documentation</span>
+                        <span class="badge badge-primary badge-pill">v1.1</span>
+                    </a>
+                </li>
+
+                <li class="nav-item ">
+                    <a class="nav-link" href="documentation\typography.html" title="Components">
+                        <i class="tio-layers-outlined nav-icon"></i>
+                        <span class="nav-compact-title text-truncate">Components</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <!-- End Content -->
+    </div>
+</aside></div>
 
 <script src="assets\js\demo.js"></script>
+
+<!-- END ONLY DEV -->
+
+<!-- Search Form -->
+<div id="searchDropdown" class="hs-unfold-content dropdown-unfold search-fullwidth d-md-none">
+    <form class="input-group input-group-merge input-group-borderless">
+        <div class="input-group-prepend">
+            <div class="input-group-text">
+                <i class="tio-search"></i>
+            </div>
+        </div>
+
+        <input class="form-control rounded-0" type="search" placeholder="Search in front" aria-label="Search in front">
+
+        <div class="input-group-append">
+            <div class="input-group-text">
+                <div class="hs-unfold">
+                    <a class="js-hs-unfold-invoker" href="javascript:;" data-hs-unfold-options='{
+                   "target": "#searchDropdown",
+                   "type": "css-animation",
+                   "animationIn": "fadeIn",
+                   "hasOverlay": "rgba(46, 52, 81, 0.1)",
+                   "closeBreakpoint": "md"
+                 }'>
+                        <i class="tio-clear tio-lg"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+<!-- End Search Form -->
+
+<!-- ========== HEADER ========== -->
+
+
+
+
+
+<!-- ========== END HEADER ========== -->
+
+<!-- ========== MAIN CONTENT ========== -->
+<!-- Navbar Vertical -->
+
+
+
+<!-- End Navbar Vertical -->
 
 <main id="content" role="main" class="main">
     <!-- Content -->
     <div class="content container-fluid">
         <!-- Page Header -->
         <div class="page-header">
-            <div class="row align-items-end">
+            <div class="row align-items-center mb-3">
                 <div class="col-sm mb-2 mb-sm-0">
-
-                    <h1 class="page-header-title">Quản lý khách hàng<span class="badge badge-soft-dark ml-2"> 10</span></h1>
+                    <h1 class="page-header-title">Quản lý khách hàng <span class="badge badge-soft-dark ml-2">10</span></h1>
                 </div>
             </div>
             <!-- End Row -->
+
+            <!-- Nav Scroller -->
+            <div class="js-nav-scroller hs-nav-scroller-horizontal">
+            <span class="hs-nav-scroller-arrow-prev" style="display: none;">
+              <a class="hs-nav-scroller-arrow-link" href="javascript:;">
+                <i class="tio-chevron-left"></i>
+              </a>
+            </span>
+
+                <span class="hs-nav-scroller-arrow-next" style="display: none;">
+              <a class="hs-nav-scroller-arrow-link" href="javascript:;">
+                <i class="tio-chevron-right"></i>
+              </a>
+            </span>
+
+                <!-- Nav -->
+                <ul class="nav nav-tabs page-header-tabs">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#">Tất cả</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Mới</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true"></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true"></a>
+                    </li>
+                </ul>
+                <!-- End Nav -->
+            </div>
+            <!-- End Nav Scroller -->
         </div>
         <!-- End Page Header -->
-        <!--fix here-->
 
         <!-- Card -->
         <div class="card">
-            <!-- Header -->
-            <div class="card-header">
+            <!-- Body -->
+            <div class="card-body">
                 <div class="row justify-content-between align-items-center flex-grow-1">
-                    <div class="col-sm-6 col-md-4 mb-3 mb-sm-0">
+                    <div class="col-lg-6 mb-3 mb-lg-0">
                         <form>
                             <!-- Search -->
                             <div class="input-group input-group-merge input-group-flush">
@@ -427,14 +1247,13 @@
                                         <i class="tio-search"></i>
                                     </div>
                                 </div>
-                                <input id="datatableSearch" type="search" class="form-control"
-                                       placeholder="Tìm kiếm khách hàng" aria-label="Search users">
+                                <input id="datatableSearch" type="search" class="form-control" placeholder="Tìm kiếm khách hàng" aria-label="Tìm kiếm khách hàng">
                             </div>
                             <!-- End Search -->
                         </form>
                     </div>
 
-                    <div class="col-sm-6">
+                    <div class="col-lg-6">
                         <div class="d-sm-flex justify-content-sm-end align-items-sm-center">
                             <!-- Datatable Info -->
                             <div id="datatableCounterInfo" class="mr-2 mb-2 mb-sm-0">
@@ -446,180 +1265,103 @@
                                     <a class="btn btn-sm btn-outline-danger" href="javascript:;">
                                         <i class="tio-delete-outlined"></i> Xóa
                                     </a>
-                                    <!--                                    <a class="btn btn-sm btn-outline-danger mb-2 mb-sm-0 mr-2" href="#">-->
-                                    <!--                                        <i class="tio-delete-outlined"></i> Xóa-->
-                                    <!--                                    </a>-->
                                 </div>
                             </div>
                             <!-- End Datatable Info -->
 
                             <!-- Unfold -->
-                            <div class="hs-unfold mr-2">
-                                <a class="js-hs-unfold-invoker btn btn-sm btn-white dropdown-toggle"
-                                   href="javascript:;" data-hs-unfold-options='{
-                         "target": "#usersExportDropdown",
+                            <div class="hs-unfold">
+                                <a class="js-hs-unfold-invoker btn btn-white" href="javascript:;" data-hs-unfold-options='{
+                         "target": "#showHideDropdown",
                          "type": "css-animation"
                        }'>
-                                    <i class="tio-download-to mr-1"></i> Xuất file
+                                    <i class="tio-table mr-1"></i> Cột <span class="badge badge-soft-dark rounded-circle ml-1">5</span>
                                 </a>
 
-                                <div id="usersExportDropdown"
-                                     class="hs-unfold-content dropdown-unfold dropdown-menu dropdown-menu-sm-right">
-                                    <span class="dropdown-header">Lựa chọn</span>
-                                    <a id="export-copy" class="dropdown-item" href="javascript:;">
-                                        <img class="avatar avatar-xss avatar-4by3 mr-2"
-                                             src="../images/user/copy.svg" alt="Image Description">
-                                        Sao chép
-                                    </a>
-                                    <a id="export-print" class="dropdown-item" href="javascript:;">
-                                        <img class="avatar avatar-xss avatar-4by3 mr-2"
-                                             src="../images/user/print.svg" alt="Image Description">
-                                        In
-                                    </a>
-                                    <div class="dropdown-divider"></div>
-                                    <span class="dropdown-header">Tải file</span>
-                                    <a id="export-excel" class="dropdown-item" href="javascript:;">
-                                        <img class="avatar avatar-xss avatar-4by3 mr-2"
-                                             src="../images/user/excel.svg" alt="Image Description">
-                                        Excel
-                                    </a>
-                                    <a id="export-csv" class="dropdown-item" href="javascript:;">
-                                        <img class="avatar avatar-xss avatar-4by3 mr-2"
-                                             src="../images/user/placeholder-csv-format.svg" alt="Image Description">
-                                        .CSV
-                                    </a>
-                                    <a id="export-pdf" class="dropdown-item" href="javascript:;">
-                                        <img class="avatar avatar-xss avatar-4by3 mr-2" src="../images/user/pdf.svg"
-                                             alt="Image Description">
-                                        PDF
-                                    </a>
-                                </div>
-                            </div>
-                            <!-- End Unfold -->
-                            <!-- Unfold -->
-                            <div class="hs-unfold">
-                                <a class="js-hs-unfold-invoker btn btn-sm btn-white" href="javascript:;"
-                                   data-hs-unfold-options='{
-                         "target": "#usersFilterDropdown",
-                         "type": "css-animation",
-                         "smartPositionOff": true
-                       }'>
-                                    <i class="tio-filter-list mr-1"></i> Lọc
-                                    <span class="badge badge-soft-dark rounded-circle ml-1">2</span>
-                                </a>
-
-                                <div id="usersFilterDropdown"
-                                     class="hs-unfold-content dropdown-unfold dropdown-menu dropdown-menu-sm-right dropdown-card card-dropdown-filter-centered"
-                                     style="min-width: 22rem;">
-                                    <!-- Card -->
-                                    <div class="card">
-                                        <div class="card-header">
-                                            <h5 class="card-header-title">Lọc khách hàng</h5>
-
-                                            <!-- Toggle Button -->
-                                            <a class="js-hs-unfold-invoker btn btn-icon btn-xs btn-ghost-secondary ml-2"
-                                               href="javascript:;" data-hs-unfold-options='{
-                              "target": "#usersFilterDropdown",
-                              "type": "css-animation",
-                              "smartPositionOff": true
-                             }'>
-                                                <i class="tio-clear tio-lg"></i>
-                                            </a>
-                                            <!-- End Toggle Button -->
-                                        </div>
-
+                                <div id="showHideDropdown" class="hs-unfold-content dropdown-unfold dropdown-menu dropdown-menu-right dropdown-card" style="width: 15rem;">
+                                    <div class="card card-sm">
                                         <div class="card-body">
-                                            <form>
-                                                <div class="form-group">
-                                                    <small class="text-cap mb-2">Tổng chi tiêu</small>
+                                            <div class="d-flex justify-content-between align-items-center mb-3">
+                                                <span class="mr-2">Tên</span>
 
-                                                    <div class="form-row">
-                                                        <div class="col">
-                                                            <!-- Checkbox -->
-                                                            <div class="custom-control custom-checkbox">
-                                                                <input type="checkbox" class="custom-control-input"
-                                                                       id="usersFilerCheck1" checked="">
-                                                                <label class="custom-control-label"
-                                                                       for="usersFilerCheck1">Tất cả</label>
-                                                            </div>
-                                                            <!-- End Checkbox -->
-                                                        </div>
-                                                        <div class="col">
-                                                            <!-- Checkbox -->
-                                                            <div class="custom-control custom-checkbox">
-                                                                <input type="checkbox" class="custom-control-input"
-                                                                       id="usersFilerCheck2">
-                                                                <label class="custom-control-label"
-                                                                       for="usersFilerCheck2">>100 triệu</label>
-                                                            </div>
-                                                            <!-- End Checkbox -->
-                                                        </div>
-                                                        <div class="col">
-                                                            <!-- Checkbox -->
-                                                            <div class="custom-control custom-checkbox">
-                                                                <input type="checkbox" class="custom-control-input"
-                                                                       id="usersFilerCheck3">
-                                                                <label class="custom-control-label"
-                                                                       for="usersFilerCheck3">
-                                                                    <100 triệu</label>
-                                                            </div>
-                                                            <!-- End Checkbox -->
-                                                        </div>
-                                                    </div>
-                                                    <!-- End Row -->
-                                                </div>
+                                                <!-- Checkbox Switch -->
+                                                <label class="toggle-switch toggle-switch-sm" for="toggleColumn_name">
+                                                    <input type="checkbox" class="toggle-switch-input" id="toggleColumn_name" checked="">
+                                                    <span class="toggle-switch-label">
+                                <span class="toggle-switch-indicator"></span>
+                              </span>
+                                                </label>
+                                                <!-- End Checkbox Switch -->
+                                            </div>
 
-                                                <div class="form-row">
-                                                    <div class="col-sm form-group">
-                                                        <small class="text-cap mb-2">Loại</small>
+                                            <div class="d-flex justify-content-between align-items-center mb-3">
+                                                <span class="mr-2">Email</span>
 
-                                                        <!-- Select -->
-                                                        <select
-                                                                class="js-select2-custom js-datatable-filter custom-select"
-                                                                size="1" data-target-column-index="2"
-                                                                data-hs-select2-options='{
-                                          "minimumResultsForSearch": "Infinity"
-                                        }'>
-                                                            <option value="Bất kỳ">Bất kỳ</option>
-                                                            <option value="Thân thiết">Thân thiết</option>
-                                                            <option value="Bình thường">Bình thường</option>
-                                                            <option value="Mới">Mới</option>
-                                                        </select>
-                                                        <!-- End Select -->
-                                                    </div>
+                                                <!-- Checkbox Switch -->
+                                                <label class="toggle-switch toggle-switch-sm" for="toggleColumn_email">
+                                                    <input type="checkbox" class="toggle-switch-input" id="toggleColumn_email" checked="">
+                                                    <span class="toggle-switch-label">
+                                <span class="toggle-switch-indicator"></span>
+                              </span>
+                                                </label>
+                                                <!-- End Checkbox Switch -->
+                                            </div>
 
-                                                </div>
+                                            <div class="d-flex justify-content-between align-items-center mb-3">
+                                                <span class="mr-2">Số điện thoại</span>
 
-                                                <!-- End Row -->
+                                                <!-- Checkbox Switch -->
+                                                <label class="toggle-switch toggle-switch-sm" for="toggleColumn_phone">
+                                                    <input type="checkbox" class="toggle-switch-input" id="toggleColumn_phone">
+                                                    <span class="toggle-switch-label">
+                                <span class="toggle-switch-indicator"></span>
+                              </span>
+                                                </label>
+                                                <!-- End Checkbox Switch -->
+                                            </div>
 
-                                                <a class="js-hs-unfold-invoker btn btn-block btn-primary"
-                                                   href="javascript:;" data-hs-unfold-options='{
-                                "target": "#usersFilterDropdown",
-                                "type": "css-animation",
-                                "smartPositionOff": true
-                               }'>Áp dụng</a>
-                                            </form>
+                                            <div class="d-flex justify-content-between align-items-center mb-3">
+                                                <span class="mr-2">Địa chỉ</span>
+
+                                                <!-- Checkbox Switch -->
+                                                <label class="toggle-switch toggle-switch-sm" for="toggleColumn_country">
+                                                    <input type="checkbox" class="toggle-switch-input" id="toggleColumn_country" checked="">
+                                                    <span class="toggle-switch-label">
+                                <span class="toggle-switch-indicator"></span>
+                              </span>
+                                                </label>
+                                                <!-- End Checkbox Switch -->
+                                            </div>
+
+                                            <div class="d-flex justify-content-between align-items-center mb-3">
+                                                <span class="mr-2">Trạng thái</span>
+
+                                                <!-- Checkbox Switch -->
+                                                <label class="toggle-switch toggle-switch-sm" for="toggleColumn_status">
+                                                    <input type="checkbox" class="toggle-switch-input" id="toggleColumn_status" checked="">
+                                                    <span class="toggle-switch-label">
+                                <span class="toggle-switch-indicator"></span>
+                              </span>
+                                                </label>
+                                                <!-- End Checkbox Switch -->
+                                            </div>
                                         </div>
                                     </div>
-                                    <!-- End Card -->
                                 </div>
                             </div>
                             <!-- End Unfold -->
-
                         </div>
                     </div>
                 </div>
                 <!-- End Row -->
             </div>
-            <!-- End Header -->
+            <!-- End Body -->
 
             <!-- Table -->
             <div class="table-responsive datatable-custom">
-                <table id="datatable"
-                       class="table table-lg table-borderless table-thead-bordered table-nowrap table-align-middle card-table"
-                       data-hs-datatables-options='{
+                <table id="datatable" class="table table-lg table-borderless table-thead-bordered table-nowrap table-align-middle card-table" data-hs-datatables-options='{
                      "columnDefs": [{
-                        "targets": [0, 7],
+                        "targets": [0],
                         "orderable": false
                       }],
                      "order": [],
@@ -635,24 +1377,21 @@
                    }'>
                     <thead class="thead-light">
                     <tr>
-                        <th class="table-column-pr-0">
+                        <th scope="col" class="table-column-pr-0">
                             <div class="custom-control custom-checkbox">
                                 <input id="datatableCheckAll" type="checkbox" class="custom-control-input">
                                 <label class="custom-control-label" for="datatableCheckAll"></label>
                             </div>
                         </th>
-                        <th>Mã số</th>
                         <th class="table-column-pl-0">Tên</th>
-                        <th>Loại</th>
+                        <th>Email</th>
                         <th>Số điện thoại</th>
-                        <th>Tổng chi tiêu</th>
-                        <th>Tổng SL đơn hàng</th>
-                        <th>Thao tác</th>
+                        <th>Địa chỉ</th>
+                        <th>Trạng thái</th>
                     </tr>
                     </thead>
 
                     <tbody>
-
                     <tr>
                         <td class="table-column-pr-0">
                             <div class="custom-control custom-checkbox">
@@ -660,35 +1399,21 @@
                                 <label class="custom-control-label" for="usersDataCheck1"></label>
                             </div>
                         </td>
-                        <td>
-                            <span class="d-block font-size-sm">KH001</span>
-                        </td>
                         <td class="table-column-pl-0">
-                            <a class="d-flex align-items-center" href="user-profile.html">
-                                <div class="avatar avatar-soft-dark avatar-circle">
-                                    <span class="avatar-initials">B</span>
+                            <a class="d-flex align-items-center" href="customer-detail.html">
+                                <div class="avatar avatar-circle">
+                                    <img class="avatar-img" src="../images/user/user.png" alt="Image Description">
                                 </div>
                                 <div class="ml-3">
-                                    <span class="d-block h5 text-hover-primary mb-0">B Nguyễn</span>
-                                    <span class="d-block font-size-sm text-body">bnguyen@gmail.com</span>
+                                    <span class="h5 text-hover-primary">Nguyễn Văn Tý</span>
                                 </div>
                             </a>
                         </td>
+                        <td>nvt@gmail.com</td>
+                        <td>0349777777</td>
+                        <td>789 kp6, Linh Trung, Thủ Đức, TP Hồ Chí Minh</td>
                         <td>
-                            <span class="d-block font-size-sm">Bình thường</span>
-                        </td>
-                        <td>
-                            <span class="d-block font-size-sm">0349477777</span>
-                        </td>
-                        <td>
-                            <span class="d-block font-size-sm">27.000.000</span>
-                        </td>
-                        <td>1</td>
-                        <td>
-                            <a class="btn btn-sm btn-white" href="javascript:;" data-toggle="modal"
-                               data-target="#editUserModal">
-                                <i class="tio-edit"></i>
-                            </a>
+                            <span class="legend-indicator bg-success"></span>Hoạt động
                         </td>
                     </tr>
 
@@ -699,36 +1424,21 @@
                                 <label class="custom-control-label" for="usersDataCheck2"></label>
                             </div>
                         </td>
-                        <td>
-                            <span class="d-block font-size-sm">KH002</span>
-                        </td>
                         <td class="table-column-pl-0">
-                            <a class="d-flex align-items-center" href="user-profile.html">
-                                <div class="avatar avatar-soft-dark avatar-circle">
-                                    <img class="avatar-img" src="../images/user/user.png"
-                                         alt="Image Description">
+                            <a class="d-flex align-items-center" href="customer-detail.html">
+                                <div class="avatar avatar-soft-primary avatar-circle">
+                                    <span class="avatar-initials">Đ</span>
                                 </div>
                                 <div class="ml-3">
-                                    <span class="d-block h5 text-hover-primary mb-0">VTV</span>
-                                    <span class="d-block font-size-sm text-body">vtv@gmail.com</span>
+                                    <span class="h5 text-hover-primary">Nguyễn Thành Đạt</span>
                                 </div>
                             </a>
                         </td>
+                        <td>nvt@gmail.com</td>
+                        <td>0349777777</td>
+                        <td>789 kp6, Linh Trung, Thủ Đức, TP Hồ Chí Minh</td>
                         <td>
-                            <span class="d-block font-size-sm">Thân thiết</span>
-                        </td>
-                        <td>
-                            <span class="d-block font-size-sm">0317177777</span>
-                        </td>
-                        <td>
-                            <span class="d-block font-size-sm">137.000.000</span>
-                        </td>
-                        <td>2</td>
-                        <td>
-                            <a class="btn btn-sm btn-white" href="javascript:;" data-toggle="modal"
-                               data-target="#editUserModal">
-                                <i class="tio-edit"></i>
-                            </a>
+                            <span class="legend-indicator bg-danger"></span>Vô hiệu hóa
                         </td>
                     </tr>
 
@@ -739,36 +1449,21 @@
                                 <label class="custom-control-label" for="usersDataCheck3"></label>
                             </div>
                         </td>
-                        <td>
-                            <span class="d-block font-size-sm">KH003</span>
-                        </td>
                         <td class="table-column-pl-0">
-                            <a class="d-flex align-items-center" href="user-profile.html">
-                                <div class="avatar avatar-circle">
-                                    <img class="avatar-img" src="../images/user/user.png"
-                                         alt="Image Description">
+                            <a class="d-flex align-items-center" href="customer-detail.html">
+                                <div class="avatar avatar-soft-primary avatar-circle">
+                                    <span class="avatar-initials">M</span>
                                 </div>
                                 <div class="ml-3">
-                                    <span class="d-block h5 text-hover-primary mb-0">Vinh Hoàng</span>
-                                    <span class="d-block font-size-sm text-body">hoangvinh@gmail.com</span>
+                                    <span class="h5 text-hover-primary">Nguyễn Thị Mai</span>
                                 </div>
                             </a>
                         </td>
+                        <td>nvt@gmail.com</td>
+                        <td>0349777777</td>
+                        <td>789 kp6, Linh Trung, Thủ Đức, TP Hồ Chí Minh</td>
                         <td>
-                            <span class="d-block font-size-sm">Thân thiết</span>
-                        </td>
-                        <td>
-                            <span class="d-block font-size-sm">0349477738</span>
-                        </td>
-                        <td>
-                            <span class="d-block font-size-sm">375.000.000</span>
-                        </td>
-                        <td>7</td>
-                        <td>
-                            <a class="btn btn-sm btn-white" href="javascript:;" data-toggle="modal"
-                               data-target="#editUserModal">
-                                <i class="tio-edit"></i>
-                            </a>
+                            <span class="legend-indicator bg-success"></span>Hoạt động
                         </td>
                     </tr>
 
@@ -779,35 +1474,21 @@
                                 <label class="custom-control-label" for="usersDataCheck4"></label>
                             </div>
                         </td>
-                        <td>
-                            <span class="d-block font-size-sm">KH004</span>
-                        </td>
                         <td class="table-column-pl-0">
-                            <a class="d-flex align-items-center" href="user-profile.html">
-                                <div class="avatar avatar-soft-dark avatar-circle">
-                                    <span class="avatar-initials">A</span>
+                            <a class="d-flex align-items-center" href="customer-detail.html">
+                                <div class="avatar avatar-circle">
+                                    <img class="avatar-img" src="../images/user/user.png" alt="Image Description">
                                 </div>
                                 <div class="ml-3">
-                                    <span class="d-block h5 text-hover-primary mb-0">Văn A Phạm</span>
-                                    <span class="d-block font-size-sm text-body">vapham@gmail.com</span>
+                                    <span class="h5 text-hover-primary">Nguyễn Văn Tèo</span>
                                 </div>
                             </a>
                         </td>
+                        <td>nvt@gmail.com</td>
+                        <td>0349777777</td>
+                        <td>789 kp6, Linh Trung, Thủ Đức, TP Hồ Chí Minh</td>
                         <td>
-                            <span class="d-block font-size-sm">Bình thường</span>
-                        </td>
-                        <td>
-                            <span class="d-block font-size-sm">0349479999</span>
-                        </td>
-                        <td>
-                            <span class="d-block font-size-sm">62.000.000</span>
-                        </td>
-                        <td>2</td>
-                        <td>
-                            <a class="btn btn-sm btn-white" href="javascript:;" data-toggle="modal"
-                               data-target="#editUserModal">
-                                <i class="tio-edit"></i>
-                            </a>
+                            <span class="legend-indicator bg-success"></span>Hoạt động
                         </td>
                     </tr>
 
@@ -818,36 +1499,21 @@
                                 <label class="custom-control-label" for="usersDataCheck5"></label>
                             </div>
                         </td>
-                        <td>
-                            <span class="d-block font-size-sm">KH005</span>
-                        </td>
                         <td class="table-column-pl-0">
-                            <a class="d-flex align-items-center" href="user-profile.html">
-                                <div class="avatar avatar-circle">
-                                    <img class="avatar-img" src="../images/user/user.png"
-                                         alt="Image Description">
+                            <a class="d-flex align-items-center" href="customer-detail.html">
+                                <div class="avatar avatar-soft-info avatar-circle">
+                                    <span class="avatar-initials">T</span>
                                 </div>
                                 <div class="ml-3">
-                                    <span class="d-block h5 text-hover-primary mb-0">Thông Phạm</span>
-                                    <span class="d-block font-size-sm text-body">thongpham@gmail.com</span>
+                                    <span class="h5 text-hover-primary">Nguyễn Thị T</span>
                                 </div>
                             </a>
                         </td>
+                        <td>nvt@gmail.com</td>
+                        <td>0349777777</td>
+                        <td>789 kp6, Linh Trung, Thủ Đức, TP Hồ Chí Minh</td>
                         <td>
-                            <span class="d-block font-size-sm">Thân thiết</span>
-                        </td>
-                        <td>
-                            <span class="d-block font-size-sm">0349471166</span>
-                        </td>
-                        <td>
-                            <span class="d-block font-size-sm">279.000.000</span>
-                        </td>
-                        <td>5</td>
-                        <td>
-                            <a class="btn btn-sm btn-white" href="javascript:;" data-toggle="modal"
-                               data-target="#editUserModal">
-                                <i class="tio-edit"></i>
-                            </a>
+                            <span class="legend-indicator bg-danger"></span>Vô hiệu hóa
                         </td>
                     </tr>
 
@@ -858,36 +1524,21 @@
                                 <label class="custom-control-label" for="usersDataCheck6"></label>
                             </div>
                         </td>
-                        <td>
-                            <span class="d-block font-size-sm">KH006</span>
-                        </td>
                         <td class="table-column-pl-0">
-                            <a class="d-flex align-items-center" href="user-profile.html">
-                                <div class="avatar avatar-circle">
-                                    <img class="avatar-img" src="../images/user/user.png"
-                                         alt="Image Description">
+                            <a class="d-flex align-items-center" href="customer-detail.html">
+                                <div class="avatar avatar-soft-danger avatar-circle">
+                                    <span class="avatar-initials">L</span>
                                 </div>
                                 <div class="ml-3">
-                                    <span class="d-block h5 text-hover-primary mb-0">Thái Vinh Nguyễn</span>
-                                    <span class="d-block font-size-sm text-body">thaivinh@gmail.com</span>
+                                    <span class="h5 text-hover-primary">Nguyễn Thị Lan</span>
                                 </div>
                             </a>
                         </td>
+                        <td>nvt@gmail.com</td>
+                        <td>0349777777</td>
+                        <td>789 kp6, Linh Trung, Thủ Đức, TP Hồ Chí Minh</td>
                         <td>
-                            <span class="d-block font-size-sm">Thân thiết</span>
-                        </td>
-                        <td>
-                            <span class="d-block font-size-sm">0349477783</span>
-                        </td>
-                        <td>
-                            <span class="d-block font-size-sm">377.000.000</span>
-                        </td>
-                        <td>3</td>
-                        <td>
-                            <a class="btn btn-sm btn-white" href="javascript:;" data-toggle="modal"
-                               data-target="#editUserModal">
-                                <i class="tio-edit"></i>
-                            </a>
+                            <span class="legend-indicator bg-success"></span>Hoạt động
                         </td>
                     </tr>
 
@@ -898,35 +1549,21 @@
                                 <label class="custom-control-label" for="usersDataCheck7"></label>
                             </div>
                         </td>
-                        <td>
-                            <span class="d-block font-size-sm">KH007</span>
-                        </td>
                         <td class="table-column-pl-0">
-                            <a class="d-flex align-items-center" href="user-profile.html">
+                            <a class="d-flex align-items-center" href="customer-detail.html">
                                 <div class="avatar avatar-soft-dark avatar-circle">
-                                    <span class="avatar-initials">T</span>
+                                    <span class="avatar-initials">V</span>
                                 </div>
                                 <div class="ml-3">
-                                    <span class="d-block h5 text-hover-primary mb-0">T Nguyễn</span>
-                                    <span class="d-block font-size-sm text-body">tnguyen@gmail.com</span>
+                                    <span class="h5 text-hover-primary">VTV Nguyễn</span>
                                 </div>
                             </a>
                         </td>
+                        <td>nvt@gmail.com</td>
+                        <td>0349777777</td>
+                        <td>789 kp6, Linh Trung, Thủ Đức, TP Hồ Chí Minh</td>
                         <td>
-                            <span class="d-block font-size-sm">Mới</span>
-                        </td>
-                        <td>
-                            <span class="d-block font-size-sm">0349477799</span>
-                        </td>
-                        <td>
-                            <span class="d-block font-size-sm">67.000.000</span>
-                        </td>
-                        <td>1</td>
-                        <td>
-                            <a class="btn btn-sm btn-white" href="javascript:;" data-toggle="modal"
-                               data-target="#editUserModal">
-                                <i class="tio-edit"></i>
-                            </a>
+                            <span class="legend-indicator bg-danger"></span>Vô hiệu hóa
                         </td>
                     </tr>
 
@@ -950,17 +1587,16 @@
                             "dropdownAutoWidth": true,
                             "width": true
                           }'>
-                                <option value="5">5</option>
-                                <option value="10" selected="">10</option>
-                                <option value="15">15</option>
+                                <option value="10">10</option>
+                                <option value="15" selected="">15</option>
+                                <option value="20">20</option>
                             </select>
                             <!-- End Select -->
 
-                            <span class="text-secondary ml-2 mr-2">trên</span>
+                            <span class="text-secondary mr-2">trên</span>
 
                             <!-- Pagination Quantity -->
-                            <!--                            <span id="datatableWithPaginationInfoTotalQty"></span>-->
-                            <span>7</span>
+                            <span id="datatableWithPaginationInfoTotalQty"></span>
                         </div>
                     </div>
 
@@ -983,27 +1619,615 @@
     <div class="footer">
         <div class="row justify-content-between align-items-center">
             <div class="col">
-                <p class="font-size-sm mb-0"><span class="d-none d-sm-inline-block">Copyright © 2022 Copyright by
-                            VTV
-                            VietNam</span></p>
+                <p class="font-size-sm mb-0"><span class="d-none d-sm-inline-block">Copyright © 2022 Copyright by VTV
+              VietNam</span></p>
             </div>
-
         </div>
     </div>
     <!-- End Footer -->
 </main>
+<!-- ========== END MAIN CONTENT ========== -->
 
-<!-- Edit user Modal -->
-<div class="modal fade" id="editUserModal" tabindex="-1" role="dialog" aria-labelledby="editUserModalTitle"
-     aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+<!-- ========== SECONDARY CONTENTS ========== -->
+<!-- Keyboard Shortcuts -->
+<div id="keyboardShortcutsSidebar" class="hs-unfold-content sidebar sidebar-bordered sidebar-box-shadow">
+    <div class="card card-lg sidebar-card">
+        <div class="card-header">
+            <h4 class="card-header-title">Keyboard shortcuts</h4>
+
+            <!-- Toggle Button -->
+            <a class="js-hs-unfold-invoker btn btn-icon btn-xs btn-ghost-dark ml-2" href="javascript:;" data-hs-unfold-options='{
+                "target": "#keyboardShortcutsSidebar",
+                "type": "css-animation",
+                "animationIn": "fadeInRight",
+                "animationOut": "fadeOutRight",
+                "hasOverlay": true,
+                "smartPositionOff": true
+               }'>
+                <i class="tio-clear tio-lg"></i>
+            </a>
+            <!-- End Toggle Button -->
+        </div>
+
+        <!-- Body -->
+        <div class="card-body sidebar-body sidebar-scrollbar">
+            <div class="list-group list-group-sm list-group-flush list-group-no-gutters mb-5">
+                <div class="list-group-item">
+                    <h5 class="mb-1">Formatting</h5>
+                </div>
+                <div class="list-group-item">
+                    <div class="row align-items-center">
+                        <div class="col-5">
+                            <span class="font-weight-bold">Bold</span>
+                        </div>
+                        <div class="col-7 text-right">
+                            <kbd class="d-inline-block mb-1">Ctrl</kbd> <small class="text-muted">+</small> <kbd class="d-inline-block mb-1">b</kbd>
+                        </div>
+                    </div>
+                </div>
+                <div class="list-group-item">
+                    <div class="row align-items-center">
+                        <div class="col-5">
+                            <em>italic</em>
+                        </div>
+                        <div class="col-7 text-right">
+                            <kbd class="d-inline-block mb-1">Ctrl</kbd> <small class="text-muted">+</small> <kbd class="d-inline-block mb-1">i</kbd>
+                        </div>
+                    </div>
+                </div>
+                <div class="list-group-item">
+                    <div class="row align-items-center">
+                        <div class="col-5">
+                            <u>Underline</u>
+                        </div>
+                        <div class="col-7 text-right">
+                            <kbd class="d-inline-block mb-1">Ctrl</kbd> <small class="text-muted">+</small> <kbd class="d-inline-block mb-1">u</kbd>
+                        </div>
+                    </div>
+                </div>
+                <div class="list-group-item">
+                    <div class="row align-items-center">
+                        <div class="col-5">
+                            <s>Strikethrough</s>
+                        </div>
+                        <div class="col-7 text-right">
+                            <kbd class="d-inline-block mb-1">Ctrl</kbd> <small class="text-muted">+</small> <kbd class="d-inline-block mb-1">Alt</kbd> <small class="text-muted">+</small> <kbd class="d-inline-block mb-1">s</kbd>
+                        </div>
+                    </div>
+                </div>
+                <div class="list-group-item">
+                    <div class="row align-items-center">
+                        <div class="col-5">
+                            <span class="small">Small text</span>
+                        </div>
+                        <div class="col-7 text-right">
+                            <kbd class="d-inline-block mb-1">Ctrl</kbd> <small class="text-muted">+</small> <kbd class="d-inline-block mb-1">s</kbd>
+                        </div>
+                    </div>
+                </div>
+                <div class="list-group-item">
+                    <div class="row align-items-center">
+                        <div class="col-5">
+                            <mark>Highlight</mark>
+                        </div>
+                        <div class="col-7 text-right">
+                            <kbd class="d-inline-block mb-1">Ctrl</kbd> <small class="text-muted">+</small> <kbd class="d-inline-block mb-1">e</kbd>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="list-group list-group-sm list-group-flush list-group-no-gutters mb-5">
+                <div class="list-group-item">
+                    <h5 class="mb-1">Insert</h5>
+                </div>
+                <div class="list-group-item">
+                    <div class="row align-items-center">
+                        <div class="col-5">
+                            <span>Mention person <a href="#">(@Brian)</a></span>
+                        </div>
+                        <div class="col-7 text-right">
+                            <kbd class="d-inline-block mb-1">@</kbd>
+                        </div>
+                    </div>
+                </div>
+                <div class="list-group-item">
+                    <div class="row align-items-center">
+                        <div class="col-5">
+                            <span>Link to doc <a href="#">(+Meeting notes)</a></span>
+                        </div>
+                        <div class="col-7 text-right">
+                            <kbd class="d-inline-block mb-1">+</kbd>
+                        </div>
+                    </div>
+                </div>
+                <div class="list-group-item">
+                    <div class="row align-items-center">
+                        <div class="col-5">
+                            <a href="#">#hashtag</a>
+                        </div>
+                        <div class="col-7 text-right">
+                            <kbd class="d-inline-block mb-1">#hashtag</kbd>
+                        </div>
+                    </div>
+                </div>
+                <div class="list-group-item">
+                    <div class="row align-items-center">
+                        <div class="col-5">
+                            <span>Date</span>
+                        </div>
+                        <div class="col-7 text-right">
+                            <kbd class="d-inline-block mb-1">/date</kbd>
+                            <kbd class="d-inline-block mb-1">Space</kbd>
+                            <kbd class="d-inline-block mb-1">/datetime</kbd>
+                            <kbd class="d-inline-block mb-1">/datetime</kbd>
+                            <kbd class="d-inline-block mb-1">Space</kbd>
+                        </div>
+                    </div>
+                </div>
+                <div class="list-group-item">
+                    <div class="row align-items-center">
+                        <div class="col-5">
+                            <span>Time</span>
+                        </div>
+                        <div class="col-7 text-right">
+                            <kbd class="d-inline-block mb-1">/time</kbd>
+                            <kbd class="d-inline-block mb-1">Space</kbd>
+                        </div>
+                    </div>
+                </div>
+                <div class="list-group-item">
+                    <div class="row align-items-center">
+                        <div class="col-5">
+                            <span>Note box</span>
+                        </div>
+                        <div class="col-7 text-right">
+                            <kbd class="d-inline-block mb-1">/note</kbd>
+                            <kbd class="d-inline-block mb-1">Enter</kbd>
+                            <kbd class="d-inline-block mb-1">/note red</kbd>
+                            <kbd class="d-inline-block mb-1">/note red</kbd>
+                            <kbd class="d-inline-block mb-1">Enter</kbd>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="list-group list-group-sm list-group-flush list-group-no-gutters mb-5">
+                <div class="list-group-item">
+                    <h5 class="mb-1">Editing</h5>
+                </div>
+                <div class="list-group-item">
+                    <div class="row align-items-center">
+                        <div class="col-5">
+                            <span>Find and replace</span>
+                        </div>
+                        <div class="col-7 text-right">
+                            <kbd class="d-inline-block mb-1">Ctrl</kbd> <small class="text-muted">+</small> <kbd class="d-inline-block mb-1">r</kbd>
+                        </div>
+                    </div>
+                </div>
+                <div class="list-group-item">
+                    <div class="row align-items-center">
+                        <div class="col-5">
+                            <span>Find next</span>
+                        </div>
+                        <div class="col-7 text-right">
+                            <kbd class="d-inline-block mb-1">Ctrl</kbd> <small class="text-muted">+</small> <kbd class="d-inline-block mb-1">n</kbd>
+                        </div>
+                    </div>
+                </div>
+                <div class="list-group-item">
+                    <div class="row align-items-center">
+                        <div class="col-5">
+                            <span>Find previous</span>
+                        </div>
+                        <div class="col-7 text-right">
+                            <kbd class="d-inline-block mb-1">Ctrl</kbd> <small class="text-muted">+</small> <kbd class="d-inline-block mb-1">p</kbd>
+                        </div>
+                    </div>
+                </div>
+                <div class="list-group-item">
+                    <div class="row align-items-center">
+                        <div class="col-5">
+                            <span>Indent</span>
+                        </div>
+                        <div class="col-7 text-right">
+                            <kbd class="d-inline-block mb-1">Tab</kbd>
+                        </div>
+                    </div>
+                </div>
+                <div class="list-group-item">
+                    <div class="row align-items-center">
+                        <div class="col-5">
+                            <span>Un-indent</span>
+                        </div>
+                        <div class="col-7 text-right">
+                            <kbd class="d-inline-block mb-1">Shift</kbd> <small class="text-muted">+</small> <kbd class="d-inline-block mb-1">Tab</kbd>
+                        </div>
+                    </div>
+                </div>
+                <div class="list-group-item">
+                    <div class="row align-items-center">
+                        <div class="col-5">
+                            <span>Move line up</span>
+                        </div>
+                        <div class="col-7 text-right">
+                            <kbd class="d-inline-block mb-1">Ctrl</kbd> <small class="text-muted">+</small> <kbd class="d-inline-block mb-1">Shift</kbd> <small class="text-muted">+</small> <kbd class="d-inline-block mb-1"><i class="tio-arrow-large-upward-outlined"></i></kbd>
+                        </div>
+                    </div>
+                </div>
+                <div class="list-group-item">
+                    <div class="row align-items-center">
+                        <div class="col-5">
+                            <span>Move line down</span>
+                        </div>
+                        <div class="col-7 text-right">
+                            <kbd class="d-inline-block mb-1">Ctrl</kbd> <small class="text-muted">+</small> <kbd class="d-inline-block mb-1">Shift</kbd> <small class="text-muted">+</small> <kbd class="d-inline-block mb-1"><i class="tio-arrow-large-downward-outlined font-size-sm"></i></kbd>
+                        </div>
+                    </div>
+                </div>
+                <div class="list-group-item">
+                    <div class="row align-items-center">
+                        <div class="col-5">
+                            <span>Add a comment</span>
+                        </div>
+                        <div class="col-7 text-right">
+                            <kbd class="d-inline-block mb-1">Ctrl</kbd> <small class="text-muted">+</small> <kbd class="d-inline-block mb-1">Alt</kbd> <small class="text-muted">+</small> <kbd class="d-inline-block mb-1">m</kbd>
+                        </div>
+                    </div>
+                </div>
+                <div class="list-group-item">
+                    <div class="row align-items-center">
+                        <div class="col-5">
+                            <span>Undo</span>
+                        </div>
+                        <div class="col-7 text-right">
+                            <kbd class="d-inline-block mb-1">Ctrl</kbd> <small class="text-muted">+</small> <kbd class="d-inline-block mb-1">z</kbd>
+                        </div>
+                    </div>
+                </div>
+                <div class="list-group-item">
+                    <div class="row align-items-center">
+                        <div class="col-5">
+                            <span>Redo</span>
+                        </div>
+                        <div class="col-7 text-right">
+                            <kbd class="d-inline-block mb-1">Ctrl</kbd> <small class="text-muted">+</small> <kbd class="d-inline-block mb-1">y</kbd>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="list-group list-group-sm list-group-flush list-group-no-gutters">
+                <div class="list-group-item">
+                    <h5 class="mb-1">Application</h5>
+                </div>
+                <div class="list-group-item">
+                    <div class="row align-items-center">
+                        <div class="col-5">
+                            <span>Create new doc</span>
+                        </div>
+                        <div class="col-7 text-right">
+                            <kbd class="d-inline-block mb-1">Ctrl</kbd> <small class="text-muted">+</small> <kbd class="d-inline-block mb-1">Alt</kbd> <small class="text-muted">+</small> <kbd class="d-inline-block mb-1">n</kbd>
+                        </div>
+                    </div>
+                </div>
+                <div class="list-group-item">
+                    <div class="row align-items-center">
+                        <div class="col-5">
+                            <span>Present</span>
+                        </div>
+                        <div class="col-7 text-right">
+                            <kbd class="d-inline-block mb-1">Ctrl</kbd> <small class="text-muted">+</small> <kbd class="d-inline-block mb-1">Shift</kbd> <small class="text-muted">+</small> <kbd class="d-inline-block mb-1">p</kbd>
+                        </div>
+                    </div>
+                </div>
+                <div class="list-group-item">
+                    <div class="row align-items-center">
+                        <div class="col-5">
+                            <span>Share</span>
+                        </div>
+                        <div class="col-7 text-right">
+                            <kbd class="d-inline-block mb-1">Ctrl</kbd> <small class="text-muted">+</small> <kbd class="d-inline-block mb-1">Shift</kbd> <small class="text-muted">+</small> <kbd class="d-inline-block mb-1">s</kbd>
+                        </div>
+                    </div>
+                </div>
+                <div class="list-group-item">
+                    <div class="row align-items-center">
+                        <div class="col-5">
+                            <span>Search docs</span>
+                        </div>
+                        <div class="col-7 text-right">
+                            <kbd class="d-inline-block mb-1">Ctrl</kbd> <small class="text-muted">+</small> <kbd class="d-inline-block mb-1">Shift</kbd> <small class="text-muted">+</small> <kbd class="d-inline-block mb-1">o</kbd>
+                        </div>
+                    </div>
+                </div>
+                <div class="list-group-item">
+                    <div class="row align-items-center">
+                        <div class="col-5">
+                            <span>Keyboard shortcuts</span>
+                        </div>
+                        <div class="col-7 text-right">
+                            <kbd class="d-inline-block mb-1">Ctrl</kbd> <small class="text-muted">+</small> <kbd class="d-inline-block mb-1">Shift</kbd> <small class="text-muted">+</small> <kbd class="d-inline-block mb-1">/</kbd>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End Body -->
+    </div>
+</div>
+<!-- End Keyboard Shortcuts -->
+
+<!-- Activity -->
+<div id="activitySidebar" class="hs-unfold-content sidebar sidebar-bordered sidebar-box-shadow">
+    <div class="card card-lg sidebar-card">
+        <div class="card-header">
+            <h4 class="card-header-title">Activity stream</h4>
+
+            <!-- Toggle Button -->
+            <a class="js-hs-unfold-invoker btn btn-icon btn-xs btn-ghost-dark ml-2" href="javascript:;" data-hs-unfold-options='{
+              "target": "#activitySidebar",
+              "type": "css-animation",
+              "animationIn": "fadeInRight",
+              "animationOut": "fadeOutRight",
+              "hasOverlay": true,
+              "smartPositionOff": true
+             }'>
+                <i class="tio-clear tio-lg"></i>
+            </a>
+            <!-- End Toggle Button -->
+        </div>
+
+        <!-- Body -->
+        <div class="card-body sidebar-body sidebar-scrollbar">
+            <!-- Step -->
+            <ul class="step step-icon-sm step-avatar-sm">
+                <!-- Step Item -->
+                <li class="step-item">
+                    <div class="step-content-wrapper">
+                        <div class="step-avatar">
+                            <img class="step-avatar-img" src="assets\img\160x160\img9.jpg" alt="Image Description">
+                        </div>
+
+                        <div class="step-content">
+                            <h5 class="mb-1">Iana Robinson</h5>
+
+                            <p class="font-size-sm mb-1">Added 2 files to task <a class="text-uppercase" href="#"><i class="tio-folder-bookmarked"></i> Fd-7</a></p>
+
+                            <ul class="list-group list-group-sm">
+                                <!-- List Item -->
+                                <li class="list-group-item list-group-item-light">
+                                    <div class="row gx-1">
+                                        <div class="col-6">
+                                            <div class="media">
+                              <span class="mt-1 mr-2">
+                                <img class="avatar avatar-xs" src="assets\svg\brands\excel.svg" alt="Image Description">
+                              </span>
+                                                <div class="media-body text-truncate">
+                                                    <span class="d-block font-size-sm text-dark text-truncate" title="weekly-reports.xls">weekly-reports.xls</span>
+                                                    <small class="d-block text-muted">12kb</small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-6">
+                                            <div class="media">
+                              <span class="mt-1 mr-2">
+                                <img class="avatar avatar-xs" src="assets\svg\brands\word.svg" alt="Image Description">
+                              </span>
+                                                <div class="media-body text-truncate">
+                                                    <span class="d-block font-size-sm text-dark text-truncate" title="weekly-reports.xls">weekly-reports.xls</span>
+                                                    <small class="d-block text-muted">4kb</small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <!-- End List Item -->
+                            </ul>
+
+                            <small class="text-muted text-uppercase">Now</small>
+                        </div>
+                    </div>
+                </li>
+                <!-- End Step Item -->
+
+                <!-- Step Item -->
+                <li class="step-item">
+                    <div class="step-content-wrapper">
+                        <span class="step-icon step-icon-soft-dark">B</span>
+
+                        <div class="step-content">
+                            <h5 class="mb-1">Bob Dean</h5>
+
+                            <p class="font-size-sm mb-1">Marked <a class="text-uppercase" href="#"><i class="tio-folder-bookmarked"></i> Fr-6</a> as <span class="badge badge-soft-success badge-pill"><span class="legend-indicator bg-success"></span>"Completed"</span></p>
+
+                            <small class="text-muted text-uppercase">Today</small>
+                        </div>
+                    </div>
+                </li>
+                <!-- End Step Item -->
+
+                <!-- Step Item -->
+                <li class="step-item">
+                    <div class="step-content-wrapper">
+                        <div class="step-avatar">
+                            <img class="step-avatar-img" src="assets\img\160x160\img3.jpg" alt="Image Description">
+                        </div>
+
+                        <div class="step-content">
+                            <h5 class="h5 mb-1">Crane</h5>
+
+                            <p class="font-size-sm mb-1">Added 5 card to <a href="#">Payments</a></p>
+
+                            <ul class="list-group list-group-sm">
+                                <li class="list-group-item list-group-item-light">
+                                    <div class="row gx-1">
+                                        <div class="col">
+                                            <img class="img-fluid rounded ie-sidebar-activity-img" src="assets\svg\illustrations\card-1.svg" alt="Image Description">
+                                        </div>
+                                        <div class="col">
+                                            <img class="img-fluid rounded ie-sidebar-activity-img" src="assets\svg\illustrations\card-2.svg" alt="Image Description">
+                                        </div>
+                                        <div class="col">
+                                            <img class="img-fluid rounded ie-sidebar-activity-img" src="assets\svg\illustrations\card-3.svg" alt="Image Description">
+                                        </div>
+                                        <div class="col-auto align-self-center">
+                                            <div class="text-center">
+                                                <a href="#">+2</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+
+                            <small class="text-muted text-uppercase">May 12</small>
+                        </div>
+                    </div>
+                </li>
+                <!-- End Step Item -->
+
+                <!-- Step Item -->
+                <li class="step-item">
+                    <div class="step-content-wrapper">
+                        <span class="step-icon step-icon-soft-info">D</span>
+
+                        <div class="step-content">
+                            <h5 class="mb-1">David Lidell</h5>
+
+                            <p class="font-size-sm mb-1">Added a new member to Front Dashboard</p>
+
+                            <small class="text-muted text-uppercase">May 15</small>
+                        </div>
+                    </div>
+                </li>
+                <!-- End Step Item -->
+
+                <!-- Step Item -->
+                <li class="step-item">
+                    <div class="step-content-wrapper">
+                        <div class="step-avatar">
+                            <img class="step-avatar-img" src="assets\img\160x160\img7.jpg" alt="Image Description">
+                        </div>
+
+                        <div class="step-content">
+                            <h5 class="mb-1">Rachel King</h5>
+
+                            <p class="font-size-sm mb-1">Marked <a class="text-uppercase" href="#"><i class="tio-folder-bookmarked"></i> Fr-3</a> as <span class="badge badge-soft-success badge-pill"><span class="legend-indicator bg-success"></span>"Completed"</span></p>
+
+                            <small class="text-muted text-uppercase">Apr 29</small>
+                        </div>
+                    </div>
+                </li>
+                <!-- End Step Item -->
+
+                <!-- Step Item -->
+                <li class="step-item">
+                    <div class="step-content-wrapper">
+                        <div class="step-avatar">
+                            <img class="step-avatar-img" src="assets\img\160x160\img5.jpg" alt="Image Description">
+                        </div>
+
+                        <div class="step-content">
+                            <h5 class="mb-1">Finch Hoot</h5>
+
+                            <p class="font-size-sm mb-1">Earned a "Top endorsed" <i class="tio-verified text-primary"></i> badge</p>
+
+                            <small class="text-muted text-uppercase">Apr 06</small>
+                        </div>
+                    </div>
+                </li>
+                <!-- End Step Item -->
+
+                <!-- Step Item -->
+                <li class="step-item">
+                    <div class="step-content-wrapper">
+                  <span class="step-icon step-icon-soft-primary">
+                    <i class="tio-user"></i>
+                  </span>
+
+                        <div class="step-content">
+                            <h5 class="mb-1">Project status updated</h5>
+
+                            <p class="font-size-sm mb-1">Marked <a class="text-uppercase" href="#"><i class="tio-folder-bookmarked"></i> Fr-3</a> as <span class="badge badge-soft-primary badge-pill"><span class="legend-indicator bg-primary"></span>"In progress"</span></p>
+
+                            <small class="text-muted text-uppercase">Feb 10</small>
+                        </div>
+                    </div>
+                </li>
+                <!-- End Step Item -->
+            </ul>
+            <!-- End Step -->
+
+            <a class="btn btn-block btn-white" href="javascript:;">View all <i class="tio-chevron-right"></i></a>
+        </div>
+        <!-- End Body -->
+    </div>
+</div>
+<!-- End Activity -->
+
+<!-- Welcome Message Modal -->
+<div class="modal fade" id="welcomeMessageModal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <!-- Header -->
+            <div class="modal-close">
+                <button type="button" class="btn btn-icon btn-sm btn-ghost-secondary" data-dismiss="modal" aria-label="Close">
+                    <i class="tio-clear tio-lg"></i>
+                </button>
+            </div>
+            <!-- End Header -->
+
+            <!-- Body -->
+            <div class="modal-body p-sm-5">
+                <div class="text-center">
+                    <div class="w-75 w-sm-50 mx-auto mb-4">
+                        <img class="img-fluid" src="assets\svg\illustrations\graphs.svg" alt="Image Description">
+                    </div>
+
+                    <h4 class="h1">Welcome to Front</h4>
+
+                    <p>We're happy to see you in our community.</p>
+                </div>
+            </div>
+            <!-- End Body -->
+
+            <!-- Footer -->
+            <div class="modal-footer d-block text-center py-sm-5">
+                <small class="text-cap mb-4">Trusted by the world's best teams</small>
+
+                <div class="w-85 mx-auto">
+                    <div class="row justify-content-between">
+                        <div class="col">
+                            <img class="img-fluid ie-welcome-brands" src="assets\svg\brands\gitlab-gray.svg" alt="Image Description">
+                        </div>
+                        <div class="col">
+                            <img class="img-fluid ie-welcome-brands" src="assets\svg\brands\fitbit-gray.svg" alt="Image Description">
+                        </div>
+                        <div class="col">
+                            <img class="img-fluid ie-welcome-brands" src="assets\svg\brands\flow-xo-gray.svg" alt="Image Description">
+                        </div>
+                        <div class="col">
+                            <img class="img-fluid ie-welcome-brands" src="assets\svg\brands\layar-gray.svg" alt="Image Description">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- End Footer -->
+        </div>
+    </div>
+</div>
+<!-- End Welcome Message Modal -->
+
+<!-- Export Customers Modal -->
+<div class="modal fade" id="exportCustomersModal" tabindex="-1" role="dialog" aria-labelledby="exportCustomersModalTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
             <!-- Header -->
             <div class="modal-header">
-                <h4 id="editUserModalTitle" class="modal-title">Cập nhật tài khoản</h4>
+                <h4 id="exportCustomersModalTitle" class="modal-title">Export customers</h4>
 
-                <button type="button" class="btn btn-icon btn-sm btn-ghost-secondary" data-dismiss="modal"
-                        aria-label="Close">
+                <button type="button" class="btn btn-icon btn-sm btn-ghost-secondary" data-dismiss="modal" aria-label="Close">
                     <i class="tio-clear tio-lg"></i>
                 </button>
             </div>
@@ -1011,308 +2235,117 @@
 
             <!-- Body -->
             <div class="modal-body">
-                <!-- Nav -->
-                <ul class="js-tabs-to-dropdown nav nav-segment nav-fill nav-lg-down-break mb-5"
-                    id="editUserModalTab" role="tablist" data-hs-transform-tabs-to-btn-options='{
-                  "transformResolution": "lg",
-                  "btnClassNames": "btn btn-block btn-white dropdown-toggle justify-content-center mb-3"
-                }'>
-                    <li class="nav-item" style="width: 200px">
-                        <a class="nav-link active" id="profile-tab" data-toggle="tab" href="#profile" role="tab">
-                            <i class="tio-user-outlined mr-1"></i> Hồ sơ
-                        </a>
-                    </li>
-                    <li class="nav-item" style="width: 200px">
-                        <a class="nav-link" id="billing-address-tab" data-toggle="tab" href="#billing-address"
-                           role="tab">
-                            <i class="tio-city mr-1"></i> Địa chỉ
-                        </a>
-                    </li>
-<!--fix here change pass-->
-
-                </ul>
-                <!-- End Nav -->
-
-                <!-- Tab Content -->
-                <div class="tab-content" id="editUserModalTabContent">
-                    <div class="tab-pane fade show active" id="profile" role="tabpanel"
-                         aria-labelledby="profile-tab">
-                        <form>
-                            <!-- Profile Cover -->
-                            <div class="profile-cover">
-                                <div class="profile-cover-img-wrapper">
-                                    <img id="editProfileCoverImgModal" class="profile-cover-img"
-                                         src="../images/user/img1.jpg" alt="Image Description">
-
-                                    <!-- Custom File Cover -->
-                                    <div class="profile-cover-content profile-cover-btn p-3">
-                                        <div class="custom-file-btn">
-                                            <input type="file" class="js-file-attach custom-file-btn-input"
-                                                   id="editProfileCoverUplaoderModal" data-hs-file-attach-options='{
-                                      "textTarget": "#editProfileCoverImgModal",
-                                      "mode": "image",
-                                      "targetAttr": "src",
-                                      "allowTypes": [".png", ".jpeg", ".jpg"]
-                                   }'>
-                                            <label class="custom-file-btn-label btn btn-sm btn-white"
-                                                   for="editProfileCoverUplaoderModal">
-                                                <i class="tio-add-photo"></i>
-                                                <span class="d-none d-sm-inline-block ml-1">Tải ảnh bìa</span>
-                                            </label>
-                                        </div>
-                                    </div>
-                                    <!-- End Custom File Cover -->
-                                </div>
-                            </div>
-                            <!-- End Profile Cover -->
-
-                            <!-- Avatar -->
-                            <label
-                                    class="avatar avatar-xxl avatar-circle avatar-border-lg avatar-uploader profile-cover-avatar mb-5"
-                                    for="editAvatarUploaderModal">
-                                <img id="editAvatarImgModal" class="avatar-img" src="../images/user/user.png"
-                                     alt="Image Description">
-
-                                <input type="file" class="js-file-attach avatar-uploader-input"
-                                       id="editAvatarUploaderModal" data-hs-file-attach-options='{
-                                "textTarget": "#editAvatarImgModal",
-                                "mode": "image",
-                                "targetAttr": "src",
-                                "allowTypes": [".png", ".jpeg", ".jpg"]
-                             }'>
-
-                                <span class="avatar-uploader-trigger">
-                                        <i class="tio-edit avatar-uploader-icon shadow-soft"></i>
-                                    </span>
-                            </label>
-                            <!-- End Avatar -->
-
-                            <!-- Form Group -->
-                            <div class="row form-group">
-                                <label for="editFirstNameModalLabel" class="col-sm-3 col-form-label input-label">Họ
-                                    tên</label>
-
-                                <div class="col-sm-9">
-                                    <div class="js-form-message input-group input-group-sm-down-break">
-                                        <input type="text" class="form-control" name="editFirstNameModal"
-                                               id="editFirstNameModalLabel" placeholder="Your first name"
-                                               aria-label="Your first name" value="Nguyễn Văn">
-                                        <input type="text" class="form-control" name="editLastNameModal"
-                                               id="editLastNameModalLabel" placeholder="Your last name"
-                                               aria-label="Your last name" value="Tý">
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- End Form Group -->
-
-                            <!-- Form Group -->
-                            <div class="row form-group">
-                                <label for="editEmailModalLabel"
-                                       class="col-sm-3 col-form-label input-label">Email</label>
-
-                                <div class="col-sm-9">
-                                    <div class="js-form-message">
-                                        <input type="email" class="form-control" name="editEmailModal"
-                                               id="editEmailModalLabel" placeholder="Email" aria-label="Email"
-                                               value="nvt@gmail.com">
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- End Form Group -->
-
-                            <!-- Form Group -->
-                            <div class="row form-group">
-                                <label for="editPhoneLabel" class="col-sm-3 col-form-label input-label">Số điện
-                                    thoại</label>
-
-                                <div class="col-sm-9">
-                                    <div class="input-group input-group-sm-down-break align-items-center">
-                                        <input type="text" class="js-masked-input form-control" name="phone"
-                                               id="editPhoneLabel" placeholder="xxxxxxxxxx" aria-label="xxxxxxxxxx"
-                                               value="0348975612" data-hs-mask-options='{
-                                   "template": "0000000000"
-                                 }'>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- End Form Group -->
-
-                            <!--fix here radio btn type account Form Group -->
-                            <!-- End Form Group -->
-
-                            <div class="d-flex justify-content-end">
-                                <button type="button" class="btn btn-white mr-2" data-dismiss="modal"
-                                        aria-label="Close">Hủy
-                                </button>
-                                <button type="submit" class="btn btn-primary">Lưu thay đổi</button>
-                            </div>
-                        </form>
+                <!-- Form Group -->
+                <div class="form-group">
+                    <!-- Custom Checkbox -->
+                    <div class="custom-control custom-radio mb-2">
+                        <input type="radio" id="customersRadio1" name="customersRadio" class="custom-control-input" checked="">
+                        <label class="custom-control-label" for="customersRadio1">Current page</label>
                     </div>
-
-                    <div class="tab-pane fade" id="billing-address" role="tabpanel"
-                         aria-labelledby="billing-address-tab">
-                        <form>
-                            <!-- Form Group -->
-                            <div class="row form-group">
-                                <label class="col-sm-3 col-form-label input-label">Tỉnh/Thành phố</label>
-                                <!--                                        for="editLocationModalLabel"-->
-
-                                <div class="col-sm-9">
-                                    <div class="js-form-message mb-3">
-                                        <input type="text" class="form-control" name="editCityModal"
-                                               id="editCityModalLabel" placeholder="Thành phố" aria-label="City"
-                                               value="TP Hồ Chí Minh">
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- End Form Group -->
-
-                            <!-- Form Group -->
-                            <div class="row form-group">
-                                <label class="col-sm-3 col-form-label input-label">Quận/Huyện</label>
-                                <!--                                        for="editLocationModalLabel"-->
-
-                                <div class="col-sm-9">
-                                    <div class="js-form-message mb-3">
-                                        <input type="text" class="form-control" name="editDistricModal"
-                                               id="editDistricModalLabel" placeholder="Quận/Huyện" aria-label="City"
-                                               value="Quận Thủ Đức">
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- End Form Group -->
-
-                            <!-- Form Group -->
-                            <div class="row form-group">
-                                <label class="col-sm-3 col-form-label input-label">Phường/Xã</label>
-                                <!--                                        for="editLocationModalLabel"-->
-
-                                <div class="col-sm-9">
-                                    <div class="js-form-message mb-3">
-                                        <input type="text" class="form-control" name="editVillageModal"
-                                               id="editVillageModalLabel" placeholder="Khu phố/Xã" aria-label="City"
-                                               value="Phường Linh Trung">
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- End Form Group -->
-
-                            <!-- Form Group -->
-                            <div class="row form-group">
-                                <label class="col-sm-3 col-form-label input-label">Số nhà</label>
-                                <!--                                        for="editLocationModalLabel"-->
-
-                                <div class="col-sm-9">
-                                    <div class="js-form-message mb-3">
-                                        <input type="text" class="form-control" name="editNumberHouseModal"
-                                               id="editNumberHouseModalLabel" placeholder="Số nhà" aria-label="City"
-                                               value="789 khu phố 6">
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- End Form Group -->
-
-                            <div class="d-flex justify-content-end">
-                                <button type="submit" class="btn btn-white" data-dismiss="modal" aria-label="Close">
-                                    Hủy
-                                </button>
-                                <span class="mx-2"></span>
-                                <button type="submit" class="btn btn-primary">Lưu thay đổi</button>
-                            </div>
-                        </form>
+                    <div class="custom-control custom-radio mb-2">
+                        <input type="radio" id="customersRadio2" name="customersRadio" class="custom-control-input">
+                        <label class="custom-control-label" for="customersRadio2">All customers</label>
                     </div>
-
-                    <div class="tab-pane fade" id="change-password" role="tabpanel"
-                         aria-labelledby="change-password-tab">
-                        <form>
-                            <!-- Form Group -->
-                            <div class="row form-group">
-                                <label for="editUserModalCurrentPasswordLabel"
-                                       class="col-sm-3 col-form-label input-label">Mật khẩu hiện tại</label>
-
-                                <div class="col-sm-9">
-                                    <div class="input-group input-group-merge">
-                                        <input type="password" class="js-toggle-password form-control"
-                                               name="currentPassword" id="editUserModalCurrentPasswordLabel"
-                                               aria-label="Enter current password" data-hs-toggle-password-options='{
-                                   "target": "#editUserModalChangePassModalTarget",
-                                   "defaultClass": "tio-hidden-outlined",
-                                   "showClass": "tio-visible-outlined",
-                                   "classChangeTarget": "#editUserModalChangePassModalIcon"
-                                 }'>
-                                        <div id="editUserModalChangePassModalTarget" class="input-group-append">
-                                            <a class="input-group-text" href="javascript:;">
-                                                <i id="editUserModalChangePassModalIcon"
-                                                   class="tio-visible-outlined"></i>
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- End Form Group -->
-
-                            <!-- Form Group -->
-                            <div class="row form-group">
-                                <label for="editUserModalNewPassword"
-                                       class="col-sm-3 col-form-label input-label">Mật
-                                    khẩu mới</label>
-
-                                <div class="col-sm-9">
-                                    <input type="password" class="js-toggle-password form-control"
-                                           name="editUserModalNewPassword" id="editUserModalNewPassword"
-                                           aria-label="Enter new password" data-hs-toggle-password-options='{
-                                 "target": "#editUserModalChangePassModalCheckbox"
-                               }'>
-                                </div>
-                            </div>
-                            <!-- End Form Group -->
-
-                            <!-- Form Group -->
-                            <div class="row form-group">
-                                <label for="editUserModalConfirmNewPasswordLabel"
-                                       class="col-sm-3 col-form-label input-label">Nhập lại mật khẩu mới</label>
-
-                                <div class="col-sm-9">
-                                    <input type="password" class="js-toggle-password form-control"
-                                           name="confirmNewPassword" id="editUserModalConfirmNewPasswordLabel"
-                                           aria-label="Confirm your new password" data-hs-toggle-password-options='{
-                                 "target": "#editUserModalChangePassModalCheckbox"
-                               }'>
-                                </div>
-                            </div>
-                            <!-- End Form Group -->
-
-                            <!-- Form Group -->
-                            <!--                            <div class="row form-group">-->
-                            <!--                                <div class="col-sm-9 offset-sm-3">-->
-                            <!--                                    <div class="custom-control custom-checkbox">-->
-                            <!--                                        <input type="checkbox" id="editUserModalChangePassModalCheckbox"-->
-                            <!--                                               class="custom-control-input">-->
-                            <!--                                        <label class="custom-control-label" for="editUserModalChangePassModalCheckbox">Hiện mật khẩu</label>-->
-                            <!--                                    </div>-->
-                            <!--                                </div>-->
-                            <!--                            </div>-->
-                            <!--                            &lt;!&ndash; End Form Group &ndash;&gt;-->
-
-                            <div class="d-flex justify-content-end">
-                                <button type="button" class="btn btn-white mr-2" data-dismiss="modal"
-                                        aria-label="Close">Hủy
-                                </button>
-                                <button type="submit" class="btn btn-primary">Lưu thay đổi</button>
-                            </div>
-                        </form>
+                    <div class="custom-control custom-radio mb-2">
+                        <input type="radio" id="customersRadio3" name="customersRadio" class="custom-control-input" disabled="">
+                        <label class="custom-control-label" for="customersRadio3">Selected: 24 customers</label>
                     </div>
-
+                    <div class="custom-control custom-radio">
+                        <input type="radio" id="customersRadio4" name="customersRadio" class="custom-control-input">
+                        <label class="custom-control-label" for="customersRadio4">Order by date</label>
+                    </div>
+                    <!-- End Custom Checkbox -->
                 </div>
-                <!-- End Tab Content -->
+                <!-- End Form Group -->
+
+                <label class="input-label">Export as</label>
+
+                <!-- Custom Checkbox -->
+                <div class="custom-control custom-radio mb-2">
+                    <input type="radio" id="orderAsRadio1" name="orderAsRadio" class="custom-control-input" checked="">
+                    <label class="custom-control-label" for="orderAsRadio1">CSV for Excel, Numbers, or other spreadsheet programs</label>
+                </div>
+                <div class="custom-control custom-radio">
+                    <input type="radio" id="orderAsRadio2" name="orderAsRadio" class="custom-control-input">
+                    <label class="custom-control-label" for="orderAsRadio2">Plain CSV file</label>
+                </div>
+                <!-- End Custom Checkbox -->
             </div>
             <!-- End Body -->
+
+            <!-- Footer -->
+            <div class="modal-footer">
+                <button type="button" class="btn btn-white mr-2" data-dismiss="modal" aria-label="Close">Cancel</button>
+                <button type="button" class="btn btn-primary">Export customers</button>
+            </div>
+            <!-- End Footer -->
         </div>
     </div>
 </div>
+<!-- End Export Customers Modal -->
+
+<!-- Import Customers Modal -->
+<div class="modal fade" id="importCustomersModal" tabindex="-1" role="dialog" aria-labelledby="importCustomersModalTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <!-- Header -->
+            <div class="modal-header">
+                <h4 id="importCustomersModalTitle" class="modal-title">Import customers by CSV</h4>
+
+                <button type="button" class="btn btn-icon btn-sm btn-ghost-secondary" data-dismiss="modal" aria-label="Close">
+                    <i class="tio-clear tio-lg"></i>
+                </button>
+            </div>
+            <!-- End Header -->
+
+            <!-- Body -->
+            <div class="modal-body">
+                <p><a href="#">Download a sample CSV template</a> to see an example of the format required.</p>
+
+                <!-- Form Group -->
+                <div class="form-group">
+                    <!-- Dropzone -->
+                    <div id="attachFilesNewProjectLabel" class="js-dropzone dropzone-custom custom-file-boxed">
+                        <div class="dz-message custom-file-boxed-label">
+                            <img class="avatar avatar-xl avatar-4by3 mb-3" src="assets\svg\illustrations\browse.svg" alt="Image Description">
+                            <h5 class="mb-1">Choose files to upload</h5>
+                            <p class="mb-2">or</p>
+                            <span class="btn btn-sm btn-primary">Browse files</span>
+                        </div>
+                    </div>
+                    <!-- End Dropzone -->
+                </div>
+                <!-- End Form Group -->
+
+                <!-- Custom Checkbox -->
+                <div class="custom-control custom-checkbox">
+                    <input type="checkbox" class="custom-control-input" id="overwriteCurrentCustomersCheckbox">
+                    <label class="custom-control-label" for="overwriteCurrentCustomersCheckbox">Overwrite existing customers that have the same email or phone</label>
+                </div>
+                <!-- End Custom Checkbox -->
+            </div>
+            <!-- End Body -->
+
+            <!-- Footer -->
+            <div class="modal-footer">
+                <button type="button" class="btn btn-white mr-2" data-dismiss="modal" aria-label="Close">Cancel</button>
+                <button type="button" class="btn btn-primary">Import customers</button>
+            </div>
+            <!-- End Footer -->
+        </div>
+    </div>
+</div>
+<!-- End Import Customers Modal -->
+
+<!-- ========== END SECONDARY CONTENTS ========== -->
+
 
 <!-- JS Implementing Plugins -->
 <script src="assets\js\vendor.min.js"></script>
+
+
+
+<!-- JS Front -->
 <script src="assets\js\theme.min.js"></script>
 
 <!-- JS Plugins Init. -->
@@ -1327,7 +2360,7 @@
                     $('.popover').last().addClass('popover-dark')
                 });
 
-            $(document).on('click', '#closeBuilderPopover', function () {
+            $(document).on('click', '#closeBuilderPopover' , function() {
                 window.localStorage.setItem('hs-builder-popover', true);
                 $('#builderPopover').popover('dispose');
             });
@@ -1357,6 +2390,7 @@
         }).init();
 
 
+
         // INITIALIZATION OF NAVBAR VERTICAL NAVIGATION
         // =======================================================
         var sidebar = $('.js-navbar-vertical-aside').hsSideNav();
@@ -1366,7 +2400,7 @@
         // =======================================================
         $('.js-nav-tooltip-link').tooltip({ boundary: 'window' })
 
-        $(".js-nav-tooltip-link").on("show.bs.tooltip", function (e) {
+        $(".js-nav-tooltip-link").on("show.bs.tooltip", function(e) {
             if (!$("body").hasClass("navbar-vertical-aside-mini-mode")) {
                 return false;
             }
@@ -1387,17 +2421,10 @@
         });
 
 
-        // INITIALIZATION OF SHOW PASSWORD
+        // INITIALIZATION OF NAV SCROLLER
         // =======================================================
-        $('.js-toggle-password').each(function () {
-            new HSTogglePassword(this).init()
-        });
-
-
-        // INITIALIZATION OF FILE ATTACH
-        // =======================================================
-        $('.js-file-attach').each(function () {
-            var customFile = new HSFileAttach($(this)).init();
+        $('.js-nav-scroller').each(function () {
+            new HsNavScroller($(this)).init()
         });
 
 
@@ -1408,26 +2435,6 @@
         });
 
 
-        // INITIALIZATION OF STEP FORM
-        // =======================================================
-        $('.js-step-form').each(function () {
-            var stepForm = new HSStepForm($(this), {
-                finish: function () {
-                    $("#addUserStepFormProgress").hide();
-                    $("#addUserStepFormContent").hide();
-                    $("#successMessageContent").show();
-                }
-            }).init();
-        });
-
-
-        // INITIALIZATION OF MASKED INPUT
-        // =======================================================
-        $('.js-masked-input').each(function () {
-            var mask = $.HSCore.components.HSMask.init($(this));
-        });
-
-
         // INITIALIZATION OF SELECT2
         // =======================================================
         $('.js-select2-custom').each(function () {
@@ -1435,39 +2442,9 @@
         });
 
 
-        // INITIALIZATION OF COUNTERS
-        // =======================================================
-        $('.js-counter').each(function () {
-            var counter = new HSCounter($(this)).init();
-        });
-
-
         // INITIALIZATION OF DATATABLES
         // =======================================================
         var datatable = $.HSCore.components.HSDatatables.init($('#datatable'), {
-            dom: 'Bfrtip',
-            buttons: [
-                {
-                    extend: 'copy',
-                    className: 'd-none'
-                },
-                {
-                    extend: 'excel',
-                    className: 'd-none'
-                },
-                {
-                    extend: 'csv',
-                    className: 'd-none'
-                },
-                {
-                    extend: 'pdf',
-                    className: 'd-none'
-                },
-                {
-                    extend: 'print',
-                    className: 'd-none'
-                },
-            ],
             select: {
                 style: 'multi',
                 selector: 'td:first-child input[type="checkbox"]',
@@ -1480,32 +2457,12 @@
             language: {
                 zeroRecords: '<div class="text-center p-4">' +
                     '<img class="mb-3" src="./assets/svg/illustrations/sorry.svg" alt="Image Description" style="width: 7rem;">' +
-                    '<p class="mb-0">Không có dữ liệu để hiển thị</p>' +
+                    '<p class="mb-0">No data to show</p>' +
                     '</div>'
             }
         });
 
-        $('#export-copy').click(function () {
-            datatable.button('.buttons-copy').trigger()
-        });
-
-        $('#export-excel').click(function () {
-            datatable.button('.buttons-excel').trigger()
-        });
-
-        $('#export-csv').click(function () {
-            datatable.button('.buttons-csv').trigger()
-        });
-
-        $('#export-pdf').click(function () {
-            datatable.button('.buttons-pdf').trigger()
-        });
-
-        $('#export-print').click(function () {
-            datatable.button('.buttons-print').trigger()
-        });
-
-        $('.js-datatable-filter').on('change', function () {
+        $('.js-datatable-filter').on('change', function() {
             var $this = $(this),
                 elVal = $this.val(),
                 targetColumnIndex = $this.data('target-column-index');
@@ -1519,35 +2476,40 @@
 
             if (oldValue == "") return;
 
-            setTimeout(function () {
+            setTimeout(function(){
                 var newValue = $input.val();
 
-                if (newValue == "") {
+                if (newValue == ""){
                     // Gotcha
                     datatable.search('').draw();
                 }
             }, 1);
         });
 
-
-        // INITIALIZATION OF QUICK VIEW POPOVER
-        // =======================================================
-        $('#editUserPopover').popover('show');
-
-        $(document).on('click', '#closeEditUserPopover', function () {
-            $('#editUserPopover').popover('dispose');
-        });
-
-        $('#editUserModal').on('show.bs.modal', function () {
-            $('#editUserPopover').popover('dispose');
-        });
-
-
-        // DARK POPOVER
-        // =======================================================
-        $('[data-toggle="popover-dark"]').on('shown.bs.popover', function () {
-            $('.popover').last().addClass('popover-dark')
+        $('#toggleColumn_name').change(function (e) {
+            datatable.columns(1).visible(e.target.checked)
         })
+
+        $('#toggleColumn_email').change(function (e) {
+            datatable.columns(2).visible(e.target.checked)
+        })
+
+        $('#toggleColumn_phone').change(function (e) {
+            datatable.columns(3).visible(e.target.checked)
+        })
+
+        $('#toggleColumn_country').change(function (e) {
+            datatable.columns(4).visible(e.target.checked)
+        })
+
+        $('#toggleColumn_status').change(function (e) {
+            datatable.columns(5).visible(e.target.checked)
+        })
+
+
+        // INITIALIZATION OF MODAL ON PAGE LOAD
+        // =======================================================
+        $('#customersGuideModal').modal('show')
     });
 </script>
 
@@ -1556,5 +2518,4 @@
     if (/MSIE \d|Trident.*rv:/.test(navigator.userAgent)) document.write('<script src="./assets/vendor/babel-polyfill/polyfill.min.js"><\/script>');
 </script>
 </body>
-
 </html>
