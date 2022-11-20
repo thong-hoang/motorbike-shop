@@ -28,209 +28,6 @@
   <div id="styleSwitcherDropdown" class="hs-unfold-content sidebar sidebar-bordered sidebar-box-shadow"
     style="width: 35rem;">
     <div class="card card-lg border-0 h-100">
-      <div class="card-header align-items-start">
-        <div class="mr-2">
-          <h3 class="card-header-title">Front Builder</h3>
-          <p>Customize your overview page layout. Choose the one that best fits your needs.</p>
-        </div>
-
-        <!-- Toggle Button -->
-        <a class="js-hs-unfold-invoker btn btn-icon btn-xs btn-ghost-dark" href="javascript:;" data-hs-unfold-options='{
-                  "target": "#styleSwitcherDropdown",
-                  "type": "css-animation",
-                  "animationIn": "fadeInRight",
-                  "animationOut": "fadeOutRight",
-                  "hasOverlay": true,
-                  "smartPositionOff": true
-                 }'>
-          <i class="tio-clear tio-lg"></i>
-        </a>
-        <!-- End Toggle Button -->
-      </div>
-
-      <!-- Body -->
-      <div class="card-body sidebar-scrollbar">
-        <h4 class="mb-1">Layout skins <span id="js-builder-disabled" class="badge badge-soft-danger"
-            style="opacity: 0">Disabled</span></h4>
-        <p>3 kinds of layout skins to choose from.</p>
-
-        <div class="row gx-2 mb-5">
-          <!-- Custom Radio -->
-          <div class="col-4 text-center">
-            <div class="text-center">
-              <div class="custom-checkbox-card mb-2">
-                <input type="radio" class="custom-checkbox-card-input" name="layoutSkinsRadio" id="layoutSkinsRadio1"
-                  checked="" value="default">
-                <label class="custom-checkbox-card-label" for="layoutSkinsRadio1">
-                  <img class="custom-checkbox-card-img" src="assets\svg\layouts\layouts-sidebar-default.svg"
-                    alt="Image Description">
-                </label>
-                <span class="custom-checkbox-card-text">Default</span>
-              </div>
-            </div>
-          </div>
-          <!-- End Custom Radio -->
-
-          <!-- Custom Radio -->
-          <div class="col-4 text-center">
-            <div class="text-center">
-              <div class="custom-checkbox-card mb-2">
-                <input type="radio" class="custom-checkbox-card-input" name="layoutSkinsRadio" id="layoutSkinsRadio2"
-                  value="navbar-dark">
-                <label class="custom-checkbox-card-label" for="layoutSkinsRadio2">
-                  <img class="custom-checkbox-card-img" src="assets\svg\layouts\layouts-sidebar-dark.svg"
-                    alt="Image Description">
-                </label>
-                <span class="custom-checkbox-card-text">Dark</span>
-              </div>
-            </div>
-          </div>
-          <!-- End Custom Radio -->
-
-          <!-- Custom Radio -->
-          <div class="col-4 text-center">
-            <div class="text-center">
-              <div class="custom-checkbox-card mb-2">
-                <input type="radio" class="custom-checkbox-card-input" name="layoutSkinsRadio" id="layoutSkinsRadio3"
-                  value="navbar-light">
-                <label class="custom-checkbox-card-label" for="layoutSkinsRadio3">
-                  <img class="custom-checkbox-card-img" src="assets\svg\layouts\layouts-sidebar-light.svg"
-                    alt="Image Description">
-                </label>
-                <span class="custom-checkbox-card-text">Light</span>
-              </div>
-            </div>
-          </div>
-          <!-- End Custom Radio -->
-        </div>
-        <!-- End Row -->
-
-        <h4 class="mb-1">Sidebar layout options</h4>
-        <p>Choose between standard navigation sizing, mini or even compact with icons.</p>
-
-        <div class="row gx-2 mb-5">
-          <!-- Custom Radio -->
-          <div class="col-4 text-center">
-            <div class="text-center">
-              <div class="custom-checkbox-card mb-2">
-                <input type="radio" class="custom-checkbox-card-input" name="sidebarLayoutOptions"
-                  id="sidebarLayoutOptions1" checked="" value="default">
-                <label class="custom-checkbox-card-label" for="sidebarLayoutOptions1">
-                  <img class="custom-checkbox-card-img" src="assets\svg\layouts\sidebar-default-classic.svg"
-                    alt="Image Description">
-                </label>
-                <span class="custom-checkbox-card-text">Default</span>
-              </div>
-            </div>
-          </div>
-          <!-- End Custom Radio -->
-
-          <!-- Custom Radio -->
-          <div class="col-4 text-center">
-            <div class="text-center">
-              <div class="custom-checkbox-card mb-2">
-                <input type="radio" class="custom-checkbox-card-input" name="sidebarLayoutOptions"
-                  id="sidebarLayoutOptions2" value="navbar-vertical-aside-compact-mode">
-                <label class="custom-checkbox-card-label" for="sidebarLayoutOptions2">
-                  <img class="custom-checkbox-card-img" src="assets\svg\layouts\sidebar-compact.svg"
-                    alt="Image Description">
-                </label>
-                <span class="custom-checkbox-card-text">Compact</span>
-              </div>
-            </div>
-          </div>
-          <!-- End Custom Radio -->
-
-          <!-- Custom Radio -->
-          <div class="col-4 text-center">
-            <div class="text-center">
-              <div class="custom-checkbox-card mb-2">
-                <input type="radio" class="custom-checkbox-card-input" name="sidebarLayoutOptions"
-                  id="sidebarLayoutOptions3" value="navbar-vertical-aside-mini-mode">
-                <label class="custom-checkbox-card-label" for="sidebarLayoutOptions3">
-                  <img class="custom-checkbox-card-img" src="assets\svg\layouts\sidebar-mini.svg"
-                    alt="Image Description">
-                </label>
-                <span class="custom-checkbox-card-text">Mini</span>
-              </div>
-            </div>
-          </div>
-          <!-- End Custom Radio -->
-        </div>
-        <!-- End Row -->
-
-        <h4 class="mb-1">Header layout options</h4>
-        <p>Choose the primary navigation of your header layout.</p>
-
-        <div class="row gx-2">
-          <!-- Custom Radio -->
-          <div class="col-4 text-center">
-            <div class="text-center">
-              <div class="custom-checkbox-card mb-2">
-                <input type="radio" class="custom-checkbox-card-input" name="headerLayoutOptions"
-                  id="headerLayoutOptions1" value="single">
-                <label class="custom-checkbox-card-label" for="headerLayoutOptions1">
-                  <img class="custom-checkbox-card-img" src="assets\svg\layouts\header-default-fluid.svg"
-                    alt="Image Description">
-                </label>
-                <span class="custom-checkbox-card-text">Default (Fluid)</span>
-              </div>
-            </div>
-          </div>
-          <!-- End Custom Radio -->
-
-          <!-- Custom Radio -->
-          <div class="col-4 text-center">
-            <div class="text-center">
-              <div class="custom-checkbox-card mb-2">
-                <input type="radio" class="custom-checkbox-card-input" name="headerLayoutOptions"
-                  id="headerLayoutOptions2" value="single-container">
-                <label class="custom-checkbox-card-label" for="headerLayoutOptions2">
-                  <img class="custom-checkbox-card-img" src="assets\svg\layouts\header-default-container.svg"
-                    alt="Image Description">
-                </label>
-                <span class="custom-checkbox-card-text">Default (Container)</span>
-              </div>
-            </div>
-          </div>
-          <!-- End Custom Radio -->
-
-          <!-- Custom Radio -->
-          <div class="col-4 text-center">
-            <div class="text-center">
-              <div class="custom-checkbox-card mb-2">
-                <input type="radio" class="custom-checkbox-card-input" name="headerLayoutOptions"
-                  id="headerLayoutOptions3" value="double">
-                <label class="custom-checkbox-card-label" for="headerLayoutOptions3">
-                  <img class="custom-checkbox-card-img" src="assets\svg\layouts\header-double-line-fluid.svg"
-                    alt="Image Description">
-                </label>
-                <span class="custom-checkbox-card-text">Double line (Fluid)</span>
-              </div>
-            </div>
-          </div>
-          <!-- End Custom Radio -->
-
-          <!-- Custom Radio -->
-          <div class="col-4 text-center mt-2">
-            <div class="text-center">
-              <div class="custom-checkbox-card mb-2">
-                <input type="radio" class="custom-checkbox-card-input" name="headerLayoutOptions"
-                  id="headerLayoutOptions4" value="double-container">
-                <label class="custom-checkbox-card-label" for="headerLayoutOptions4">
-                  <img class="custom-checkbox-card-img" src="assets\svg\layouts\header-double-line-container.svg"
-                    alt="Image Description">
-                </label>
-                <span class="custom-checkbox-card-text">Double line (Container)</span>
-              </div>
-            </div>
-          </div>
-          <!-- End Custom Radio -->
-        </div>
-        <!-- End Row -->
-      </div>
-      <!-- End Body -->
-
       <!-- Footer -->
       <div class="card-footer">
         <div class="row gx-2">
@@ -245,9 +42,7 @@
             </button>
           </div>
         </div>
-        <!-- End Row -->
       </div>
-      <!-- End Footer -->
     </div>
   </div>
 
@@ -268,10 +63,10 @@
           <!-- Navbar Vertical Toggle -->
           <button type="button" class="js-navbar-vertical-aside-toggle-invoker close mr-3">
             <i class="tio-first-page navbar-vertical-aside-toggle-short-align" data-toggle="tooltip"
-               data-placement="right" title="Thu nhỏ"></i>
+              data-placement="right" title="Thu nhỏ"></i>
             <i class="tio-last-page navbar-vertical-aside-toggle-full-align"
-               data-template='<div class="tooltip d-none d-sm-block" role="tooltip"><div class="arrow"></div><div class="tooltip-inner"></div></div>'
-               data-toggle="tooltip" data-placement="right" title="Mở rộng"></i>
+              data-template='<div class="tooltip d-none d-sm-block" role="tooltip"><div class="arrow"></div><div class="tooltip-inner"></div></div>'
+              data-toggle="tooltip" data-placement="right" title="Mở rộng"></i>
           </button>
           <!-- End Navbar Vertical Toggle -->
 
@@ -387,194 +182,94 @@
                 <a class="js-navbar-vertical-aside-menu-link nav-link  active" href="../backend/index.html"
                   title="Dashboards">
                   <i class="tio-home-vs-1-outlined nav-icon"></i>
-                  <span class="navbar-vertical-aside-mini-mode-hidden-elements text-truncate">Trang chủ</span>
+                  <span class="navbar-vertical-aside-mini-mode-hidden-elements text-truncate">Trang
+                    chủ</span>
                 </a>
               </li>
 
-              <!-- Pages -->
               <li class="navbar-vertical-aside-has-menu ">
-                <a class="js-navbar-vertical-aside-menu-link nav-link nav-link-toggle" href="javascript:;"
-                  title="Pages">
+                <a class="js-navbar-vertical-aside-menu-link nav-link" href="../backend/employee.html"
+                  title="Nhân viên">
                   <i class="tio-users-switch nav-icon"></i>
-                  <span class="navbar-vertical-aside-mini-mode-hidden-elements text-truncate">Nhân viên</span>
+                  <span class="navbar-vertical-aside-mini-mode-hidden-elements text-truncate">Nhân
+                    viên</span>
                 </a>
-
-                <ul class="js-navbar-vertical-aside-submenu nav nav-sub">
-                  <li class="nav-item">
-                    <a class="nav-link " href="../backend/employee.html" title="Referrals">
-                      <span class="tio-circle nav-indicator-icon"></span>
-                      <span class="text-truncate">Xem danh sách</span>
-                    </a>
-                    <a class="nav-link " href="add-employee.html" title="Referrals">
-                      <span class="tio-circle nav-indicator-icon"></span>
-                      <span class="text-truncate">Thêm nhân viên</span>
-                    </a>
-                  </li>
-                </ul>
               </li>
 
               <li class="navbar-vertical-aside-has-menu ">
-                <a class="js-navbar-vertical-aside-menu-link nav-link nav-link-toggle " href="javascript:;"
-                  title="Pages">
+                <a class="js-navbar-vertical-aside-menu-link nav-link" href="../backend/customer.html"
+                  title="Khách hàng">
                   <i class="tio-user-big-outlined nav-icon"></i>
-                  <span class="navbar-vertical-aside-mini-mode-hidden-elements text-truncate">Khách hàng</span>
+                  <span class="navbar-vertical-aside-mini-mode-hidden-elements text-truncate">Khách
+                    hàng</span>
                 </a>
-
-                <ul class="js-navbar-vertical-aside-submenu nav nav-sub">
-                  <li class="nav-item">
-                    <a class="nav-link " href="../backend/customer.html" title="Referrals">
-                      <span class="tio-circle nav-indicator-icon"></span>
-                      <span class="text-truncate">Xem danh sách</span>
-                    </a>
-                  </li>
-                </ul>
               </li>
 
               <li class="navbar-vertical-aside-has-menu ">
-                <a class="js-navbar-vertical-aside-menu-link nav-link nav-link-toggle " href="javascript:;"
-                  title="Pages">
-                  <i class="tio-label nav-icon"></i>
-                  <span class="navbar-vertical-aside-mini-mode-hidden-elements text-truncate">Nhãn hiệu</span>
-                </a>
-
-                <ul class="js-navbar-vertical-aside-submenu nav nav-sub">
-                  <li class="nav-item">
-                    <a class="nav-link " href="../backend/brand.html" title="Referrals">
-                      <span class="tio-circle nav-indicator-icon"></span>
-                      <span class="text-truncate">Xem danh sách</span>
-                    </a>
-                    <a class="nav-link " href="../backend/brand-form.html" title="Referrals">
-                      <span class="tio-circle nav-indicator-icon"></span>
-                      <span class="text-truncate">Thêm nhãn hiệu</span>
-                    </a>
-                  </li>
-                </ul>
-              </li>
-
-              <li class="navbar-vertical-aside-has-menu ">
-                <a class="js-navbar-vertical-aside-menu-link nav-link nav-link-toggle " href="javascript:;"
-                  title="Pages">
+                <a class="js-navbar-vertical-aside-menu-link nav-link" href="../backend/banner.html" title="Quảng cáo">
                   <i class="tio-panorama-image nav-icon"></i>
-                  <span class="navbar-vertical-aside-mini-mode-hidden-elements text-truncate">Banner</span>
+                  <span class="navbar-vertical-aside-mini-mode-hidden-elements text-truncate">Quảng
+                    cáo</span>
                 </a>
-
-                <ul class="js-navbar-vertical-aside-submenu nav nav-sub">
-                  <li class="nav-item">
-                    <a class="nav-link " href="../backend/banner.html" title="Referrals">
-                      <span class="tio-circle nav-indicator-icon"></span>
-                      <span class="text-truncate">Xem danh sách</span>
-                    </a>
-                    <a class="nav-link " href="../backend/banner-form.html" title="Referrals">
-                      <span class="tio-circle nav-indicator-icon"></span>
-                      <span class="text-truncate">Thêm banner</span>
-                    </a>
-                  </li>
-                </ul>
               </li>
 
-              <li class="navbar-vertical-aside-has-menu ">
-                <a class="js-navbar-vertical-aside-menu-link nav-link nav-link-toggle " href="javascript:;"
-                  title="Pages">
-                  <i class="tio-category nav-icon"></i>
-                  <span class="navbar-vertical-aside-mini-mode-hidden-elements text-truncate">Thể loại</span>
-                </a>
-
-                <ul class="js-navbar-vertical-aside-submenu nav nav-sub">
-                  <li class="nav-item">
-                    <a class="nav-link" href="../backend/category.html" title="Referrals">
-                      <span class="tio-circle nav-indicator-icon"></span>
-                      <span class="text-truncate">Xem danh sách</span>
-                    </a>
-                    <a class="nav-link " href="../backend/category-form.html" title="Referrals">
-                      <span class="tio-circle nav-indicator-icon"></span>
-                      <span class="text-truncate">Thêm thể loại</span>
-                    </a>
-                  </li>
-                </ul>
-              </li>
               <li class="navbar-vertical-aside-has-menu ">
                 <a class="js-navbar-vertical-aside-menu-link nav-link nav-link-toggle " href="javascript:;"
                   title="Pages">
                   <i class="tio-motocycle nav-icon"></i>
-                  <span class="navbar-vertical-aside-mini-mode-hidden-elements text-truncate">Sản phẩm</span>
+                  <span class="navbar-vertical-aside-mini-mode-hidden-elements text-truncate">Sản
+                    phẩm</span>
                 </a>
 
                 <ul class="js-navbar-vertical-aside-submenu nav nav-sub">
                   <li class="nav-item">
+                    <a class="nav-link " href="../backend/category.html" title="Referrals">
+                      <span class="tio-circle nav-indicator-icon"></span>
+                      <span class="text-truncate">Thể loại</span>
+                    </a>
+                    <a class="nav-link " href="../backend/brand.html" title="Referrals">
+                      <span class="tio-circle nav-indicator-icon"></span>
+                      <span class="text-truncate">Thương hiệu</span>
+                    </a>
                     <a class="nav-link " href="../backend/product.html" title="Referrals">
                       <span class="tio-circle nav-indicator-icon"></span>
-                      <span class="text-truncate">Xem danh sách</span>
-                    </a>
-                    <a class="nav-link " href="../backend/product-form.html" title="Referrals">
-                      <span class="tio-circle nav-indicator-icon"></span>
-                      <span class="text-truncate">Thêm sản phẩm</span>
+                      <span class="text-truncate">Sản phẩm</span>
                     </a>
                   </li>
                 </ul>
               </li>
+
               <li class="navbar-vertical-aside-has-menu ">
-                <a class="js-navbar-vertical-aside-menu-link nav-link nav-link-toggle " href="javascript:;"
-                  title="Pages">
+                <a class="js-navbar-vertical-aside-menu-link nav-link" href="../backend/order.html" title="Đơn hàng">
                   <i class="tio-receipt-outlined nav-icon"></i>
-                  <span class="navbar-vertical-aside-mini-mode-hidden-elements text-truncate">Đơn hàng</span>
+                  <span class="navbar-vertical-aside-mini-mode-hidden-elements text-truncate">Đơn
+                    hàng</span>
                 </a>
-
-                <ul class="js-navbar-vertical-aside-submenu nav nav-sub">
-                  <li class="nav-item">
-                    <a class="nav-link " href="../backend/order.html" title="Referrals">
-                      <span class="tio-circle nav-indicator-icon"></span>
-                      <span class="text-truncate">Xem đơn hàng</span>
-                    </a>
-                  </li>
-                </ul>
               </li>
+
               <li class="navbar-vertical-aside-has-menu ">
-                <a class="js-navbar-vertical-aside-menu-link nav-link nav-link-toggle " href="javascript:;"
-                  title="Pages">
+                <a class="js-navbar-vertical-aside-menu-link nav-link" href="../backend/review.html" title="Đánh giá">
                   <i class="tio-comment-vs-outlined nav-icon"></i>
-                  <span class="navbar-vertical-aside-mini-mode-hidden-elements text-truncate">Đánh giá</span>
+                  <span class="navbar-vertical-aside-mini-mode-hidden-elements text-truncate">Đánh
+                    giá</span>
                 </a>
-
-                <ul class="js-navbar-vertical-aside-submenu nav nav-sub">
-                  <li class="nav-item">
-                    <a class="nav-link " href="../backend/review.html" title="Referrals">
-                      <span class="tio-circle nav-indicator-icon"></span>
-                      <span class="text-truncate">Xem đánh giá</span>
-                    </a>
-                  </li>
-                </ul>
               </li>
+
               <li class="navbar-vertical-aside-has-menu ">
-                <a class="js-navbar-vertical-aside-menu-link nav-link nav-link-toggle " href="javascript:;"
-                  title="Pages">
+                <a class="js-navbar-vertical-aside-menu-link nav-link" href="../backend/statistic.html"
+                  title="Thống kê">
                   <i class="tio-chart-bar-1 nav-icon"></i>
-                  <span class="navbar-vertical-aside-mini-mode-hidden-elements text-truncate">Thống kê</span>
+                  <span class="navbar-vertical-aside-mini-mode-hidden-elements text-truncate">Thống
+                    kê</span>
                 </a>
-
-                <ul class="js-navbar-vertical-aside-submenu nav nav-sub">
-                  <li class="nav-item">
-                    <a class="nav-link " href="../backend/statistic.html" title="Referrals">
-                      <span class="tio-circle nav-indicator-icon"></span>
-                      <span class="text-truncate">Xem thống kê</span>
-                    </a>
-                  </li>
-                </ul>
               </li>
-              <li class="navbar-vertical-aside-has-menu ">
-                <a class="js-navbar-vertical-aside-menu-link nav-link nav-link-toggle " href="javascript:;"
-                  title="Pages">
-                  <i class="tio-settings nav-icon"></i>
-                  <span class="navbar-vertical-aside-mini-mode-hidden-elements text-truncate">Cấu hình</span>
-                </a>
 
-                <ul class="js-navbar-vertical-aside-submenu nav nav-sub">
-                  <li class="nav-item">
-                    <a class="nav-link" href="../backend/setting.html" title="Referrals">
-                      <span class="tio-circle nav-indicator-icon"></span>
-                      <span class="text-truncate">Xem cấu hình</span>
-                    </a>
-                  </li>
-                </ul>
+              <li class="navbar-vertical-aside-has-menu ">
+                <a class="js-navbar-vertical-aside-menu-link nav-link" href="../backend/setting.html" title="Cấu hình">
+                  <i class="tio-settings nav-icon"></i>
+                  <span class="navbar-vertical-aside-mini-mode-hidden-elements text-truncate">Cấu
+                    hình</span>
+                </a>
               </li>
             </ul>
           </div>
@@ -654,62 +349,21 @@
 
   <!-- JS Implementing Plugins -->
   <script src="assets\js\vendor.min.js"></script>
-  <script src="assets\vendor\chart.js\dist\Chart.min.js"></script>
-  <script src="assets\vendor\chart.js.extensions\chartjs-extensions.js"></script>
-  <script src="assets\vendor\chartjs-plugin-datalabels\dist\chartjs-plugin-datalabels.min.js"></script>
-
-
-
   <!-- JS Front -->
   <script src="assets\js\theme.min.js"></script>
 
   <!-- JS Plugins Init. -->
   <script>
     $(document).on('ready', function () {
-      // ONLY DEV
-      // =======================================================
-
-      if (window.localStorage.getItem('hs-builder-popover') === null) {
-        $('#builderPopover').popover('show')
-          .on('shown.bs.popover', function () {
-            $('.popover').last().addClass('popover-dark')
-          });
-
-        $(document).on('click', '#closeBuilderPopover', function () {
-          window.localStorage.setItem('hs-builder-popover', true);
-          $('#builderPopover').popover('dispose');
-        });
-      } else {
-        $('#builderPopover').on('show.bs.popover', function () {
-          return false
-        });
-      }
-
-      // END ONLY DEV
-      // =======================================================
-
-
       // BUILDER TOGGLE INVOKER
       // =======================================================
       $('.js-navbar-vertical-aside-toggle-invoker').click(function () {
         $('.js-navbar-vertical-aside-toggle-invoker i').tooltip('hide');
       });
 
-
-      // INITIALIZATION OF MEGA MENU
-      // =======================================================
-      var megaMenu = new HSMegaMenu($('.js-mega-menu'), {
-        desktop: {
-          position: 'left'
-        }
-      }).init();
-
-
-
       // INITIALIZATION OF NAVBAR VERTICAL NAVIGATION
       // =======================================================
       var sidebar = $('.js-navbar-vertical-aside').hsSideNav();
-
 
       // INITIALIZATION OF TOOLTIP IN NAVBAR VERTICAL MENU
       // =======================================================
@@ -721,13 +375,11 @@
         }
       });
 
-
       // INITIALIZATION OF UNFOLD
       // =======================================================
       $('.js-hs-unfold-invoker').each(function () {
         var unfold = new HSUnfold($(this)).init();
       });
-
 
       // INITIALIZATION OF FORM SEARCH
       // =======================================================
@@ -740,191 +392,6 @@
       // =======================================================
       $('.js-select2-custom').each(function () {
         var select2 = $.HSCore.components.HSSelect2.init($(this));
-      });
-
-
-      // INITIALIZATION OF CHARTJS
-      // =======================================================
-      Chart.plugins.unregister(ChartDataLabels);
-
-      $('.js-chart').each(function () {
-        $.HSCore.components.HSChartJS.init($(this));
-      });
-
-      var updatingChart = $.HSCore.components.HSChartJS.init($('#updatingData'));
-
-      // CALL WHEN TAB IS CLICKED
-      // =======================================================
-      $('[data-toggle="chart-bar"]').click(function (e) {
-        let keyDataset = $(e.currentTarget).attr('data-datasets')
-
-        if (keyDataset === 'lastWeek') {
-          updatingChart.data.labels = ["Apr 22", "Apr 23", "Apr 24", "Apr 25", "Apr 26", "Apr 27", "Apr 28", "Apr 29", "Apr 30", "Apr 31"];
-          updatingChart.data.datasets = [
-            {
-              "data": [120, 250, 300, 200, 300, 290, 350, 100, 125, 320],
-              "backgroundColor": "#377dff",
-              "hoverBackgroundColor": "#377dff",
-              "borderColor": "#377dff"
-            },
-            {
-              "data": [250, 130, 322, 144, 129, 300, 260, 120, 260, 245, 110],
-              "backgroundColor": "#e7eaf3",
-              "borderColor": "#e7eaf3"
-            }
-          ];
-          updatingChart.update();
-        } else {
-          updatingChart.data.labels = ["May 1", "May 2", "May 3", "May 4", "May 5", "May 6", "May 7", "May 8", "May 9", "May 10"];
-          updatingChart.data.datasets = [
-            {
-              "data": [200, 300, 290, 350, 150, 350, 300, 100, 125, 220],
-              "backgroundColor": "#377dff",
-              "hoverBackgroundColor": "#377dff",
-              "borderColor": "#377dff"
-            },
-            {
-              "data": [150, 230, 382, 204, 169, 290, 300, 100, 300, 225, 120],
-              "backgroundColor": "#e7eaf3",
-              "borderColor": "#e7eaf3"
-            }
-          ]
-          updatingChart.update();
-        }
-      })
-
-
-      // INITIALIZATION OF BUBBLE CHARTJS WITH DATALABELS PLUGIN
-      // =======================================================
-      $('.js-chart-datalabels').each(function () {
-        $.HSCore.components.HSChartJS.init($(this), {
-          plugins: [ChartDataLabels],
-          options: {
-            plugins: {
-              datalabels: {
-                anchor: function (context) {
-                  var value = context.dataset.data[context.dataIndex];
-                  return value.r < 20 ? 'end' : 'center';
-                },
-                align: function (context) {
-                  var value = context.dataset.data[context.dataIndex];
-                  return value.r < 20 ? 'end' : 'center';
-                },
-                color: function (context) {
-                  var value = context.dataset.data[context.dataIndex];
-                  return value.r < 20 ? context.dataset.backgroundColor : context.dataset.color;
-                },
-                font: function (context) {
-                  var value = context.dataset.data[context.dataIndex],
-                    fontSize = 25;
-
-                  if (value.r > 50) {
-                    fontSize = 35;
-                  }
-
-                  if (value.r > 70) {
-                    fontSize = 55;
-                  }
-
-                  return {
-                    weight: 'lighter',
-                    size: fontSize
-                  };
-                },
-                offset: 2,
-                padding: 0
-              }
-            }
-          },
-        });
-      });
-
-
-      // INITIALIZATION OF DATERANGEPICKER
-      // =======================================================
-      $('.js-daterangepicker').daterangepicker();
-
-      $('.js-daterangepicker-times').daterangepicker({
-        timePicker: true,
-        startDate: moment().startOf('hour'),
-        endDate: moment().startOf('hour').add(32, 'hour'),
-        locale: {
-          format: 'M/DD hh:mm A'
-        }
-      });
-
-      var start = moment();
-      var end = moment();
-
-      function cb(start, end) {
-        $('#js-daterangepicker-predefined .js-daterangepicker-predefined-preview').html(start.format('MMM D') + ' - ' + end.format('MMM D, YYYY'));
-      }
-
-      $('#js-daterangepicker-predefined').daterangepicker({
-        startDate: start,
-        endDate: end,
-        ranges: {
-          'Today': [moment(), moment()],
-          'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
-          'Last 7 Days': [moment().subtract(6, 'days'), moment()],
-          'Last 30 Days': [moment().subtract(29, 'days'), moment()],
-          'This Month': [moment().startOf('month'), moment().endOf('month')],
-          'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
-        }
-      }, cb);
-
-      cb(start, end);
-
-
-      // INITIALIZATION OF DATATABLES
-      // =======================================================
-      var datatable = $.HSCore.components.HSDatatables.init($('#datatable'), {
-        select: {
-          style: 'multi',
-          selector: 'td:first-child input[type="checkbox"]',
-          classMap: {
-            checkAll: '#datatableCheckAll',
-            counter: '#datatableCounter',
-            counterInfo: '#datatableCounterInfo'
-          }
-        },
-        language: {
-          zeroRecords: '<div class="text-center p-4">' +
-            '<img class="mb-3" src="./assets/svg/illustrations/sorry.svg" alt="Image Description" style="width: 7rem;">' +
-            '<p class="mb-0">No data to show</p>' +
-            '</div>'
-        }
-      });
-
-      $('.js-datatable-filter').on('change', function () {
-        var $this = $(this),
-          elVal = $this.val(),
-          targetColumnIndex = $this.data('target-column-index');
-
-        datatable.column(targetColumnIndex).search(elVal).draw();
-      });
-
-      $('#datatableSearch').on('mouseup', function (e) {
-        var $input = $(this),
-          oldValue = $input.val();
-
-        if (oldValue == "") return;
-
-        setTimeout(function () {
-          var newValue = $input.val();
-
-          if (newValue == "") {
-            // Gotcha
-            datatable.search('').draw();
-          }
-        }, 1);
-      });
-
-
-      // INITIALIZATION OF CLIPBOARD
-      // =======================================================
-      $('.js-clipboard').each(function () {
-        var clipboard = $.HSCore.components.HSClipboard.init(this);
       });
     });
   </script>
