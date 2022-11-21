@@ -392,7 +392,7 @@
                                         <!-- Card -->
                                         <div class="card">
                                             <div class="card-header">
-                                                <h5 class="card-header-title">Lọc nhân viên</h5>
+                                                <h5 class="card-header-title">Lọc theo vai trò</h5>
 
                                                 <!-- Toggle Button -->
                                                 <a class="js-hs-unfold-invoker btn btn-icon btn-xs btn-ghost-secondary ml-2"
@@ -408,42 +408,24 @@
 
                                             <div class="card-body">
                                                 <form>
-                                                    <div class="form-group">
-                                                        <small class="text-cap mb-2">Vai trò</small>
+                                                    <div class="form-row">
+                                                        <div class="col-sm form-group">
+                                                            <small class="text-cap mb-2">Vai trò</small>
 
-                                                        <div class="form-row">
-                                                            <div class="col">
-                                                                <!-- Checkbox -->
-                                                                <div class="custom-control custom-checkbox">
-                                                                    <input type="checkbox" class="custom-control-input"
-                                                                        id="usersFilerCheck1" checked="">
-                                                                    <label class="custom-control-label"
-                                                                        for="usersFilerCheck1">Tất cả</label>
-                                                                </div>
-                                                                <!-- End Checkbox -->
-                                                            </div>
-                                                            <div class="col">
-                                                                <!-- Checkbox -->
-                                                                <div class="custom-control custom-checkbox">
-                                                                    <input type="checkbox" class="custom-control-input"
-                                                                        id="usersFilerCheck2">
-                                                                    <label class="custom-control-label"
-                                                                        for="usersFilerCheck2">Quản trị viên</label>
-                                                                </div>
-                                                                <!-- End Checkbox -->
-                                                            </div>
-                                                            <div class="col">
-                                                                <!-- Checkbox -->
-                                                                <div class="custom-control custom-checkbox">
-                                                                    <input type="checkbox" class="custom-control-input"
-                                                                        id="usersFilerCheck3">
-                                                                    <label class="custom-control-label"
-                                                                        for="usersFilerCheck3">Nhân viên</label>
-                                                                </div>
-                                                                <!-- End Checkbox -->
-                                                            </div>
+                                                            <!-- Select -->
+                                                            <select
+                                                                    class="js-select2-custom js-datatable-filter custom-select"
+                                                                    size="1" data-target-column-index="5"
+                                                                    data-hs-select2-options='{
+                                          "minimumResultsForSearch": "Infinity"
+                                        }'>
+                                                                <option value="">Chọn vai trò</option>
+                                                                <option value="Quản trị viên">Quản trị viên</option>
+                                                                <option value="Nhân viên">Nhân viên</option>
+                                                            </select>
+                                                            <!-- End Select -->
                                                         </div>
-                                                        <!-- End Row -->
+
                                                     </div>
 
                                                     <!--fix here filter any-->
@@ -539,14 +521,10 @@
                                 </td>
                                 <td>Nhân viên</td>
                                 <td>
-                                    <div id="editUserPopover" data-toggle="popover-dark" data-placement="left"
-                                        title="<div class='d-flex align-items-center'>Edit user <a href='#!' class='close close-light ml-auto'><i id='closeEditUserPopover' class='tio-clear'></i></a></div>"
-                                        data-content="Check out this Edit user modal example." data-html="true">
                                         <a class="btn btn-sm btn-white" href="javascript:;" data-toggle="modal"
                                             data-target="#editUserModal">
                                             <i class="tio-edit"></i>
                                         </a>
-                                    </div>
                                 </td>
                             </tr>
 
@@ -793,17 +771,16 @@
                             "dropdownAutoWidth": true,
                             "width": true
                           }'>
-                                    <option value="5" selected>5</option>
-                                    <option value="10">10</option>
+                                    <option value="5">5</option>
+                                    <option value="10" selected>10</option>
                                     <option value="15">15</option>
                                 </select>
                                 <!-- End Select -->
 
-                                <span class="text-secondary ml-2 mr-2">trên</span>
+                                <span class="text-secondary mr-2">trên</span>
 
                                 <!-- Pagination Quantity -->
                                 <span id="datatableWithPaginationInfoTotalQty"></span>
-                                <span>7</span>
                                 <!--                            <span class="text-secondary mr-2 pl-2"> nhân viên</span>-->
                             </div>
                         </div>
@@ -1046,35 +1023,17 @@
 
                                 <!-- Form Group -->
                                 <div class="row form-group">
-                                    <label class="col-sm-3 col-form-label input-label">Loại tài khoản</label>
+                                                <label class="col-sm-3 col-form-label input-label">Loại tài khoản</label>
 
-                                    <div class="col-sm-9">
-                                        <div class="js-form-message input-group input-group-sm-down-break">
-                                            <!-- Custom Radio -->
-                                            <div class="form-control">
-                                                <div class="custom-control custom-radio">
-                                                    <input type="radio" class="custom-control-input"
-                                                        name="editUserModalAccountTypeModalRadio"
-                                                        id="editUserModalAccountTypeModalRadio1" checked="">
-                                                    <label class="custom-control-label"
-                                                        for="editUserModalAccountTypeModalRadio1">Nhân viên</label>
+                                                <div class="col-sm-9">
+                                                    <!-- Select -->
+                                                    <select class="select-filter-type-account form-control">
+                                                        <option value="">Nhân viên</option>
+                                                        <option value="Quản trị viên">Quản trị viên</option>
+                                                        <option value="Nhân viên">Nhân viên</option>
+                                                    </select>
+                                                    <!-- End Select -->
                                                 </div>
-                                            </div>
-                                            <!-- End Custom Radio -->
-
-                                            <!-- Custom Radio -->
-                                            <div class="form-control">
-                                                <div class="custom-control custom-radio">
-                                                    <input type="radio" class="custom-control-input"
-                                                        name="editUserModalAccountTypeModalRadio"
-                                                        id="editUserModalAccountTypeModalRadio2">
-                                                    <label class="custom-control-label"
-                                                        for="editUserModalAccountTypeModalRadio2">Quản trị viên</label>
-                                                </div>
-                                            </div>
-                                            <!-- End Custom Radio -->
-                                        </div>
-                                    </div>
                                 </div>
                                 <!-- End Form Group -->
 
@@ -1195,11 +1154,22 @@
                                         class="col-sm-3 col-form-label input-label">Mật khẩu mới</label>
 
                                     <div class="col-sm-9">
+                                        <div class="input-group input-group-merge">
                                         <input type="password" class="js-toggle-password form-control"
                                             name="editUserModalNewPassword" id="editUserModalNewPassword"
                                             aria-label="Enter new password" data-hs-toggle-password-options='{
-                                 "target": "#editUserModalChangePassModalCheckbox"
-                               }'>
+                                   "target": "#editUserModalNewPassModalTarget",
+                                   "defaultClass": "tio-hidden-outlined",
+                                   "showClass": "tio-visible-outlined",
+                                   "classChangeTarget": "#editUserModalNewPassModalIcon"
+                                 }'>
+                                        <div id="editUserModalNewPassModalTarget" class="input-group-append">
+                                            <a class="input-group-text" href="javascript:;">
+                                                <i id="editUserModalNewPassModalIcon"
+                                                   class="tio-visible-outlined"></i>
+                                            </a>
+                                        </div>
+                                        </div>
                                     </div>
                                 </div>
                                 <!-- End Form Group -->
@@ -1210,11 +1180,22 @@
                                         class="col-sm-3 col-form-label input-label">Nhập lại mật khẩu mới</label>
 
                                     <div class="col-sm-9">
+                                        <div class="input-group input-group-merge">
                                         <input type="password" class="js-toggle-password form-control"
                                             name="confirmNewPassword" id="editUserModalConfirmNewPasswordLabel"
                                             aria-label="Confirm your new password" data-hs-toggle-password-options='{
-                                 "target": "#editUserModalChangePassModalCheckbox"
+                                                             "target": "#editUserModalConfirmNewPassModalTarget",
+                                   "defaultClass": "tio-hidden-outlined",
+                                   "showClass": "tio-visible-outlined",
+                                   "classChangeTarget": "#editUserModalConfirmNewPassModalIcon"
                                }'>
+                                            <div id="editUserModalConfirmNewPassModalTarget" class="input-group-append">
+                                                <a class="input-group-text" href="javascript:;">
+                                                    <i id="editUserModalConfirmNewPassModalIcon"
+                                                       class="tio-visible-outlined"></i>
+                                                </a>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                                 <!-- End Form Group -->
