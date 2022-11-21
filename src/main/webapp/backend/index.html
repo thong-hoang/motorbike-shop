@@ -214,29 +214,10 @@
               </li>
 
               <li class="navbar-vertical-aside-has-menu ">
-                <a class="js-navbar-vertical-aside-menu-link nav-link nav-link-toggle " href="javascript:;"
-                  title="Pages">
+                <a class="js-navbar-vertical-aside-menu-link nav-link" href="../backend/product.html" title="Quảng cáo">
                   <i class="tio-motocycle nav-icon"></i>
-                  <span class="navbar-vertical-aside-mini-mode-hidden-elements text-truncate">Sản
-                    phẩm</span>
+                  <span class="navbar-vertical-aside-mini-mode-hidden-elements text-truncate">Sản phẩm</span>
                 </a>
-
-                <ul class="js-navbar-vertical-aside-submenu nav nav-sub">
-                  <li class="nav-item">
-                    <a class="nav-link " href="../backend/category.html" title="Referrals">
-                      <span class="tio-circle nav-indicator-icon"></span>
-                      <span class="text-truncate">Thể loại</span>
-                    </a>
-                    <a class="nav-link " href="../backend/brand.html" title="Referrals">
-                      <span class="tio-circle nav-indicator-icon"></span>
-                      <span class="text-truncate">Thương hiệu</span>
-                    </a>
-                    <a class="nav-link " href="../backend/product.html" title="Referrals">
-                      <span class="tio-circle nav-indicator-icon"></span>
-                      <span class="text-truncate">Sản phẩm</span>
-                    </a>
-                  </li>
-                </ul>
               </li>
 
               <li class="navbar-vertical-aside-has-menu ">
@@ -379,19 +360,6 @@
       // =======================================================
       $('.js-hs-unfold-invoker').each(function () {
         var unfold = new HSUnfold($(this)).init();
-      });
-
-      // INITIALIZATION OF FORM SEARCH
-      // =======================================================
-      $('.js-form-search').each(function () {
-        new HSFormSearch($(this)).init()
-      });
-
-
-      // INITIALIZATION OF SELECT2
-      // =======================================================
-      $('.js-select2-custom').each(function () {
-        var select2 = $.HSCore.components.HSSelect2.init($(this));
       });
     });
   </script>
