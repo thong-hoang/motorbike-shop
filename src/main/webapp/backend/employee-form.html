@@ -410,10 +410,6 @@
                       <!-- Container For Input Field -->
                       <div id="addPhoneFieldContainer"></div>
 
-                      <a class="js-create-field form-link btn btn-sm btn-no-focus btn-ghost-primary"
-                        href="javascript:;">
-                        <i class="tio-add"></i> Thêm số điện thoại khác
-                      </a>
                     </div>
                   </div>
                   <!-- End Form Group -->
@@ -452,27 +448,15 @@
                     <label class="col-sm-3 col-form-label input-label">Loại tài khoản</label>
 
                     <div class="col-sm-9">
-                      <div class="input-group input-group-sm-down-break">
-                        <!-- Custom Radio -->
-                        <div class="form-control">
-                          <div class="custom-control custom-radio">
-                            <input type="radio" class="custom-control-input" name="userAccountTypeRadio"
-                              id="userAccountTypeRadio1">
-                            <label class="custom-control-label" for="userAccountTypeRadio1">Nhân viên</label>
-                          </div>
-                        </div>
-                        <!-- End Custom Radio -->
-
-                        <!-- Custom Radio -->
-                        <div class="form-control">
-                          <div class="custom-control custom-radio">
-                            <input type="radio" class="custom-control-input" name="userAccountTypeRadio"
-                              id="userAccountTypeRadio2">
-                            <label class="custom-control-label" for="userAccountTypeRadio2">Quản lý</label>
-                          </div>
-                        </div>
-                        <!-- End Custom Radio -->
+                        <!-- Select -->
+                        <select class="select-filter-type-account form-control">
+                          <option value=""></option>
+                          <option value="Quản trị viên">Quản trị viên</option>
+                          <option value="Nhân viên">Nhân viên</option>
+                        </select>
+                        <!-- End Select -->
                       </div>
+
                     </div>
                   </div>
                   <!-- End Form Group -->
@@ -490,35 +474,34 @@
 
               </div>
               <!-- End Card -->
-
             </div>
             <!-- End Content Step Form -->
+          </div>
+        <!-- End Row -->
 
-            <!-- Message Body -->
-            <div id="successMessageContent" style="display:none;">
-              <div class="text-center">
-                <img class="img-fluid mb-3" src="../images/test/success.jpg" alt="Image Description"
-                  style="max-width: 15rem;border-radius: 50%">
+        <!-- Message Body -->
+        <div id="successMessageContent" style="display:none;">
+          <div class="text-center">
+            <img class="img-fluid mb-3" src="../images/test/success.jpg" alt="Image Description"
+                 style="max-width: 15rem;border-radius: 50%">
 
-                <div class="mb-4">
-                  <h2>Thêm thành công!</h2>
-                  <p>Tài khoản <span class="font-weight-bold text-dark">VTV System</span> đã được thêm thành công.</p>
-                </div>
-
-                <div class="d-flex justify-content-center">
-                  <a class="btn btn-white mr-3" href="employee.html">
-                    <i class="tio-chevron-left ml-1"></i> Quay lại
-                  </a>
-                  <a class="btn btn-primary" href="add-employee.html">
-                    <i class="tio-user-add mr-1"></i> Thêm tài khoản mới
-                  </a>
-                </div>
-              </div>
+            <div class="mb-4">
+              <h2>Thêm thành công!</h2>
+              <p>Tài khoản <span class="font-weight-bold text-dark">VTV System</span> đã được thêm thành công.</p>
             </div>
-            <!-- End Message Body -->
+
+            <div class="d-flex justify-content-center">
+              <a class="btn btn-white mr-3" href="employee.html">
+                <i class="tio-chevron-left ml-1"></i> Quay lại
+              </a>
+              <a class="btn btn-primary" href="employee-form.html">
+                <i class="tio-user-add mr-1"></i> Thêm tài khoản mới
+              </a>
+            </div>
           </div>
         </div>
-        <!-- End Row -->
+        <!-- End Message Body -->
+
       </form>
       <!-- End Step Form -->
     </div>
