@@ -12,9 +12,18 @@ public class RoleDAOTest {
     private final RoleDAO roleDAO = RoleDAO.getInstance();
 
     @Test
-    public void testListAllUsers() {
+    public void testListAllRoles() {
         List<Role> roles = roleDAO.findAll();
 
         assertTrue(roles.size() > 0);
+    }
+
+    @Test
+    public void testCreateRole() {
+        Role role = new Role();
+        role.setName("Quản trị viên");
+        role.setDescription("Quản lý tất cả");
+
+        assertTrue(roleDAO.save(role));
     }
 }

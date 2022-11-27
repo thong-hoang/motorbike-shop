@@ -7,6 +7,7 @@ import java.io.Serializable;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLIntegrityConstraintViolationException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -61,5 +62,29 @@ public class RoleDAO implements Serializable {
         }
 
         return roles;
+    }
+
+    /**
+     * Saving a role object
+     *
+     * @param role must not be null.
+     * @return true if the Role object is saved
+     * @throws SQLIntegrityConstraintViolationException In case the name field is duplicated..
+     */
+
+    public boolean save(Role role) {
+        String sql = "INSERT INTO roles (name, description) value(?, ?)";
+
+        try (Connection conn = DBUtils.makeConnection();
+             PreparedStatement stm = conn.prepareStatement(sql)) {
+            stm.setString(1, role.getName());
+            stm.setString(2, role.getDescription());
+
+            if (stm.executeUpdate() > 0) return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return false;
     }
 }
