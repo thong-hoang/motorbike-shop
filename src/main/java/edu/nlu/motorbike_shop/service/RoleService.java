@@ -32,7 +32,7 @@ public class RoleService {
      *
      * @param message A String specified to display to the user
      * @throws ServletException If the request for the GET could not be handled
-     * @throws IOException If an input or output error is detected when the servlet handles the GET request
+     * @throws IOException      If an input or output error is detected when the servlet handles the GET request
      */
 
     public void listRole(String message) throws ServletException, IOException {
@@ -49,5 +49,37 @@ public class RoleService {
 
     public void listRole() throws ServletException, IOException {
         listRole(null);
+    }
+
+    /**
+     * Allows a servlet to process a request to save a new role.
+     *
+     * @throws ServletException If the request for the GET could not be handled
+     * @throws IOException      If an input or output error is detected when the servlet handles the GET request
+     */
+
+    public void save() throws ServletException, IOException {
+        request.setCharacterEncoding("UTF-8");
+        String name = request.getParameter("name");
+        String description = request.getParameter("description");
+
+        Role existRole = roleRepo.findByName(name);
+
+        if (existRole != null) {
+            String message = "Vai trò " + name + " đã tồn tại!!!";
+            request.setAttribute("message", message);
+
+            Role role = new Role(name, description);
+            request.setAttribute("role", role);
+
+            String roleFormPage = "setting-role-form.jsp";
+            request.getRequestDispatcher(roleFormPage).forward(request, response);
+        } else {
+            Role newRole = new Role(name, description);
+            roleRepo.save(newRole);
+
+            String message = "Vai trò " + name + " đã được thêm thành công !";
+            listRole(message);
+        }
     }
 }

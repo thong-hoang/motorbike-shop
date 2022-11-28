@@ -43,6 +43,10 @@
             </div>
         </div>
 
+        <c:if test="${message != null}">
+            <div class="alert alert-success text-center" id="hideMessage">${message}</div>
+        </c:if>
+
         <!-- Card -->
         <div class="card">
             <!-- Header -->
@@ -314,6 +318,17 @@
 </main>
 
 <jsp:include page="js.jsp"/>
+
+<script type="text/javascript">
+    const message = document.getElementById('hideMessage');
+
+    if (message !== null) {
+        function hideMessage() {
+            message.style.display = 'none';
+        }
+        setTimeout(hideMessage, 5000);
+    }
+</script>
 
 </body>
 
