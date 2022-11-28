@@ -8,15 +8,7 @@
     <!-- Title -->
     <title>VTV | Admin - Trang chủ</title>
 
-    <!-- Font -->
-    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
-
-    <!-- CSS Implementing Plugins -->
-    <link rel="stylesheet" href="assets\css\vendor.min.css">
-    <link rel="stylesheet" href="assets\vendor\icon-set\style.css">
-
-    <!-- CSS Front Template -->
-    <link rel="stylesheet" href="assets\css\theme.min.css?v=1.0">
+    <jsp:include page="css.jsp"/>
 </head>
 
 <body class="footer-offset">
@@ -75,21 +67,10 @@
     </div>
 
     <!-- Footer -->
-    <div class="footer">
-        <div class="row justify-content-between align-items-center">
-            <div class="col">
-                <p class="font-size-sm mb-0">
-                    <span class="d-none d-sm-inline-block">
-                    Copyright © <script>document.write(new Date().getFullYear());</script> Copyright by VTV VietNam
-                    </span>
-                </p>
-            </div>
-
-        </div>
-    </div>
+    <jsp:include page="footer.jsp"/>
 </main>
 
-<jsp:include page="footer.jsp"/>
+<jsp:include page="js.jsp"/>
 
 </body>
 

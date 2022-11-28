@@ -11,15 +11,7 @@
     <!-- Title -->
     <title>VTV | Admin - Dánh sách vai trò</title>
 
-    <!-- Font -->
-    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
-
-    <!-- CSS Implementing Plugins -->
-    <link rel="stylesheet" href="assets\css\vendor.min.css">
-    <link rel="stylesheet" href="assets\vendor\icon-set\style.css">
-
-    <!-- CSS Front Template -->
-    <link rel="stylesheet" href="assets\css\theme.min.css?v=1.0">
+    <jsp:include page="css.jsp"/>
 </head>
 
 <body class="footer-offset">
@@ -44,12 +36,16 @@
                 </div>
 
                 <div class="col-sm-auto">
-                    <a class="btn btn-primary" href="./setting-role-form.html">
+                    <a class="btn btn-primary" href="setting-role-form.jsp">
                         <i class="tio-user-add mr-1"></i> Thêm mới vai trò
                     </a>
                 </div>
             </div>
         </div>
+
+        <c:if test="${message != null}">
+            <div class="alert alert-success text-center" id="hideMessage">${message}</div>
+        </c:if>
 
         <!-- Card -->
         <div class="card">
@@ -318,20 +314,21 @@
     </div>
 
     <!-- Footer -->
-    <div class="footer">
-        <div class="row justify-content-between align-items-center">
-            <div class="col">
-                <p class="font-size-sm mb-0">
-                        <span class="d-none d-sm-inline-block">
-                            Copyright © 2022 Copyright by VTV VietNam</span>
-                </p>
-            </div>
-
-        </div>
-    </div>
+    <jsp:include page="footer.jsp"/>
 </main>
 
-<jsp:include page="footer.jsp"/>
+<jsp:include page="js.jsp"/>
+
+<script type="text/javascript">
+    const message = document.getElementById('hideMessage');
+
+    if (message !== null) {
+        function hideMessage() {
+            message.style.display = 'none';
+        }
+        setTimeout(hideMessage, 5000);
+    }
+</script>
 
 </body>
 
