@@ -300,7 +300,9 @@
                         <div class="card-body">
                             <!-- Form Group -->
                             <div class="form-group">
-                                <label for="productNameLabel" class="input-label">Tên xe </label>
+                                <label for="productNameLabel" class="input-label">Tên xe <i
+                                        class="tio-help-outlined text-body ml-1" data-toggle="tooltip"
+                                        data-placement="top" title="Nhập tên xe"></i></label>
 
                                 <input type="text" class="form-control" name="productName" id="productNameLabel"
                                     placeholder="Nhập tên xe" aria-label="Shirt, t-shirts, etc."
@@ -314,8 +316,10 @@
                                     <div class="form-group">
                                         <label class="input-label" for="exampleFormControlSelect2">Hãng xe <span
                                                 class="input-label-secondary"></span></label>
-                                        <select id="exampleFormControlSelect2" class="form-control" disabled>
+                                        <select id="exampleFormControlSelect2" class="form-control">
                                             <option>Yamaha</option>
+                                            <option>Suzuki</option>
+                                            <option>Honda</option>
                                         </select>
                                     </div>
                                     <!-- End Form Group -->
@@ -326,8 +330,9 @@
                                     <div class="form-group">
                                         <label class="input-label" for="exampleFormControlSelect1">Loại xe <span
                                                 class="input-label-secondary"></span></label>
-                                        <select id="exampleFormControlSelect1" class="form-control" disabled>
+                                        <select id="exampleFormControlSelect1" class="form-control">
                                             <option>Xe số</option>
+                                            <option>Xe tay ga</option>
                                         </select>
                                     </div>
                                     <!-- End Form Group -->
@@ -866,7 +871,10 @@
                 </div>
             </div>
             <!-- End Row -->
-
+            <div class="float-right">
+                <button class="btn-primary">Lưu</button>
+                <button class="btn-danger">Hủy</button>
+            </div>
             <div class="position-fixed bottom-0 content-centered-x w-100 z-index-99 mb-3"
                 style="max-width: 40rem;display: none">
                 <!-- Card -->
@@ -884,8 +892,10 @@
                         <!-- End Row -->
                     </div>
                 </div>
+
                 <!-- End Card -->
             </div>
+
         </div>
 
         <div class="footer">
