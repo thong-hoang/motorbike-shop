@@ -44,8 +44,8 @@
 
                 <div class="d-none d-md-block">
                     <form class="position-relative">
-                        <div
-                                class="input-group input-group-merge input-group-borderless input-group-hover-light navbar-input-group">
+                        <div class="input-group input-group-merge input-group-borderless input-group-hover-light
+                        navbar-input-group mt-3">
                             <div class="input-group-prepend">
                                 <div class="input-group-text">
                                     <i class="tio-search"></i>

@@ -28,7 +28,7 @@ public class RoleService {
     }
 
     /**
-     * Returns a list of roles that respond back to user
+     * Returns a list of roles and a response message to the user
      *
      * @param message A String specified to display to the user
      * @throws ServletException If the request for the GET could not be handled
@@ -46,6 +46,13 @@ public class RoleService {
         String listPage = "setting-role.jsp";
         request.getRequestDispatcher(listPage).forward(request, response);
     }
+
+    /**
+     * Returns a list of roles that respond back to user
+     *
+     * @throws ServletException If the request for the GET could not be handled
+     * @throws IOException      If an input or output error is detected when the servlet handles the GET request
+     */
 
     public void listRole() throws ServletException, IOException {
         listRole(null);
@@ -80,6 +87,29 @@ public class RoleService {
 
             String message = "Vai trò " + name + " đã được thêm thành công !";
             listRole(message);
+        }
+    }
+
+    /**
+     * Allows the processing servlet to display role information according to the specified id
+     *
+     * @throws ServletException If the request for the GET could not be handled
+     * @throws IOException      If an input or output error is detected when the servlet handles the GET request
+     */
+
+    public void editRole() throws ServletException, IOException {
+        Integer id = Integer.valueOf(request.getParameter("id"));
+        Role role = roleRepo.findById(id);
+        String message;
+
+        if (role == null) {
+            message = "Không tìm thấy vai trò có id là " + id;
+            listRole(message);
+        } else {
+            request.setAttribute("role", role);
+            request.setAttribute("title", "Chỉnh sửa vai trò");
+            String roleFormPage = "setting-role-form.jsp";
+            request.getRequestDispatcher(roleFormPage).forward(request, response);
         }
     }
 }

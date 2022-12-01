@@ -234,7 +234,7 @@
                                 </div>
                             </td>
                             <td class="table-column-pl-0">
-                                <a class="d-flex align-items-center" href="./setting-role-form.html">
+                                <a class="d-flex align-items-center" href="edit_role?id=${roles.id}">
                                     <div class="ml-3">
                                         <span class="d-block h5 text-hover-primary mb-0">${roles.name}</span>
                                     </div>
@@ -243,7 +243,7 @@
                             <td>${roles.description}</td>
                             <td>
                                 <div class="btn-group" role="group">
-                                    <a class="btn btn-sm btn-white" href="./setting-role-form.html">
+                                    <a class="btn btn-sm btn-white" href="edit_role?id=${roles.id}">
                                         <i class="tio-edit"></i> Chỉnh sửa
                                     </a>
                                     <div class="hs-unfold btn-group">
@@ -326,6 +326,7 @@
         function hideMessage() {
             message.style.display = 'none';
         }
+
         setTimeout(hideMessage, 5000);
     }
 </script>

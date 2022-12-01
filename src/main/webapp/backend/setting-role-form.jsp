@@ -1,4 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
 <html>
 
@@ -7,7 +8,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <!-- Title -->
-    <title>VTV | Admin - Thêm mới vai trò</title>
+    <c:if test="${title == null}">
+        <title>VTV | Admin - Thêm mới vai trò</title>
+    </c:if>
+    <c:if test="${title != null}">
+        <title>VTV | Admin - ${title}</title>
+    </c:if>
 
     <jsp:include page="css.jsp"/>
 </head>
@@ -30,7 +36,12 @@
                             </li>
                         </ol>
                     </nav>
-                    <h1 class="page-header-title mt-2 ml-3">Thêm mới vai trò</h1>
+                    <c:if test="${title == null}">
+                        <h1 class="page-header-title mt-2 ml-3">Thêm mới vai trò</h1>
+                    </c:if>
+                    <c:if test="${title != null}">
+                        <h1 class="page-header-title mt-2 ml-3">${title}</h1>
+                    </c:if>
                 </div>
             </div>
         </div>
