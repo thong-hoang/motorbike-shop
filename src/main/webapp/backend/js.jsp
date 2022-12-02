@@ -1,8 +1,11 @@
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+
 <script src="assets\vendor\hs-navbar-vertical-aside\hs-navbar-vertical-aside-mini-cache.js"></script>
 <script src="assets\js\demo.js"></script>
 <script src="assets\js\vendor.min.js"></script>
 <script src="assets\js\theme.min.js"></script>
 <script src="assets\vendor\chart.js\dist\Chart.min.js"></script>
+
 <script>
     $(document).on('ready', function () {
         // BUILDER TOGGLE INVOKER
@@ -99,8 +102,8 @@
             },
             language: {
                 zeroRecords: '<div class="text-center p-4">' +
-                    '<img class="mb-3" src="./assets/svg/illustrations/sorry.svg" alt="Image Description" style="width: 7rem;">' +
-                    '<p class="mb-0">No data to show</p>' +
+                    '<img class="mb-3" src="../images/admin/sorry.svg" alt="Image Description" style="width: 7rem;">' +
+                    '<p class="mb-0">Không có dữ liệu để hiển thị</p>' +
                     '</div>'
             }
         });

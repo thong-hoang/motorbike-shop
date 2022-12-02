@@ -11,6 +11,7 @@
     <c:if test="${title == null}">
         <title>VTV | Admin - Thêm mới vai trò</title>
     </c:if>
+
     <c:if test="${title != null}">
         <title>VTV | Admin - ${title}</title>
     </c:if>
@@ -36,12 +37,14 @@
                             </li>
                         </ol>
                     </nav>
+
                     <c:if test="${title == null}">
                         <h1 class="page-header-title mt-2 ml-3">Thêm mới vai trò</h1>
                     </c:if>
                     <c:if test="${title != null}">
                         <h1 class="page-header-title mt-2 ml-3">${title}</h1>
                     </c:if>
+
                 </div>
             </div>
         </div>
@@ -53,35 +56,45 @@
             </div>
 
             <div class="col-lg-8">
-                <form action="create_role" method="post">
-                    <div class="card">
-                        <div class="card-body">
-                            <div class="row">
-                                <div class="col-sm-6">
-                                    <div class="form-group">
-                                        <label for="roleName" class="input-label">Tên vai trò</label>
-                                        <input type="text" class="form-control" name="name" id="roleName"
-                                               placeholder="Nhập tên vai trò" value="${role.name}">
+
+                <c:if test="${role.id != null}">
+                <form action="update_role" method="post">
+                    <input type="hidden" name="id" value="${role.id}"/>
+                    </c:if>
+
+                    <c:if test="${role.id == null}">
+                    <form action="create_role" method="post">
+                        </c:if>
+
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label for="roleName" class="input-label">Tên vai trò</label>
+                                            <input type="text" class="form-control" name="name" id="roleName"
+                                                   placeholder="Nhập tên vai trò" value="${role.name}">
+                                        </div>
+                                    </div>
+
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label for="description" class="input-label">Chú thích</label>
+                                            <textarea id="description" cols="30" rows="3" class="form-control"
+                                                      name="description"
+                                                      id="lastNameAddressLabel">${role.description}</textarea>
+                                        </div>
                                     </div>
                                 </div>
 
-                                <div class="col-sm-6">
-                                    <div class="form-group">
-                                        <label for="description" class="input-label">Chú thích</label>
-                                        <textarea id="description" cols="30" rows="3" class="form-control"
-                                                  name="description"
-                                                  id="lastNameAddressLabel">${role.description}</textarea>
-                                    </div>
+                                <div class="d-flex justify-content-end">
+                                    <button type="submit" class="btn btn-primary mr-2">Lưu</button>
+                                    <a href="list_roles" class="btn btn-danger" role="button"
+                                       aria-pressed="true">Hủy</a>
                                 </div>
-                            </div>
-
-                            <div class="d-flex justify-content-end">
-                                <button type="submit" class="btn btn-primary mr-2">Lưu</button>
-                                <a href="list_roles" class="btn btn-danger" role="button" aria-pressed="true">Hủy</a>
                             </div>
                         </div>
-                    </div>
-                </form>
+                    </form>
             </div>
         </div>
     </div>
