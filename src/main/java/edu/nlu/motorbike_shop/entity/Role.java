@@ -1,10 +1,9 @@
 package edu.nlu.motorbike_shop.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
-@Data
+@Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 public class Role {
@@ -20,5 +19,10 @@ public class Role {
     public Role(String name, String description) {
         this.name = name;
         this.description = description;
+    }
+
+    @Override
+    public String toString() {
+        return name;
     }
 }
