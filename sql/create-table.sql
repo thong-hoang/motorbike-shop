@@ -1,13 +1,22 @@
 CREATE TABLE `addresses`
 (
-    `id`       int                                                           NOT NULL AUTO_INCREMENT,
-    `address`  varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
-    `ward`     varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci  NULL DEFAULT NULL,
-    `district` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci  NULL DEFAULT NULL,
-    `city`     varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci  NULL DEFAULT NULL,
-    PRIMARY KEY (`id`) USING BTREE
+    `id`          int                                                           NOT NULL AUTO_INCREMENT,
+    `street`      varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
+    `ward`        varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci  NULL DEFAULT NULL,
+    `district`    varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci  NULL DEFAULT NULL,
+    `city`        varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci  NULL DEFAULT NULL,
+    `user_id`     int                                                           NULL DEFAULT NULL,
+    `customer_id` int                                                           NULL DEFAULT NULL,
+    `order_id`    int                                                           NULL DEFAULT NULL,
+    PRIMARY KEY (`id`) USING BTREE,
+    INDEX `fk_address_user` (`user_id` ASC) USING BTREE,
+    INDEX `fk_address_customer` (`customer_id` ASC) USING BTREE,
+    INDEX `fk_address_order` (`order_id` ASC) USING BTREE,
+    CONSTRAINT `fk_address_user` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE RESTRICT,
+    CONSTRAINT `fk_address_customer` FOREIGN KEY (`customer_id`) REFERENCES `customers` (`id`) ON DELETE CASCADE ON UPDATE RESTRICT,
+    CONSTRAINT `fk_address_order` FOREIGN KEY (`order_id`) REFERENCES `orders` (`id`) ON DELETE CASCADE ON UPDATE RESTRICT
 ) ENGINE = InnoDB
-  AUTO_INCREMENT = 1
+  AUTO_INCREMENT = 2
   CHARACTER SET = utf8mb4
   COLLATE = utf8mb4_general_ci;
 
@@ -17,17 +26,14 @@ CREATE TABLE `users`
     `first_name`   varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
     `last_name`    varchar(45) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci  NOT NULL,
     `phone_number` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci  NOT NULL,
-    `address_id`   int                                                           NOT NULL,
     `image_path`   varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci  NULL DEFAULT NULL,
     `email`        varchar(128) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
     `password`     varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci  NOT NULL,
     `enabled`      bit(1)                                                        NOT NULL,
     PRIMARY KEY (`id`) USING BTREE,
-    UNIQUE INDEX `email_UNIQUE` (`email` ASC) USING BTREE,
-    INDEX `fk_user_address` (`address_id` ASC) USING BTREE,
-    CONSTRAINT `fk_user_address` FOREIGN KEY (`address_id`) REFERENCES `addresses` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT
+    UNIQUE INDEX `email_UNIQUE` (`email` ASC) USING BTREE
 ) ENGINE = InnoDB
-  AUTO_INCREMENT = 1
+  AUTO_INCREMENT = 2
   CHARACTER SET = utf8mb4
   COLLATE = utf8mb4_general_ci;
 
@@ -49,8 +55,8 @@ CREATE TABLE `user_role`
     `role_id` int NOT NULL,
     PRIMARY KEY (`user_id`, `role_id`) USING BTREE,
     INDEX `fk_role` (`role_id` ASC) USING BTREE,
-    CONSTRAINT `fk_role` FOREIGN KEY (`role_id`) REFERENCES `roles` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
-    CONSTRAINT `fk_user` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT
+    CONSTRAINT `fk_role` FOREIGN KEY (`role_id`) REFERENCES `roles` (`id`) ON DELETE NO ACTION ON UPDATE RESTRICT,
+    CONSTRAINT `fk_user` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE RESTRICT
 ) ENGINE = InnoDB
   CHARACTER SET = utf8mb4
   COLLATE = utf8mb4_general_ci;
@@ -61,7 +67,6 @@ CREATE TABLE `customers`
     `first_name`          varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
     `last_name`           varchar(45) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci  NOT NULL,
     `phone_number`        varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci  NULL DEFAULT NULL,
-    `address_id`          int                                                           NULL DEFAULT NULL,
     `email`               varchar(128) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
     `password`            varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci  NOT NULL,
     `created_time`        datetime                                                      NOT NULL,
@@ -69,9 +74,7 @@ CREATE TABLE `customers`
     `verification_code`   varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci  NULL DEFAULT NULL,
     `enabled`             bit(1)                                                        NOT NULL,
     PRIMARY KEY (`id`) USING BTREE,
-    UNIQUE INDEX `email_UNIQUE` (`email` ASC) USING BTREE,
-    INDEX `fk_customer_address` (`address_id` ASC) USING BTREE,
-    CONSTRAINT `fk_customer_address` FOREIGN KEY (`address_id`) REFERENCES `addresses` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT
+    UNIQUE INDEX `email_UNIQUE` (`email` ASC) USING BTREE
 ) ENGINE = InnoDB
   AUTO_INCREMENT = 1
   CHARACTER SET = utf8mb4
@@ -122,8 +125,8 @@ CREATE TABLE `brand_category`
     `category_id` int NOT NULL,
     PRIMARY KEY (`brand_id`, `category_id`) USING BTREE,
     INDEX `fk_category_idx` (`category_id` ASC) USING BTREE,
-    CONSTRAINT `fk_brand_category` FOREIGN KEY (`brand_id`) REFERENCES `brands` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
-    CONSTRAINT `fk_category_brand` FOREIGN KEY (`category_id`) REFERENCES `categories` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT
+    CONSTRAINT `fk_brand_category` FOREIGN KEY (`brand_id`) REFERENCES `brands` (`id`) ON DELETE NO ACTION ON UPDATE RESTRICT,
+    CONSTRAINT `fk_category_brand` FOREIGN KEY (`category_id`) REFERENCES `categories` (`id`) ON DELETE NO ACTION ON UPDATE RESTRICT
 ) ENGINE = InnoDB
   CHARACTER SET = utf8mb4
   COLLATE = utf8mb4_general_ci;
@@ -146,8 +149,8 @@ CREATE TABLE `products`
     UNIQUE INDEX `name_UNIQUE` (`name` ASC) USING BTREE,
     INDEX `fk_product_brand_idx` (`brand_id` ASC) USING BTREE,
     INDEX `fk_product_category_idx` (`category_id` ASC) USING BTREE,
-    CONSTRAINT `fk_product_brand` FOREIGN KEY (`brand_id`) REFERENCES `brands` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
-    CONSTRAINT `fk_product_category` FOREIGN KEY (`category_id`) REFERENCES `categories` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT
+    CONSTRAINT `fk_product_brand` FOREIGN KEY (`brand_id`) REFERENCES `brands` (`id`) ON DELETE NO ACTION ON UPDATE RESTRICT,
+    CONSTRAINT `fk_product_category` FOREIGN KEY (`category_id`) REFERENCES `categories` (`id`) ON DELETE NO ACTION ON UPDATE RESTRICT
 ) ENGINE = InnoDB
   AUTO_INCREMENT = 1
   CHARACTER SET = utf8mb4
@@ -161,7 +164,7 @@ CREATE TABLE `product_details`
     `product_id` int                                                           NOT NULL,
     PRIMARY KEY (`id`) USING BTREE,
     INDEX `fk_product_detail_idx` (`product_id` ASC) USING BTREE,
-    CONSTRAINT `fk_product_detail` FOREIGN KEY (`product_id`) REFERENCES `products` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT
+    CONSTRAINT `fk_product_detail` FOREIGN KEY (`product_id`) REFERENCES `products` (`id`) ON DELETE CASCADE ON UPDATE RESTRICT
 ) ENGINE = InnoDB
   AUTO_INCREMENT = 2
   CHARACTER SET = utf8mb4
@@ -174,7 +177,7 @@ CREATE TABLE `product_images`
     `product_id` int                                                           NOT NULL,
     PRIMARY KEY (`id`) USING BTREE,
     INDEX `fk_product_image_idx` (`product_id` ASC) USING BTREE,
-    CONSTRAINT `fk_product_image` FOREIGN KEY (`product_id`) REFERENCES `products` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT
+    CONSTRAINT `fk_product_image` FOREIGN KEY (`product_id`) REFERENCES `products` (`id`) ON DELETE CASCADE ON UPDATE RESTRICT
 ) ENGINE = InnoDB
   AUTO_INCREMENT = 2
   CHARACTER SET = utf8mb4
@@ -196,8 +199,8 @@ CREATE TABLE `product_status`
     `status_id`  int NOT NULL,
     PRIMARY KEY (`product_id`, `status_id`) USING BTREE,
     INDEX `fk_status_product` (`status_id` ASC) USING BTREE,
-    CONSTRAINT `fk_status_product` FOREIGN KEY (`status_id`) REFERENCES `status` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
-    CONSTRAINT `fk_product_status` FOREIGN KEY (`product_id`) REFERENCES `products` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT
+    CONSTRAINT `fk_status_product` FOREIGN KEY (`status_id`) REFERENCES `status` (`id`) ON DELETE CASCADE ON UPDATE RESTRICT,
+    CONSTRAINT `fk_product_status` FOREIGN KEY (`product_id`) REFERENCES `products` (`id`) ON DELETE CASCADE ON UPDATE RESTRICT
 ) ENGINE = InnoDB
   CHARACTER SET = utf8mb4
   COLLATE = utf8mb4_general_ci;
@@ -215,8 +218,8 @@ CREATE TABLE `reviews`
     PRIMARY KEY (`id`) USING BTREE,
     INDEX `fk_review_customer` (`customer_id` ASC) USING BTREE,
     INDEX `fk_review_product` (`product_id` ASC) USING BTREE,
-    CONSTRAINT `fk_review_customer` FOREIGN KEY (`customer_id`) REFERENCES `customers` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
-    CONSTRAINT `fk_review_product` FOREIGN KEY (`product_id`) REFERENCES `products` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT
+    CONSTRAINT `fk_review_customer` FOREIGN KEY (`customer_id`) REFERENCES `customers` (`id`) ON DELETE CASCADE ON UPDATE RESTRICT,
+    CONSTRAINT `fk_review_product` FOREIGN KEY (`product_id`) REFERENCES `products` (`id`) ON DELETE CASCADE ON UPDATE RESTRICT
 ) ENGINE = InnoDB
   AUTO_INCREMENT = 1
   CHARACTER SET = utf8mb4
@@ -226,7 +229,6 @@ CREATE TABLE `orders`
 (
     `id`             int      NOT NULL AUTO_INCREMENT,
     `customer_id`    int      NOT NULL,
-    `address_id`     int      NULL DEFAULT NULL,
     `order_time`     datetime NOT NULL,
     `payment_method` bit(1)   NOT NULL,
     `price`          float    NOT NULL,
@@ -237,9 +239,7 @@ CREATE TABLE `orders`
     `status`         tinyint  NOT NULL,
     PRIMARY KEY (`id`) USING BTREE,
     INDEX `fk_order_customer_idx` (`customer_id` ASC) USING BTREE,
-    INDEX `fk_order_address` (`address_id` ASC) USING BTREE,
-    CONSTRAINT `fk_order_customer` FOREIGN KEY (`customer_id`) REFERENCES `customers` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
-    CONSTRAINT `fk_order_address` FOREIGN KEY (`address_id`) REFERENCES `addresses` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT
+    CONSTRAINT `fk_order_customer` FOREIGN KEY (`customer_id`) REFERENCES `customers` (`id`) ON DELETE NO ACTION ON UPDATE RESTRICT
 ) ENGINE = InnoDB
   AUTO_INCREMENT = 1
   CHARACTER SET = utf8mb4
@@ -256,8 +256,8 @@ CREATE TABLE `order_details`
     PRIMARY KEY (`id`) USING BTREE,
     INDEX `fk_order_detail_idx` (`order_id` ASC) USING BTREE,
     INDEX `fk_order_product_idx` (`product_id` ASC) USING BTREE,
-    CONSTRAINT `fk_order_detail` FOREIGN KEY (`order_id`) REFERENCES `orders` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
-    CONSTRAINT `fk_order_product` FOREIGN KEY (`product_id`) REFERENCES `products` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT
+    CONSTRAINT `fk_order_detail` FOREIGN KEY (`order_id`) REFERENCES `orders` (`id`) ON DELETE CASCADE ON UPDATE RESTRICT,
+    CONSTRAINT `fk_order_product` FOREIGN KEY (`product_id`) REFERENCES `products` (`id`) ON DELETE NO ACTION ON UPDATE RESTRICT
 ) ENGINE = InnoDB
   AUTO_INCREMENT = 1
   CHARACTER SET = utf8mb4
