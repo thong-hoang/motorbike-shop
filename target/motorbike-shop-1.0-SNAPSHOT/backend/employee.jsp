@@ -28,7 +28,7 @@
                 </div>
 
                 <div class="col-sm-auto">
-                    <a class="btn btn-primary" href="employee-form.jsp">
+                    <a class="btn btn-primary" href="create_employee">
                         <i class="tio-user-add mr-1"></i> Thêm nhân viên
                     </a>
                 </div>
@@ -216,12 +216,6 @@
                    }'>
                     <thead class="thead-light">
                     <tr>
-                        <th class="table-column-pr-0">
-                            <div class="custom-control custom-checkbox">
-                                <input id="datatableCheckAll" type="checkbox" class="custom-control-input">
-                                <label class="custom-control-label" for="datatableCheckAll"></label>
-                            </div>
-                        </th>
                         <th>Tên</th>
                         <th>Số điện thoại</th>
                         <th>Địa chỉ</th>
@@ -234,15 +228,7 @@
 
                     <c:forEach var="employees" items="${listEmployees}">
                         <tr>
-                            <td class="table-column-pr-0">
-                                <div class="custom-control custom-checkbox">
-                                    <input type="checkbox" class="custom-control-input"
-                                           id="usersDataCheck${employees.id}">
-                                    <label class="custom-control-label" for="usersDataCheck${employees.id}"></label>
-                                </div>
-                            </td>
-
-                            <td class="table-column-pl-0">
+                            <td>
                                 <a class="d-flex align-items-center" href="edit_employee?id=${employees.id}">
                                     <c:if test="${employees.imagePath == null}">
                                         <div class="avatar avatar-soft-dark avatar-circle">
@@ -257,11 +243,20 @@
                                                  alt="Image Description">
                                         </div>
                                     </c:if>
+
                                     <div class="ml-3">
-                                        <span class="d-block h5 text-hover-primary mb-0">
+                                        <c:if test="${employees.id == 1}">
+                                                <span class="d-block h5 text-hover-primary mb-0">
                                                 ${employees.lastName} ${employees.firstName}
-                        <i class="tio-verified text-primary" data-toggle="tooltip" data-placement="top"></i>
-                                </span>
+                                                <i class="tio-verified text-primary" data-toggle="tooltip"
+                                                   data-placement="top"></i>
+                                                </span>
+                                        </c:if>
+                                        <c:if test="${employees.id != 1}">
+                                                <span class="d-block h5 text-hover-primary mb-0">
+                                                        ${employees.lastName} ${employees.firstName}
+                                                </span>
+                                        </c:if>
                                         <span class="d-block font-size-sm text-body">${employees.email}</span>
                                     </div>
                                 </a>
@@ -270,11 +265,16 @@
                                 <span class="d-block font-size-sm">${employees.phoneNumber}</span>
                             </td>
                             <td>
-                        <span class="d-block font-size-sm">
+                                <c:if test="${employees.address == null}">
+                                    <span></span>
+                                </c:if>
+                                <c:if test="${employees.address != null}">
+                                <span class="d-block font-size-sm">
                                 ${employees.address.street},
                                 ${employees.address.ward}, ${employees.address.district},
                                 ${employees.address.city}
-                        </span>
+                                </span>
+                                </c:if>
                             </td>
                             <td>${employees.roles}</td>
                             <td>
@@ -303,13 +303,13 @@
                             "dropdownAutoWidth": true,
                             "width": true
                           }'>
-                                <option value="5">5</option>
-                                <option value="10" selected>10</option>
+                                <option value="5" selected>5</option>
+                                <option value="10">10</option>
                                 <option value="15">15</option>
                             </select>
                             <!-- End Select -->
 
-                            <span class="text-secondary mr-2">trên</span>
+                            <span class="text-secondary mr-2">&nbsp; trên ${totalEmployees}</span>
 
                             <!-- Pagination Quantity -->
                             <span id="datatableWithPaginationInfoTotalQty"></span>

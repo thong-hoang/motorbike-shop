@@ -1,7 +1,10 @@
 package edu.nlu.motorbike_shop.service;
 
 import edu.nlu.motorbike_shop.dao.EmployeeDAO;
+import edu.nlu.motorbike_shop.dao.RoleDAO;
+import edu.nlu.motorbike_shop.entity.Address;
 import edu.nlu.motorbike_shop.entity.Employee;
+import edu.nlu.motorbike_shop.entity.Role;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -11,6 +14,7 @@ import java.util.List;
 
 public class EmployeeService {
     private EmployeeDAO employeeDAO = EmployeeDAO.getInstance();
+    private RoleDAO roleDAO = RoleDAO.getInstance();
     private HttpServletRequest request;
     private HttpServletResponse response;
 
@@ -39,6 +43,7 @@ public class EmployeeService {
 
         request.setAttribute("listEmployees", employees);
         request.setAttribute("numberOfEmployees", numberOfEmployees);
+        request.setAttribute("totalEmployees", numberOfEmployees);
 
         if (message != null)
             request.setAttribute("message", message);
@@ -56,5 +61,53 @@ public class EmployeeService {
 
     public void listEmployee() throws ServletException, IOException {
         listEmployee(null);
+    }
+    public void getRolesDisplayedAdminInterface() {
+        List<Role> roles =  roleDAO.findAllRolesExceptAdmin();
+        request.setAttribute("roles", roles);
+    }
+    public void createEmployee() throws ServletException, IOException {
+        getRolesDisplayedAdminInterface();
+        request.getRequestDispatcher("employee-form.jsp").forward(request, response);
+    }
+    public void save() throws ServletException, IOException {
+        request.setCharacterEncoding("UTF-8");
+        String imagePath = request.getParameter("imagePath");
+        String firstName = request.getParameter("firstName");
+        String lastName = request.getParameter("lastName");
+        String email = request.getParameter("email");
+        String password = request.getParameter("password");
+        String street = request.getParameter("street");
+        String ward = request.getParameter("ward");
+        String district = request.getParameter("district");
+        String city = request.getParameter("city");
+        String phone = request.getParameter("phone");
+        String[] roles = request.getParameterValues("roles");
+        boolean enabled = Boolean.parseBoolean(request.getParameter("enabled"));
+
+        boolean existEmployee = employeeDAO.checkEmailExists(email);
+
+        if (existEmployee) {
+            String message = "Email " + email + " đã tồn tại!!!";
+            request.setAttribute("message", message);
+
+            Employee employee = new Employee(firstName, lastName, phone, new Address(street, ward, district, city),
+                    imagePath, email, password, enabled);
+            getRolesDisplayedAdminInterface();
+            request.setAttribute("employee", employee);
+
+            String employeeFormPage = "employee-form.jsp";
+            request.getRequestDispatcher(employeeFormPage).forward(request, response);
+        } else {
+            Employee newEmployee = new Employee(firstName, lastName, phone, new Address(street, ward, district, city),
+                    imagePath, email, password, enabled);
+            for (String role : roles) {
+                newEmployee.addRole(new Role(Integer.parseInt(role)));
+            }
+            employeeDAO.save(newEmployee);
+
+            String message = "Nhân viên " + lastName + " " + firstName + " đã được thêm thành công !";
+            listEmployee(message);
+        }
     }
 }
