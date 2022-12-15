@@ -35,9 +35,8 @@ public class RoleDAO implements Serializable {
     }
 
     /**
-     * Returns all instance of Role
-     *
-     * @return List of role entities
+     * Find all roles in the database.
+     * @return a list of roles. If there is no role in the database, return an empty list.
      */
 
     public List<Role> findAll() {
@@ -65,11 +64,11 @@ public class RoleDAO implements Serializable {
     }
 
     /**
-     * Save a role entity
+     * Save a role to the database.
      *
-     * @param role Must not be null.
-     * @return true if the Role entity is saved, false otherwise.
-     * @throws SQLIntegrityConstraintViolationException In case the name field is duplicated.
+     * @param role the role to be saved.
+     * @return true if the role is saved successfully, false otherwise.
+     * @throws SQLIntegrityConstraintViolationException if the role already exists in the database.
      */
 
     public boolean save(Role role) {
@@ -89,10 +88,10 @@ public class RoleDAO implements Serializable {
     }
 
     /**
-     * Retrieves an role entity by its name.
+     * Find a role by its name.
      *
-     * @param name A string specifying the name of the role
-     * @return Role entity if the role entity with the given name exists, false otherwise.
+     * @param name the name of the role.
+     * @return the role if it exists, null otherwise.
      */
 
     public Role findByName(String name) {
@@ -118,11 +117,11 @@ public class RoleDAO implements Serializable {
     }
 
     /**
-     * Update a role entity
+     * Update a role in the database.
      *
-     * @param role Must not be null.
-     * @return true if the Role entity is updated, false otherwise.
-     * @throws SQLIntegrityConstraintViolationException In case the name field is duplicated.
+     * @param role the role to be updated.
+     * @return true if the role is updated successfully, false otherwise.
+     * @throws SQLIntegrityConstraintViolationException if the role already exists in the database.
      */
 
     public boolean update(Role role) {
@@ -143,10 +142,10 @@ public class RoleDAO implements Serializable {
     }
 
     /**
-     * Retrieves an role entity by its id.
+     * Find a role by its id.
      *
-     * @param id A id specifying the id of the role
-     * @return Role entity if the role entity with the given id exists, false otherwise.
+     * @param id the id of the role.
+     * @return the role if it exists, null otherwise.
      */
 
     public Role findById(Integer id) {
@@ -172,9 +171,8 @@ public class RoleDAO implements Serializable {
     }
 
     /**
-     * Delete a role entity
-     *
-     * @param id Id of role entity
+     * Delete a role by its id.
+     * @param id the id of the role.
      */
 
     public void delete(Integer id) {
@@ -191,9 +189,9 @@ public class RoleDAO implements Serializable {
     }
 
     /**
-     * Returns the number of role entities available.
+     * Total number of roles in the database.
      *
-     * @return The number of role entities, 0 if entity is not available.
+     * @return the total number of roles.
      */
 
     public long count() {
@@ -210,5 +208,34 @@ public class RoleDAO implements Serializable {
         }
 
         return 0;
+    }
+
+    /**
+     * Return all roles in the database except admin
+     * @return a list of roles except admin. If there is no role in the database, return an empty list.
+     */
+
+    public List<Role> findAllRolesExceptAdmin() {
+        List<Role> roles = new ArrayList<>();
+        String sql = "SELECT * FROM roles WHERE id != 1";
+
+        try (Connection conn = DBUtils.makeConnection();
+             PreparedStatement stm = conn.prepareStatement(sql)) {
+            try (ResultSet rs = stm.executeQuery()) {
+                while (rs.next()) {
+                    Integer id = rs.getInt("id");
+                    String name = rs.getString("name");
+                    String description = rs.getString("description");
+
+                    Role role = new Role(id, name, description);
+
+                    roles.add(role);
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return roles;
     }
 }

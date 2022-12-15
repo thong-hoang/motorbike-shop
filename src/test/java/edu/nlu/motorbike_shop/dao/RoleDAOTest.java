@@ -69,4 +69,11 @@ public class RoleDAOTest {
 
         assertNull(role);
     }
+
+    @Test
+    public void testFindAllRolesExceptAdmin() {
+        List<Role> roles = roleDAO.findAllRolesExceptAdmin();
+
+        assertTrue(roles.size() > 0);
+    }
 }
