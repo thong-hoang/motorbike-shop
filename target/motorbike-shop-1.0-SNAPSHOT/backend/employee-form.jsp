@@ -1,5 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
 <html>
 
@@ -49,7 +50,7 @@
             <input type="hidden" name="id" value="${employee.id}"/>
             </c:if>
 
-            <c:if test="${role.id == null}">
+            <c:if test="${employee.id == null}">
             <form class="js-step-form py-md-5" action="create_employee" method="post">
                 </c:if>
 
@@ -195,11 +196,22 @@
                                         <label class="col-sm-3 col-form-label input-label" for="roleLabel">Vai
                                             trò</label>
                                         <div class="col-sm-9 pt-1">
-                                            <c:forEach var="role" items="${roles}">
-                                                <input id="roleLabel" type="checkbox" class="mt-2" name="roles"
-                                                       value="${role.id}"> ${role.name}
-                                                - <small>${role.description}</small><br>
-                                            </c:forEach>
+                                            <c:if test="${employee.id == null}">
+                                                <c:forEach var="role" items="${roles}">
+                                                    <input id="roleLabel" type="checkbox" class="mt-2" name="roles"
+                                                           value="${role.id}"> ${role.name}
+                                                    - <small>${role.description}</small><br>
+                                                </c:forEach>
+                                            </c:if>
+
+                                            <c:if test="${employee.id != null}">
+                                                <c:forEach var="role" items="${roleMap}">
+                                                    <input id="roleLabel" type="checkbox" class="mt-2" name="roles"
+                                                           value="${role.key.id}"
+                                                        ${role.value}> ${role.key.name}
+                                                    - <small>${role.key.description}</small><br>
+                                                </c:forEach>
+                                            </c:if>
                                         </div>
                                     </div>
 
@@ -208,7 +220,7 @@
                                             động</label>
                                         <div class="col-sm-9 pt-1">
                                             <input type="checkbox" class="mt-2" name="enabled"
-                                                   value="${employee.enabled}" id="enabled">
+                                                   value="${employee.enabled}" id="enabled" checked>
                                         </div>
                                     </div>
                                 </div>

@@ -220,6 +220,7 @@
                         <th>Số điện thoại</th>
                         <th>Địa chỉ</th>
                         <th>Vai trò</th>
+                        <th>Trạng thái</th>
                         <th></th>
                     </tr>
                     </thead>
@@ -227,63 +228,96 @@
                     <tbody>
 
                     <c:forEach var="employees" items="${listEmployees}">
-                        <tr>
-                            <td>
-                                <a class="d-flex align-items-center" href="edit_employee?id=${employees.id}">
-                                    <c:if test="${employees.imagePath == null}">
+                        <c:if test="${employees.id == 1}">
+                            <tr>
+                                <td>
+                                    <a class="d-flex align-items-center">
                                         <div class="avatar avatar-soft-dark avatar-circle">
                                             <span class="avatar-initials">O</span>
                                         </div>
-                                    </c:if>
-
-                                    <c:if test="${employees.imagePath != null}">
-                                        <div class="avatar avatar-circle">
-                                            <p>${employees.imagePath}</p>
-                                            <img class="avatar-img" src="../images/user/user.png"
-                                                 alt="Image Description">
-                                        </div>
-                                    </c:if>
-
-                                    <div class="ml-3">
-                                        <c:if test="${employees.id == 1}">
-                                                <span class="d-block h5 text-hover-primary mb-0">
-                                                ${employees.lastName} ${employees.firstName}
+                                        <div class="ml-3">
+                                            <span class="d-block h5 text-hover-primary mb-0">
+                                                 ${employees.firstName}
                                                 <i class="tio-verified text-primary" data-toggle="tooltip"
                                                    data-placement="top"></i>
-                                                </span>
-                                        </c:if>
-                                        <c:if test="${employees.id != 1}">
-                                                <span class="d-block h5 text-hover-primary mb-0">
-                                                        ${employees.lastName} ${employees.firstName}
-                                                </span>
-                                        </c:if>
-                                        <span class="d-block font-size-sm text-body">${employees.email}</span>
-                                    </div>
-                                </a>
-                            </td>
-                            <td>
-                                <span class="d-block font-size-sm">${employees.phoneNumber}</span>
-                            </td>
-                            <td>
-                                <c:if test="${employees.address == null}">
+                                            </span>
+                                            <span class="d-block font-size-sm text-body">${employees.email}</span>
+                                        </div>
+                                    </a>
+                                </td>
+                                <td>
+                                    <span class="d-block font-size-sm">${employees.phoneNumber}</span>
+                                </td>
+                                <td>
                                     <span></span>
-                                </c:if>
-                                <c:if test="${employees.address != null}">
-                                <span class="d-block font-size-sm">
-                                ${employees.address.street},
-                                ${employees.address.ward}, ${employees.address.district},
-                                ${employees.address.city}
-                                </span>
-                                </c:if>
-                            </td>
-                            <td>${employees.roles}</td>
-                            <td>
-                                <a class="btn btn-sm btn-white" href="javascript:;" data-toggle="modal"
-                                   data-target="#editUserModal">
-                                    <i class="tio-edit"></i>
-                                </a>
-                            </td>
-                        </tr>
+                                </td>
+                                <td>${employees.roles}</td>
+                                <td>
+                                </td>
+                            </tr>
+                        </c:if>
+                        <c:if test="${employees.id != 1}">
+                            <tr>
+                                <td>
+                                    <a class="d-flex align-items-center" href="edit_employee?id=${employees.id}">
+                                        <c:if test="${employees.imagePath == null}">
+                                            <div class="avatar avatar-soft-dark avatar-circle">
+                                                <span class="avatar-initials">O</span>
+                                            </div>
+                                        </c:if>
+
+                                        <c:if test="${employees.imagePath != null}">
+                                            <div class="avatar avatar-circle">
+                                                <p>${employees.imagePath}</p>
+                                                <img class="avatar-img" src="../images/user/user.png"
+                                                     alt="Image Description">
+                                            </div>
+                                        </c:if>
+
+                                        <div class="ml-3">
+                                            <span class="d-block h5 text-hover-primary mb-0">
+                                                        ${employees.lastName} ${employees.firstName}
+                                            </span>
+                                            <span class="d-block font-size-sm text-body">${employees.email}</span>
+                                        </div>
+                                    </a>
+                                </td>
+                                <td>
+                                    <span class="d-block font-size-sm">${employees.phoneNumber}</span>
+                                </td>
+                                <td>
+                                    <span class="d-block font-size-sm">
+                                        ${employees.address.street},
+                                        ${employees.address.ward}, ${employees.address.district},
+                                        ${employees.address.city}
+                                    </span>
+                                </td>
+                                <td>${employees.roles}</td>
+                                <td>
+                                    <input type="hidden" value="${employees.enabled}">
+                                    <c:if test="${employees.enabled == true}">
+                                        <a class="fas fa-check-circle fa-2x icon-gray"
+                                           href="enable_employee?enabled=false&id=${employees.id}" title="Vô hiệu hoá">
+                                        </a>
+                                    </c:if>
+                                    <c:if test="${employees.enabled == false}">
+                                        <a class="fas fa-check-circle fa-2x icon-green"
+                                           href="enable_employee?enabled=true&id=${employees.id}" title="Kích hoạt">
+                                        </a>
+                                    </c:if>
+                                </td>
+                                <td>
+                                    <div class="btn-group" role="group">
+                                        <a class="btn btn-sm btn-white" href="edit_employee?id=${employees.id}">
+                                            <i class="tio-edit"></i> Chỉnh sửa
+                                        </a>
+                                        <a class="btn btn-sm btn-white" href="delete_employee?id=${employees.id}">
+                                            <i class="tio-delete"></i> Xóa
+                                        </a>
+                                    </div>
+                                </td>
+                            </tr>
+                        </c:if>
                     </c:forEach>
                     </tbody>
                 </table>

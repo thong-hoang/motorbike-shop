@@ -10,7 +10,10 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 public class EmployeeService {
     private EmployeeDAO employeeDAO = EmployeeDAO.getInstance();
@@ -36,7 +39,6 @@ public class EmployeeService {
      * @throws ServletException If the request for the GET could not be handled
      * @throws IOException      If an input or output error is detected when the servlet handles the GET request
      */
-
     public void listEmployee(String message) throws ServletException, IOException {
         List<Employee> employees = employeeDAO.findAll(DEFAULT_SORT_TYPE, DEFAULT_PAGE_SIZE, DEFAULT_SORT_FIELD);
         long numberOfEmployees = employeeDAO.count();
@@ -58,18 +60,26 @@ public class EmployeeService {
      * @throws ServletException If the request for the GET could not be handled
      * @throws IOException      If an input or output error is detected when the servlet handles the GET request
      */
-
     public void listEmployee() throws ServletException, IOException {
         listEmployee(null);
     }
+
     public void getRolesDisplayedAdminInterface() {
-        List<Role> roles =  roleDAO.findAllRolesExceptAdmin();
+        List<Role> roles = roleDAO.findAllRolesExceptAdmin();
         request.setAttribute("roles", roles);
     }
+
     public void createEmployee() throws ServletException, IOException {
         getRolesDisplayedAdminInterface();
         request.getRequestDispatcher("employee-form.jsp").forward(request, response);
     }
+
+    /**
+     * Get the employee's information from the request and save it to the database.
+     *
+     * @throws ServletException If the request for the POST could not be handled
+     * @throws IOException      If an input or output error is detected when the servlet handles the POST request
+     */
     public void save() throws ServletException, IOException {
         request.setCharacterEncoding("UTF-8");
         String imagePath = request.getParameter("imagePath");
@@ -108,6 +118,37 @@ public class EmployeeService {
 
             String message = "Nhân viên " + lastName + " " + firstName + " đã được thêm thành công !";
             listEmployee(message);
+        }
+    }
+
+    /**
+     * Get the employee's infornamtions byid and display it to the user.
+     *
+     * @throws ServletException If the request for the GET could not be handled
+     * @throws IOException      If an input or output error is detected when the servlet handles the GET request
+     */
+
+    public void editEmployee() throws ServletException, IOException {
+        Integer id = Integer.valueOf(request.getParameter("id"));
+
+        Employee employee = employeeDAO.findById(id);
+        Map<Role, String> roleMap = new HashMap<>();
+
+        RoleDAO.getInstance().findAllRolesExceptAdmin().forEach(role -> roleMap.put(role, ""));
+        employee.getRoles().forEach(role -> roleMap.put(role, "checked"));
+
+        request.setAttribute("roleMap", roleMap);
+
+        String message;
+
+        if (employee == null) {
+            message = "Không tìm thấy nhân viên";
+            listEmployee(message);
+        } else {
+            request.setAttribute("employee", employee);
+            request.setAttribute("title", "Chỉnh sửa nhân viên");
+            String roleFormPage = "employee-form.jsp";
+            request.getRequestDispatcher(roleFormPage).forward(request, response);
         }
     }
 }
