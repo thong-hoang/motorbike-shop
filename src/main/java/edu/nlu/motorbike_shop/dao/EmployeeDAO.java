@@ -455,4 +455,23 @@ public class EmployeeDAO implements Serializable {
 
         return 0;
     }
+
+    /**
+     * Update enabled status of a user.
+     * @param id The id of the user to be updated.
+     * @param enabled The updated enabled status.
+     */
+    public void updateEnabledStatus(Integer id, boolean enabled) {
+        String sql = "UPDATE users SET enabled = ? WHERE id = ?";
+
+        try (Connection conn = DBUtils.makeConnection();
+             PreparedStatement stm = conn.prepareStatement(sql)) {
+            stm.setBoolean(1, enabled);
+            stm.setInt(2, id);
+
+            stm.executeUpdate();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 }

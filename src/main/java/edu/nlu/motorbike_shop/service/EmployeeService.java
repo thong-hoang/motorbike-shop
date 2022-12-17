@@ -131,7 +131,7 @@ public class EmployeeService {
     }
 
     /**
-     * Get role of employee from database and display it to user.
+     * Get role of employee corresponding from database and display it to user.
      *
      * @param employee The employee to get role.
      * @return A map of role and checked status.
@@ -145,7 +145,7 @@ public class EmployeeService {
     }
 
     /**
-     * Get the employee's infornamtions byid and display it to the user.
+     * Get the employee's infornamtions by id from request and display it to user.
      *
      * @throws ServletException If the request for the GET could not be handled
      * @throws IOException      If an input or output error is detected when the servlet handles the GET request
@@ -173,7 +173,7 @@ public class EmployeeService {
     }
 
     /**
-     * Update the employee's information to database.
+     * Get the employee's information from the request and update it to the database.
      *
      * @throws ServletException If the request for the POST could not be handled
      * @throws IOException      If an input or output error is detected when the servlet handles the POST request
@@ -236,6 +236,12 @@ public class EmployeeService {
         }
     }
 
+    /**
+     * Get the employee's id from the request and delete it from the database.
+     *
+     * @throws ServletException If the request for the GET could not be handled
+     * @throws IOException      If an input or output error is detected when the servlet handles the GET request
+     */
     public void deleteEmployee() throws ServletException, IOException {
         Integer id = Integer.valueOf(request.getParameter("id"));
 
@@ -248,6 +254,30 @@ public class EmployeeService {
         } else {
             employeeDAO.delete(id);
             message = "Nhân viên " + employee.getLastName() + " " + employee.getFirstName() + " đã được xóa thành công !";
+        }
+        listEmployee(message);
+    }
+
+    /**
+     * Get the employee's id and enable status from the request and update it to the database.
+     *
+     * @throws ServletException If the request for the GET could not be handled
+     * @throws IOException      If an input or output error is detected when the servlet handles the GET request
+     */
+    public void enabledEmployee() throws ServletException, IOException {
+        Integer id = Integer.valueOf(request.getParameter("id"));
+        boolean enabled = Boolean.parseBoolean(request.getParameter("enabled"));
+
+        Employee employee = employeeDAO.findById(id);
+
+        String message;
+
+        if (employee == null) {
+            message = "Không tìm thấy nhân viên hoặc nhân viên đã bị xóa";
+        } else {
+            employeeDAO.updateEnabledStatus(id, enabled);
+            message = "Nhân viên " + employee.getLastName() + " " + employee.getFirstName() + " đã được "
+                    + (enabled ? "kích hoạt" : "vô hiệu hóa") + " thành công !";
         }
         listEmployee(message);
     }
