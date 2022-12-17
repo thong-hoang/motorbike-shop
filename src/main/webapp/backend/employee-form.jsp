@@ -48,6 +48,7 @@
         <c:if test="${employee.id != null}">
         <form class="js-step-form py-md-5" action="update_employee" method="post">
             <input type="hidden" name="id" value="${employee.id}"/>
+            <input type="hidden" name="addressId" value="${employee.address.id}">
             </c:if>
 
             <c:if test="${employee.id == null}">
@@ -219,9 +220,23 @@
                                         <label class="col-sm-3 col-form-label input-label" for="enabled">Hoạt
                                             động</label>
                                         <div class="col-sm-9 pt-1">
-                                            <input type="checkbox" class="mt-2" name="enabled"
-                                                   value="${employee.enabled}" id="enabled">
+                                            <c:choose>
+                                                <c:when test="${employee != null}">
+                                                    <c:if test="${employee.enabled}">
+                                                        <input type="checkbox" class="mt-2" name="enabled" id="enabled"
+                                                               checked>
+                                                    </c:if>
+                                                    <c:if test="${!employee.enabled}">
+                                                        <input type="checkbox" class="mt-2" name="enabled" id="enabled">
+                                                    </c:if>
+                                                </c:when>
+                                                <c:otherwise>
+                                                    <input type="checkbox" class="mt-2" name="enabled" id="enabled"
+                                                           checked>
+                                                </c:otherwise>
+                                            </c:choose>
                                         </div>
+
                                     </div>
                                 </div>
                             </div>

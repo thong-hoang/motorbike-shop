@@ -10,22 +10,22 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
 public class EmployeeService {
-    private EmployeeDAO employeeDAO = EmployeeDAO.getInstance();
-    private RoleDAO roleDAO = RoleDAO.getInstance();
-    private HttpServletRequest request;
-    private HttpServletResponse response;
+    private final EmployeeDAO employeeDAO = EmployeeDAO.getInstance();
+    private final RoleDAO roleDAO = RoleDAO.getInstance();
+    private final HttpServletRequest request;
+    private final HttpServletResponse response;
 
     private final String DEFAULT_SORT_TYPE = "ASC";
 
     private final String DEFAULT_SORT_FIELD = "id";
 
-    private final int DEFAULT_PAGE_SIZE = 5;
+    private final int DEFAULT_PAGE_SIZE = 10;
 
     public EmployeeService(HttpServletRequest request, HttpServletResponse response) {
         this.request = request;
@@ -64,11 +64,20 @@ public class EmployeeService {
         listEmployee(null);
     }
 
+    /**
+     * Displays all roles except admin role from database to employee form.
+     */
     public void getRolesDisplayedAdminInterface() {
         List<Role> roles = roleDAO.findAllRolesExceptAdmin();
         request.setAttribute("roles", roles);
     }
 
+    /**
+     * Display employee form to user.
+     *
+     * @throws ServletException If the request for the GET could not be handled
+     * @throws IOException      If an input or output error is detected when the servlet handles the GET request
+     */
     public void createEmployee() throws ServletException, IOException {
         getRolesDisplayedAdminInterface();
         request.getRequestDispatcher("employee-form.jsp").forward(request, response);
@@ -93,7 +102,7 @@ public class EmployeeService {
         String city = request.getParameter("city");
         String phone = request.getParameter("phone");
         String[] roles = request.getParameterValues("roles");
-        boolean enabled = Boolean.parseBoolean(request.getParameter("enabled"));
+        boolean enabled = "on".equals(request.getParameter("enabled"));
 
         boolean existEmployee = employeeDAO.checkEmailExists(email);
 
@@ -122,20 +131,31 @@ public class EmployeeService {
     }
 
     /**
+     * Get role of employee from database and display it to user.
+     *
+     * @param employee The employee to get role.
+     * @return A map of role and checked status.
+     */
+    public Map<Role, String> getSelectedRoles(Employee employee) {
+        Map<Role, String> roleMap = new HashMap<>();
+
+        RoleDAO.getInstance().findAllRolesExceptAdmin().forEach(role -> roleMap.put(role, ""));
+        employee.getRoles().forEach(role -> roleMap.put(role, "checked"));
+        return roleMap;
+    }
+
+    /**
      * Get the employee's infornamtions byid and display it to the user.
      *
      * @throws ServletException If the request for the GET could not be handled
      * @throws IOException      If an input or output error is detected when the servlet handles the GET request
      */
-
     public void editEmployee() throws ServletException, IOException {
         Integer id = Integer.valueOf(request.getParameter("id"));
 
         Employee employee = employeeDAO.findById(id);
-        Map<Role, String> roleMap = new HashMap<>();
 
-        RoleDAO.getInstance().findAllRolesExceptAdmin().forEach(role -> roleMap.put(role, ""));
-        employee.getRoles().forEach(role -> roleMap.put(role, "checked"));
+        Map<Role, String> roleMap = getSelectedRoles(employee);
 
         request.setAttribute("roleMap", roleMap);
 
@@ -149,6 +169,64 @@ public class EmployeeService {
             request.setAttribute("title", "Chỉnh sửa nhân viên");
             String roleFormPage = "employee-form.jsp";
             request.getRequestDispatcher(roleFormPage).forward(request, response);
+        }
+    }
+
+    public void updateEmployee() throws ServletException, IOException {
+        request.setCharacterEncoding("UTF-8");
+
+        Integer id = Integer.valueOf(request.getParameter("id"));
+        String imagePath = request.getParameter("imagePath");
+        String firstName = request.getParameter("firstName");
+        String lastName = request.getParameter("lastName");
+        String email = request.getParameter("email");
+        String password = request.getParameter("password");
+        Integer addressId = Integer.valueOf(request.getParameter("addressId"));
+        String street = request.getParameter("street");
+        String ward = request.getParameter("ward");
+        String district = request.getParameter("district");
+        String city = request.getParameter("city");
+        String phone = request.getParameter("phone");
+        String[] roles = request.getParameterValues("roles");
+        boolean enabled = "on".equals(request.getParameter("enabled"));
+
+        Employee employeeById = employeeDAO.findById(id);
+        Employee employeeByEmail = employeeDAO.findByEmail(email);
+
+        String message;
+
+        if (employeeById == null) {
+            message = "Không tìm thấy nhân viên";
+            listEmployee(message);
+        } else {
+            if (employeeByEmail != null && id != employeeByEmail.getId()) {
+                message = "Email " + email + " đã tồn tại!!!";
+                request.setAttribute("message", message);
+
+                Employee employee = new Employee(id, firstName, lastName, phone, new Address(addressId, street, ward, district, city),
+                        imagePath, email, password, enabled);
+
+                Map<Role, String> roleMap = getSelectedRoles(employeeById);
+
+                request.setAttribute("roleMap", roleMap);
+                request.setAttribute("employee", employee);
+
+                request.setAttribute("title", "Chỉnh sửa nhân viên");
+
+                String updatePage = "employee-form.jsp";
+                request.getRequestDispatcher(updatePage).forward(request, response);
+            } else {
+                Employee employee = new Employee(id, firstName, lastName, phone, new Address(addressId, street, ward, district, city),
+                        imagePath, email, password, enabled);
+                for (String role : roles) {
+                    employee.addRole(new Role(Integer.parseInt(role)));
+                }
+
+                employeeDAO.update(employee);
+
+                message = "Nhân viên " + lastName + " " + firstName + " đã được cập nhật thành công !";
+                listEmployee(message);
+            }
         }
     }
 }

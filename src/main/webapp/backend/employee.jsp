@@ -294,14 +294,13 @@
                                 </td>
                                 <td>${employees.roles}</td>
                                 <td>
-                                    <input type="hidden" value="${employees.enabled}">
-                                    <c:if test="${employees.enabled == true}">
-                                        <a class="fas fa-check-circle fa-2x icon-gray"
+                                    <c:if test="${employees.enabled}">
+                                        <a class="fas fa-check-circle fa-2x icon-green"
                                            href="enable_employee?enabled=false&id=${employees.id}" title="Vô hiệu hoá">
                                         </a>
                                     </c:if>
-                                    <c:if test="${employees.enabled == false}">
-                                        <a class="fas fa-check-circle fa-2x icon-green"
+                                    <c:if test="${!employees.enabled}">
+                                        <a class="fas fa-check-circle fa-2x icon-gray"
                                            href="enable_employee?enabled=true&id=${employees.id}" title="Kích hoạt">
                                         </a>
                                     </c:if>
