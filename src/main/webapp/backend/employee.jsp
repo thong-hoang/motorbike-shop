@@ -1,4 +1,4 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
 <html>
@@ -60,24 +60,10 @@
 
                     <div class="col-sm-6">
                         <div class="d-sm-flex justify-content-sm-end align-items-sm-center">
-                            <!-- Datatable Info -->
-                            <div id="datatableCounterInfo" class="mr-2 mb-2 mb-sm-0">
-                                <div class="d-flex align-items-center">
-                                        <span class="font-size-sm mr-3">
-                                            Đã chọn
-                                            <span id="datatableCounter">0</span>
-                                        </span>
-                                    <a class="btn btn-sm btn-outline-danger" href="javascript:;">
-                                        <i class="tio-delete-outlined"></i> Xóa
-                                    </a>
-                                </div>
-                            </div>
-                            <!-- End Datatable Info -->
-
                             <!-- Unfold -->
                             <div class="hs-unfold mr-2">
                                 <a class="js-hs-unfold-invoker btn btn-sm btn-white dropdown-toggle"
-                                   href="javascript:;" data-hs-unfold-options='{
+                                   href="" data-hs-unfold-options='{
                          "target": "#usersExportDropdown",
                          "type": "css-animation"
                        }'>
@@ -87,39 +73,38 @@
                                 <div id="usersExportDropdown"
                                      class="hs-unfold-content dropdown-unfold dropdown-menu dropdown-menu-sm-right">
                                     <span class="dropdown-header">Lựa chọn</span>
-                                    <a id="export-copy" class="dropdown-item" href="javascript:;">
+                                    <a id="export-copy" class="dropdown-item" href="">
                                         <img class="avatar avatar-xss avatar-4by3 mr-2"
                                              src="../images/user/copy.svg" alt="Image Description">
                                         Sao chép
                                     </a>
-                                    <a id="export-print" class="dropdown-item" href="javascript:;">
+                                    <a id="export-print" class="dropdown-item" href="">
                                         <img class="avatar avatar-xss avatar-4by3 mr-2"
                                              src="../images/user/print.svg" alt="Image Description">
                                         In
                                     </a>
                                     <div class="dropdown-divider"></div>
                                     <span class="dropdown-header">Tải file</span>
-                                    <a id="export-excel" class="dropdown-item" href="javascript:;">
+                                    <a id="export-excel" class="dropdown-item" href="">
                                         <img class="avatar avatar-xss avatar-4by3 mr-2"
                                              src="../images/user/excel.svg" alt="Image Description">
                                         Excel
                                     </a>
-                                    <a id="export-csv" class="dropdown-item" href="javascript:;">
+                                    <a id="export-csv" class="dropdown-item" href="">
                                         <img class="avatar avatar-xss avatar-4by3 mr-2"
                                              src="../images/user/placeholder-csv-format.svg" alt="Image Description">
                                         .CSV
                                     </a>
-                                    <a id="export-pdf" class="dropdown-item" href="javascript:;">
+                                    <a id="export-pdf" class="dropdown-item" href="">
                                         <img class="avatar avatar-xss avatar-4by3 mr-2" src="../images/user/pdf.svg"
                                              alt="Image Description">
                                         PDF
                                     </a>
                                 </div>
                             </div>
-                            <!-- End Unfold -->
-                            <!-- Unfold -->
+
                             <div class="hs-unfold">
-                                <a class="js-hs-unfold-invoker btn btn-sm btn-white" href="javascript:;"
+                                <a class="js-hs-unfold-invoker btn btn-sm btn-white" href=""
                                    data-hs-unfold-options='{
                          "target": "#usersFilterDropdown",
                          "type": "css-animation",
@@ -139,7 +124,7 @@
 
                                             <!-- Toggle Button -->
                                             <a class="js-hs-unfold-invoker btn btn-icon btn-xs btn-ghost-secondary ml-2"
-                                               href="javascript:;" data-hs-unfold-options='{
+                                               href="" data-hs-unfold-options='{
                               "target": "#usersFilterDropdown",
                               "type": "css-animation",
                               "smartPositionOff": true
@@ -176,7 +161,7 @@
                                                 <!-- End Row -->
 
                                                 <a class="js-hs-unfold-invoker btn btn-block btn-primary"
-                                                   href="javascript:;" data-hs-unfold-options='{
+                                                   href="" data-hs-unfold-options='{
                                 "target": "#usersFilterDropdown",
                                 "type": "css-animation",
                                 "smartPositionOff": true
@@ -310,7 +295,8 @@
                                         <a class="btn btn-sm btn-white" href="edit_employee?id=${employees.id}">
                                             <i class="tio-edit"></i> Chỉnh sửa
                                         </a>
-                                        <a class="btn btn-sm btn-white" href="delete_employee?id=${employees.id}">
+                                        <a class="btn btn-sm btn-white link-delete"
+                                           href="delete_employee?id=${employees.id}" entityId="${employees.id}">
                                             <i class="tio-delete"></i> Xóa
                                         </a>
                                     </div>
@@ -346,7 +332,6 @@
 
                             <!-- Pagination Quantity -->
                             <span id="datatableWithPaginationInfoTotalQty"></span>
-                            <!--                            <span class="text-secondary mr-2 pl-2"> nhân viên</span>-->
                         </div>
                     </div>
 
@@ -364,6 +349,7 @@
 
     <jsp:include page="footer.jsp"/>
 
+    <jsp:include page="confirm-modal.jsp"/>
 </main>
 
 <jsp:include page="js.jsp"/>
@@ -378,6 +364,20 @@
 
         setTimeout(hideMessage, 5000);
     }
+
+    function showDeleteConfirmModal(link) {
+        entityId = link.attr("entityId");
+        $("#yesButton").attr("href", link.attr("href")); // set value of attribute
+        $("#confirmText").text("Bạn có muốn xoá nhân viên không ?");
+        $("#confirmModal").modal();
+    }
+
+    $(document).ready(function () {
+        $(".link-delete").on("click", function (e) {
+            e.preventDefault();
+            showDeleteConfirmModal($(this));
+        });
+    });
 </script>
 
 </body>

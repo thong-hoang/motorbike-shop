@@ -172,6 +172,12 @@ public class EmployeeService {
         }
     }
 
+    /**
+     * Update the employee's information to database.
+     *
+     * @throws ServletException If the request for the POST could not be handled
+     * @throws IOException      If an input or output error is detected when the servlet handles the POST request
+     */
     public void updateEmployee() throws ServletException, IOException {
         request.setCharacterEncoding("UTF-8");
 
@@ -228,5 +234,21 @@ public class EmployeeService {
                 listEmployee(message);
             }
         }
+    }
+
+    public void deleteEmployee() throws ServletException, IOException {
+        Integer id = Integer.valueOf(request.getParameter("id"));
+
+        Employee employee = employeeDAO.findById(id);
+
+        String message;
+
+        if (employee == null) {
+            message = "Không tìm thấy nhân viên hoặc nhân viên đã bị xóa";
+        } else {
+            employeeDAO.delete(id);
+            message = "Nhân viên " + employee.getLastName() + " " + employee.getFirstName() + " đã được xóa thành công !";
+        }
+        listEmployee(message);
     }
 }
