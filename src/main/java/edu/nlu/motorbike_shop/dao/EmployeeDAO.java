@@ -8,7 +8,6 @@ import edu.nlu.motorbike_shop.util.DBUtils;
 import java.io.Serializable;
 import java.sql.*;
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -51,10 +50,7 @@ public class EmployeeDAO implements Serializable {
             stm.setString(4, address.getCity());
             stm.setInt(5, employeeId);
 
-            System.out.println(sql);
             stm.executeUpdate();
-
-
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -87,7 +83,6 @@ public class EmployeeDAO implements Serializable {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        System.out.println(sql);
         return address;
     }
 
@@ -113,7 +108,6 @@ public class EmployeeDAO implements Serializable {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        System.out.println(sql);
     }
 
     /**
@@ -145,48 +139,24 @@ public class EmployeeDAO implements Serializable {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        System.out.println(sql);
         return roles;
-    }
-
-    /**
-     * Insert a new user_role record into the database.
-     *
-     * @param userId The id of the user.
-     * @param roleId The id of the role.
-     */
-    public void insertUserRole(Integer userId, Integer roleId) {
-        String sql = "INSERT INTO user_role (user_id, role_id) VALUE(?, ?)";
-        try (Connection conn = DBUtils.makeConnection();
-             PreparedStatement stm = conn.prepareStatement(sql)) {
-            stm.setInt(1, userId);
-            stm.setInt(2, roleId);
-
-            stm.executeUpdate();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        System.out.println(sql);
     }
 
     /**
      * Delete a user_role record from the database.
      *
      * @param userId The id of the user.
-     * @param roleId The id of the role.
      */
-    public void deleteUserRole(Integer userId, Integer roleId) {
-        String sql = "DELETE FROM user_role WHERE user_id = ? AND role_id = ?";
+    public void deleteUserRole(Integer userId) {
+        String sql = "DELETE FROM user_role WHERE user_id = ?";
         try (Connection conn = DBUtils.makeConnection();
              PreparedStatement stm = conn.prepareStatement(sql)) {
             stm.setInt(1, userId);
-            stm.setInt(2, roleId);
 
             stm.executeUpdate();
         } catch (Exception e) {
             e.printStackTrace();
         }
-        System.out.println(sql);
     }
 
     /**
@@ -200,7 +170,6 @@ public class EmployeeDAO implements Serializable {
         List<Employee> employees = new ArrayList<>();
         String sql = "SELECT id, image_path, first_name, last_name, email, phone_number, enabled " +
                 "FROM users ORDER BY ?, ? LIMIT ?";
-        System.out.println(sql);
 
         // use try-with-resources Statement to auto close the connection.
         try (Connection conn = DBUtils.makeConnection();
@@ -244,7 +213,6 @@ public class EmployeeDAO implements Serializable {
      * @return True if the employee is saved successfully, false otherwise.
      * @throws SQLIntegrityConstraintViolationException If the email is already in use.
      */
-
     public boolean save(Employee employee) {
         String sqlInsertUser = "INSERT INTO users (first_name, last_name, phone_number, image_path, email, "
                 + "password, enabled) value(?, ?, ?, ?, ?, ?, ?)";
@@ -261,7 +229,6 @@ public class EmployeeDAO implements Serializable {
             userStm.setString(5, employee.getEmail());
             userStm.setString(6, employee.getPassword());
             userStm.setBoolean(7, employee.isEnabled());
-            System.out.println(sqlInsertUser);
 
             userStm.executeUpdate();
 
@@ -282,7 +249,6 @@ public class EmployeeDAO implements Serializable {
                     userRoleStm.addBatch();
                 }
 
-                System.out.println(sqlInsertUserRole);
                 // execute multiple commands at the same time
                 if (userRoleStm.executeBatch().length > 0) return true;
             }
@@ -298,10 +264,8 @@ public class EmployeeDAO implements Serializable {
      * @param email The email to be checked.
      * @return True if the email is already in use, false otherwise.
      */
-
     public boolean checkEmailExists(String email) {
         String sql = "SELECT COUNT(email) FROM users WHERE email = ?";
-        System.out.println(sql);
         try (Connection conn = DBUtils.makeConnection();
              PreparedStatement stm = conn.prepareStatement(sql)) {
             stm.setString(1, email);
@@ -327,11 +291,12 @@ public class EmployeeDAO implements Serializable {
      */
 
     public boolean update(Employee employee) {
-        String sql = "UPDATE users SET first_name = ?, last_name = ?, phone_number = ?, " +
+        String updateUser = "UPDATE users SET first_name = ?, last_name = ?, phone_number = ?, " +
                 "image_path = ?, email = ?, password = ?, enabled = ? WHERE id = ?";
-        System.out.println(sql);
+        String sqlInsertUserRole = "INSERT INTO user_role (user_id, role_id) value(?, ?)";
         try (Connection conn = DBUtils.makeConnection();
-             PreparedStatement stm = conn.prepareStatement(sql)) {
+             PreparedStatement stm = conn.prepareStatement(updateUser);
+             PreparedStatement userRoleStm = conn.prepareStatement(sqlInsertUserRole)) {
             stm.setString(1, employee.getFirstName());
             stm.setString(2, employee.getLastName());
             stm.setString(3, employee.getPhoneNumber());
@@ -341,39 +306,21 @@ public class EmployeeDAO implements Serializable {
             stm.setBoolean(7, employee.isEnabled());
             stm.setInt(8, employee.getId());
 
+            stm.executeUpdate();
+
             updateAddress(employee.getAddress(), employee.getId());
 
-            Set<Role> newRoles = employee.getRoles();
-            List<Role> oldRoles = findRolesByUserId(employee.getId());
-            Set<Role> updatedRoles = new HashSet<>(oldRoles);
-            for (Role oldRole : oldRoles) {
-                boolean flag = false;
-                for (Role newRole : newRoles) {
-                    if (oldRole.getId().equals(newRole.getId())) {
-                        flag = true;
-                        break;
-                    }
-                }
-                if (!flag) {
-                    deleteUserRole(employee.getId(), oldRole.getId());
-                    updatedRoles.remove(oldRole);
-                }
+            deleteUserRole(employee.getId());
+
+            Set<Role> roles = employee.getRoles();
+            for (Role role : roles) {
+                userRoleStm.setInt(1, employee.getId());
+                userRoleStm.setInt(2, role.getId());
+                userRoleStm.addBatch();
             }
 
-            for (Role newRole : newRoles) {
-                boolean flag = false;
-                for (Role oldRole : updatedRoles) {
-                    if (oldRole.getId().equals(newRole.getId())) {
-                        flag = true;
-                        break;
-                    }
-                }
-                if (!flag) {
-                    insertUserRole(employee.getId(), newRole.getId());
-                }
-            }
-
-            if (stm.executeUpdate() > 0) return true;
+            // execute multiple commands at the same time
+            if (userRoleStm.executeBatch().length > 0) return true;
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -384,7 +331,7 @@ public class EmployeeDAO implements Serializable {
      * Retrieves an Employee entity by its id.
      *
      * @param id An id specifying the id of the Employee
-     * @return Employee entity if the Employee entity with the given id exists, false otherwise.
+     * @return Employee entity if the Employee entity with the given id exists, null otherwise.
      */
 
     public Employee findById(Integer id) {
@@ -414,7 +361,6 @@ public class EmployeeDAO implements Serializable {
 
                     Address address = new Address(addressId, street, ward, district, city);
                     Employee employee = new Employee(id, firstName, lastName, phoneNumber, address, imagePath, email, password, enabled);
-                    System.out.println(sql);
                     findRolesByUserId(id).forEach(employee::addRole);
 
                     return employee;
@@ -427,7 +373,51 @@ public class EmployeeDAO implements Serializable {
     }
 
     /**
-     * Delete an user from the database.
+     * Retrieves an Employee entity by its email.
+     *
+     * @param email An email specifying the email of the Employee
+     * @return Employee entity if the Employee entity with the given email exists, null otherwise.
+     */
+    public Employee findByEmail(String email) {
+
+        // use left join to get the address, user_role and role even though it is null
+        String sql = "SELECT u.*, a.id, a.street, a.ward, a.district, a.city " +
+                "FROM users u  LEFT JOIN addresses a ON u.id = a.user_id WHERE u.email = ?";
+
+        try (Connection conn = DBUtils.makeConnection();
+             PreparedStatement stm = conn.prepareStatement(sql)) {
+            stm.setString(1, email);
+
+            try (ResultSet rs = stm.executeQuery()) {
+                if (rs.next()) {
+                    Integer id = rs.getInt(1);
+                    String firstName = rs.getString(2);
+                    String lastName = rs.getString(3);
+                    String phoneNumber = rs.getString(4);
+                    String imagePath = rs.getString(5);
+                    String password = rs.getString(7);
+                    boolean enabled = rs.getBoolean(8);
+                    Integer addressId = rs.getInt(9);
+                    String street = rs.getString(10);
+                    String ward = rs.getString(11);
+                    String district = rs.getString(12);
+                    String city = rs.getString(13);
+
+                    Address address = new Address(addressId, street, ward, district, city);
+                    Employee employee = new Employee(id, firstName, lastName, phoneNumber, address, imagePath, email, password, enabled);
+                    findRolesByUserId(id).forEach(employee::addRole);
+
+                    return employee;
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    /**
+     * Delete a user from the database.
      *
      * @param id The id of the user to be deleted.
      */
@@ -439,7 +429,6 @@ public class EmployeeDAO implements Serializable {
              PreparedStatement stm = conn.prepareStatement(sql)) {
             stm.setInt(1, id);
 
-            System.out.println(sql);
             stm.executeUpdate();
         } catch (Exception e) {
             e.printStackTrace();
@@ -454,7 +443,6 @@ public class EmployeeDAO implements Serializable {
 
     public long count() {
         String sql = "SELECT COUNT(id) FROM users";
-        System.out.println(sql);
         try (Connection conn = DBUtils.makeConnection();
              PreparedStatement stm = conn.prepareStatement(sql)) {
             try (ResultSet rs = stm.executeQuery()) {

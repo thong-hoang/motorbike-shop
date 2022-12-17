@@ -42,6 +42,15 @@ public class EmployeeDAOTest {
     }
 
     @Test
+    public void testFindEmployeeByEmail() {
+        String email = "thong@gmail.com";
+        Employee employee = employeeDAO.findByEmail(email);
+        System.out.println(employee);
+
+        assertEquals("Hoàng Phạm", employee.getLastName());
+    }
+
+    @Test
     public void testUpdateEmployee() {
         Integer id = 1;
         Set<Role> roles = new HashSet<>();
