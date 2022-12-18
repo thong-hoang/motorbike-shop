@@ -1,22 +1,25 @@
 package edu.nlu.motorbike_shop.entity;
 
+import lombok.*;
 
-import java.util.Date;
+import java.sql.Date;
 
+@Getter
+@Setter
 public class Customer {
     private Integer id;
     private String firstName;
     private String lastName;
-    private Integer phoneNumber;
-    private String address;
+    private String phoneNumber;
+    private Address address;
     private String email;
     private String password;
     private Date createdTime;
     private String authenticationType;
     private String verificationCode;
-    private int enable;
+    private boolean enabled;
 
-    public Customer(Integer id, String firstName, String lastName, int phoneNumber, String address, String email, String password, Date createdTime, String authenticationType, String verificationCode, int enable) {
+    public Customer(Integer id, String firstName, String lastName, String phoneNumber, Address address, String email, String password, Date createdTime, String authenticationType, String verificationCode, boolean enabled) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -27,6 +30,24 @@ public class Customer {
         this.createdTime = createdTime;
         this.authenticationType = authenticationType;
         this.verificationCode = verificationCode;
-        this.enable = enable;
+        this.enabled = enabled;
+    }
+
+    public Customer(Integer id, String firstName, String lastName, String phoneNumber, String email, Address address, boolean enabled) {
+        this.id = id;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.phoneNumber = phoneNumber;
+        this.email = email;
+        this.address = address;
+        this.enabled = enabled;
+    }
+
+    @Override
+    public String toString() {
+        return "Customer{" + "id='" + id + '\'' + ", firstName='" + firstName + '\'' + ", lastName='" + lastName + '\'' +
+                ", phoneNumber='" + phoneNumber + '\'' + ", address='" + address + '\'' + ", email='" + email + '\''
+                + '\'' + ", password='" + password + '\'' + ", createdTime='" + createdTime + ", authenticationType='"
+                + authenticationType + ", verificationCode='" + verificationCode + ", enabled=" + enabled + '}';
     }
 }
