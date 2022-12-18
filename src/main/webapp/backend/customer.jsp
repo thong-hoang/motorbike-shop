@@ -282,8 +282,8 @@
         <div class="page-header">
             <div class="row align-items-center mb-3">
                 <div class="col-sm mb-2 mb-sm-0">
-                    <h1 class="page-header-title">Quản lý khách hàng <span
-                            class="badge badge-soft-dark ml-2">10</span></h1>
+                    <h1 class="page-header-title">Quản lý khách hàng <span class="badge badge-soft-dark ml-2">
+                        ${numberOfCustomers}</span></h1>
                 </div>
             </div>
             <!-- End Row -->
@@ -490,191 +490,64 @@
                                 <label class="custom-control-label" for="datatableCheckAll"></label>
                             </div>
                         </th>
-                        <th class="table-column-pl-0">Tên</th>
-                        <th>Email</th>
+                        <th>Tên</th>
                         <th>Số điện thoại</th>
+                        <th>Email</th>
                         <th>Địa chỉ</th>
-                        <th>Trạng thái</th>
+                        <th></th>
                     </tr>
                     </thead>
 
                     <tbody>
-                    <tr>
-                        <td class="table-column-pr-0">
-                            <div class="custom-control custom-checkbox">
-                                <input type="checkbox" class="custom-control-input" id="usersDataCheck1">
-                                <label class="custom-control-label" for="usersDataCheck1"></label>
-                            </div>
-                        </td>
-                        <td class="table-column-pl-0">
-                            <a class="d-flex align-items-center" href="customer-detail.html">
-                                <div class="avatar avatar-circle">
-                                    <img class="avatar-img" src="../images/user/user.png"
-                                         alt="Image Description">
-                                </div>
-                                <div class="ml-3">
-                                    <span class="h5 text-hover-primary">Nguyễn Văn Tý</span>
-                                </div>
-                            </a>
-                        </td>
-                        <td>nvt@gmail.com</td>
-                        <td>0349777777</td>
-                        <td>789 kp6, Linh Trung, Thủ Đức, TP Hồ Chí Minh</td>
-                        <td>
-                            <span class="legend-indicator bg-success"></span>Hoạt động
-                        </td>
-                    </tr>
+                    <c:forEach var="customers" items="${listCustomers}">
+                        <tr>
+                            <td>
+                                <a class="d-flex align-items-center" href="edit_customer?id=${cutsomers.id}">
 
-                    <tr>
-                        <td class="table-column-pr-0">
-                            <div class="custom-control custom-checkbox">
-                                <input type="checkbox" class="custom-control-input" id="usersDataCheck2">
-                                <label class="custom-control-label" for="usersDataCheck2"></label>
-                            </div>
-                        </td>
-                        <td class="table-column-pl-0">
-                            <a class="d-flex align-items-center" href="customer-detail.html">
-                                <div class="avatar avatar-soft-primary avatar-circle">
-                                    <span class="avatar-initials">Đ</span>
-                                </div>
-                                <div class="ml-3">
-                                    <span class="h5 text-hover-primary">Nguyễn Thành Đạt</span>
-                                </div>
-                            </a>
-                        </td>
-                        <td>nvt@gmail.com</td>
-                        <td>0349777777</td>
-                        <td>789 kp6, Linh Trung, Thủ Đức, TP Hồ Chí Minh</td>
-                        <td>
-                            <span class="legend-indicator bg-danger"></span>Vô hiệu hóa
-                        </td>
-                    </tr>
+                                    <div class="ml-3">
+                                        <c:if test="${cutsomers.id == 1}">
+                                                <span class="d-block h5 text-hover-primary mb-0">
+                                                ${cutsomers.lastName} ${cutsomers.firstName}
+<%--                                                <i class="tio-verified text-primary" data-toggle="tooltip"--%>
+<%--                                                   data-placement="top"></i>--%>
+                                                </span>
+                                        </c:if>
+                                        <c:if test="${cutsomers.id != 1}">
+                                                <span class="d-block h5 text-hover-primary mb-0">
+                                                        ${cutsomers.lastName} ${cutsomers.firstName}
+                                                </span>
+                                        </c:if>
+                                    </div>
+                                </a>
+                            </td>
+                            <td>
+                                <span class="d-block font-size-sm">${cutsomers.phoneNumber}</span>
+                            </td>
+                            <td>
+                                <span class="d-block font-size-sm">${cutsomers.email}</span>
+                            </td>
+                            <td>
+                                <c:if test="${cutsomers.address == null}">
+                                    <span></span>
+                                </c:if>
+                                <c:if test="${cutsomers.address != null}">
+                                <span class="d-block font-size-sm">
+                                ${cutsomers.address.street},
+                                ${cutsomers.address.ward}, ${cutsomers.address.district},
+                                ${cutsomers.address.city}
+                                </span>
+                                </c:if>
+                            </td>
 
-                    <tr>
-                        <td class="table-column-pr-0">
-                            <div class="custom-control custom-checkbox">
-                                <input type="checkbox" class="custom-control-input" id="usersDataCheck3">
-                                <label class="custom-control-label" for="usersDataCheck3"></label>
-                            </div>
-                        </td>
-                        <td class="table-column-pl-0">
-                            <a class="d-flex align-items-center" href="customer-detail.html">
-                                <div class="avatar avatar-soft-primary avatar-circle">
-                                    <span class="avatar-initials">M</span>
-                                </div>
-                                <div class="ml-3">
-                                    <span class="h5 text-hover-primary">Nguyễn Thị Mai</span>
-                                </div>
-                            </a>
-                        </td>
-                        <td>nvt@gmail.com</td>
-                        <td>0349777777</td>
-                        <td>789 kp6, Linh Trung, Thủ Đức, TP Hồ Chí Minh</td>
-                        <td>
-                            <span class="legend-indicator bg-success"></span>Hoạt động
-                        </td>
-                    </tr>
+                            <td>
+                                <a class="btn btn-sm btn-outline-danger" href="javascript:;" data-toggle="modal"
+                                   data-target="#deleteCustomerModal">
+                                    <i class="tio-delete"></i>
+                                </a>
+                            </td>
+                        </tr>
+                    </c:forEach>
 
-                    <tr>
-                        <td class="table-column-pr-0">
-                            <div class="custom-control custom-checkbox">
-                                <input type="checkbox" class="custom-control-input" id="usersDataCheck4">
-                                <label class="custom-control-label" for="usersDataCheck4"></label>
-                            </div>
-                        </td>
-                        <td class="table-column-pl-0">
-                            <a class="d-flex align-items-center" href="customer-detail.html">
-                                <div class="avatar avatar-circle">
-                                    <img class="avatar-img" src="../images/user/user.png"
-                                         alt="Image Description">
-                                </div>
-                                <div class="ml-3">
-                                    <span class="h5 text-hover-primary">Nguyễn Văn Tèo</span>
-                                </div>
-                            </a>
-                        </td>
-                        <td>nvt@gmail.com</td>
-                        <td>0349777777</td>
-                        <td>789 kp6, Linh Trung, Thủ Đức, TP Hồ Chí Minh</td>
-                        <td>
-                            <span class="legend-indicator bg-success"></span>Hoạt động
-                        </td>
-                    </tr>
-
-                    <tr>
-                        <td class="table-column-pr-0">
-                            <div class="custom-control custom-checkbox">
-                                <input type="checkbox" class="custom-control-input" id="usersDataCheck5">
-                                <label class="custom-control-label" for="usersDataCheck5"></label>
-                            </div>
-                        </td>
-                        <td class="table-column-pl-0">
-                            <a class="d-flex align-items-center" href="customer-detail.html">
-                                <div class="avatar avatar-soft-info avatar-circle">
-                                    <span class="avatar-initials">T</span>
-                                </div>
-                                <div class="ml-3">
-                                    <span class="h5 text-hover-primary">Nguyễn Thị T</span>
-                                </div>
-                            </a>
-                        </td>
-                        <td>nvt@gmail.com</td>
-                        <td>0349777777</td>
-                        <td>789 kp6, Linh Trung, Thủ Đức, TP Hồ Chí Minh</td>
-                        <td>
-                            <span class="legend-indicator bg-danger"></span>Vô hiệu hóa
-                        </td>
-                    </tr>
-
-                    <tr>
-                        <td class="table-column-pr-0">
-                            <div class="custom-control custom-checkbox">
-                                <input type="checkbox" class="custom-control-input" id="usersDataCheck6">
-                                <label class="custom-control-label" for="usersDataCheck6"></label>
-                            </div>
-                        </td>
-                        <td class="table-column-pl-0">
-                            <a class="d-flex align-items-center" href="customer-detail.html">
-                                <div class="avatar avatar-soft-danger avatar-circle">
-                                    <span class="avatar-initials">L</span>
-                                </div>
-                                <div class="ml-3">
-                                    <span class="h5 text-hover-primary">Nguyễn Thị Lan</span>
-                                </div>
-                            </a>
-                        </td>
-                        <td>nvt@gmail.com</td>
-                        <td>0349777777</td>
-                        <td>789 kp6, Linh Trung, Thủ Đức, TP Hồ Chí Minh</td>
-                        <td>
-                            <span class="legend-indicator bg-success"></span>Hoạt động
-                        </td>
-                    </tr>
-
-                    <tr>
-                        <td class="table-column-pr-0">
-                            <div class="custom-control custom-checkbox">
-                                <input type="checkbox" class="custom-control-input" id="usersDataCheck7">
-                                <label class="custom-control-label" for="usersDataCheck7"></label>
-                            </div>
-                        </td>
-                        <td class="table-column-pl-0">
-                            <a class="d-flex align-items-center" href="customer-detail.html">
-                                <div class="avatar avatar-soft-dark avatar-circle">
-                                    <span class="avatar-initials">V</span>
-                                </div>
-                                <div class="ml-3">
-                                    <span class="h5 text-hover-primary">VTV Nguyễn</span>
-                                </div>
-                            </a>
-                        </td>
-                        <td>nvt@gmail.com</td>
-                        <td>0349777777</td>
-                        <td>789 kp6, Linh Trung, Thủ Đức, TP Hồ Chí Minh</td>
-                        <td>
-                            <span class="legend-indicator bg-danger"></span>Vô hiệu hóa
-                        </td>
-                    </tr>
 
                     </tbody>
                 </table>
@@ -696,9 +569,9 @@
                             "dropdownAutoWidth": true,
                             "width": true
                           }'>
-                                <option value="10">10</option>
-                                <option value="15" selected="">15</option>
-                                <option value="20">20</option>
+                                <option value="5">5</option>
+                                <option value="10" selected="">10</option>
+                                <option value="15">15</option>
                             </select>
                             <!-- End Select -->
 
