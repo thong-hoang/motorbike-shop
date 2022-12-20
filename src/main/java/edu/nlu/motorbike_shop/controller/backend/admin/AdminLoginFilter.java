@@ -18,22 +18,23 @@ public class AdminLoginFilter implements Filter {
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws ServletException, IOException {
         HttpServletRequest httpRequest = (HttpServletRequest) request;
         HttpSession session = httpRequest.getSession(false);
+        String contextPath = httpRequest.getContextPath(); // /motorbike_shop
+        String requestURI = httpRequest.getRequestURI();
 
         boolean isLoggedIn = session != null && session.getAttribute("email") != null;
 
-        // httpRequest.getContextPath() == /motorbike_shop
-        String loginURI = httpRequest.getContextPath() + "/backend/login";
+        String loginURI = contextPath + "/backend/login";
+        boolean isLoginRequest = requestURI.equals(loginURI);
 
-        // httpRequest.getRequestURI() == /motorbike_shop/backend/
-        boolean isLoginRequest = httpRequest.getRequestURI().equals(loginURI);
+        boolean isLoginPage = requestURI.endsWith("login.jsp");
 
-        boolean isLoginPage = httpRequest.getRequestURI().endsWith("login.jsp");
+        boolean isStaticResource = requestURI.startsWith(contextPath + "/backend/assets/");
 
         // if the user is already logged in when accessing the login link will redirect to the main page
         if (isLoggedIn && (isLoginRequest || isLoginPage)) {
             RequestDispatcher dispatcher = request.getRequestDispatcher("/backend/");
             dispatcher.forward(request, response);
-        } else if (isLoggedIn || isLoginRequest) {
+        } else if (isLoggedIn || isLoginRequest || isStaticResource) {
             // allow the request to go through this filter
             chain.doFilter(request, response);
         } else {
