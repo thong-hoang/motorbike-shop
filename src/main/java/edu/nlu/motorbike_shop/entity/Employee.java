@@ -55,6 +55,12 @@ public class Employee {
         this.password = password;
         this.enabled = enabled;
     }
+    public Employee(String firstName, String lastName, String email, String imagePath) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.imagePath = imagePath;
+    }
 
     public void addRole(Role role) {
         this.roles.add(role);

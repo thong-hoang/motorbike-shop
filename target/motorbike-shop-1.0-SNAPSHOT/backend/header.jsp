@@ -1,8 +1,10 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
+
 <div id="styleSwitcherDropdown" class="hs-unfold-content sidebar sidebar-bordered sidebar-box-shadow"
      style="width: 35rem;">
     <div class="card card-lg border-0 h-100">
-        <!-- Footer -->
         <div class="card-footer">
             <div class="row gx-2">
                 <div class="col">
@@ -26,8 +28,7 @@
             class="navbar navbar-expand-lg navbar-fixed navbar-height navbar-flush navbar-container navbar-bordered">
         <div class="navbar-nav-wrap">
             <div class="navbar-brand-wrapper">
-                <!-- Logo -->
-                <a class="navbar-brand" href="index.html" aria-label="Front">
+                <a class="navbar-brand" href="/motorbike_shop/backend/" aria-label="Front">
                     <img class="navbar-brand-logo" src="../images/logo/logo.png" alt="Logo">
                     <img class="navbar-brand-logo-mini" src="../images/logo/logo.png" alt="Logo">
                 </a>
@@ -61,15 +62,7 @@
                 <ul class="navbar-nav align-items-center flex-row">
                     <li class="nav-item d-md-none">
                         <div class="hs-unfold">
-                            <a class="js-hs-unfold-invoker btn btn-icon btn-ghost-secondary rounded-circle"
-                               href="javascript:;"
-                               data-hs-unfold-options='{
-                 "target": "#searchDropdown",
-                 "type": "css-animation",
-                 "animationIn": "fadeIn",
-                 "hasOverlay": "rgba(46, 52, 81, 0.1)",
-                 "closeBreakpoint": "md"
-               }'>
+                            <a class="js-hs-unfold-invoker btn btn-icon btn-ghost-secondary rounded-circle">
                                 <i class="tio-search"></i>
                             </a>
                         </div>
@@ -77,13 +70,20 @@
 
                     <li class="nav-item">
                         <div class="hs-unfold">
-                            <a class="js-hs-unfold-invoker navbar-dropdown-account-wrapper" href="javascript:;"
+                            <a class="js-hs-unfold-invoker navbar-dropdown-account-wrapper"
                                data-hs-unfold-options='{
                  "target": "#accountNavbarDropdown",
                  "type": "css-animation"
                }'>
                                 <div class="avatar avatar-sm avatar-circle">
-                                    <img class="avatar-img" src="../images/test/admin1.jpg" alt="Image Description">
+                                    <c:if test="${empty sessionScope.imagePath}">
+                                        <div class="avatar avatar-soft-dark avatar-circle">
+                                            <span class="avatar-initials">${fn:substring(sessionScope.firstName, 0, 1)}</span>
+                                        </div>
+                                    </c:if>
+                                    <c:if test="${not empty sessionScope.imagePath}">
+                                        <img class="avatar-img" src="../images/test/admin1.jpg" alt="Image Description">
+                                    </c:if>
                                     <span class="avatar-status avatar-sm-status avatar-status-success"></span>
                                 </div>
                             </a>
@@ -94,13 +94,29 @@
                                 <div class="dropdown-item-text">
                                     <div class="media align-items-center">
                                         <div class="avatar avatar-sm avatar-dark avatar-circle mr-2">
-                                            <img class="avatar-img" src="../images/test/admin1.jpg"
-                                                 alt="Image Description">
-                                            <!-- <span class="avatar-initials">A</span> -->
+                                            <c:if test="${empty sessionScope.imagePath}">
+                                                <div class="avatar avatar-soft-dark avatar-circle">
+                                                    <span class="avatar-initials">${fn:substring(sessionScope.firstName, 0, 1)}</span>
+                                                </div>
+                                            </c:if>
+                                            <c:if test="${not empty sessionScope.imagePath}">
+                                                <img class="avatar-img" src="../images/test/admin1.jpg"
+                                                     alt="Image Description">
+                                            </c:if>
                                         </div>
+
                                         <div class="media-body">
-                                            <span class="card-title h5">Nguyễn Văn A</span>
-                                            <span class="card-text">nguyenvana@gmail.com</span>
+                                            <c:if test="${sessionScope.firstName == 'admin'}">
+                                                <span class="card-title h5">
+                                                    <c:out value="${sessionScope.lastName}"/>
+                                                </span>
+                                            </c:if>
+                                            <c:if test="${sessionScope.firstName != 'admin'}">
+                                                <c:out value="${sessionScope.lastName}"/> <c:out
+                                                    value="${sessionScope.firstName}"/>
+                                            </c:if>
+
+                                            <span class="card-text"><c:out value="${sessionScope.email}"/></span>
                                         </div>
                                     </div>
                                 </div>
@@ -109,7 +125,7 @@
                                     <span class="text-truncate pr-2"
                                           title="Profile &amp; account">Hồ Sơ Tài Khoản</span>
                                 </a>
-                                <a class="dropdown-item" href="#">
+                                <a class="dropdown-item" href="logout">
                                     <span class="text-truncate pr-2" title="Sign out">Đăng Xuất</span>
                                 </a>
                             </div>

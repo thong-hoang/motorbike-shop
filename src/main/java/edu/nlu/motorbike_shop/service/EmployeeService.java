@@ -10,7 +10,6 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -20,13 +19,9 @@ public class EmployeeService {
     private final RoleDAO roleDAO = RoleDAO.getInstance();
     private final HttpServletRequest request;
     private final HttpServletResponse response;
-
     private final String DEFAULT_SORT_TYPE = "ASC";
-
     private final String DEFAULT_SORT_FIELD = "id";
-
     private final int DEFAULT_PAGE_SIZE = 10;
-
     public EmployeeService(HttpServletRequest request, HttpServletResponse response) {
         this.request = request;
         this.response = response;
@@ -131,7 +126,7 @@ public class EmployeeService {
     }
 
     /**
-     * Get role of employee from database and display it to user.
+     * Get role of employee corresponding from database and display it to user.
      *
      * @param employee The employee to get role.
      * @return A map of role and checked status.
@@ -145,7 +140,7 @@ public class EmployeeService {
     }
 
     /**
-     * Get the employee's infornamtions byid and display it to the user.
+     * Get the employee's infornamtions by id from request and display it to user.
      *
      * @throws ServletException If the request for the GET could not be handled
      * @throws IOException      If an input or output error is detected when the servlet handles the GET request
@@ -172,6 +167,12 @@ public class EmployeeService {
         }
     }
 
+    /**
+     * Get the employee's information from the request and update it to the database.
+     *
+     * @throws ServletException If the request for the POST could not be handled
+     * @throws IOException      If an input or output error is detected when the servlet handles the POST request
+     */
     public void updateEmployee() throws ServletException, IOException {
         request.setCharacterEncoding("UTF-8");
 
@@ -227,6 +228,79 @@ public class EmployeeService {
                 message = "Nhân viên " + lastName + " " + firstName + " đã được cập nhật thành công !";
                 listEmployee(message);
             }
+        }
+    }
+
+    /**
+     * Get the employee's id from the request and delete it from the database.
+     *
+     * @throws ServletException If the request for the GET could not be handled
+     * @throws IOException      If an input or output error is detected when the servlet handles the GET request
+     */
+    public void deleteEmployee() throws ServletException, IOException {
+        Integer id = Integer.valueOf(request.getParameter("id"));
+
+        Employee employee = employeeDAO.findById(id);
+
+        String message;
+
+        if (employee == null) {
+            message = "Không tìm thấy nhân viên hoặc nhân viên đã bị xóa";
+        } else {
+            employeeDAO.delete(id);
+            message = "Nhân viên " + employee.getLastName() + " " + employee.getFirstName() + " đã được xóa thành công !";
+        }
+        listEmployee(message);
+    }
+
+    /**
+     * Get the employee's id and enable status from the request and update it to the database.
+     *
+     * @throws ServletException If the request for the GET could not be handled
+     * @throws IOException      If an input or output error is detected when the servlet handles the GET request
+     */
+    public void enabledEmployee() throws ServletException, IOException {
+        Integer id = Integer.valueOf(request.getParameter("id"));
+        boolean enabled = Boolean.parseBoolean(request.getParameter("enabled"));
+
+        Employee employee = employeeDAO.findById(id);
+
+        String message;
+
+        if (employee == null) {
+            message = "Không tìm thấy nhân viên hoặc nhân viên đã bị xóa";
+        } else {
+            employeeDAO.updateEnabledStatus(id, enabled);
+            message = "Nhân viên " + employee.getLastName() + " " + employee.getFirstName() + " đã được "
+                    + (enabled ? "kích hoạt" : "vô hiệu hóa") + " thành công !";
+        }
+        listEmployee(message);
+    }
+
+    /**
+     * Check login information and redirect to the appropriate page.
+     *
+     * @throws ServletException If the request for the POST could not be handled
+     * @throws IOException      If an input or output error is detected when the servlet handles the POST request
+     */
+    public void checkLogin() throws ServletException, IOException {
+        String email = request.getParameter("email");
+        String password = request.getParameter("password");
+
+        Employee employee = employeeDAO.login(email, password);
+
+        if (employee != null) {
+            request.getSession().setAttribute("email", email);
+            request.getSession().setAttribute("firstName", employee.getFirstName());
+            request.getSession().setAttribute("lastName", employee.getLastName());
+            request.getSession().setAttribute("imagePath", employee.getImagePath());
+
+            request.getRequestDispatcher("/backend/").forward(request, response);
+        } else {
+            String message = "Email hoặc mật khẩu không đúng";
+            request.setAttribute("message", message);
+
+            request.getRequestDispatcher("login.jsp").forward(request, response);
         }
     }
 }

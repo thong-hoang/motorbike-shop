@@ -88,4 +88,20 @@ public class EmployeeDAOTest {
     public void testCount() {
         assertTrue(employeeDAO.count() > 0);
     }
+
+    @Test
+    public void testCheckLoginSuccess() {
+        String email = "admin@gmail.com";
+        String password = "admin123";
+
+        assertNotNull(employeeDAO.login(email, password));
+    }
+
+    @Test
+    public void testCheckLoginFail() {
+        String email = "admin@gmail.com";
+        String password = "admin";
+
+        assertNull(employeeDAO.login(email, password));
+    }
 }
