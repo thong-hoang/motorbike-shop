@@ -4,6 +4,7 @@ import edu.nlu.motorbike_shop.dao.EmployeeDAO;
 import edu.nlu.motorbike_shop.dao.RoleDAO;
 import edu.nlu.motorbike_shop.entity.Address;
 import edu.nlu.motorbike_shop.entity.Employee;
+import edu.nlu.motorbike_shop.entity.HashGenerator;
 import edu.nlu.motorbike_shop.entity.Role;
 
 import javax.servlet.ServletException;
@@ -22,6 +23,7 @@ public class EmployeeService {
     private final String DEFAULT_SORT_TYPE = "ASC";
     private final String DEFAULT_SORT_FIELD = "id";
     private final int DEFAULT_PAGE_SIZE = 10;
+
     public EmployeeService(HttpServletRequest request, HttpServletResponse response) {
         this.request = request;
         this.response = response;
@@ -217,6 +219,7 @@ public class EmployeeService {
                 String updatePage = "employee-form.jsp";
                 request.getRequestDispatcher(updatePage).forward(request, response);
             } else {
+                password = HashGenerator.generateMD5(password);
                 Employee employee = new Employee(id, firstName, lastName, phone, new Address(addressId, street, ward, district, city),
                         imagePath, email, password, enabled);
                 for (String role : roles) {
@@ -285,7 +288,7 @@ public class EmployeeService {
      */
     public void checkLogin() throws ServletException, IOException {
         String email = request.getParameter("email");
-        String password = request.getParameter("password");
+        String password = HashGenerator.generateMD5(request.getParameter("password"));
 
         Employee employee = employeeDAO.login(email, password);
 
