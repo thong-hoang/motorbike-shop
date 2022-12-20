@@ -1,4 +1,4 @@
-package edu.nlu.motorbike_shop.dao;
+lopackage edu.nlu.motorbike_shop.dao;
 
 import edu.nlu.motorbike_shop.entity.Address;
 import edu.nlu.motorbike_shop.entity.Employee;

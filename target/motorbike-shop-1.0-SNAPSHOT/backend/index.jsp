@@ -1,4 +1,6 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+
 <html>
 
 <head>
@@ -22,7 +24,14 @@
         <div class="page-header">
             <div class="row align-items-center">
                 <div class="col-sm mb-2 mb-sm-0">
-                    <h1 class="page-header-title">Chào mừng Nguyễn Văn A trở lại trang quản lý VTV</h1>
+                    <c:if test="${sessionScope.firstName == 'admin'}">
+                        <h1 class="page-header-title">Chào mừng <c:out value="${sessionScope.firstName}"/> trở lại trang
+                            quản lý VTV</h1>
+                    </c:if>
+                    <c:if test="${sessionScope.firstName != 'admin'}">
+                        <h1 class="page-header-title">Chào mừng <c:out value="${sessionScope.lastName}"/> <c:out
+                                value="${sessionScope.firstName}"/> trở lại trang quản lý VTV</h1>
+                    </c:if>
                 </div>
             </div>
         </div>

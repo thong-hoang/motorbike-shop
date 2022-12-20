@@ -36,7 +36,7 @@
         </div>
 
         <c:if test="${message != null}">
-            <div class="alert alert-success text-center" id="hideMessage">${message}</div>
+        <div class="alert alert-success text-center" id="hideMessage">${message}</div>
         </c:if>
 
         <div class="card">
@@ -245,15 +245,14 @@
                             <tr>
                                 <td>
                                     <a class="d-flex align-items-center" href="edit_employee?id=${employees.id}">
-                                        <c:if test="${employees.imagePath == null}">
+                                        <c:if test="${empty employees.imagePath}">
                                             <div class="avatar avatar-soft-dark avatar-circle">
                                                 <span class="avatar-initials">O</span>
                                             </div>
                                         </c:if>
 
-                                        <c:if test="${employees.imagePath != null}">
+                                        <c:if test="${not empty employees.imagePath}">
                                             <div class="avatar avatar-circle">
-                                                <p>${employees.imagePath}</p>
                                                 <img class="avatar-img" src="../images/user/user.png"
                                                      alt="Image Description">
                                             </div>
@@ -335,21 +334,15 @@
                         </div>
                     </div>
 
-                    <div class="col-sm-auto">
-                        <div class="d-flex justify-content-center justify-content-sm-end">
-                            <!-- Pagination -->
-                            <nav id="datatablePagination" aria-label="Activity pagination"></nav>
-                        </div>
-                    </div>
+                    <jsp:include page="pagination.jsp"/>
+                    <!-- End Pagination -->
                 </div>
-                <!-- End Pagination -->
             </div>
         </div>
-    </div>
 
-    <jsp:include page="footer.jsp"/>
+        <jsp:include page="footer.jsp"/>
 
-    <jsp:include page="confirm-modal.jsp"/>
+        <jsp:include page="confirm-modal.jsp"/>
 </main>
 
 <jsp:include page="js.jsp"/>

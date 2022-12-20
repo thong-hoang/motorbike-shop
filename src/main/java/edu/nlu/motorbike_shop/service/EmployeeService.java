@@ -10,7 +10,6 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -20,13 +19,9 @@ public class EmployeeService {
     private final RoleDAO roleDAO = RoleDAO.getInstance();
     private final HttpServletRequest request;
     private final HttpServletResponse response;
-
     private final String DEFAULT_SORT_TYPE = "ASC";
-
     private final String DEFAULT_SORT_FIELD = "id";
-
     private final int DEFAULT_PAGE_SIZE = 10;
-
     public EmployeeService(HttpServletRequest request, HttpServletResponse response) {
         this.request = request;
         this.response = response;
@@ -280,5 +275,32 @@ public class EmployeeService {
                     + (enabled ? "kích hoạt" : "vô hiệu hóa") + " thành công !";
         }
         listEmployee(message);
+    }
+
+    /**
+     * Check login information and redirect to the appropriate page.
+     *
+     * @throws ServletException If the request for the POST could not be handled
+     * @throws IOException      If an input or output error is detected when the servlet handles the POST request
+     */
+    public void checkLogin() throws ServletException, IOException {
+        String email = request.getParameter("email");
+        String password = request.getParameter("password");
+
+        Employee employee = employeeDAO.login(email, password);
+
+        if (employee != null) {
+            request.getSession().setAttribute("email", email);
+            request.getSession().setAttribute("firstName", employee.getFirstName());
+            request.getSession().setAttribute("lastName", employee.getLastName());
+            request.getSession().setAttribute("imagePath", employee.getImagePath());
+
+            request.getRequestDispatcher("/backend/").forward(request, response);
+        } else {
+            String message = "Email hoặc mật khẩu không đúng";
+            request.setAttribute("message", message);
+
+            request.getRequestDispatcher("login.jsp").forward(request, response);
+        }
     }
 }
