@@ -458,7 +458,8 @@ public class EmployeeDAO implements Serializable {
 
     /**
      * Update enabled status of a user.
-     * @param id The id of the user to be updated.
+     *
+     * @param id      The id of the user to be updated.
      * @param enabled The updated enabled status.
      */
     public void updateEnabledStatus(Integer id, boolean enabled) {
@@ -473,5 +474,26 @@ public class EmployeeDAO implements Serializable {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    public Employee login(String email, String password) {
+        String sql = "SELECT first_name, last_name, email, image_path FROM users WHERE email = ? AND password = ?";
+
+        try (Connection conn = DBUtils.makeConnection();
+             PreparedStatement stm = conn.prepareStatement(sql)) {
+            stm.setString(1, email);
+            stm.setString(2, password);
+
+            try (ResultSet rs = stm.executeQuery()) {
+                if (rs.next()) {
+                    return new Employee(rs.getString(1), rs.getString(2),
+                            rs.getString(3), rs.getString(4));
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return null;
     }
 }
