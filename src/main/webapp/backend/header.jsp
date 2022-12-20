@@ -125,7 +125,7 @@
                                     <span class="text-truncate pr-2"
                                           title="Profile &amp; account">Hồ Sơ Tài Khoản</span>
                                 </a>
-                                <a class="dropdown-item" href="#">
+                                <a class="dropdown-item" href="logout">
                                     <span class="text-truncate pr-2" title="Sign out">Đăng Xuất</span>
                                 </a>
                             </div>
