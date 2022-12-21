@@ -2,6 +2,7 @@ package edu.nlu.motorbike_shop.dao;
 
 import edu.nlu.motorbike_shop.entity.Address;
 import edu.nlu.motorbike_shop.entity.Employee;
+import edu.nlu.motorbike_shop.entity.HashGenerator;
 import edu.nlu.motorbike_shop.entity.Role;
 import edu.nlu.motorbike_shop.util.DBUtils;
 
@@ -227,7 +228,7 @@ public class EmployeeDAO implements Serializable {
             userStm.setString(3, employee.getPhoneNumber());
             userStm.setString(4, employee.getImagePath());
             userStm.setString(5, employee.getEmail());
-            userStm.setString(6, employee.getPassword());
+            userStm.setString(6, HashGenerator.generateMD5(employee.getPassword()));
             userStm.setBoolean(7, employee.isEnabled());
 
             userStm.executeUpdate();
