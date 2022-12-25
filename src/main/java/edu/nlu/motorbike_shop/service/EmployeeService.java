@@ -10,7 +10,9 @@ import edu.nlu.motorbike_shop.entity.Role;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.Part;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -95,6 +97,66 @@ public class EmployeeService {
     }
 
     /**
+     * Get employee information from the form and save it in the database.
+     *
+     * @throws ServletException If the request for the POST could not be handled.
+     * @throws IOException      If an input or output error is detected when the servlet handles the POST request.
+     */
+    public void saveEmployee() throws ServletException, IOException {
+        String firstName = request.getParameter("firstName");
+        String lastName = request.getParameter("lastName");
+        String email = request.getParameter("email");
+        String password = request.getParameter("password");
+        String street = request.getParameter("street");
+        String ward = request.getParameter("ward");
+        String district = request.getParameter("district");
+        String city = request.getParameter("city");
+        String phone = request.getParameter("phone");
+        String[] roles = request.getParameterValues("roles");
+        boolean enabled = "on".equals(request.getParameter("enabled"));
+
+        boolean existEmployee = employeeDAO.checkEmailExists(email);
+
+        Address address = new Address(street, ward, district, city);
+        Employee employee = new Employee(firstName, lastName, phone, address, email, password, enabled);
+
+        if (existEmployee) {
+            String message = "Email " + email + " đã tồn tại!!!";
+            request.setAttribute("message", message);
+
+            getRolesDisplayedAdminInterface();
+            request.setAttribute("employee", employee);
+
+            String employeeFormPage = "employee-form.jsp";
+            request.getRequestDispatcher(employeeFormPage).forward(request, response);
+        } else {
+            Part part = request.getPart("image");
+
+            if (part != null && part.getSize() > 0) {
+                long size = part.getSize();
+                byte[] imageBytes = new byte[(int) size];
+
+                InputStream is = part.getInputStream();
+                is.read(imageBytes);
+                is.close();
+
+                employee.setImage(imageBytes);
+            } else {
+                employee.setImage(null);
+            }
+
+            for (String role : roles) {
+                employee.addRole(new Role(Integer.parseInt(role)));
+            }
+
+            employeeDAO.save(employee);
+
+            String message = "Nhân viên " + lastName + " " + firstName + " đã được thêm thành công !";
+            listEmployee(message);
+        }
+    }
+
+    /**
      * Get the employee's infornamtions by id from request and display it to user.
      *
      * @throws ServletException If the request for the GET could not be handled
@@ -124,7 +186,7 @@ public class EmployeeService {
     }
 
     /**
-     * Get the employee's information from the request and update it to the database.
+     * Get the employee's information from the request and update it into the database.
      *
      * @throws ServletException If the request for the POST could not be handled
      * @throws IOException      If an input or output error is detected when the servlet handles the POST request

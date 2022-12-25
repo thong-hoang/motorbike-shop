@@ -52,7 +52,7 @@
             </c:if>
 
             <c:if test="${employee.id == null}">
-            <form class="js-step-form py-md-5" action="create_employee" method="post" >
+            <form class="js-step-form py-md-5" action="create_employee" method="post" enctype="multipart/form-data">
                 </c:if>
                 <div class="row justify-content-lg-center">
                     <div class="col-lg-8">
@@ -64,43 +64,52 @@
                                     <div class="row form-group">
                                         <h1 class="m-auto">Thông tin nhân viên</h1>
                                     </div>
-                                    <div class="row form-group">
-                                        <label class="col-sm-3 col-form-label input-label">Ảnh đại diện</label>
+                                    <%--                                    <div class="row form-group">--%>
+                                    <%--                                        <label class="col-sm-3 col-form-label input-label">Ảnh đại diện</label>--%>
 
-                                        <div class="col-sm-9">
-                                            <div class="d-flex align-items-center">
-                                                <label class="avatar avatar-xl avatar-circle avatar-uploader mr-5"
-                                                       for="avatarUploader">
-                                                    <c:if test="${not empty employee.imagePath}">
-                                                        <img id="avatarImg" class="avatar-img"
-                                                             src="<c:url value="/images/employee/${employees.id}/${employees.imagePath}"/>"
-                                                             alt="Image Description">
-                                                    </c:if>
-                                                    <c:if test="${empty employee.imagePath}">
-                                                        <img id="avatarImg" class="avatar-img"
-                                                             src="../images/employee/default.jpg"
-                                                             alt="Image Description">
-                                                    </c:if>
+                                    <%--                                        <div class="col-sm-9">--%>
+                                    <%--                                            <div class="d-flex align-items-center">--%>
+                                    <%--                                                <label class="avatar avatar-xl avatar-circle avatar-uploader mr-5"--%>
+                                    <%--                                                       for="avatarUploader">--%>
+                                    <%--                                                    <c:if test="${not empty employee.imagePath}">--%>
+                                    <%--                                                        <img id="avatarImg" class="avatar-img"--%>
+                                    <%--                                                             src="<c:url value="/images/employee/${employees.id}/${employees.imagePath}"/>"--%>
+                                    <%--                                                             alt="Image Description">--%>
+                                    <%--                                                    </c:if>--%>
+                                    <%--                                                    <c:if test="${empty employee.imagePath}">--%>
+                                    <%--                                                        <img id="avatarImg" class="avatar-img"--%>
+                                    <%--                                                             src="../images/employee/default.jpg"--%>
+                                    <%--                                                             alt="Image Description">--%>
+                                    <%--                                                    </c:if>--%>
 
-                                                    <input type="file" class="js-file-attach avatar-uploader-input"
-                                                           id="avatarUploader" name="imagePath"
-                                                           value="${employee.imagePath}"
-                                                           data-hs-file-attach-options='
-                                                       {"textTarget": "#avatarImg",
-                                                       "mode": "image",
-                                                       "targetAttr": "src",
-                                                       "resetTarget": ".js-file-attach-reset-img",
-                                                       "resetImg": "../images/employee/default.jpg",
-                                                       "allowTypes": [".png", ".jpeg", ".jpg"]}'>
+                                    <%--                                                    <input type="file" class="js-file-attach avatar-uploader-input"--%>
+                                    <%--                                                           id="avatarUploader" name="imagePath"--%>
+                                    <%--                                                           value="${employee.imagePath}"--%>
+                                    <%--                                                           data-hs-file-attach-options='--%>
+                                    <%--                                                       {"textTarget": "#avatarImg",--%>
+                                    <%--                                                       "mode": "image",--%>
+                                    <%--                                                       "targetAttr": "src",--%>
+                                    <%--                                                       "resetTarget": ".js-file-attach-reset-img",--%>
+                                    <%--                                                       "resetImg": "../images/employee/default.jpg",--%>
+                                    <%--                                                       "allowTypes": [".png", ".jpeg", ".jpg"]}'>--%>
 
-                                                    <span class="avatar-uploader-trigger">
-                                                    <i class="tio-edit avatar-uploader-icon shadow-soft"></i>
-                                                </span>
-                                                </label>
+                                    <%--                                                    <span class="avatar-uploader-trigger">--%>
+                                    <%--                                                    <i class="tio-edit avatar-uploader-icon shadow-soft"></i>--%>
+                                    <%--                                                </span>--%>
+                                    <%--                                                </label>--%>
 
-                                                <button type="button" class="js-file-attach-reset-img btn btn-white">Xóa
-                                                </button>
-                                            </div>
+                                    <%--                                                <button type="button" class="js-file-attach-reset-img btn btn-white">Xóa--%>
+                                    <%--                                                </button>--%>
+                                    <%--                                            </div>--%>
+                                    <%--                                        </div>--%>
+                                    <%--                                    </div>--%>
+
+                                    <div class="form-group row">
+                                        <label class="col-sm-4 col-form-label">Ảnh đại diện:</label>
+                                        <div class="col-sm-8">
+                                            <input type="file" id="avatarUploader" class="mb-2" name="image"/>
+                                            <img id="avatarImg" src="../images/employee/default.jpg"
+                                                 alt="Photos preview" class="img-fluid" style="width: 40%"/>
                                         </div>
                                     </div>
 
@@ -256,7 +265,7 @@
 <script type="text/javascript">
     $(document).ready(function () {
         // check image file size
-        $("#avatar-uploader").change(function () { // is executed every time the event is fired
+        $("#avatarUploader").change(function () { // is executed every time the event is fired
             if (!checkFileSize(this)) {
                 return;
             }
