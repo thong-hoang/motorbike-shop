@@ -415,7 +415,7 @@ public class EmployeeDAO implements Serializable {
                     String district = rs.getString(12);
                     String city = rs.getString(13);
 
-                    byte[] image = convertBlobToByteArry(blob);
+                    byte[] image = (blob ==null) ? null :  convertBlobToByteArry(blob);
 
                     Address address = new Address(addressId, street, ward, district, city);
                     Employee employee = new Employee(id, firstName, lastName, phoneNumber, address, image, email, password, enabled);

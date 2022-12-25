@@ -165,8 +165,7 @@ public class EmployeeService {
     public void editEmployee() throws ServletException, IOException {
         Integer id = Integer.valueOf(request.getParameter("id"));
 
-//        Employee employee = employeeDAO.findById(id);
-        Employee employee = null;
+        Employee employee = employeeDAO.findById(id);
 
         Map<Role, String> roleMap = getSelectedRoles(employee);
 
