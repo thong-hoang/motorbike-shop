@@ -81,53 +81,6 @@ public class EmployeeService {
     }
 
     /**
-     * Get the employee's information from the request and save it to the database.
-     *
-     * @throws ServletException If the request for the POST could not be handled
-     * @throws IOException      If an input or output error is detected when the servlet handles the POST request
-     */
-    public void save() throws ServletException, IOException {
-        request.setCharacterEncoding("UTF-8");
-        String imagePath = request.getParameter("imagePath");
-        String firstName = request.getParameter("firstName");
-        String lastName = request.getParameter("lastName");
-        String email = request.getParameter("email");
-        String password = request.getParameter("password");
-        String street = request.getParameter("street");
-        String ward = request.getParameter("ward");
-        String district = request.getParameter("district");
-        String city = request.getParameter("city");
-        String phone = request.getParameter("phone");
-        String[] roles = request.getParameterValues("roles");
-        boolean enabled = "on".equals(request.getParameter("enabled"));
-
-        boolean existEmployee = employeeDAO.checkEmailExists(email);
-
-        if (existEmployee) {
-            String message = "Email " + email + " đã tồn tại!!!";
-            request.setAttribute("message", message);
-
-            Employee employee = new Employee(firstName, lastName, phone, new Address(street, ward, district, city),
-                    imagePath, email, password, enabled);
-            getRolesDisplayedAdminInterface();
-            request.setAttribute("employee", employee);
-
-            String employeeFormPage = "employee-form.jsp";
-            request.getRequestDispatcher(employeeFormPage).forward(request, response);
-        } else {
-            Employee newEmployee = new Employee(firstName, lastName, phone, new Address(street, ward, district, city),
-                    imagePath, email, password, enabled);
-            for (String role : roles) {
-                newEmployee.addRole(new Role(Integer.parseInt(role)));
-            }
-            employeeDAO.save(newEmployee);
-
-            String message = "Nhân viên " + lastName + " " + firstName + " đã được thêm thành công !";
-            listEmployee(message);
-        }
-    }
-
-    /**
      * Get role of employee corresponding from database and display it to user.
      *
      * @param employee The employee to get role.
@@ -150,7 +103,8 @@ public class EmployeeService {
     public void editEmployee() throws ServletException, IOException {
         Integer id = Integer.valueOf(request.getParameter("id"));
 
-        Employee employee = employeeDAO.findById(id);
+//        Employee employee = employeeDAO.findById(id);
+        Employee employee = null;
 
         Map<Role, String> roleMap = getSelectedRoles(employee);
 
@@ -176,8 +130,6 @@ public class EmployeeService {
      * @throws IOException      If an input or output error is detected when the servlet handles the POST request
      */
     public void updateEmployee() throws ServletException, IOException {
-        request.setCharacterEncoding("UTF-8");
-
         Integer id = Integer.valueOf(request.getParameter("id"));
         String imagePath = request.getParameter("imagePath");
         String firstName = request.getParameter("firstName");
@@ -193,7 +145,8 @@ public class EmployeeService {
         String[] roles = request.getParameterValues("roles");
         boolean enabled = "on".equals(request.getParameter("enabled"));
 
-        Employee employeeById = employeeDAO.findById(id);
+//        Employee employeeById = employeeDAO.findById(id);
+        Employee employeeById = null;
         Employee employeeByEmail = employeeDAO.findByEmail(email);
 
         String message;
@@ -206,8 +159,9 @@ public class EmployeeService {
                 message = "Email " + email + " đã tồn tại!!!";
                 request.setAttribute("message", message);
 
-                Employee employee = new Employee(id, firstName, lastName, phone, new Address(addressId, street, ward, district, city),
-                        imagePath, email, password, enabled);
+//                Employee employee = new Employee(id, firstName, lastName, phone, new Address(addressId, street, ward, district, city),
+//                        imagePath, email, password, enabled);
+                Employee employee = null;
 
                 Map<Role, String> roleMap = getSelectedRoles(employeeById);
 
@@ -220,8 +174,9 @@ public class EmployeeService {
                 request.getRequestDispatcher(updatePage).forward(request, response);
             } else {
                 password = HashGenerator.generateMD5(password);
-                Employee employee = new Employee(id, firstName, lastName, phone, new Address(addressId, street, ward, district, city),
-                        imagePath, email, password, enabled);
+//                Employee employee = new Employee(id, firstName, lastName, phone, new Address(addressId, street, ward, district, city),
+//                        imagePath, email, password, enabled);
+                Employee employee = null;
                 for (String role : roles) {
                     employee.addRole(new Role(Integer.parseInt(role)));
                 }
@@ -243,7 +198,8 @@ public class EmployeeService {
     public void deleteEmployee() throws ServletException, IOException {
         Integer id = Integer.valueOf(request.getParameter("id"));
 
-        Employee employee = employeeDAO.findById(id);
+//        Employee employee = employeeDAO.findById(id);
+        Employee employee = null;
 
         String message;
 
@@ -266,7 +222,8 @@ public class EmployeeService {
         Integer id = Integer.valueOf(request.getParameter("id"));
         boolean enabled = Boolean.parseBoolean(request.getParameter("enabled"));
 
-        Employee employee = employeeDAO.findById(id);
+//        Employee employee = employeeDAO.findById(id);
+        Employee employee = null;
 
         String message;
 
@@ -296,7 +253,8 @@ public class EmployeeService {
             request.getSession().setAttribute("email", email);
             request.getSession().setAttribute("firstName", employee.getFirstName());
             request.getSession().setAttribute("lastName", employee.getLastName());
-            request.getSession().setAttribute("imagePath", employee.getImagePath());
+            request.getSession().setAttribute("imagePath", employee.getBase64Image());
+            request.getSession().setAttribute("id", employee.getId());
 
             request.getRequestDispatcher("/backend/").forward(request, response);
         } else {

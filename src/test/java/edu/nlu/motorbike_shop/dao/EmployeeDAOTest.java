@@ -5,6 +5,9 @@ import edu.nlu.motorbike_shop.entity.Employee;
 import edu.nlu.motorbike_shop.entity.Role;
 import org.junit.Test;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -20,25 +23,54 @@ public class EmployeeDAOTest {
 
         assertTrue(employeeDAO.findAll(sortType, pageSize, columnName).size() > 0);
     }
-
     @Test
-    public void testCreateEmployee() {
+    public void testCreateEmployee() throws IOException {
         Address address = new Address("đường số 12", "bình hưng hòa", "bình tân", "hồ chí minh");
         Employee employee = new Employee("Thông", "Hoàng", "0123", address,
-                "1/thong.png", "thong@gmail.com", "thong123", true);
+                "thong@gmail.com", "thong123", true);
+
+        // select images to test locally
+        String imagePath = "C:\\Users\\thonghoang\\Downloads\\messi.jpg";
+        byte[] image = Files.readAllBytes(Paths.get(imagePath));
+        employee.setImage(image);
+
         employee.addRole(RoleDAO.getInstance().findById(2));
         employee.addRole(RoleDAO.getInstance().findById(3));
 
         assertTrue(employeeDAO.save(employee));
     }
-
     @Test
     public void testFindEmployeeById() {
-        Integer id = 1;
+        Integer id = 2;
         Employee employee = employeeDAO.findById(id);
-        System.out.println(employee);
 
         assertEquals("thong@gmail.com", employee.getEmail());
+    }
+    @Test
+    public void testUpdateEmployee() {
+        Set<Role> roles = new HashSet<>();
+        roles.add(RoleDAO.getInstance().findById(1));
+        roles.add(RoleDAO.getInstance().findById(2));
+
+        Integer id = 2;
+        Employee employee = employeeDAO.findById(id);
+        employee.setLastName("Hoàng Phạm");
+        employee.setRoles(roles);
+        employee.setAddress(new Address(1, "113/4 đường số 12", "bình hưng hòa", "bình tân", "hồ chí minh"));
+
+        assertTrue(employeeDAO.update(employee));
+
+        assertEquals("Hoàng Phạm", employeeDAO.findById(2).getLastName());
+        assertEquals("113/4 đường số 12", employeeDAO.findById(2).getAddress().getStreet());
+        assertEquals(2, employeeDAO.findById(2).getRoles().size());
+    }
+    @Test
+    public void testDeleteEmployee() {
+        Integer id = 2;
+
+        employeeDAO.delete(id);
+
+        assertNull(employeeDAO.findById(id));
     }
 
     @Test
@@ -48,34 +80,6 @@ public class EmployeeDAOTest {
         System.out.println(employee);
 
         assertEquals("Hoàng Phạm", employee.getLastName());
-    }
-
-    @Test
-    public void testUpdateEmployee() {
-        Integer id = 1;
-        Set<Role> roles = new HashSet<>();
-        roles.add(RoleDAO.getInstance().findById(1));
-        roles.add(RoleDAO.getInstance().findById(2));
-
-        Employee employee = employeeDAO.findById(id);
-        employee.setLastName("Hoàng Phạm");
-        employee.setAddress(new Address(1, "113/4 đường số 12", "bình hưng hòa", "bình tân", "hồ chí minh"));
-        employee.setRoles(roles);
-
-        employeeDAO.update(employee);
-
-        assertEquals("Hoàng Phạm", employeeDAO.findById(1).getLastName());
-        assertEquals("113/4 đường số 12", employeeDAO.findById(1).getAddress().getStreet());
-        assertEquals(2, employeeDAO.findById(1).getRoles().size());
-    }
-
-    @Test
-    public void testDeleteEmployee() {
-        Integer id = 2;
-
-        employeeDAO.delete(id);
-
-        assertNull(employeeDAO.findById(id));
     }
 
     @Test
@@ -92,7 +96,7 @@ public class EmployeeDAOTest {
     @Test
     public void testCheckLoginSuccess() {
         String email = "admin@gmail.com";
-        String password = "admin123";
+        String password = "0192023a7bbd73250516f069df18b500";
 
         assertNotNull(employeeDAO.login(email, password));
     }

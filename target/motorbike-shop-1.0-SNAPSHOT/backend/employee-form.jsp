@@ -52,29 +52,15 @@
             </c:if>
 
             <c:if test="${employee.id == null}">
-            <form class="js-step-form py-md-5" action="create_employee" method="post">
+            <form class="js-step-form py-md-5" action="create_employee" method="post" >
                 </c:if>
-
-                <%--        <form class="js-step-form py-md-5" data-hs-step-form-options='{--%>
-                <%--                "progressSelector": "#addUserStepFormProgress",--%>
-                <%--                "stepsSelector": "#addUserStepFormContent",--%>
-                <%--                "endSelector": "#addUserFinishBtn",--%>
-                <%--                "isValidate": false--%>
-                <%--              }' action="create_employee" method="post">--%>
                 <div class="row justify-content-lg-center">
                     <div class="col-lg-8">
-                        <!-- Step -->
-                        <a class="step-content-wrapper">
+                        <a class="step-content-wrapper"></a>
 
-                        </a>
-
-                        <!-- Content Step Form -->
                         <div id="addUserStepFormContent">
-                            <!-- Card -->
                             <div id="addUserStepProfile" class="card card-lg active">
-                                <!-- Body -->
                                 <div class="card-body">
-                                    <!-- Form Group -->
                                     <div class="row form-group">
                                         <h1 class="m-auto">Thông tin nhân viên</h1>
                                     </div>
@@ -83,15 +69,22 @@
 
                                         <div class="col-sm-9">
                                             <div class="d-flex align-items-center">
-                                                <!-- Avatar -->
                                                 <label class="avatar avatar-xl avatar-circle avatar-uploader mr-5"
                                                        for="avatarUploader">
-                                                    <img id="avatarImg" class="avatar-img"
-                                                         src="../images/employee/default.jpg"
-                                                         alt="Image Description">
+                                                    <c:if test="${not empty employee.imagePath}">
+                                                        <img id="avatarImg" class="avatar-img"
+                                                             src="<c:url value="/images/employee/${employees.id}/${employees.imagePath}"/>"
+                                                             alt="Image Description">
+                                                    </c:if>
+                                                    <c:if test="${empty employee.imagePath}">
+                                                        <img id="avatarImg" class="avatar-img"
+                                                             src="../images/employee/default.jpg"
+                                                             alt="Image Description">
+                                                    </c:if>
 
                                                     <input type="file" class="js-file-attach avatar-uploader-input"
-                                                           id="avatarUploader"
+                                                           id="avatarUploader" name="imagePath"
+                                                           value="${employee.imagePath}"
                                                            data-hs-file-attach-options='
                                                        {"textTarget": "#avatarImg",
                                                        "mode": "image",
@@ -261,6 +254,17 @@
 <jsp:include page="js.jsp"/>
 
 <script type="text/javascript">
+    $(document).ready(function () {
+        // check image file size
+        $("#avatar-uploader").change(function () { // is executed every time the event is fired
+            if (!checkFileSize(this)) {
+                return;
+            }
+
+            showImageThumbnail(this);
+        });
+    });
+
     function showModalDialog(title, message) {
         $("#modalTitle").text(title);
         $("#modalBody").text(message);
@@ -277,6 +281,34 @@
             window.location = "list_employees";
         });
     });
+
+    function showImageThumbnail(fileInput) {
+        var file = fileInput.files[0];
+
+        var reader = new FileReader();
+
+        reader.onload = function (e) {
+            $("#avatarImg").attr("src", e.target.result);
+        };
+
+        reader.readAsDataURL(file);
+    }
+
+    function checkFileSize(fileInput) {
+        fileSize = fileInput.files[0].size; // returns the selected file and can get the name or size
+        var mb = 1024 * 1024; // 1mb = 1024 x 1024 kb
+
+        if (fileSize > mb) {
+            fileInput.setCustomValidity("Bạn phải chọn ảnh nhỏ hơn 1MB !");
+            fileInput.reportValidity();
+
+            return false;
+        } else {
+            fileInput.setCustomValidity("");
+
+            return true;
+        }
+    }
 </script>
 
 </body>

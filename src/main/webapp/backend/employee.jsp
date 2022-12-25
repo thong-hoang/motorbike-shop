@@ -1,5 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 
 <html>
 
@@ -245,15 +246,19 @@
                             <tr>
                                 <td>
                                     <a class="d-flex align-items-center" href="edit_employee?id=${employees.id}">
-                                        <c:if test="${empty employees.imagePath}">
+
+                                        <c:if test="${empty employees.base64Image}">
                                             <div class="avatar avatar-soft-dark avatar-circle">
-                                                <span class="avatar-initials">O</span>
+                                                <span class="avatar-initials">
+                                                        ${fn:substring(employees.firstName, 0, 1)}
+                                                </span>
                                             </div>
                                         </c:if>
 
-                                        <c:if test="${not empty employees.imagePath}">
+                                        <c:if test="${not empty employees.base64Image}">
                                             <div class="avatar avatar-circle">
-                                                <img class="avatar-img" src="../images/user/user.png"
+                                                <img class="avatar-img"
+                                                     src="data:image/png;base64,${employees.base64Image}"
                                                      alt="Image Description">
                                             </div>
                                         </c:if>

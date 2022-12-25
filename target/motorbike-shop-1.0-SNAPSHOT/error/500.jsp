@@ -4,7 +4,6 @@
 <html>
 
 <head>
-
     <title>VTV | Admin - Error 500</title>
 
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">

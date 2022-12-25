@@ -82,7 +82,9 @@
                                         </div>
                                     </c:if>
                                     <c:if test="${not empty sessionScope.imagePath}">
-                                        <img class="avatar-img" src="../images/test/admin1.jpg" alt="Image Description">
+                                        <img class="avatar-img"
+                                             src="<c:url value="/images/employee/${sessionScope.id}/${sessionScope.imagePath}"/>"
+                                             alt="Image Description">
                                     </c:if>
                                     <span class="avatar-status avatar-sm-status avatar-status-success"></span>
                                 </div>
@@ -100,7 +102,7 @@
                                                 </div>
                                             </c:if>
                                             <c:if test="${not empty sessionScope.imagePath}">
-                                                <img class="avatar-img" src="../images/test/admin1.jpg"
+                                                <img class="avatar-img" src="<c:url value="/images/employee/${sessionScope.id}/${sessionScope.imagePath}"/>"
                                                      alt="Image Description">
                                             </c:if>
                                         </div>

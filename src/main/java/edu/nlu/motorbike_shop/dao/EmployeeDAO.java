@@ -6,7 +6,7 @@ import edu.nlu.motorbike_shop.entity.HashGenerator;
 import edu.nlu.motorbike_shop.entity.Role;
 import edu.nlu.motorbike_shop.util.DBUtils;
 
-import java.io.Serializable;
+import java.io.*;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -32,6 +32,43 @@ public class EmployeeDAO implements Serializable {
             instance = new EmployeeDAO();
 
         return instance;
+    }
+
+    /**
+     * Convert byte array to input stream.
+     *
+     * @param images The byte array of the image.
+     * @return The input stream of the image.
+     */
+    private InputStream convertByteArrayToInputStream(byte[] images) {
+        return new ByteArrayInputStream(images);
+    }
+
+    /**
+     * Convert blob to byte array.
+     *
+     * @param blob The blob of the image.
+     * @return The byte array of the image.
+     * @throws SQLException If there is an error accessing the BLOB value.
+     * @throws IOException  If the first byte cannot be read for any reason other than the end of the file,
+     *                      if the input stream has been closed, or if some other I/O error occurs.
+     */
+    public byte[] convertBlobToByteArry(Blob blob) throws SQLException, IOException {
+        InputStream inputStream = blob.getBinaryStream();
+        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+        byte[] buffer = new byte[4096];
+        int bytesRead = -1;
+
+        while ((bytesRead = inputStream.read(buffer)) != -1) {
+            outputStream.write(buffer, 0, bytesRead);
+        }
+
+        byte[] imageBytes = outputStream.toByteArray();
+
+        inputStream.close();
+        outputStream.close();
+
+        return imageBytes;
     }
 
     /**
@@ -169,7 +206,7 @@ public class EmployeeDAO implements Serializable {
      */
     public List<Employee> findAll(String sortType, int pageSize, String columnName) {
         List<Employee> employees = new ArrayList<>();
-        String sql = "SELECT id, image_path, first_name, last_name, email, phone_number, enabled " +
+        String sql = "SELECT id, image, first_name, last_name, email, phone_number, enabled " +
                 "FROM users ORDER BY ?, ? LIMIT ?";
 
         // use try-with-resources Statement to auto close the connection.
@@ -185,7 +222,7 @@ public class EmployeeDAO implements Serializable {
                 // fetch data from result set
                 while (rs.next()) {
                     Integer id = rs.getInt(1);
-                    String imagePath = rs.getString(2);
+                    Blob blob = rs.getBlob(2);
                     String firstName = rs.getString(3);
                     String lastName = rs.getString(4);
                     String email = rs.getString(5);
@@ -194,9 +231,15 @@ public class EmployeeDAO implements Serializable {
 
                     Address address = findAddressByUserId(id);
 
-                    Employee employee = new Employee(id, firstName, lastName, phoneNumber, address, imagePath, email, enabled);
-                    // findRolesByUserId(id).forEach(role -> employee.addRole(role));
-                    findRolesByUserId(id).forEach(employee::addRole);
+                    byte[] image;
+                    if (blob != null) {
+                        image = convertBlobToByteArry(blob);
+                    } else {
+                        image = null;
+                    }
+
+                    Employee employee = new Employee(id, firstName, lastName, phoneNumber, address, image, email, enabled);
+                    findRolesByUserId(id).forEach(employee::addRole); // forEach(role -> employee.addRole(role));
 
                     employees.add(employee);
                 }
@@ -215,7 +258,7 @@ public class EmployeeDAO implements Serializable {
      * @throws SQLIntegrityConstraintViolationException If the email is already in use.
      */
     public boolean save(Employee employee) {
-        String sqlInsertUser = "INSERT INTO users (first_name, last_name, phone_number, image_path, email, "
+        String sqlInsertUser = "INSERT INTO users (first_name, last_name, phone_number, image, email, "
                 + "password, enabled) value(?, ?, ?, ?, ?, ?, ?)";
         String sqlInsertUserRole = "INSERT INTO user_role (user_id, role_id) value(?, ?)";
 
@@ -226,7 +269,13 @@ public class EmployeeDAO implements Serializable {
             userStm.setString(1, employee.getFirstName());
             userStm.setString(2, employee.getLastName());
             userStm.setString(3, employee.getPhoneNumber());
-            userStm.setString(4, employee.getImagePath());
+
+            if (employee.getImage() != null) {
+                userStm.setBlob(4, convertByteArrayToInputStream(employee.getImage()));
+            } else {
+                userStm.setNull(4, Types.BLOB);
+            }
+
             userStm.setString(5, employee.getEmail());
             userStm.setString(6, HashGenerator.generateMD5(employee.getPassword()));
             userStm.setBoolean(7, employee.isEnabled());
@@ -293,7 +342,7 @@ public class EmployeeDAO implements Serializable {
 
     public boolean update(Employee employee) {
         String updateUser = "UPDATE users SET first_name = ?, last_name = ?, phone_number = ?, " +
-                "image_path = ?, email = ?, password = ?, enabled = ? WHERE id = ?";
+                "image = ?, email = ?, password = ?, enabled = ? WHERE id = ?";
         String sqlInsertUserRole = "INSERT INTO user_role (user_id, role_id) value(?, ?)";
         try (Connection conn = DBUtils.makeConnection();
              PreparedStatement stm = conn.prepareStatement(updateUser);
@@ -301,7 +350,13 @@ public class EmployeeDAO implements Serializable {
             stm.setString(1, employee.getFirstName());
             stm.setString(2, employee.getLastName());
             stm.setString(3, employee.getPhoneNumber());
-            stm.setString(4, employee.getImagePath());
+
+            if (employee.getImage() != null) {
+                stm.setBlob(4, convertByteArrayToInputStream(employee.getImage()));
+            } else {
+                stm.setNull(4, Types.BLOB);
+            }
+
             stm.setString(5, employee.getEmail());
             stm.setString(6, employee.getPassword());
             stm.setBoolean(7, employee.isEnabled());
@@ -350,7 +405,7 @@ public class EmployeeDAO implements Serializable {
                     String firstName = rs.getString(2);
                     String lastName = rs.getString(3);
                     String phoneNumber = rs.getString(4);
-                    String imagePath = rs.getString(5);
+                    Blob blob = rs.getBlob(5);
                     String email = rs.getString(6);
                     String password = rs.getString(7);
                     boolean enabled = rs.getBoolean(8);
@@ -360,8 +415,10 @@ public class EmployeeDAO implements Serializable {
                     String district = rs.getString(12);
                     String city = rs.getString(13);
 
+                    byte[] image = convertBlobToByteArry(blob);
+
                     Address address = new Address(addressId, street, ward, district, city);
-                    Employee employee = new Employee(id, firstName, lastName, phoneNumber, address, imagePath, email, password, enabled);
+                    Employee employee = new Employee(id, firstName, lastName, phoneNumber, address, image, email, password, enabled);
                     findRolesByUserId(id).forEach(employee::addRole);
 
                     return employee;
@@ -395,7 +452,7 @@ public class EmployeeDAO implements Serializable {
                     String firstName = rs.getString(2);
                     String lastName = rs.getString(3);
                     String phoneNumber = rs.getString(4);
-                    String imagePath = rs.getString(5);
+                    byte[] image = convertBlobToByteArry(rs.getBlob(5));
                     String password = rs.getString(7);
                     boolean enabled = rs.getBoolean(8);
                     Integer addressId = rs.getInt(9);
@@ -405,7 +462,7 @@ public class EmployeeDAO implements Serializable {
                     String city = rs.getString(13);
 
                     Address address = new Address(addressId, street, ward, district, city);
-                    Employee employee = new Employee(id, firstName, lastName, phoneNumber, address, imagePath, email, password, enabled);
+                    Employee employee = new Employee(id, firstName, lastName, phoneNumber, address, image, email, password, enabled);
                     findRolesByUserId(id).forEach(employee::addRole);
 
                     return employee;
@@ -478,7 +535,7 @@ public class EmployeeDAO implements Serializable {
     }
 
     public Employee login(String email, String password) {
-        String sql = "SELECT first_name, last_name, email, image_path FROM users WHERE email = ? AND password = ?";
+        String sql = "SELECT id, first_name, last_name, email, image FROM users WHERE email = ? AND password = ?";
 
         try (Connection conn = DBUtils.makeConnection();
              PreparedStatement stm = conn.prepareStatement(sql)) {
@@ -487,8 +544,13 @@ public class EmployeeDAO implements Serializable {
 
             try (ResultSet rs = stm.executeQuery()) {
                 if (rs.next()) {
-                    return new Employee(rs.getString(1), rs.getString(2),
-                            rs.getString(3), rs.getString(4));
+                    if (rs.getBlob(5) != null)
+                        return new Employee(rs.getInt(1), rs.getString(2),
+                                rs.getString(3), rs.getString(4),
+                                convertBlobToByteArry(rs.getBlob(5)));
+                    else
+                        return new Employee(rs.getInt(1), rs.getString(2),
+                                rs.getString(3), rs.getString(4));
                 }
             }
         } catch (Exception e) {
