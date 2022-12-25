@@ -9,7 +9,7 @@ INSERT INTO `roles` (`id`, `name`, `description`)
 VALUES (4, 'nhân viên biên tập', 'quản lý thể loại, nhãn hiệu, quảng cáo');
 
 -- user
-INSERT INTO `users` (`id`, `first_name`, `last_name`, `phone_number`, `image_path`, `email`, `password`, `enabled`)
+INSERT INTO `users` (`id`, `first_name`, `last_name`, `phone_number`, `image`, `email`, `password`, `enabled`)
 VALUES (1, 'admin', 'admin', '0123456789', NULL, 'admin@gmail.com', '0192023a7bbd73250516f069df18b500', b'1');
 
 -- user role
