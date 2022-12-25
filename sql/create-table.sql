@@ -26,7 +26,7 @@ CREATE TABLE `users`
     `first_name`   varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
     `last_name`    varchar(45) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci  NOT NULL,
     `phone_number` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci  NOT NULL,
-    `image_path`   varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci  NULL DEFAULT NULL,
+    `image`        mediumblob                                                    NULL,
     `email`        varchar(128) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
     `password`     varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci  NOT NULL,
     `enabled`      bit(1)                                                        NOT NULL,
@@ -82,10 +82,10 @@ CREATE TABLE `customers`
 
 CREATE TABLE `banners`
 (
-    `id`         int                                                           NOT NULL AUTO_INCREMENT,
-    `image_path` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
-    `name`       varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
-    `enabled`    bit(1)                                                        NOT NULL,
+    `id`      int                                                           NOT NULL AUTO_INCREMENT,
+    `image`   mediumblob                                                    NOT NULL,
+    `name`    varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+    `enabled` bit(1)                                                        NOT NULL,
     PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = InnoDB
   AUTO_INCREMENT = 1
@@ -94,9 +94,9 @@ CREATE TABLE `banners`
 
 CREATE TABLE `brands`
 (
-    `id`         int                                                          NOT NULL AUTO_INCREMENT,
-    `name`       varchar(45) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
-    `image_path` varchar(45) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
+    `id`    int                                                          NOT NULL AUTO_INCREMENT,
+    `name`  varchar(45) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+    `image` mediumblob                                                   NOT NULL,
     PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = InnoDB
   AUTO_INCREMENT = 2
@@ -134,7 +134,7 @@ CREATE TABLE `brand_category`
 CREATE TABLE `products`
 (
     `id`               int                                                           NOT NULL AUTO_INCREMENT,
-    `main_image_path`  varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+    `main_image`       mediumblob                                                    NOT NULL,
     `name`             varchar(256) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
     `alias`            varchar(256) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
     `brand_id`         int                                                           NOT NULL,
@@ -172,9 +172,9 @@ CREATE TABLE `product_details`
 
 CREATE TABLE `product_images`
 (
-    `id`         int                                                           NOT NULL AUTO_INCREMENT,
-    `image`      varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
-    `product_id` int                                                           NOT NULL,
+    `id`         int        NOT NULL AUTO_INCREMENT,
+    `image`      mediumblob NOT NULL,
+    `product_id` int        NOT NULL,
     PRIMARY KEY (`id`) USING BTREE,
     INDEX `fk_product_image_idx` (`product_id` ASC) USING BTREE,
     CONSTRAINT `fk_product_image` FOREIGN KEY (`product_id`) REFERENCES `products` (`id`) ON DELETE CASCADE ON UPDATE RESTRICT
