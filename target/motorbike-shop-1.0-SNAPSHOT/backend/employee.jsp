@@ -285,7 +285,8 @@
                                     <td>
                                         <c:if test="${employees.enabled}">
                                             <a class="fas fa-check-circle fa-2x icon-green"
-                                               href="enable_employee?enabled=false&id=${employees.id}" title="Vô hiệu hoá">
+                                               href="enable_employee?enabled=false&id=${employees.id}"
+                                               title="Vô hiệu hoá">
                                             </a>
                                         </c:if>
                                         <c:if test="${!employees.enabled}">
@@ -383,7 +384,8 @@
                                     <td>
                                         <c:if test="${employees.enabled}">
                                             <a class="fas fa-check-circle fa-2x icon-green"
-                                               href="enable_employee?enabled=false&id=${employees.id}" title="Vô hiệu hoá">
+                                               href="enable_employee?enabled=false&id=${employees.id}"
+                                               title="Vô hiệu hoá">
                                             </a>
                                         </c:if>
                                         <c:if test="${!employees.enabled}">
@@ -412,37 +414,25 @@
                 </table>
             </div>
 
-            <div class="card-footer">
-                <!-- Pagination -->
-                <div class="row justify-content-center justify-content-sm-between align-items-sm-center">
-                    <div class="col-sm mb-2 mb-sm-0">
-                        <div class="d-flex justify-content-center justify-content-sm-start align-items-center">
-                            <span class="mr-2">Hiển thị:</span>
-
-                            <!-- Select -->
-                            <select id="datatableEntries" class="js-select2-custom" data-hs-select2-options='{
-                            "minimumResultsForSearch": "Infinity",
-                            "customClass": "custom-select custom-select-sm custom-select-borderless",
-                            "dropdownAutoWidth": true,
-                            "width": true
-                          }'>
-                                <option value="5" selected>5</option>
-                                <option value="10">10</option>
-                                <option value="15">15</option>
-                            </select>
-                            <!-- End Select -->
-
-                            <span class="text-secondary mr-2">&nbsp; trên ${totalEmployees}</span>
-
-                            <!-- Pagination Quantity -->
-                            <span id="datatableWithPaginationInfoTotalQty"></span>
-                        </div>
-                    </div>
-
-                    <jsp:include page="pagination.jsp"/>
-                    <!-- End Pagination -->
+            <c:if test="${totalPages > 0}">
+                <div class="card-footer">
+                    <nav aria-label="Page navigation example">
+                        <ul class="pagination float-right">
+                            <li class="${currentPage > 1 ? 'page-item' : 'page-item disabled'}">
+                                <a class="page-link" href="list_employees?pageNumber=${currentPage - 1}">Trước</a>
+                            </li>
+                            <c:forEach var="i" begin="1" end="${totalPages}">
+                                <li class="${currentPage != i ? 'page-item' : 'page-item active'}">
+                                    <a class="page-link" href="list_employees?pageNumber=${i}">${i}</a>
+                                </li>
+                            </c:forEach>
+                            <li class="${currentPage < totalPages ? 'page-item' : 'page-item disabled'}">
+                                <a class="page-link" href="list_employees?pageNumber=${currentPage + 1}">Sau</a>
+                            </li>
+                        </ul>
+                    </nav>
                 </div>
-            </div>
+            </c:if>
         </div>
 
         <jsp:include page="footer.jsp"/>

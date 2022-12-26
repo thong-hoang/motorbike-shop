@@ -22,8 +22,9 @@ public class EmployeeDAOTest {
         String sortType = "ASC";
         int pageSize = 5;
         String columnName = "id";
+        int index = 0;
 
-        assertTrue(employeeDAO.findAll(sortType, pageSize, columnName).size() > 0);
+        assertTrue(employeeDAO.findAll(sortType, pageSize, columnName, index).size() > 0);
     }
 
     @Test

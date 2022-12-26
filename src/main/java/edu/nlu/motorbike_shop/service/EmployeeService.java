@@ -24,33 +24,11 @@ public class EmployeeService {
     private final HttpServletResponse response;
     private final String DEFAULT_SORT_TYPE = "ASC";
     private final String DEFAULT_SORT_FIELD = "id";
-    private final int DEFAULT_PAGE_SIZE = 10;
+    private final int DEFAULT_PAGE_SIZE = 1;
 
     public EmployeeService(HttpServletRequest request, HttpServletResponse response) {
         this.request = request;
         this.response = response;
-    }
-
-    /**
-     * Returns a list of employees and a response message to the user.
-     *
-     * @param message A message specified to display to the user
-     * @throws ServletException If the request for the GET could not be handled
-     * @throws IOException      If an input or output error is detected when the servlet handles the GET request
-     */
-    public void listEmployee(String message) throws ServletException, IOException {
-        List<Employee> employees = employeeDAO.findAll(DEFAULT_SORT_TYPE, DEFAULT_PAGE_SIZE, DEFAULT_SORT_FIELD);
-        long numberOfEmployees = employeeDAO.count();
-
-        request.setAttribute("listEmployees", employees);
-        request.setAttribute("numberOfEmployees", numberOfEmployees);
-        request.setAttribute("totalEmployees", numberOfEmployees);
-
-        if (message != null)
-            request.setAttribute("message", message);
-
-        String listPage = "employee.jsp";
-        request.getRequestDispatcher(listPage).forward(request, response);
     }
 
     /**
@@ -61,6 +39,41 @@ public class EmployeeService {
      */
     public void listEmployee() throws ServletException, IOException {
         listEmployee(null);
+    }
+
+    /**
+     * Returns a list of employees and a response message to the user.
+     *
+     * @param message A message specified to display to the user
+     * @throws ServletException If the request for the GET could not be handled
+     * @throws IOException      If an input or output error is detected when the servlet handles the GET request
+     */
+    public void listEmployee(String message) throws ServletException, IOException {
+        String pageNumberString = request.getParameter("pageNumber");
+        int pageNumber;
+
+        if (pageNumberString == null) {
+            pageNumber = 1;
+        } else {
+            pageNumber = Integer.parseInt(request.getParameter("pageNumber"));
+        }
+
+        List<Employee> employees = employeeDAO.findAll(DEFAULT_SORT_TYPE, DEFAULT_PAGE_SIZE, DEFAULT_SORT_FIELD, pageNumber);
+        long numberOfEmployees = employeeDAO.count();
+
+        long totalPages = numberOfEmployees / DEFAULT_PAGE_SIZE;
+        if (numberOfEmployees % DEFAULT_PAGE_SIZE != 0) totalPages++;
+
+        request.setAttribute("currentPage", pageNumber);
+        request.setAttribute("totalPages", totalPages);
+        request.setAttribute("listEmployees", employees);
+        request.setAttribute("numberOfEmployees", numberOfEmployees);
+
+        if (message != null)
+            request.setAttribute("message", message);
+
+        String listPage = "employee.jsp";
+        request.getRequestDispatcher(listPage).forward(request, response);
     }
 
     /**
@@ -346,7 +359,7 @@ public class EmployeeService {
         List<Employee> result;
 
         if (keyword.equals("")) {
-            result = employeeDAO.findAll(DEFAULT_SORT_TYPE, DEFAULT_PAGE_SIZE, DEFAULT_SORT_FIELD);
+            result = employeeDAO.findAll(DEFAULT_SORT_TYPE, DEFAULT_PAGE_SIZE, DEFAULT_SORT_FIELD, 1);
         } else {
             result = employeeDAO.search(keyword, DEFAULT_SORT_FIELD, DEFAULT_SORT_TYPE, DEFAULT_PAGE_SIZE);
         }
@@ -359,4 +372,20 @@ public class EmployeeService {
         String listPage = "employee.jsp";
         request.getRequestDispatcher(listPage).forward(request, response);
     }
+
+//    public void paginationEmployee() throws ServletException, IOException {
+//        int pageNumber = Integer.parseInt(request.getParameter("pageNumber"));
+//        long numberOfEmployees = employeeDAO.count();
+////        List<Employee> pageable = employeeDAO.pageable(pageNumber, DEFAULT_PAGE_SIZE);
+//
+//        long totalPages = numberOfEmployees / DEFAULT_PAGE_SIZE;
+//        if (numberOfEmployees % DEFAULT_PAGE_SIZE != 0) totalPages++;
+//
+//        request.setAttribute("currentPage", pageNumber);
+//        request.setAttribute("totalPages", totalPages);
+////        request.setAttribute("listEmployees", pageable);
+//
+//        String listPage = "employee.jsp";
+//        request.getRequestDispatcher(listPage).forward(request, response);
+//    }
 }

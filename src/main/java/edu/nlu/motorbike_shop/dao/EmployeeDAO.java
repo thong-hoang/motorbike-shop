@@ -200,14 +200,16 @@ public class EmployeeDAO implements Serializable {
     /**
      * Returns all instance of employee with pagination
      *
-     * @param sortType Specify the sort type, ASC or DESC.
-     * @param pageSize Specify the number of records per page.
+     * @param sortType   Specify the sort type, ASC or DESC.
+     * @param pageSize   Specify the number of records per page.
+     * @param columnName Specify the column name to sort.
+     * @param index      Specify the page index.
      * @return List of Employee entities.
      */
-    public List<Employee> findAll(String sortType, int pageSize, String columnName) {
+    public List<Employee> findAll(String sortType, int pageSize, String columnName, int index) {
         List<Employee> employees = new ArrayList<>();
         String sql = "SELECT id, image, first_name, last_name, email, phone_number, enabled " +
-                "FROM users ORDER BY ?, ? LIMIT ?";
+                "FROM users ORDER BY ?, ? LIMIT ? OFFSET ?";
 
         // use try-with-resources Statement to auto close the connection.
         try (Connection conn = DBUtils.makeConnection();
@@ -216,6 +218,7 @@ public class EmployeeDAO implements Serializable {
             stm.setString(1, columnName);
             stm.setString(2, sortType);
             stm.setInt(3, pageSize);
+            stm.setInt(4, (index - 1) * pageSize);
 
             // use try-with-resources Statement to auto close the ResultSet.
             try (ResultSet rs = stm.executeQuery()) {
