@@ -9,11 +9,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <!-- Title -->
-    <c:if test="${title == null}">
+    <c:if test="${empty title}">
         <title>VTV | Admin - Thêm mới nhân viên</title>
     </c:if>
 
-    <c:if test="${title != null}">
+    <c:if test="${not empty title}">
         <title>VTV | Admin - ${title}</title>
     </c:if>
 
@@ -36,23 +36,23 @@
                     </ol>
                 </nav>
 
-                <c:if test="${title == null}">
+                <c:if test="${empty title}">
                     <h1 class="page-header-title m-auto">Thêm nhân viên</h1>
                 </c:if>
-                <c:if test="${title != null}">
+                <c:if test="${not empty title}">
                     <h1 class="page-header-title m-auto">${title}</h1>
                 </c:if>
             </div>
         </div>
 
-        <c:if test="${employee.id != null}">
-        <form class="js-step-form py-md-5" action="update_employee" method="post">
+        <c:if test="${not empty employee.id}">
+        <form class="js-step-form py-md-5" action="update_employee" method="post" enctype="multipart/form-data">
             <input type="hidden" name="id" value="${employee.id}"/>
             <input type="hidden" name="addressId" value="${employee.address.id}">
             </c:if>
 
-            <c:if test="${employee.id == null}">
-            <form class="js-step-form py-md-5" action="create_employee" method="post" >
+            <c:if test="${empty employee.id}">
+            <form class="js-step-form py-md-5" action="create_employee" method="post" enctype="multipart/form-data">
                 </c:if>
                 <div class="row justify-content-lg-center">
                     <div class="col-lg-8">
@@ -64,43 +64,22 @@
                                     <div class="row form-group">
                                         <h1 class="m-auto">Thông tin nhân viên</h1>
                                     </div>
-                                    <div class="row form-group">
-                                        <label class="col-sm-3 col-form-label input-label">Ảnh đại diện</label>
 
-                                        <div class="col-sm-9">
-                                            <div class="d-flex align-items-center">
-                                                <label class="avatar avatar-xl avatar-circle avatar-uploader mr-5"
-                                                       for="avatarUploader">
-                                                    <c:if test="${not empty employee.imagePath}">
-                                                        <img id="avatarImg" class="avatar-img"
-                                                             src="<c:url value="/images/employee/${employees.id}/${employees.imagePath}"/>"
-                                                             alt="Image Description">
-                                                    </c:if>
-                                                    <c:if test="${empty employee.imagePath}">
-                                                        <img id="avatarImg" class="avatar-img"
-                                                             src="../images/employee/default.jpg"
-                                                             alt="Image Description">
-                                                    </c:if>
-
-                                                    <input type="file" class="js-file-attach avatar-uploader-input"
-                                                           id="avatarUploader" name="imagePath"
-                                                           value="${employee.imagePath}"
-                                                           data-hs-file-attach-options='
-                                                       {"textTarget": "#avatarImg",
-                                                       "mode": "image",
-                                                       "targetAttr": "src",
-                                                       "resetTarget": ".js-file-attach-reset-img",
-                                                       "resetImg": "../images/employee/default.jpg",
-                                                       "allowTypes": [".png", ".jpeg", ".jpg"]}'>
-
-                                                    <span class="avatar-uploader-trigger">
-                                                    <i class="tio-edit avatar-uploader-icon shadow-soft"></i>
-                                                </span>
-                                                </label>
-
-                                                <button type="button" class="js-file-attach-reset-img btn btn-white">Xóa
-                                                </button>
-                                            </div>
+                                    <div class="form-group row">
+                                        <label class="col-sm-4 col-form-label">Ảnh đại diện:</label>
+                                        <div class="col-sm-8">
+                                            <input type="file" id="avatarUploader" class="mb-2" name="image"/>
+                                            <c:choose>
+                                                <c:when test="${not empty employee.base64Image}">
+                                                    <img id="avatarImg"
+                                                         src="data:image/png;base64,${employee.base64Image}"
+                                                         alt="Photos preview" class="img-fluid" style="width: 40%"/>
+                                                </c:when>
+                                                <c:otherwise>
+                                                    <img id="avatarImg" src="../images/employee/default.jpg"
+                                                         alt="Photos preview" class="img-fluid" style="width: 40%"/>
+                                                </c:otherwise>
+                                            </c:choose>
                                         </div>
                                     </div>
 
@@ -136,8 +115,15 @@
                                         <label for="passwordLabel" class="col-sm-3 col-form-label input-label">Mật
                                             khẩu</label>
                                         <div class="col-sm-9">
-                                            <input type="password" class="form-control" name="password"
-                                                   id="passwordLabel" value="${employee.password}" required>
+                                            <c:if test="${empty employee}">
+                                                <input type="password" class="form-control" name="password"
+                                                       id="passwordLabel" required>
+                                            </c:if>
+                                            <c:if test="${not empty employee}">
+                                                <input type="password" class="form-control" name="password"
+                                                       id="passwordLabel"
+                                                       placeholder="Để trống nếu không muốn thay đổi mật khẩu">
+                                            </c:if>
                                         </div>
                                     </div>
 
@@ -190,7 +176,7 @@
                                         <label class="col-sm-3 col-form-label input-label" for="roleLabel">Vai
                                             trò</label>
                                         <div class="col-sm-9 pt-1">
-                                            <c:if test="${employee.id == null}">
+                                            <c:if test="${empty employee.id}">
                                                 <c:forEach var="role" items="${roles}">
                                                     <input id="roleLabel" type="checkbox" class="mt-2" name="roles"
                                                            value="${role.id}"> ${role.name}
@@ -198,7 +184,7 @@
                                                 </c:forEach>
                                             </c:if>
 
-                                            <c:if test="${employee.id != null}">
+                                            <c:if test="${not empty employee.id}">
                                                 <c:forEach var="role" items="${roleMap}">
                                                     <input id="roleLabel" type="checkbox" class="mt-2" name="roles"
                                                            value="${role.key.id}"
@@ -214,12 +200,12 @@
                                             động</label>
                                         <div class="col-sm-9 pt-1">
                                             <c:choose>
-                                                <c:when test="${employee != null}">
+                                                <c:when test="${not empty employee}">
                                                     <c:if test="${employee.enabled}">
                                                         <input type="checkbox" class="mt-2" name="enabled" id="enabled"
                                                                checked>
                                                     </c:if>
-                                                    <c:if test="${!employee.enabled}">
+                                                    <c:if test="${not employee.enabled}">
                                                         <input type="checkbox" class="mt-2" name="enabled" id="enabled">
                                                     </c:if>
                                                 </c:when>
@@ -256,7 +242,7 @@
 <script type="text/javascript">
     $(document).ready(function () {
         // check image file size
-        $("#avatar-uploader").change(function () { // is executed every time the event is fired
+        $("#avatarUploader").change(function () { // is executed every time the event is fired
             if (!checkFileSize(this)) {
                 return;
             }

@@ -44,7 +44,7 @@
             <div class="card-header">
                 <div class="row justify-content-between align-items-center flex-grow-1">
                     <div class="col-sm-6 col-md-4 mb-3 mb-sm-0">
-                        <form>
+                        <form action="search_employee" method="get">
                             <!-- Search -->
                             <div class="input-group input-group-merge input-group-flush">
                                 <div class="input-group-prepend">
@@ -52,10 +52,9 @@
                                         <i class="tio-search"></i>
                                     </div>
                                 </div>
-                                <input id="datatableSearch" type="search" class="form-control"
-                                       placeholder="Tìm kiếm nhân viên" aria-label="Search users">
+                                <input type="search" class="form-control" placeholder="Tìm kiếm nhân viên"
+                                       name="keyword">
                             </div>
-                            <!-- End Search -->
                         </form>
                     </div>
 
@@ -213,136 +212,227 @@
 
                     <tbody>
 
-                    <c:forEach var="employees" items="${listEmployees}">
-                        <c:if test="${employees.id == 1}">
-                            <tr>
-                                <td>
-                                    <a class="d-flex align-items-center">
-                                        <div class="avatar avatar-soft-dark avatar-circle">
-                                            <span class="avatar-initials">O</span>
-                                        </div>
-                                        <div class="ml-3">
+                    <c:if test="${empty result}">
+                        <c:forEach var="employees" items="${listEmployees}">
+                            <c:if test="${employees.id == 1}">
+                                <tr>
+                                    <td>
+                                        <a class="d-flex align-items-center">
+                                            <div class="avatar avatar-soft-dark avatar-circle">
+                                                <span class="avatar-initials">O</span>
+                                            </div>
+                                            <div class="ml-3">
                                             <span class="d-block h5 text-hover-primary mb-0">
                                                  ${employees.firstName}
                                                 <i class="tio-verified text-primary" data-toggle="tooltip"
                                                    data-placement="top"></i>
                                             </span>
-                                            <span class="d-block font-size-sm text-body">${employees.email}</span>
-                                        </div>
-                                    </a>
-                                </td>
-                                <td>
-                                    <span class="d-block font-size-sm">${employees.phoneNumber}</span>
-                                </td>
-                                <td>
-                                    <span></span>
-                                </td>
-                                <td>${employees.roles}</td>
-                                <td>
-                                </td>
-                            </tr>
-                        </c:if>
-                        <c:if test="${employees.id != 1}">
-                            <tr>
-                                <td>
-                                    <a class="d-flex align-items-center" href="edit_employee?id=${employees.id}">
+                                                <span class="d-block font-size-sm text-body">${employees.email}</span>
+                                            </div>
+                                        </a>
+                                    </td>
+                                    <td>
+                                        <span class="d-block font-size-sm">${employees.phoneNumber}</span>
+                                    </td>
+                                    <td>
+                                        <span></span>
+                                    </td>
+                                    <td>${employees.roles}</td>
+                                    <td>
+                                    </td>
+                                </tr>
+                            </c:if>
+                            <c:if test="${employees.id != 1}">
+                                <tr>
+                                    <td>
+                                        <a class="d-flex align-items-center" href="edit_employee?id=${employees.id}">
 
-                                        <c:if test="${empty employees.base64Image}">
-                                            <div class="avatar avatar-soft-dark avatar-circle">
+                                            <c:if test="${empty employees.base64Image}">
+                                                <div class="avatar avatar-soft-dark avatar-circle">
                                                 <span class="avatar-initials">
                                                         ${fn:substring(employees.firstName, 0, 1)}
                                                 </span>
-                                            </div>
-                                        </c:if>
+                                                </div>
+                                            </c:if>
 
-                                        <c:if test="${not empty employees.base64Image}">
-                                            <div class="avatar avatar-circle">
-                                                <img class="avatar-img"
-                                                     src="data:image/png;base64,${employees.base64Image}"
-                                                     alt="Image Description">
-                                            </div>
-                                        </c:if>
+                                            <c:if test="${not empty employees.base64Image}">
+                                                <div class="avatar avatar-circle">
+                                                    <img class="avatar-img"
+                                                         src="data:image/png;base64,${employees.base64Image}"
+                                                         alt="Image Description">
+                                                </div>
+                                            </c:if>
 
-                                        <div class="ml-3">
+                                            <div class="ml-3">
                                             <span class="d-block h5 text-hover-primary mb-0">
                                                         ${employees.lastName} ${employees.firstName}
                                             </span>
-                                            <span class="d-block font-size-sm text-body">${employees.email}</span>
-                                        </div>
-                                    </a>
-                                </td>
-                                <td>
-                                    <span class="d-block font-size-sm">${employees.phoneNumber}</span>
-                                </td>
-                                <td>
+                                                <span class="d-block font-size-sm text-body">${employees.email}</span>
+                                            </div>
+                                        </a>
+                                    </td>
+                                    <td>
+                                        <span class="d-block font-size-sm">${employees.phoneNumber}</span>
+                                    </td>
+                                    <td>
                                     <span class="d-block font-size-sm">
                                         ${employees.address.street},
                                         ${employees.address.ward}, ${employees.address.district},
                                         ${employees.address.city}
                                     </span>
-                                </td>
-                                <td>${employees.roles}</td>
-                                <td>
-                                    <c:if test="${employees.enabled}">
-                                        <a class="fas fa-check-circle fa-2x icon-green"
-                                           href="enable_employee?enabled=false&id=${employees.id}" title="Vô hiệu hoá">
+                                    </td>
+                                    <td>${employees.roles}</td>
+                                    <td>
+                                        <c:if test="${employees.enabled}">
+                                            <a class="fas fa-check-circle fa-2x icon-green"
+                                               href="enable_employee?enabled=false&id=${employees.id}"
+                                               title="Vô hiệu hoá">
+                                            </a>
+                                        </c:if>
+                                        <c:if test="${!employees.enabled}">
+                                            <a class="fas fa-check-circle fa-2x icon-gray"
+                                               href="enable_employee?enabled=true&id=${employees.id}" title="Kích hoạt">
+                                            </a>
+                                        </c:if>
+                                    </td>
+                                    <td>
+                                        <div class="btn-group" role="group">
+                                            <a class="btn btn-sm btn-white" href="edit_employee?id=${employees.id}">
+                                                <i class="tio-edit"></i> Chỉnh sửa
+                                            </a>
+                                            <a class="btn btn-sm btn-white link-delete"
+                                               href="delete_employee?id=${employees.id}" entityId="${employees.id}">
+                                                <i class="tio-delete"></i> Xóa
+                                            </a>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </c:if>
+                        </c:forEach>
+                    </c:if>
+
+                    <c:if test="${not empty result}">
+                        <c:forEach var="employees" items="${result}">
+                            <c:if test="${employees.id == 1}">
+                                <tr>
+                                    <td>
+                                        <a class="d-flex align-items-center">
+                                            <div class="avatar avatar-soft-dark avatar-circle">
+                                                <span class="avatar-initials">O</span>
+                                            </div>
+                                            <div class="ml-3">
+                                            <span class="d-block h5 text-hover-primary mb-0">
+                                                 ${employees.firstName}
+                                                <i class="tio-verified text-primary" data-toggle="tooltip"
+                                                   data-placement="top"></i>
+                                            </span>
+                                                <span class="d-block font-size-sm text-body">${employees.email}</span>
+                                            </div>
                                         </a>
-                                    </c:if>
-                                    <c:if test="${!employees.enabled}">
-                                        <a class="fas fa-check-circle fa-2x icon-gray"
-                                           href="enable_employee?enabled=true&id=${employees.id}" title="Kích hoạt">
+                                    </td>
+                                    <td>
+                                        <span class="d-block font-size-sm">${employees.phoneNumber}</span>
+                                    </td>
+                                    <td>
+                                        <span></span>
+                                    </td>
+                                    <td>${employees.roles}</td>
+                                    <td>
+                                    </td>
+                                </tr>
+                            </c:if>
+                            <c:if test="${employees.id != 1}">
+                                <tr>
+                                    <td>
+                                        <a class="d-flex align-items-center" href="edit_employee?id=${employees.id}">
+
+                                            <c:if test="${empty employees.base64Image}">
+                                                <div class="avatar avatar-soft-dark avatar-circle">
+                                                <span class="avatar-initials">
+                                                        ${fn:substring(employees.firstName, 0, 1)}
+                                                </span>
+                                                </div>
+                                            </c:if>
+
+                                            <c:if test="${not empty employees.base64Image}">
+                                                <div class="avatar avatar-circle">
+                                                    <img class="avatar-img"
+                                                         src="data:image/png;base64,${employees.base64Image}"
+                                                         alt="Image Description">
+                                                </div>
+                                            </c:if>
+
+                                            <div class="ml-3">
+                                            <span class="d-block h5 text-hover-primary mb-0">
+                                                        ${employees.lastName} ${employees.firstName}
+                                            </span>
+                                                <span class="d-block font-size-sm text-body">${employees.email}</span>
+                                            </div>
                                         </a>
-                                    </c:if>
-                                </td>
-                                <td>
-                                    <div class="btn-group" role="group">
-                                        <a class="btn btn-sm btn-white" href="edit_employee?id=${employees.id}">
-                                            <i class="tio-edit"></i> Chỉnh sửa
-                                        </a>
-                                        <a class="btn btn-sm btn-white link-delete"
-                                           href="delete_employee?id=${employees.id}" entityId="${employees.id}">
-                                            <i class="tio-delete"></i> Xóa
-                                        </a>
-                                    </div>
-                                </td>
-                            </tr>
-                        </c:if>
-                    </c:forEach>
+                                    </td>
+                                    <td>
+                                        <span class="d-block font-size-sm">${employees.phoneNumber}</span>
+                                    </td>
+                                    <td>
+                                    <span class="d-block font-size-sm">
+                                        ${employees.address.street},
+                                        ${employees.address.ward}, ${employees.address.district},
+                                        ${employees.address.city}
+                                    </span>
+                                    </td>
+                                    <td>${employees.roles}</td>
+                                    <td>
+                                        <c:if test="${employees.enabled}">
+                                            <a class="fas fa-check-circle fa-2x icon-green"
+                                               href="enable_employee?enabled=false&id=${employees.id}"
+                                               title="Vô hiệu hoá">
+                                            </a>
+                                        </c:if>
+                                        <c:if test="${!employees.enabled}">
+                                            <a class="fas fa-check-circle fa-2x icon-gray"
+                                               href="enable_employee?enabled=true&id=${employees.id}" title="Kích hoạt">
+                                            </a>
+                                        </c:if>
+                                    </td>
+                                    <td>
+                                        <div class="btn-group" role="group">
+                                            <a class="btn btn-sm btn-white" href="edit_employee?id=${employees.id}">
+                                                <i class="tio-edit"></i> Chỉnh sửa
+                                            </a>
+                                            <a class="btn btn-sm btn-white link-delete"
+                                               href="delete_employee?id=${employees.id}" entityId="${employees.id}">
+                                                <i class="tio-delete"></i> Xóa
+                                            </a>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </c:if>
+                        </c:forEach>
+                    </c:if>
+
                     </tbody>
                 </table>
             </div>
 
-            <div class="card-footer">
-                <!-- Pagination -->
-                <div class="row justify-content-center justify-content-sm-between align-items-sm-center">
-                    <div class="col-sm mb-2 mb-sm-0">
-                        <div class="d-flex justify-content-center justify-content-sm-start align-items-center">
-                            <span class="mr-2">Hiển thị:</span>
-
-                            <!-- Select -->
-                            <select id="datatableEntries" class="js-select2-custom" data-hs-select2-options='{
-                            "minimumResultsForSearch": "Infinity",
-                            "customClass": "custom-select custom-select-sm custom-select-borderless",
-                            "dropdownAutoWidth": true,
-                            "width": true
-                          }'>
-                                <option value="5" selected>5</option>
-                                <option value="10">10</option>
-                                <option value="15">15</option>
-                            </select>
-                            <!-- End Select -->
-
-                            <span class="text-secondary mr-2">&nbsp; trên ${totalEmployees}</span>
-
-                            <!-- Pagination Quantity -->
-                            <span id="datatableWithPaginationInfoTotalQty"></span>
-                        </div>
-                    </div>
-
-                    <jsp:include page="pagination.jsp"/>
-                    <!-- End Pagination -->
+            <c:if test="${totalPages > 0}">
+                <div class="card-footer">
+                    <nav aria-label="Page navigation example">
+                        <ul class="pagination float-right">
+                            <li class="${currentPage > 1 ? 'page-item' : 'page-item disabled'}">
+                                <a class="page-link" href="list_employees?pageNumber=${currentPage - 1}">Trước</a>
+                            </li>
+                            <c:forEach var="i" begin="1" end="${totalPages}">
+                                <li class="${currentPage != i ? 'page-item' : 'page-item active'}">
+                                    <a class="page-link" href="list_employees?pageNumber=${i}">${i}</a>
+                                </li>
+                            </c:forEach>
+                            <li class="${currentPage < totalPages ? 'page-item' : 'page-item disabled'}">
+                                <a class="page-link" href="list_employees?pageNumber=${currentPage + 1}">Sau</a>
+                            </li>
+                        </ul>
+                    </nav>
                 </div>
-            </div>
+            </c:if>
         </div>
 
         <jsp:include page="footer.jsp"/>
