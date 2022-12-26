@@ -9,11 +9,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <!-- Title -->
-    <c:if test="${title == null}">
+    <c:if test="${empty title}">
         <title>VTV | Admin - Thêm mới nhân viên</title>
     </c:if>
 
-    <c:if test="${title != null}">
+    <c:if test="${not empty title}">
         <title>VTV | Admin - ${title}</title>
     </c:if>
 
@@ -36,22 +36,22 @@
                     </ol>
                 </nav>
 
-                <c:if test="${title == null}">
+                <c:if test="${empty title}">
                     <h1 class="page-header-title m-auto">Thêm nhân viên</h1>
                 </c:if>
-                <c:if test="${title != null}">
+                <c:if test="${not empty title}">
                     <h1 class="page-header-title m-auto">${title}</h1>
                 </c:if>
             </div>
         </div>
 
-        <c:if test="${employee.id != null}">
-        <form class="js-step-form py-md-5" action="update_employee" method="post">
+        <c:if test="${not empty employee.id}">
+        <form class="js-step-form py-md-5" action="update_employee" method="post" enctype="multipart/form-data">
             <input type="hidden" name="id" value="${employee.id}"/>
             <input type="hidden" name="addressId" value="${employee.address.id}">
             </c:if>
 
-            <c:if test="${employee.id == null}">
+            <c:if test="${empty employee.id}">
             <form class="js-step-form py-md-5" action="create_employee" method="post" enctype="multipart/form-data">
                 </c:if>
                 <div class="row justify-content-lg-center">
@@ -115,8 +115,15 @@
                                         <label for="passwordLabel" class="col-sm-3 col-form-label input-label">Mật
                                             khẩu</label>
                                         <div class="col-sm-9">
-                                            <input type="password" class="form-control" name="password"
-                                                   id="passwordLabel" value="${employee.password}" required>
+                                            <c:if test="${empty employee}">
+                                                <input type="password" class="form-control" name="password"
+                                                       id="passwordLabel" required>
+                                            </c:if>
+                                            <c:if test="${not empty employee}">
+                                                <input type="password" class="form-control" name="password"
+                                                       id="passwordLabel"
+                                                       placeholder="Để trống nếu không muốn thay đổi mật khẩu">
+                                            </c:if>
                                         </div>
                                     </div>
 
@@ -169,7 +176,7 @@
                                         <label class="col-sm-3 col-form-label input-label" for="roleLabel">Vai
                                             trò</label>
                                         <div class="col-sm-9 pt-1">
-                                            <c:if test="${employee.id == null}">
+                                            <c:if test="${empty employee.id}">
                                                 <c:forEach var="role" items="${roles}">
                                                     <input id="roleLabel" type="checkbox" class="mt-2" name="roles"
                                                            value="${role.id}"> ${role.name}
@@ -177,7 +184,7 @@
                                                 </c:forEach>
                                             </c:if>
 
-                                            <c:if test="${employee.id != null}">
+                                            <c:if test="${not empty employee.id}">
                                                 <c:forEach var="role" items="${roleMap}">
                                                     <input id="roleLabel" type="checkbox" class="mt-2" name="roles"
                                                            value="${role.key.id}"
@@ -193,12 +200,12 @@
                                             động</label>
                                         <div class="col-sm-9 pt-1">
                                             <c:choose>
-                                                <c:when test="${employee != null}">
+                                                <c:when test="${not empty employee}">
                                                     <c:if test="${employee.enabled}">
                                                         <input type="checkbox" class="mt-2" name="enabled" id="enabled"
                                                                checked>
                                                     </c:if>
-                                                    <c:if test="${!employee.enabled}">
+                                                    <c:if test="${not employee.enabled}">
                                                         <input type="checkbox" class="mt-2" name="enabled" id="enabled">
                                                     </c:if>
                                                 </c:when>
