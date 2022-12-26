@@ -269,8 +269,7 @@ public class EmployeeService {
     public void deleteEmployee() throws ServletException, IOException {
         Integer id = Integer.valueOf(request.getParameter("id"));
 
-//        Employee employee = employeeDAO.findById(id);
-        Employee employee = null;
+        Employee employee = employeeDAO.findById(id);
 
         String message;
 
@@ -293,8 +292,7 @@ public class EmployeeService {
         Integer id = Integer.valueOf(request.getParameter("id"));
         boolean enabled = Boolean.parseBoolean(request.getParameter("enabled"));
 
-//        Employee employee = employeeDAO.findById(id);
-        Employee employee = null;
+        Employee employee = employeeDAO.findById(id);
 
         String message;
 
@@ -334,5 +332,31 @@ public class EmployeeService {
 
             request.getRequestDispatcher("login.jsp").forward(request, response);
         }
+    }
+
+    /**
+     * Return list of employees searched by keyword.
+     *
+     * @throws ServletException If the request for the GET could not be handled
+     * @throws IOException      If an input or output error is detected when the servlet handles the GET request
+     */
+    public void searchEmployee() throws ServletException, IOException {
+        String keyword = request.getParameter("keyword");
+
+        List<Employee> result;
+
+        if (keyword.equals("")) {
+            result = employeeDAO.findAll(DEFAULT_SORT_TYPE, DEFAULT_PAGE_SIZE, DEFAULT_SORT_FIELD);
+        } else {
+            result = employeeDAO.search(keyword, DEFAULT_SORT_FIELD, DEFAULT_SORT_TYPE, DEFAULT_PAGE_SIZE);
+        }
+
+        request.setAttribute("result", result);
+
+        long numberOfEmployees = employeeDAO.count();
+        request.setAttribute("numberOfEmployees", numberOfEmployees);
+
+        String listPage = "employee.jsp";
+        request.getRequestDispatcher(listPage).forward(request, response);
     }
 }

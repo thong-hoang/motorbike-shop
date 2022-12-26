@@ -9,12 +9,14 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import static org.junit.Assert.*;
 
 public class EmployeeDAOTest {
     private final EmployeeDAO employeeDAO = EmployeeDAO.getInstance();
+
     @Test
     public void testFindAll() {
         String sortType = "ASC";
@@ -23,6 +25,7 @@ public class EmployeeDAOTest {
 
         assertTrue(employeeDAO.findAll(sortType, pageSize, columnName).size() > 0);
     }
+
     @Test
     public void testCreateEmployee() throws IOException {
         Address address = new Address("đường số 12", "bình hưng hòa", "bình tân", "hồ chí minh");
@@ -39,6 +42,7 @@ public class EmployeeDAOTest {
 
         assertTrue(employeeDAO.save(employee));
     }
+
     @Test
     public void testFindEmployeeById() {
         Integer id = 2;
@@ -46,6 +50,7 @@ public class EmployeeDAOTest {
 
         assertEquals("thong@gmail.com", employee.getEmail());
     }
+
     @Test
     public void testUpdateEmployee() {
         Set<Role> roles = new HashSet<>();
@@ -64,6 +69,7 @@ public class EmployeeDAOTest {
         assertEquals("113/4 đường số 12", employeeDAO.findById(2).getAddress().getStreet());
         assertEquals(2, employeeDAO.findById(2).getRoles().size());
     }
+
     @Test
     public void testDeleteEmployee() {
         Integer id = 2;
@@ -107,5 +113,16 @@ public class EmployeeDAOTest {
         String password = "admin";
 
         assertNull(employeeDAO.login(email, password));
+    }
+
+    @Test
+    public void testSearch() {
+        String sortType = "ASC";
+        int pageSize = 5;
+        String columnName = "id";
+        String keyword = "vinh";
+
+        List<Employee> employees = employeeDAO.search(keyword, columnName, sortType, pageSize);
+        assertTrue(employees.size() > 0);
     }
 }
