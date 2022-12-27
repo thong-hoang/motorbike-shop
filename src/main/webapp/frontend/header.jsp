@@ -21,7 +21,7 @@
     </div>
     <div id="mobile-menu-wrap"></div>
     <div class="offcanvas__auth">
-        <a href="#">Đăng nhập</a>
+        <a href="frontend/login.jsp">Đăng nhập</a>
     </div>
 </div>
 
@@ -55,7 +55,7 @@
                 <div class="header__right">
 
                     <div class="header__right__auth">
-                        <a href="./login.html">Đăng nhập</a>
+                        <a href="frontend/login.jsp">Đăng nhập</a>
                     </div>
                     <ul class="header__right__widget">
                         <li><span class="icon_search search-switch"></span></li>
