@@ -17,11 +17,11 @@
         </a></li>
     </ul>
     <div class="offcanvas__logo">
-        <a href="/motorbike_shop/"><img src="images/logo/logo.png" alt=""></a>
+        <a href="/motorbike_shop/"><img src="../images/logo/logo.png" alt=""></a>
     </div>
     <div id="mobile-menu-wrap"></div>
     <div class="offcanvas__auth">
-        <a href="frontend/login.jsp">Đăng nhập</a>
+        <a href="login.jsp">Đăng nhập</a>
     </div>
 </div>
 
@@ -30,20 +30,31 @@
         <div class="row">
             <div class="col-xl-3 col-lg-2">
                 <div class="header__logo">
-                    <a href="/motorbike_shop/"><img src="images/logo/logo.png" alt=""></a>
-<%--                    <a href="/motorbike_shop/"><img src="${logo}" alt=""></a>--%>
+                    <a href="/motorbike_shop/"><img src="../images/logo/logo.png" alt=""></a>
+                    <%--                    <a href="/motorbike_shop/"><img src="${logo}" alt=""></a>--%>
                 </div>
             </div>
             <div class="col-xl-6 col-lg-7">
                 <nav class="header__menu">
                     <ul>
-                        <li class="active"><a href="./index.html">Trang chủ</a></li>
-                        <li><a href="./shop2.html">Xe Máy</a>
+                        <li class="active">
+                            <a href="/motorbike_shop/">Trang chủ</a>
+                        </li>
+                        <li>
+                            <a href="shop.jsp">Xe Máy</a>
                             <ul class="dropdown">
-                                <li><a href="./shop2.html">Xe số</a></li>
-                                <li><a href="./shop2.html">Xe tay ga</a></li>
-                                <li><a href="./shop2.html">Xe côn tay</a></li>
-                                <li><a href="./shop2.html">Xe phân khối lớn</a></li>
+                                <li>
+                                    <a href="#">Xe số</a>
+                                </li>
+                                <li>
+                                    <a href="#">Xe tay ga</a>
+                                </li>
+                                <li>
+                                    <a href="#">Xe côn tay</a>
+                                </li>
+                                <li>
+                                    <a href="#">Xe phân khối lớn</a>
+                                </li>
                             </ul>
                         </li>
                         <!--<li><a href="./blog.html">Tin tức</a></li>
@@ -55,11 +66,11 @@
                 <div class="header__right">
 
                     <div class="header__right__auth">
-                        <a href="frontend/login.jsp">Đăng nhập</a>
+                        <a href="login.jsp">Đăng nhập</a>
                     </div>
                     <ul class="header__right__widget">
                         <li><span class="icon_search search-switch"></span></li>
-                        <li><a href="./shop-cart.html"><span class="icon_bag_alt"></span>
+                        <li><a href="cart.jsp"><span class="icon_bag_alt"></span>
                             <div class="tip">2</div>
                         </a></li>
                     </ul>
@@ -70,14 +81,14 @@
                             <ul>
                                 <li><a href="#">hoàng phạm thông</a>
                                     <ul class="dropdown">
-                                        <li><a href="./account.html">Tài khoản</a></li>
-                                        <li><a href="./order.html">Đơn mua</a></li>
+                                        <li><a href="account.jsp">Tài khoản</a></li>
+                                        <li><a href="order.jsp">Đơn mua</a></li>
                                         <li><a href="#">Đăng xuất</a></li>
                                     </ul>
                                 </li>
                                 <li><span class="icon_search search-switch"></span></li>
                                 <li>
-                                    <a href="./shop-cart.html">
+                                    <a href="cart.jsp">
                                         <span class="icon_bag_alt"></span>
                                         <div class="tip">2</div>
                                     </a>

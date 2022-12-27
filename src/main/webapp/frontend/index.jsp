@@ -10,11 +10,129 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>VTV</title>
 
-    <jsp:include page="css.jsp"/>
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Cookie&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap"
+          rel="stylesheet">
+
+    <!-- Css Styles -->
+    <link rel="stylesheet" href="frontend/css/bootstrap.min.css" type="text/css">
+    <link rel="stylesheet" href="frontend/css/bootstrap.min.css" type="text/css">
+    <link rel="stylesheet" href="frontend/css/font-awesome.min.css" type="text/css">
+    <link rel="stylesheet" href="frontend/css/elegant-icons.css" type="text/css">
+    <link rel="stylesheet" href="frontend/css/jquery-ui.min.css" type="text/css">
+    <link rel="stylesheet" href="frontend/css/magnific-popup.css" type="text/css">
+    <link rel="stylesheet" href="frontend/css/owl.carousel.min.css" type="text/css">
+    <link rel="stylesheet" href="frontend/css/slicknav.min.css" type="text/css">
+    <link rel="stylesheet" href="frontend/css/style.css" type="text/css">
 </head>
 
 <body>
-<jsp:include page="header.jsp"/>
+<div id="preloder">
+    <div class="loader"></div>
+</div>
+
+<div class="offcanvas-menu-overlay"></div>
+<div class="offcanvas-menu-wrapper">
+    <div class="offcanvas__close">+</div>
+    <ul class="offcanvas__widget">
+        <li><span class="icon_search search-switch"></span></li>
+        <li><a href="#"><span class="icon_heart_alt"></span>
+            <div class="tip">2</div>
+        </a></li>
+        <li><a href="#"><span class="icon_bag_alt"></span>
+            <div class="tip">2</div>
+        </a></li>
+    </ul>
+    <div class="offcanvas__logo">
+        <a href="/motorbike_shop/"><img src="images/logo/logo.png" alt=""></a>
+    </div>
+    <div id="mobile-menu-wrap"></div>
+    <div class="offcanvas__auth">
+        <a href="frontend/login.jsp">Đăng nhập</a>
+    </div>
+</div>
+
+<header class="header">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xl-3 col-lg-2">
+                <div class="header__logo">
+                    <a href="/motorbike_shop/"><img src="images/logo/logo.png" alt=""></a>
+                    <%--                    <a href="/motorbike_shop/"><img src="${logo}" alt=""></a>--%>
+                </div>
+            </div>
+            <div class="col-xl-6 col-lg-7">
+                <nav class="header__menu">
+                    <ul>
+                        <li class="active">
+                            <a href="/motorbike_shop/">Trang chủ</a>
+                        </li>
+                        <li>
+                            <a href="frontend/shop.jsp">Xe Máy</a>
+                            <ul class="dropdown">
+                                <li>
+                                    <a href="#">Xe số</a>
+                                </li>
+                                <li>
+                                    <a href="#">Xe tay ga</a>
+                                </li>
+                                <li>
+                                    <a href="#">Xe côn tay</a>
+                                </li>
+                                <li>
+                                    <a href="#">Xe phân khối lớn</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <!--<li><a href="./blog.html">Tin tức</a></li>
+                        <li><a href="./contact.html">Liên hệ</a></li>-->
+                    </ul>
+                </nav>
+            </div>
+            <div class="col-lg-3">
+                <div class="header__right">
+
+                    <div class="header__right__auth">
+                        <a href="frontend/login.jsp">Đăng nhập</a>
+                    </div>
+                    <ul class="header__right__widget">
+                        <li><span class="icon_search search-switch"></span></li>
+                        <li><a href="frontend/cart.jsp"><span class="icon_bag_alt"></span>
+                            <div class="tip">2</div>
+                        </a></li>
+                    </ul>
+
+                    <!-- đăng nhập thành công -->
+                    <!-- <ul class="header__right__widget">
+                        <span class="header__menu">
+                            <ul>
+                                <li><a href="#">hoàng phạm thông</a>
+                                    <ul class="dropdown">
+                                        <li><a href="frontend/account.jsp">Tài khoản</a></li>
+                                        <li><a href="frontend/order.jsp">Đơn mua</a></li>
+                                        <li><a href="#">Đăng xuất</a></li>
+                                    </ul>
+                                </li>
+                                <li><span class="icon_search search-switch"></span></li>
+                                <li>
+                                    <a href="frontend/cart.jsp">
+                                        <span class="icon_bag_alt"></span>
+                                        <div class="tip">2</div>
+                                    </a>
+                                </li>
+                            </ul>
+                        </span>
+                    </ul> -->
+
+                </div>
+            </div>
+        </div>
+        <div class="canvas__open">
+            <i class="fa fa-bars"></i>
+        </div>
+    </div>
+</header>
 
 <!-- Categories Section Begin -->
 <section class="categories">
@@ -122,7 +240,8 @@
                          data-setbg="images/yamaha/xephankhoilon/1/2021_mtn320-a_pgd_usa_mt-03_storm-fluo_360_036-1.png">
                         <div class="label new">mới</div>
                         <ul class="product__hover">
-                            <li><a href="images/yamaha/xephankhoilon/1/2021_mtn320-a_pgd_usa_mt-03_storm-fluo_360_036-1.png"
+                            <li>
+                                <a href="images/yamaha/xephankhoilon/1/2021_mtn320-a_pgd_usa_mt-03_storm-fluo_360_036-1.png"
                                    class="image-popup"><span class="arrow_expand"></span></a></li>
                             <li><a href="#"><span class="icon_heart_alt"></span></a></li>
                             <li><a href="#"><span class="icon_bag_alt"></span></a></li>
@@ -145,16 +264,84 @@
         </div>
         <div class="row justify-content-center">
             <div class="btn btn-light text-black">
-                <a href="shop2.html" class="border-btn">Xem thêm</a>
+                <a href="frontend/shop.jsp" class="border-btn">Xem thêm</a>
             </div>
         </div>
     </div>
 </section>
 <!-- Product Section End -->
 
-<jsp:include page="footer.jsp"/>
+<%@ page contentType="text/html;charset=UTF-8" %>
+<footer class="footer">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-4 col-md-6 col-sm-7">
+                <div class="footer__about">
+                    <div>
+                        <%--                        <p class="font-weight-bold">${companyName}.</p>--%>
+                        <p class="font-weight-bold">Công ty VTV Việt Nam.</p>
+                        <p>Cơ quan cấp: Phòng Đăng ký kinh doanh – Sở Kế hoạch và Đầu tư TP Hồ Chí Minh
+                            <%--                        <p>Địa chỉ: ${address}</p>--%>
+                        <p>Địa chỉ: Khu phố 6, Phường Linh Trung, TP. Thủ Đức, Việt Nam</p>
+                    </div>
+                    <div class="footer__payment">
+                        <a><img src="images/general/logoSaleNoti.png" alt="" style="width: 150px;"></a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-3 col-sm-5">
+                <div class="footer__widget">
+                    <a href="#">
+                        <h6>Liên hệ</h6>
+                    </a>
+                    <ul>
+                        <%--                        <li><a>Hotline (miễn phí): ${hotline}</a></li>--%>
+                        <%--                        <li><a>Email: ${email}</a></li>--%>
+                        <li><a>Hotline (miễn phí): 1800....</a></li>
+                        <li><a>Email: cskhvtv@gmail.com</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-3 col-sm-4">
+                <div class="footer__widget">
+                    <a href="#">
+                        <h6>Chính sách bảo mật</h6>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="footer__copyright__text">
+                    <p>Copyright &copy;
+                        <script>document.write(new Date().getFullYear());</script>
+                        Copyright by VTV VietNam
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
 
-<jsp:include page="js.jsp"/>
+<div class="search-model">
+    <div class="h-100 d-flex align-items-center justify-content-center">
+        <div class="search-close-switch">+</div>
+        <form class="search-model-form">
+            <input type="text" id="search-input" placeholder="Tìm kiếm">
+        </form>
+    </div>
+</div>
+
+<script src="frontend/js/jquery-3.3.1.min.js"></script>
+<script src="frontend/js/bootstrap.min.js"></script>
+<script src="frontend/js/jquery.magnific-popup.min.js"></script>
+<script src="frontend/js/jquery-ui.min.js"></script>
+<script src="frontend/js/mixitup.min.js"></script>
+<script src="frontend/js/jquery.countdown.min.js"></script>
+<script src="frontend/js/jquery.slicknav.js"></script>
+<script src="frontend/js/owl.carousel.min.js"></script>
+<script src="frontend/js/jquery.nicescroll.min.js"></script>
+<script src="frontend/js/main.js"></script>
 </body>
 
 </html>

@@ -12,7 +12,7 @@
                         <p>Địa chỉ: Khu phố 6, Phường Linh Trung, TP. Thủ Đức, Việt Nam</p>
                     </div>
                     <div class="footer__payment">
-                        <a><img src="images/general/logoSaleNoti.png" alt="" style="width: 150px;"></a>
+                        <a><img src="../images/general/logoSaleNoti.png" alt="" style="width: 150px;"></a>
                     </div>
                 </div>
             </div>
