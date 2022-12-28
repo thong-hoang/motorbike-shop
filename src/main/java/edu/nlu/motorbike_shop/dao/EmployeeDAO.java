@@ -163,25 +163,26 @@ public class EmployeeDAO implements Serializable {
     /**
      * Returns all instance of employee with pagination
      *
-     * @param sortType   Specify the sort type, ASC or DESC.
-     * @param pageSize   Specify the number of records per page.
-     * @param columnName Specify the column name to sort.
-     * @param index      Specify the page index.
+     * @param sortType  Specify the sort type, ASC or DESC.
+     * @param pageSize  Specify the number of records per page.
+     * @param sortField Specify the column name to sort.
+     * @param index     Specify the page index.
      * @return List of Employee entities.
      */
-    public List<Employee> findAll(String sortType, int pageSize, String columnName, int index) {
+    public List<Employee> findAll(String keyword, String sortField, String sortType, int pageSize, int index) {
         List<Employee> employees = new ArrayList<>();
         String sql = "SELECT id, image_path, first_name, last_name, email, phone_number, enabled " +
-                "FROM users ORDER BY ?, ? LIMIT ? OFFSET ?";
+                "FROM users WHERE CONCAT(email, ' ', first_name, ' ', last_name) LIKE ? ORDER BY ?, ? LIMIT ? OFFSET ?";
 
         // use try-with-resources Statement to auto close the connection.
         try (Connection conn = DBUtils.makeConnection();
              PreparedStatement stm = conn.prepareStatement(sql)) {
 
-            stm.setString(1, columnName);
-            stm.setString(2, sortType);
-            stm.setInt(3, pageSize);
-            stm.setInt(4, (index - 1) * pageSize);
+            stm.setString(1, "%" + keyword + "%");
+            stm.setString(2, sortField);
+            stm.setString(3, sortType);
+            stm.setInt(4, pageSize);
+            stm.setInt(5, (index - 1) * pageSize);
 
             // use try-with-resources Statement to auto close the ResultSet.
             try (ResultSet rs = stm.executeQuery()) {
@@ -446,7 +447,6 @@ public class EmployeeDAO implements Serializable {
      *
      * @return The number of Employee entities.
      */
-
     public long count() {
         String sql = "SELECT COUNT(id) FROM users";
         try (Connection conn = DBUtils.makeConnection();
@@ -454,6 +454,27 @@ public class EmployeeDAO implements Serializable {
             try (ResultSet rs = stm.executeQuery()) {
                 while (rs.next())
                     return rs.getLong(1);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return 0;
+    }
+
+    /**
+     * Total results keyword search.
+     *
+     * @return The number of results. 0 if no results.
+     */
+    public int countByKeyword(String keyword) {
+        String sql = "SELECT COUNT(id) FROM users WHERE CONCAT(email, ' ', first_name, ' ', last_name) LIKE ?";
+        try (Connection conn = DBUtils.makeConnection();
+             PreparedStatement stm = conn.prepareStatement(sql)) {
+            stm.setString(1, "%" + keyword + "%");
+            try (ResultSet rs = stm.executeQuery()) {
+                while (rs.next())
+                    return rs.getInt(1);
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -482,6 +503,13 @@ public class EmployeeDAO implements Serializable {
         }
     }
 
+    /**
+     * Get the employee corresponding to the given email and password.
+     *
+     * @param email    The email of the employee.
+     * @param password The password of the employee.
+     * @return The employee corresponding to the given email and password. Null if no such employee exists.
+     */
     public Employee login(String email, String password) {
         String sql = "SELECT id, first_name, last_name, email, image_path FROM users WHERE email = ? AND password = ?";
 
@@ -492,14 +520,8 @@ public class EmployeeDAO implements Serializable {
 
             try (ResultSet rs = stm.executeQuery()) {
                 if (rs.next()) {
-                    if (rs.getBlob(5) != null)
-                        return new Employee(rs.getInt(1), rs.getString(2),
-                                rs.getString(3), rs.getString(4),
-                                rs.getString(5));
-//                                convertBlobToByteArry(rs.getBlob(5)));
-                    else
-                        return new Employee(rs.getInt(1), rs.getString(2),
-                                rs.getString(3), rs.getString(4));
+                    return new Employee(rs.getInt(1), rs.getString(2),
+                            rs.getString(3), rs.getString(4), rs.getString(5));
                 }
             }
         } catch (Exception e) {
@@ -507,46 +529,5 @@ public class EmployeeDAO implements Serializable {
         }
 
         return null;
-    }
-
-    public List<Employee> search(String keyword, String columnName, String sortType, int pageSize) {
-        List<Employee> employees = new ArrayList<>();
-        String sql = "SELECT id, image_path, first_name, last_name, email, phone_number, enabled " +
-                "FROM users WHERE CONCAT(email, ' ', first_name, ' ', last_name) LIKE ?" +
-                "ORDER BY ?, ? LIMIT ?";
-
-        // use try-with-resources Statement to auto close the connection.
-        try (Connection conn = DBUtils.makeConnection();
-             PreparedStatement stm = conn.prepareStatement(sql)) {
-
-            stm.setString(1, "%" + keyword + "%");
-            stm.setString(2, columnName);
-            stm.setString(3, sortType);
-            stm.setInt(4, pageSize);
-
-            // use try-with-resources Statement to auto close the ResultSet.
-            try (ResultSet rs = stm.executeQuery()) {
-                // fetch data from result set
-                while (rs.next()) {
-                    Integer id = rs.getInt(1);
-                    String imagePath = rs.getString(2);
-                    String firstName = rs.getString(3);
-                    String lastName = rs.getString(4);
-                    String email = rs.getString(5);
-                    String phoneNumber = rs.getString(6);
-                    boolean enabled = rs.getBoolean(7);
-
-                    Address address = findAddressByUserId(id);
-
-                    Employee employee = new Employee(id, firstName, lastName, phoneNumber, address, imagePath, email, enabled);
-                    findRolesByUserId(id).forEach(employee::addRole);
-
-                    employees.add(employee);
-                }
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return employees;
     }
 }

@@ -44,7 +44,7 @@
             <div class="card-header">
                 <div class="row justify-content-between align-items-center flex-grow-1">
                     <div class="col-sm-6 col-md-4 mb-3 mb-sm-0">
-                        <form action="search_employee" method="get">
+                        <form action="list_employees" method="get">
                             <!-- Search -->
                             <div class="input-group input-group-merge input-group-flush">
                                 <div class="input-group-prepend">
@@ -53,7 +53,7 @@
                                     </div>
                                 </div>
                                 <input type="search" class="form-control" placeholder="Tìm kiếm nhân viên"
-                                       name="keyword">
+                                       name="keyword" value="${keyword}">
                             </div>
                         </form>
                     </div>
@@ -334,7 +334,7 @@
                                     <td>
                                         <a class="d-flex align-items-center" href="edit_employee?id=${employees.id}">
 
-                                            <c:if test="${empty employees.base64Image}">
+                                            <c:if test="${empty employees.imagePath}">
                                                 <div class="avatar avatar-soft-dark avatar-circle">
                                                 <span class="avatar-initials">
                                                         ${fn:substring(employees.firstName, 0, 1)}
@@ -342,10 +342,10 @@
                                                 </div>
                                             </c:if>
 
-                                            <c:if test="${not empty employees.base64Image}">
+                                            <c:if test="${not empty employees.imagePath}">
                                                 <div class="avatar avatar-circle">
                                                     <img class="avatar-img"
-                                                         src="data:image/png;base64,${employees.base64Image}"
+                                                         src="../images/employee/${employees.id}/${employees.imagePath}"
                                                          alt="Image Description">
                                                 </div>
                                             </c:if>
@@ -407,15 +407,18 @@
                     <nav aria-label="Page navigation example">
                         <ul class="pagination float-right">
                             <li class="${currentPage > 1 ? 'page-item' : 'page-item disabled'}">
-                                <a class="page-link" href="list_employees?pageNumber=${currentPage - 1}">Trước</a>
+                                <a class="page-link"
+                                   href="list_employees?pageNumber=${currentPage - 1}&keyword=${keyword}">Trước</a>
                             </li>
                             <c:forEach var="i" begin="1" end="${totalPages}">
                                 <li class="${currentPage != i ? 'page-item' : 'page-item active'}">
-                                    <a class="page-link" href="list_employees?pageNumber=${i}">${i}</a>
+                                    <a class="page-link"
+                                       href="list_employees?pageNumber=${i}&keyword=${keyword}">${i}</a>
                                 </li>
                             </c:forEach>
                             <li class="${currentPage < totalPages ? 'page-item' : 'page-item disabled'}">
-                                <a class="page-link" href="list_employees?pageNumber=${currentPage + 1}">Sau</a>
+                                <a class="page-link"
+                                   href="list_employees?pageNumber=${currentPage + 1}&keyword=${keyword}">Sau</a>
                             </li>
                         </ul>
                     </nav>

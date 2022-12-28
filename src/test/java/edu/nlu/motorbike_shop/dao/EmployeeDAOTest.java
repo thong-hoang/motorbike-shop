@@ -7,7 +7,6 @@ import org.junit.Test;
 
 import java.io.IOException;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 import static org.junit.Assert.*;
@@ -18,11 +17,11 @@ public class EmployeeDAOTest {
     @Test
     public void testFindAll() {
         String sortType = "ASC";
-        int pageSize = 5;
-        String columnName = "id";
-        int index = 0;
+        int pageSize = 2;
+        String sortField = "id";
+        int index = 1;
 
-        assertTrue(employeeDAO.findAll(sortType, pageSize, columnName, index).size() > 0);
+        assertTrue(employeeDAO.findAll("", sortField, sortType, pageSize, index).size() > 0);
     }
 
     @Test
@@ -110,13 +109,8 @@ public class EmployeeDAOTest {
     }
 
     @Test
-    public void testSearch() {
-        String sortType = "ASC";
-        int pageSize = 5;
-        String columnName = "id";
-        String keyword = "vinh";
-
-        List<Employee> employees = employeeDAO.search(keyword, columnName, sortType, pageSize);
-        assertTrue(employees.size() > 0);
+    public void testCountByKeyword() {
+        String keyword = "";
+        assertTrue(employeeDAO.countByKeyword(keyword) > 0);
     }
 }

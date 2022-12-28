@@ -50,6 +50,9 @@ public class EmployeeService {
      * @throws IOException      If an input or output error is detected when the servlet handles the GET request
      */
     public void listEmployee(String message) throws ServletException, IOException {
+        String keyword = request.getParameter("keyword");
+        if (keyword == null)
+            keyword = "";
         String pageNumberString = request.getParameter("pageNumber");
         int pageNumber;
 
@@ -59,16 +62,19 @@ public class EmployeeService {
             pageNumber = Integer.parseInt(request.getParameter("pageNumber"));
         }
 
-        List<Employee> employees = employeeDAO.findAll(DEFAULT_SORT_TYPE, DEFAULT_PAGE_SIZE, DEFAULT_SORT_FIELD, pageNumber);
         long numberOfEmployees = employeeDAO.count();
+        int totalKeywordResults = employeeDAO.countByKeyword(keyword);
 
-        long totalPages = numberOfEmployees / DEFAULT_PAGE_SIZE;
+        List<Employee> employees = employeeDAO.findAll(keyword, DEFAULT_SORT_FIELD, DEFAULT_SORT_TYPE, DEFAULT_PAGE_SIZE, pageNumber);
+
+        long totalPages = totalKeywordResults / DEFAULT_PAGE_SIZE;
         if (numberOfEmployees % DEFAULT_PAGE_SIZE != 0) totalPages++;
 
         request.setAttribute("currentPage", pageNumber);
         request.setAttribute("totalPages", totalPages);
-        request.setAttribute("listEmployees", employees);
+        request.setAttribute("keyword", keyword);
         request.setAttribute("numberOfEmployees", numberOfEmployees);
+        request.setAttribute("listEmployees", employees);
 
         if (message != null)
             request.setAttribute("message", message);
@@ -261,11 +267,12 @@ public class EmployeeService {
                 if (!fileName.isEmpty()) {
                     employee.setImagePath(fileName);
                     String nameDirectoryServer = "employee" + File.separator + id;
+                    directoryServerPath = directoryServerPath + File.separator + nameDirectoryServer;
 
-                    cleanDir(nameDirectoryServer);
+                    cleanDir(directoryServerPath);
                     cleanDir("E:\\ProjectJava\\motorbike-shop\\src\\main\\webapp\\images\\" + nameDirectoryServer);
 
-                    directoryServerPath = directoryServerPath + File.separator + nameDirectoryServer;
+
                     saveFile(directoryServerPath, fileName, part);
                     String fileServerPath = directoryServerPath + File.separator + fileName;
                     FileUploadUtils.copyFile(fileServerPath, nameDirectoryServer);
@@ -297,6 +304,14 @@ public class EmployeeService {
             message = "Không tìm thấy nhân viên hoặc nhân viên đã bị xóa";
         } else {
             employeeDAO.delete(id);
+            String serverPath = request.getServletContext().getRealPath("");
+            String directoryServerPath = serverPath + File.separator + DEFAULT_IMAGE_DIRECTORY;
+            String nameDirectoryServer = "employee" + File.separator + id;
+            directoryServerPath = directoryServerPath + File.separator + nameDirectoryServer;
+
+            removeDir(directoryServerPath);
+            removeDir("E:\\ProjectJava\\motorbike-shop\\src\\main\\webapp\\images\\" + nameDirectoryServer);
+
             message = "Nhân viên " + employee.getLastName() + " " + employee.getFirstName() + " đã được xóa thành công !";
         }
         listEmployee(message);
@@ -352,31 +367,5 @@ public class EmployeeService {
 
             request.getRequestDispatcher("login.jsp").forward(request, response);
         }
-    }
-
-    /**
-     * Return list of employees searched by keyword.
-     *
-     * @throws ServletException If the request for the GET could not be handled
-     * @throws IOException      If an input or output error is detected when the servlet handles the GET request
-     */
-    public void searchEmployee() throws ServletException, IOException {
-        String keyword = request.getParameter("keyword");
-
-        List<Employee> result;
-
-        if (keyword.equals("")) {
-            result = employeeDAO.findAll(DEFAULT_SORT_TYPE, DEFAULT_PAGE_SIZE, DEFAULT_SORT_FIELD, 1);
-        } else {
-            result = employeeDAO.search(keyword, DEFAULT_SORT_FIELD, DEFAULT_SORT_TYPE, DEFAULT_PAGE_SIZE);
-        }
-
-        request.setAttribute("result", result);
-
-        long numberOfEmployees = employeeDAO.count();
-        request.setAttribute("numberOfEmployees", numberOfEmployees);
-
-        String listPage = "employee.jsp";
-        request.getRequestDispatcher(listPage).forward(request, response);
     }
 }
