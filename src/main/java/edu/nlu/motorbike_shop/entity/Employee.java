@@ -5,7 +5,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.util.Base64;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -18,57 +17,56 @@ public class Employee {
     private String firstName;
     private String lastName;
     private String phoneNumber;
-    private byte[] image;
+    private String imagePath;
     private String email;
     private String password;
     private boolean enabled;
     private Set<Role> roles = new HashSet<>();
     private Address address;
-    private String base64Image;
 
-    public Employee(Integer id, String firstName, String lastName, String phoneNumber, Address address, byte[] image,
+    public Employee(Integer id, String firstName, String lastName, String phoneNumber, Address address, String imagePath,
                     String email, boolean enabled) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.phoneNumber = phoneNumber;
         this.address = address;
-        this.image = image;
+        this.imagePath = imagePath;
         this.email = email;
         this.enabled = enabled;
     }
 
-    public Employee(String firstName, String lastName, String phoneNumber, Address address, byte[] image, String email,
+    public Employee(String firstName, String lastName, String phoneNumber, Address address, String imagePath, String email,
                     String password, boolean enabled) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.phoneNumber = phoneNumber;
         this.address = address;
-        this.image = image;
+        this.imagePath = imagePath;
         this.email = email;
         this.password = password;
         this.enabled = enabled;
     }
 
-    public Employee(Integer id, String firstName, String lastName, String phoneNumber, Address address, byte[] image,
+    public Employee(Integer id, String firstName, String lastName, String phoneNumber, Address address, String imagePath,
                     String email, String password, boolean enabled) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.phoneNumber = phoneNumber;
         this.address = address;
-        this.image = image;
+        this.imagePath = imagePath;
         this.email = email;
         this.password = password;
         this.enabled = enabled;
     }
 
-    public Employee(Integer id, String firstName, String lastName, String email, byte[] image) {
+    public Employee(Integer id, String firstName, String lastName, String email, String imagePath) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
-        this.image = image;
+        this.imagePath = imagePath;
     }
 
     public Employee(Integer id, String firstName, String lastName, String email) {
@@ -90,10 +88,6 @@ public class Employee {
 
     public void addRole(Role role) {
         this.roles.add(role);
-    }
-
-    public String getBase64Image() {
-        return (this.image == null) ? null : Base64.getEncoder().encodeToString(this.image);
     }
 
     @Override

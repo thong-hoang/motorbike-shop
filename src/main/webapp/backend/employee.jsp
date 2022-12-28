@@ -131,7 +131,6 @@
                              }'>
                                                 <i class="tio-clear tio-lg"></i>
                                             </a>
-                                            <!-- End Toggle Button -->
                                         </div>
 
                                         <div class="card-body">
@@ -139,8 +138,6 @@
                                                 <div class="form-row">
                                                     <div class="col-sm form-group">
                                                         <small class="text-cap mb-2">Vai trò</small>
-
-                                                        <!-- Select -->
                                                         <select
                                                                 class="js-select2-custom js-datatable-filter custom-select"
                                                                 size="1" data-target-column-index="5"
@@ -151,14 +148,9 @@
                                                             <option value="Quản trị viên">Quản trị viên</option>
                                                             <option value="Nhân viên">Nhân viên</option>
                                                         </select>
-                                                        <!-- End Select -->
                                                     </div>
 
                                                 </div>
-
-                                                <!--fix here filter any-->
-
-                                                <!-- End Row -->
 
                                                 <a class="js-hs-unfold-invoker btn btn-block btn-primary"
                                                    href="" data-hs-unfold-options='{
@@ -169,15 +161,11 @@
                                             </form>
                                         </div>
                                     </div>
-                                    <!-- End Card -->
                                 </div>
                             </div>
-                            <!-- End Unfold -->
-
                         </div>
                     </div>
                 </div>
-                <!-- End Row -->
             </div>
 
             <div class="table-responsive datatable-custom">
@@ -247,7 +235,7 @@
                                     <td>
                                         <a class="d-flex align-items-center" href="edit_employee?id=${employees.id}">
 
-                                            <c:if test="${empty employees.base64Image}">
+                                            <c:if test="${empty employees.imagePath}">
                                                 <div class="avatar avatar-soft-dark avatar-circle">
                                                 <span class="avatar-initials">
                                                         ${fn:substring(employees.firstName, 0, 1)}
@@ -255,10 +243,11 @@
                                                 </div>
                                             </c:if>
 
-                                            <c:if test="${not empty employees.base64Image}">
+                                            <c:if test="${not empty employees.imagePath}">
                                                 <div class="avatar avatar-circle">
+                                                        <%--                                                         src="data:image/png;base64,${employees.base64Image}"--%>
                                                     <img class="avatar-img"
-                                                         src="data:image/png;base64,${employees.base64Image}"
+                                                         src="../images/employee/${employees.id}/${employees.imagePath}"
                                                          alt="Image Description">
                                                 </div>
                                             </c:if>

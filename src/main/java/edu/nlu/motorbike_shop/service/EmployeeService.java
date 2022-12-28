@@ -6,25 +6,26 @@ import edu.nlu.motorbike_shop.entity.Address;
 import edu.nlu.motorbike_shop.entity.Employee;
 import edu.nlu.motorbike_shop.entity.HashGenerator;
 import edu.nlu.motorbike_shop.entity.Role;
+import edu.nlu.motorbike_shop.util.FileUploadUtils;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
+import java.io.File;
 import java.io.IOException;
-import java.io.InputStream;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import static edu.nlu.motorbike_shop.constant.Constants.*;
+import static edu.nlu.motorbike_shop.util.FileUploadUtils.*;
 
 public class EmployeeService {
     private final EmployeeDAO employeeDAO = EmployeeDAO.getInstance();
     private final RoleDAO roleDAO = RoleDAO.getInstance();
     private final HttpServletRequest request;
     private final HttpServletResponse response;
-    private final String DEFAULT_SORT_TYPE = "ASC";
-    private final String DEFAULT_SORT_FIELD = "id";
-    private final int DEFAULT_PAGE_SIZE = 1;
 
     public EmployeeService(HttpServletRequest request, HttpServletResponse response) {
         this.request = request;
@@ -137,21 +138,21 @@ public class EmployeeService {
      * @throws IOException      If an input or output error is detected when the servlet handles the GET request
      * @throws ServletException If the request for the GET could not be handled
      */
-    public void readImageFieldFromForm(Employee employee) throws IOException, ServletException {
-        Part part = request.getPart("image");
-        if (part != null && part.getSize() > 0) {
-            long size = part.getSize();
-            byte[] imageBytes = new byte[(int) size];
-
-            InputStream inputStream = part.getInputStream();
-            inputStream.read(imageBytes);
-            inputStream.close();
-
-            employee.setImage(imageBytes);
-        } else {
-            employee.setImage(null);
-        }
-    }
+//    public void readImageFieldFromForm(Employee employee) throws IOException, ServletException {
+//        Part part = request.getPart("image");
+//        if (part != null && part.getSize() > 0) {
+//            long size = part.getSize();
+//            byte[] imageBytes = new byte[(int) size];
+//
+//            InputStream inputStream = part.getInputStream();
+//            inputStream.read(imageBytes);
+//            inputStream.close();
+//
+//            employee.setImage(imageBytes);
+//        } else {
+//            employee.setImage(null);
+//        }
+//    }
 
     /**
      * Get employee information from the form and save it in the database.
@@ -175,13 +176,26 @@ public class EmployeeService {
             String employeeFormPage = "employee-form.jsp";
             request.getRequestDispatcher(employeeFormPage).forward(request, response);
         } else {
-            readImageFieldFromForm(employee);
+            for (String role : roles) employee.addRole(new Role(Integer.parseInt(role)));
 
-            for (String role : roles) {
-                employee.addRole(new Role(Integer.parseInt(role)));
-            }
+            Part part = request.getPart("image");
+            String fileName = part.getSubmittedFileName();
 
-            employeeDAO.save(employee);
+            String serverPath = request.getServletContext().getRealPath("");
+            String directoryServerPath = serverPath + File.separator + DEFAULT_IMAGE_DIRECTORY;
+
+            if (!fileName.isEmpty()) {
+                employee.setImagePath(fileName);
+                employeeDAO.save(employee);
+                Integer id = employeeDAO.findByEmail(employee.getEmail()).getId();
+
+                String nameDirectoryServer = "employee" + File.separator + id;
+                directoryServerPath = directoryServerPath + File.separator + nameDirectoryServer;
+                saveFile(directoryServerPath, fileName, part);
+                String fileServerPath = directoryServerPath + File.separator + fileName;
+                FileUploadUtils.copyFile(fileServerPath, nameDirectoryServer);
+            } else
+                employeeDAO.save(employee);
 
             String message = "Nhân viên " + employee.getLastName() + " " + employee.getFirstName() + " đã được thêm thành công !";
             listEmployee(message);
@@ -254,7 +268,7 @@ public class EmployeeService {
                 String updatePage = "employee-form.jsp";
                 request.getRequestDispatcher(updatePage).forward(request, response);
             } else {
-                readImageFieldFromForm(employee);
+//                readImageFieldFromForm(employee);
 
                 if (!employee.getPassword().isEmpty())
                     employee.setPassword(HashGenerator.generateMD5(employee.getPassword()));
@@ -335,7 +349,7 @@ public class EmployeeService {
             request.getSession().setAttribute("email", email);
             request.getSession().setAttribute("firstName", employee.getFirstName());
             request.getSession().setAttribute("lastName", employee.getLastName());
-            request.getSession().setAttribute("imagePath", employee.getBase64Image());
+            request.getSession().setAttribute("imagePath", employee.getImagePath());
             request.getSession().setAttribute("id", employee.getId());
 
             request.getRequestDispatcher("/backend/").forward(request, response);
@@ -372,20 +386,4 @@ public class EmployeeService {
         String listPage = "employee.jsp";
         request.getRequestDispatcher(listPage).forward(request, response);
     }
-
-//    public void paginationEmployee() throws ServletException, IOException {
-//        int pageNumber = Integer.parseInt(request.getParameter("pageNumber"));
-//        long numberOfEmployees = employeeDAO.count();
-////        List<Employee> pageable = employeeDAO.pageable(pageNumber, DEFAULT_PAGE_SIZE);
-//
-//        long totalPages = numberOfEmployees / DEFAULT_PAGE_SIZE;
-//        if (numberOfEmployees % DEFAULT_PAGE_SIZE != 0) totalPages++;
-//
-//        request.setAttribute("currentPage", pageNumber);
-//        request.setAttribute("totalPages", totalPages);
-////        request.setAttribute("listEmployees", pageable);
-//
-//        String listPage = "employee.jsp";
-//        request.getRequestDispatcher(listPage).forward(request, response);
-//    }
 }

@@ -6,8 +6,6 @@ import edu.nlu.motorbike_shop.entity.Role;
 import org.junit.Test;
 
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -32,11 +30,6 @@ public class EmployeeDAOTest {
         Address address = new Address("đường số 12", "bình hưng hòa", "bình tân", "hồ chí minh");
         Employee employee = new Employee("Thông", "Hoàng", "0123", address,
                 "thong@gmail.com", "thong123", true);
-
-        // select images to test locally
-        String imagePath = "C:\\Users\\thonghoang\\Downloads\\messi.jpg";
-        byte[] image = Files.readAllBytes(Paths.get(imagePath));
-        employee.setImage(image);
 
         employee.addRole(RoleDAO.getInstance().findById(2));
         employee.addRole(RoleDAO.getInstance().findById(3));

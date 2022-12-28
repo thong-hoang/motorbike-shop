@@ -70,9 +70,9 @@
                                         <div class="col-sm-8">
                                             <input type="file" id="avatarUploader" class="mb-2" name="image"/>
                                             <c:choose>
-                                                <c:when test="${not empty employee.base64Image}">
+                                                <c:when test="${not empty employee.imagePath}">
                                                     <img id="avatarImg"
-                                                         src="data:image/png;base64,${employee.base64Image}"
+                                                         src="../images/employee/${employees.id}/${employees.imagePath}"
                                                          alt="Photos preview" class="img-fluid" style="width: 40%"/>
                                                 </c:when>
                                                 <c:otherwise>
