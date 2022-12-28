@@ -35,43 +35,6 @@ public class EmployeeDAO implements Serializable {
     }
 
     /**
-     * Convert byte array to input stream.
-     *
-     * @param images The byte array of the image.
-     * @return The input stream of the image.
-     */
-    private InputStream convertByteArrayToInputStream(byte[] images) {
-        return new ByteArrayInputStream(images);
-    }
-
-    /**
-     * Convert blob to byte array.
-     *
-     * @param blob The blob of the image.
-     * @return The byte array of the image.
-     * @throws SQLException If there is an error accessing the BLOB value.
-     * @throws IOException  If the first byte cannot be read for any reason other than the end of the file,
-     *                      if the input stream has been closed, or if some other I/O error occurs.
-     */
-    public byte[] convertBlobToByteArry(Blob blob) throws SQLException, IOException {
-        InputStream inputStream = blob.getBinaryStream();
-        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
-        byte[] buffer = new byte[4096];
-        int bytesRead = -1;
-
-        while ((bytesRead = inputStream.read(buffer)) != -1) {
-            outputStream.write(buffer, 0, bytesRead);
-        }
-
-        byte[] imageBytes = outputStream.toByteArray();
-
-        inputStream.close();
-        outputStream.close();
-
-        return imageBytes;
-    }
-
-    /**
      * Insert a new address into the database
      *
      * @param address    The address to be inserted.
@@ -225,7 +188,6 @@ public class EmployeeDAO implements Serializable {
                 // fetch data from result set
                 while (rs.next()) {
                     Integer id = rs.getInt(1);
-//                    Blob blob = rs.getBlob(2);
                     String imagePath = rs.getString(2);
                     String firstName = rs.getString(3);
                     String lastName = rs.getString(4);
@@ -234,13 +196,6 @@ public class EmployeeDAO implements Serializable {
                     boolean enabled = rs.getBoolean(7);
 
                     Address address = findAddressByUserId(id);
-
-//                    byte[] image;
-//                    if (blob != null) {
-//                        image = convertBlobToByteArry(blob);
-//                    } else {
-//                        image = null;
-//                    }
 
                     Employee employee = new Employee(id, firstName, lastName, phoneNumber, address, imagePath, email, enabled);
                     findRolesByUserId(id).forEach(employee::addRole); // forEach(role -> employee.addRole(role));
@@ -273,12 +228,6 @@ public class EmployeeDAO implements Serializable {
             userStm.setString(1, employee.getFirstName());
             userStm.setString(2, employee.getLastName());
             userStm.setString(3, employee.getPhoneNumber());
-
-//            if (employee.getImage() != null) {
-//                userStm.setBlob(4, convertByteArrayToInputStream(employee.getImage()));
-//            } else {
-//                userStm.setNull(4, Types.BLOB);
-//            }
 
             userStm.setString(4, employee.getImagePath());
 
@@ -356,12 +305,6 @@ public class EmployeeDAO implements Serializable {
             stm.setString(1, employee.getFirstName());
             stm.setString(2, employee.getLastName());
             stm.setString(3, employee.getPhoneNumber());
-
-//            if (employee.getImage() != null) {
-//                stm.setBlob(4, convertByteArrayToInputStream(employee.getImage()));
-//            } else {
-//                stm.setNull(4, Types.BLOB);
-//            }
             stm.setString(4, employee.getImagePath());
 
             stm.setString(5, employee.getEmail());
@@ -412,7 +355,6 @@ public class EmployeeDAO implements Serializable {
                     String firstName = rs.getString(2);
                     String lastName = rs.getString(3);
                     String phoneNumber = rs.getString(4);
-//                    Blob blob = rs.getBlob(5);
                     String imagePath = rs.getString(5);
                     String email = rs.getString(6);
                     String password = rs.getString(7);
@@ -422,9 +364,6 @@ public class EmployeeDAO implements Serializable {
                     String ward = rs.getString(11);
                     String district = rs.getString(12);
                     String city = rs.getString(13);
-
-//                    byte[] image = (blob == null) ? null : convertBlobToByteArry(blob);
-
 
                     Address address = new Address(addressId, street, ward, district, city);
                     Employee employee = new Employee(id, firstName, lastName, phoneNumber, address, imagePath, email, password, enabled);
@@ -461,7 +400,6 @@ public class EmployeeDAO implements Serializable {
                     String firstName = rs.getString(2);
                     String lastName = rs.getString(3);
                     String phoneNumber = rs.getString(4);
-//                    byte[] image = (rs.getBlob(5) == null) ? null : convertBlobToByteArry(rs.getBlob(5));
                     String imagePath = rs.getString(5);
                     String password = rs.getString(7);
                     boolean enabled = rs.getBoolean(8);
@@ -591,7 +529,6 @@ public class EmployeeDAO implements Serializable {
                 // fetch data from result set
                 while (rs.next()) {
                     Integer id = rs.getInt(1);
-//                    byte[] image = (rs.getBlob(2) == null) ? null : convertBlobToByteArry(rs.getBlob(2));
                     String imagePath = rs.getString(2);
                     String firstName = rs.getString(3);
                     String lastName = rs.getString(4);

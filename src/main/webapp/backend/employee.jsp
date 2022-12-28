@@ -245,7 +245,6 @@
 
                                             <c:if test="${not empty employees.imagePath}">
                                                 <div class="avatar avatar-circle">
-                                                        <%--                                                         src="data:image/png;base64,${employees.base64Image}"--%>
                                                     <img class="avatar-img"
                                                          src="../images/employee/${employees.id}/${employees.imagePath}"
                                                          alt="Image Description">

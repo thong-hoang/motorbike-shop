@@ -72,7 +72,7 @@
                                             <c:choose>
                                                 <c:when test="${not empty employee.imagePath}">
                                                     <img id="avatarImg"
-                                                         src="../images/employee/${employees.id}/${employees.imagePath}"
+                                                         src="../images/employee/${employee.id}/${employee.imagePath}"
                                                          alt="Photos preview" class="img-fluid" style="width: 40%"/>
                                                 </c:when>
                                                 <c:otherwise>

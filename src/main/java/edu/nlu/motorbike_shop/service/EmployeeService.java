@@ -132,29 +132,6 @@ public class EmployeeService {
     }
 
     /**
-     * Read the employee image information submitted from the form.
-     *
-     * @param employee The employee to set image.
-     * @throws IOException      If an input or output error is detected when the servlet handles the GET request
-     * @throws ServletException If the request for the GET could not be handled
-     */
-//    public void readImageFieldFromForm(Employee employee) throws IOException, ServletException {
-//        Part part = request.getPart("image");
-//        if (part != null && part.getSize() > 0) {
-//            long size = part.getSize();
-//            byte[] imageBytes = new byte[(int) size];
-//
-//            InputStream inputStream = part.getInputStream();
-//            inputStream.read(imageBytes);
-//            inputStream.close();
-//
-//            employee.setImage(imageBytes);
-//        } else {
-//            employee.setImage(null);
-//        }
-//    }
-
-    /**
      * Get employee information from the form and save it in the database.
      *
      * @throws ServletException If the request for the POST could not be handled.
@@ -268,18 +245,34 @@ public class EmployeeService {
                 String updatePage = "employee-form.jsp";
                 request.getRequestDispatcher(updatePage).forward(request, response);
             } else {
-//                readImageFieldFromForm(employee);
+                for (String role : roles) employee.addRole(new Role(Integer.parseInt(role)));
 
                 if (!employee.getPassword().isEmpty())
                     employee.setPassword(HashGenerator.generateMD5(employee.getPassword()));
                 else
                     employee.setPassword(employeeById.getPassword());
 
-                for (String role : roles) {
-                    employee.addRole(new Role(Integer.parseInt(role)));
-                }
+                Part part = request.getPart("image");
+                String fileName = part.getSubmittedFileName();
 
-                employeeDAO.update(employee);
+                String serverPath = request.getServletContext().getRealPath("");
+                String directoryServerPath = serverPath + File.separator + DEFAULT_IMAGE_DIRECTORY;
+
+                if (!fileName.isEmpty()) {
+                    employee.setImagePath(fileName);
+                    String nameDirectoryServer = "employee" + File.separator + id;
+
+                    cleanDir(nameDirectoryServer);
+                    cleanDir("E:\\ProjectJava\\motorbike-shop\\src\\main\\webapp\\images\\" + nameDirectoryServer);
+
+                    directoryServerPath = directoryServerPath + File.separator + nameDirectoryServer;
+                    saveFile(directoryServerPath, fileName, part);
+                    String fileServerPath = directoryServerPath + File.separator + fileName;
+                    FileUploadUtils.copyFile(fileServerPath, nameDirectoryServer);
+
+                    employeeDAO.update(employee);
+                } else
+                    employeeDAO.update(employee);
 
                 message = "Nhân viên " + employee.getLastName() + " " + employee.getFirstName() + " đã được cập nhật thành công !";
                 listEmployee(message);
