@@ -1,11 +1,12 @@
 package edu.nlu.motorbike_shop.entity;
 
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
-import java.sql.Date;
+import java.util.Date;
 
-@Getter
-@Setter
+@Data
 @NoArgsConstructor
 @AllArgsConstructor
 public class Customer {
@@ -41,11 +42,14 @@ public class Customer {
         this.enabled = enabled;
     }
 
-    @Override
-    public String toString() {
-        return "Customer{" + "id=" + id + ", firstName='" + firstName + '\'' + ", lastName='" + lastName + '\'' +
-                ", phoneNumber='" + phoneNumber + '\'' + ", address=" + address + ", email='" + email + '\'' +
-                ", password='" + password + '\'' + ", createdTime=" + createdTime + ", authenticationType='" + authenticationType + '\'' +
-                ", verificationCode='" + verificationCode + '\'' + ", enabled=" + enabled + '}';
+    public Customer(Integer id, String firstName, String lastName, String phoneNumber, Address address, String email, Date createdTime, boolean enabled) {
+        this.id = id;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.phoneNumber = phoneNumber;
+        this.address = address;
+        this.email = email;
+        this.createdTime = createdTime;
+        this.enabled = enabled;
     }
 }
