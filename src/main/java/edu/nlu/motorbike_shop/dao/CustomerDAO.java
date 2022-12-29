@@ -2,7 +2,6 @@ package edu.nlu.motorbike_shop.dao;
 
 import edu.nlu.motorbike_shop.entity.Address;
 import edu.nlu.motorbike_shop.entity.Customer;
-import edu.nlu.motorbike_shop.entity.Employee;
 import edu.nlu.motorbike_shop.entity.HashGenerator;
 import edu.nlu.motorbike_shop.util.DBUtils;
 
@@ -10,6 +9,7 @@ import java.io.Serializable;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Date;
 
 /**
  * Provides APIs for manipulating data with the database
@@ -122,18 +122,17 @@ public class CustomerDAO implements Serializable {
      */
     public List<Customer> findAll(String keyword, String sortField, String sortType, int pageSize, int index) {
         List<Customer> customers = new ArrayList<>();
-        String sql = "SELECT id, first_name, last_name, email, phone_number, enabled " +
-                "FROM customers WHERE CONCAT(email, ' ', first_name, ' ', last_name) LIKE ? ORDER BY ?, ? LIMIT ? OFFSET ?";
+        String sql = "SELECT id, first_name, last_name, email, phone_number, created_time, enabled " +
+                "FROM customers WHERE CONCAT(email, ' ', first_name, ' ', last_name) LIKE ? " +
+                "ORDER BY " + sortField + " " + sortType + " LIMIT ? OFFSET ?";
 
         // use try-with-resources Statement to auto close the connection.
         try (Connection conn = DBUtils.makeConnection();
              PreparedStatement stm = conn.prepareStatement(sql)) {
 
             stm.setString(1, "%" + keyword + "%");
-            stm.setString(2, sortField);
-            stm.setString(3, sortType);
-            stm.setInt(4, pageSize);
-            stm.setInt(5, (index - 1) * pageSize);
+            stm.setInt(2, pageSize);
+            stm.setInt(3, (index - 1) * pageSize);
 
             // use try-with-resources Statement to auto close the ResultSet.
             try (ResultSet rs = stm.executeQuery()) {
@@ -144,11 +143,12 @@ public class CustomerDAO implements Serializable {
                     String lastName = rs.getString(3);
                     String email = rs.getString(4);
                     String phoneNumber = rs.getString(5);
-                    boolean enabled = rs.getBoolean(6);
+                    Date date = rs.getTimestamp(6);
+                    boolean enabled = rs.getBoolean(7);
 
                     Address address = findAddressByCustomerId(id);
 
-                    Customer customer = new Customer(id, firstName, lastName, phoneNumber, email, address, enabled);
+                    Customer customer = new Customer(id, firstName, lastName, phoneNumber, address, email, date, enabled);
                     customers.add(customer);
                 }
             }
@@ -343,7 +343,6 @@ public class CustomerDAO implements Serializable {
      */
     public long count() {
         String sql = "SELECT COUNT(id) FROM customers";
-        System.out.println(sql);
         try (Connection conn = DBUtils.makeConnection();
              PreparedStatement stm = conn.prepareStatement(sql)) {
             try (ResultSet rs = stm.executeQuery()) {
