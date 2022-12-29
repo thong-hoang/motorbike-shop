@@ -1,11 +1,14 @@
 package edu.nlu.motorbike_shop.entity;
 
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
-import java.sql.Date;
+import java.util.Date;
 
-@Getter
-@Setter
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class Customer {
     private Integer id;
     private String firstName;
@@ -19,17 +22,13 @@ public class Customer {
     private String verificationCode;
     private boolean enabled;
 
-    public Customer(Integer id, String firstName, String lastName, String phoneNumber, Address address, String email, String password, Date createdTime, String authenticationType, String verificationCode, boolean enabled) {
-        this.id = id;
+    public Customer(String firstName, String lastName, String phoneNumber, Address address, String email, String password, boolean enabled) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.phoneNumber = phoneNumber;
         this.address = address;
         this.email = email;
         this.password = password;
-        this.createdTime = createdTime;
-        this.authenticationType = authenticationType;
-        this.verificationCode = verificationCode;
         this.enabled = enabled;
     }
 
@@ -43,11 +42,14 @@ public class Customer {
         this.enabled = enabled;
     }
 
-    @Override
-    public String toString() {
-        return "Customer{" + "id='" + id + '\'' + ", firstName='" + firstName + '\'' + ", lastName='" + lastName + '\'' +
-                ", phoneNumber='" + phoneNumber + '\'' + ", address='" + address + '\'' + ", email='" + email + '\''
-                + '\'' + ", password='" + password + '\'' + ", createdTime='" + createdTime + ", authenticationType='"
-                + authenticationType + ", verificationCode='" + verificationCode + ", enabled=" + enabled + '}';
+    public Customer(Integer id, String firstName, String lastName, String phoneNumber, Address address, String email, Date createdTime, boolean enabled) {
+        this.id = id;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.phoneNumber = phoneNumber;
+        this.address = address;
+        this.email = email;
+        this.createdTime = createdTime;
+        this.enabled = enabled;
     }
 }
