@@ -172,17 +172,16 @@ public class EmployeeDAO implements Serializable {
     public List<Employee> findAll(String keyword, String sortField, String sortType, int pageSize, int index) {
         List<Employee> employees = new ArrayList<>();
         String sql = "SELECT id, image_path, first_name, last_name, email, phone_number, enabled " +
-                "FROM users WHERE CONCAT(email, ' ', first_name, ' ', last_name) LIKE ? ORDER BY ?, ? LIMIT ? OFFSET ?";
+                "FROM users WHERE CONCAT(email, ' ', first_name, ' ', last_name) LIKE ? " +
+                "ORDER BY " + sortField + " " + sortType + " LIMIT ? OFFSET ?";
 
         // use try-with-resources Statement to auto close the connection.
         try (Connection conn = DBUtils.makeConnection();
              PreparedStatement stm = conn.prepareStatement(sql)) {
 
             stm.setString(1, "%" + keyword + "%");
-            stm.setString(2, sortField);
-            stm.setString(3, sortType);
-            stm.setInt(4, pageSize);
-            stm.setInt(5, (index - 1) * pageSize);
+            stm.setInt(2, pageSize);
+            stm.setInt(3, (index - 1) * pageSize);
 
             // use try-with-resources Statement to auto close the ResultSet.
             try (ResultSet rs = stm.executeQuery()) {
