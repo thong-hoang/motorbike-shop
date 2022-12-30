@@ -52,4 +52,15 @@ public class Customer {
         this.createdTime = createdTime;
         this.enabled = enabled;
     }
+
+    public Customer(Integer id, String firstName, String lastName, String phoneNumber, Address address, String email, String password, boolean enabled) {
+        this.id = id;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.phoneNumber = phoneNumber;
+        this.address = address;
+        this.email = email;
+        this.password = password;
+        this.enabled = enabled;
+    }
 }

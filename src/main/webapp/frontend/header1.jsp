@@ -15,7 +15,7 @@
         </a></li>
     </ul>
     <div class="offcanvas__logo">
-        <a href="/motorbike_shop/"><img src="../images/logo/logo.png" alt=""></a>
+        <a href="/motorbike_shop/"><img src="images/logo/logo.png" alt=""></a>
     </div>
     <div id="mobile-menu-wrap"></div>
     <div class="offcanvas__auth">
@@ -28,7 +28,7 @@
         <div class="row">
             <div class="col-xl-3 col-lg-2">
                 <div class="header__logo">
-                    <a href="/motorbike_shop/"><img src="../images/logo/logo.png" alt=""></a>
+                    <a href="/motorbike_shop/"><img src="images/logo/logo.png" alt=""></a>
                 </div>
             </div>
             <div class="col-xl-6 col-lg-7">
@@ -63,7 +63,7 @@
                 <div class="header__right">
                     <c:if test="${loggedCustomer == null}">
                         <div class="header__right__auth">
-                            <a href="../login">Đăng nhập</a>
+                            <a href="login">Đăng nhập</a>
                         </div>
                         <ul class="header__right__widget">
                             <li><span class="icon_search search-switch"></span></li>
@@ -76,11 +76,11 @@
                         <ul class="header__right__widget">
                         <span class="header__menu">
                             <ul>
-                                <li><a href="../account-info"><i class="fa fa-user"></i> ${loggedCustomer.firstName}</a>
+                                <li><a href="account-info"><i class="fa fa-user"></i> ${loggedCustomer.firstName}</a>
                                     <ul class="dropdown">
-                                        <li><a href="../account-info">Tài khoản</a></li>
+                                        <li><a href="account-info">Tài khoản</a></li>
                                         <li><a href="frontend/order.jsp">Đơn mua</a></li>
-                                        <li><a href="../logout">Đăng xuất</a></li>
+                                        <li><a href="logout">Đăng xuất</a></li>
                                     </ul>
                                 </li>
                                 <li><span class="icon_search search-switch"></span></li>

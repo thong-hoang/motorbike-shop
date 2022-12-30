@@ -8,8 +8,8 @@ import edu.nlu.motorbike_shop.util.DBUtils;
 import java.io.Serializable;
 import java.sql.*;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Date;
+import java.util.List;
 
 /**
  * Provides APIs for manipulating data with the database
@@ -229,7 +229,6 @@ public class CustomerDAO implements Serializable {
      * @param id An id specifying the id of the Customer.
      * @return Customer entity if the Customer entity with the given id exists, null otherwise.
      */
-
     public Customer findById(Integer id) {
         String sql = "SELECT c.*, a.id, a.street, a.ward, a.district, a.city " +
                 "FROM customers c  LEFT JOIN addresses a ON c.id = a.customer_id WHERE c.id = ?";
@@ -267,7 +266,7 @@ public class CustomerDAO implements Serializable {
     }
 
     /**
-     * Update an customer in the database.
+     * Update a customer in the database.
      *
      * @param customer The employee entity to be updated.
      * @return True if the employee is updated successfully, false otherwise.
@@ -375,5 +374,46 @@ public class CustomerDAO implements Serializable {
         }
 
         return 0;
+    }
+
+    /**
+     * Get the customer information corresponding to the given email and password.
+     *
+     * @param email    The email of the customer.
+     * @param password The password of the customer.
+     * @return The customer corresponding to the given email and password. Null if no such customer exists.
+     */
+    public Customer login(String email, String password) {
+        String sql = "SELECT c.*, a.id, a.street, a.ward, a.district, a.city " +
+                "FROM customers c LEFT JOIN addresses a ON c.id = a.customer_id WHERE email = ? AND password = ?";
+
+        try (Connection conn = DBUtils.makeConnection();
+             PreparedStatement stm = conn.prepareStatement(sql)) {
+            stm.setString(1, email);
+            stm.setString(2, password);
+
+            try (ResultSet rs = stm.executeQuery()) {
+                if (rs.next()) {
+                    Integer id = rs.getInt(1);
+                    String firstName = rs.getString(2);
+                    String lastName = rs.getString(3);
+                    String phoneNumber = rs.getString(4);
+                    boolean enabled = rs.getBoolean(10);
+                    Integer addressId = rs.getInt(11);
+                    String street = rs.getString(12);
+                    String ward = rs.getString(13);
+                    String district = rs.getString(14);
+                    String city = rs.getString(15);
+
+                    Address address = new Address(addressId, street, ward, district, city);
+
+                    return new Customer(id, firstName, lastName, phoneNumber, address, email, password, enabled);
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return null;
     }
 }

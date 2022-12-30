@@ -1,7 +1,7 @@
 package edu.nlu.motorbike_shop.filter;
 
 import javax.servlet.*;
-import javax.servlet.annotation.*;
+import javax.servlet.annotation.WebFilter;
 import java.io.IOException;
 
 @WebFilter(filterName = "UTF8Filter", urlPatterns = "/*")

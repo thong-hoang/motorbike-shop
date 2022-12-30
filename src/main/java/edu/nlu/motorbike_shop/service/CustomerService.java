@@ -2,18 +2,16 @@ package edu.nlu.motorbike_shop.service;
 
 import edu.nlu.motorbike_shop.dao.CustomerDAO;
 import edu.nlu.motorbike_shop.entity.Customer;
-import edu.nlu.motorbike_shop.entity.Employee;
+import edu.nlu.motorbike_shop.entity.Address;
+import edu.nlu.motorbike_shop.entity.HashGenerator;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.io.File;
 import java.io.IOException;
 import java.util.List;
 
-import static edu.nlu.motorbike_shop.constant.Constants.DEFAULT_IMAGE_DIRECTORY;
 import static edu.nlu.motorbike_shop.constant.Constants.DEFAULT_PAGE_SIZE;
-import static edu.nlu.motorbike_shop.util.FileUploadUtils.removeDir;
 
 /**
  * Handle logic between user and server
@@ -127,5 +125,175 @@ public class CustomerService {
             message = "Khách hàng " + customer.getLastName() + " " + customer.getFirstName() + " đã được xóa thành công !";
         }
         listCustomer(message);
+    }
+
+    /*-----------login client----------*/
+
+    /**
+     * Display the register page to the user.
+     *
+     * @throws ServletException If the request for the GET could not be handled
+     * @throws IOException      If an input or output error is detected when the servlet handles the GET request
+     */
+    public void showCustomerRegisterForm() throws ServletException, IOException {
+        showCustomerRegisterForm(null);
+    }
+
+    /**
+     * Display the register page and a response message to the user.
+     *
+     * @param message A message specified to display to the user
+     * @throws ServletException If the request for the GET could not be handled
+     * @throws IOException      If an input or output error is detected when the servlet handles the GET request
+     */
+    public void showCustomerRegisterForm(String message) throws ServletException, IOException {
+        if (message != null) request.setAttribute("message", message);
+
+        String registerPage = "frontend/register.jsp";
+        request.getRequestDispatcher(registerPage).forward(request, response);
+    }
+
+    /**
+     * Get the customer's information from the request.
+     *
+     * @return A customer object
+     */
+    private void readAllcustomerFields(Customer customer) {
+        String lastName = request.getParameter("lastName");
+        String firstName = request.getParameter("firstName");
+        String email = request.getParameter("email");
+        String password = request.getParameter("password");
+        String phone = request.getParameter("phone");
+        String street = request.getParameter("street");
+        String ward = request.getParameter("ward");
+        String district = request.getParameter("district");
+        String city = request.getParameter("city");
+        boolean enabled = true;
+
+        Address address = new Address(street, ward, district, city);
+
+        customer.setLastName(lastName);
+        customer.setFirstName(firstName);
+        customer.setEmail(email);
+        customer.setPassword(password);
+        customer.setPhoneNumber(phone);
+        customer.setAddress(address);
+        customer.setEnabled(enabled);
+    }
+
+    /**
+     * Get customer information from the form and save it in the database.
+     *
+     * @throws ServletException If the request for the POST could not be handled.
+     * @throws IOException      If an input or output error is detected when the servlet handles the POST request.
+     */
+    public void saveCustomer() throws ServletException, IOException {
+        Customer customer = new Customer();
+        readAllcustomerFields(customer);
+        boolean existcustomer = customerDAO.checkEmailExists(customer.getEmail());
+
+        if (existcustomer) {
+            String message = "Email " + customer.getEmail() + " đã tồn tại!!!";
+
+            request.setAttribute("customer", customer);
+            request.setAttribute("message", message);
+
+            showCustomerRegisterForm(message);
+        } else {
+            customerDAO.save(customer);
+
+            String homePage = "frontend/index.jsp";
+            request.getRequestDispatcher(homePage).forward(request, response);
+        }
+    }
+
+    /**
+     * Display the login page to the user.
+     *
+     * @throws ServletException If the request for the GET could not be handled
+     * @throws IOException      If an input or output error is detected when the servlet handles the GET request
+     */
+    public void showLogin() throws ServletException, IOException {
+        showLogin(null);
+    }
+
+    /**
+     * Display the login page and a response message if information is incorrect.
+     *
+     * @param message A message to notify if the information is incorrect
+     * @throws ServletException If the request for the GET could not be handled
+     * @throws IOException      If an input or output error is detected when the servlet handles the GET request
+     */
+    public void showLogin(String message) throws ServletException, IOException {
+        if (message != null) request.setAttribute("message", message);
+        String loginPage = "frontend/login.jsp";
+        request.getRequestDispatcher(loginPage).forward(request, response);
+    }
+
+    /**
+     * Get email and password from the request and check if account exists will redirect to the home page.
+     * If the account does not exist, it will redirect to the login page and message will be displayed.
+     *
+     * @throws ServletException If the request for the POST could not be handled.
+     * @throws IOException      If an input or output error is detected when the servlet handles the POST request.
+     */
+    public void doLogin() throws ServletException, IOException {
+        String email = request.getParameter("email");
+        String password = HashGenerator.generateMD5(request.getParameter("password"));
+
+        Customer customer = customerDAO.login(email, password);
+        boolean existCustomer = customerDAO.checkEmailExists(email);
+
+        if (!existCustomer) {
+            String message = "Email không tồn tại";
+            request.setAttribute("message", message);
+            showLogin(message);
+        } else {
+            if (customer == null) {
+                String message = "Email hoặc mật khẩu không đúng";
+                request.setAttribute("message", message);
+                showLogin(message);
+            } else if (!customer.isEnabled() && customer != null) {
+                String message = "Tài khoản của bạn đã bị khóa";
+                request.setAttribute("message", message);
+                showLogin(message);
+            } else {
+                request.getSession().setAttribute("loggedCustomer", customer);
+                String homePage = "frontend/index.jsp";
+                request.getRequestDispatcher(homePage).forward(request, response);
+            }
+        }
+    }
+
+    /**
+     * Show the customer's profile to the user.
+     *
+     * @throws ServletException If the request for the GET could not be handled
+     * @throws IOException      If an input or output error is detected when the servlet handles the GET request
+     */
+    public void showAccountInfo() throws ServletException, IOException {
+        String accountInfoPage = "frontend/account.jsp";
+        request.getRequestDispatcher(accountInfoPage).forward(request, response);
+    }
+
+    /**
+     * Get customer information from the form and update it in the database.
+     *
+     * @throws ServletException If the request for the POST could not be handled.
+     * @throws IOException      If an input or output error is detected when the servlet handles the POST request.
+     */
+    public void updateAccountInfo() throws ServletException, IOException {
+        Customer customer = (Customer) request.getSession().getAttribute("loggedCustomer");
+        String password = request.getParameter("password");
+        Integer id = Integer.parseInt(request.getParameter("id"));
+        Integer addressId = Integer.parseInt(request.getParameter("addressId"));
+        readAllcustomerFields(customer);
+        customer.setId(id);
+        customer.setPassword(password);
+        customer.getAddress().setId(addressId);
+
+        customerDAO.update(customer);
+
+        showAccountInfo();
     }
 }
