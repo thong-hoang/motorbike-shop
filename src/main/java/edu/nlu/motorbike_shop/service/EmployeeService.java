@@ -4,16 +4,22 @@ import edu.nlu.motorbike_shop.dao.EmployeeDAO;
 import edu.nlu.motorbike_shop.dao.RoleDAO;
 import edu.nlu.motorbike_shop.entity.Address;
 import edu.nlu.motorbike_shop.entity.Employee;
+import edu.nlu.motorbike_shop.entity.HashGenerator;
 import edu.nlu.motorbike_shop.entity.Role;
+import edu.nlu.motorbike_shop.util.FileUploadUtils;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.Part;
+import java.io.File;
 import java.io.IOException;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import static edu.nlu.motorbike_shop.constant.Constants.*;
+import static edu.nlu.motorbike_shop.util.FileUploadUtils.*;
 
 public class EmployeeService {
     private final EmployeeDAO employeeDAO = EmployeeDAO.getInstance();
@@ -21,37 +27,9 @@ public class EmployeeService {
     private final HttpServletRequest request;
     private final HttpServletResponse response;
 
-    private final String DEFAULT_SORT_TYPE = "ASC";
-
-    private final String DEFAULT_SORT_FIELD = "id";
-
-    private final int DEFAULT_PAGE_SIZE = 10;
-
     public EmployeeService(HttpServletRequest request, HttpServletResponse response) {
         this.request = request;
         this.response = response;
-    }
-
-    /**
-     * Returns a list of employees and a response message to the user.
-     *
-     * @param message A message specified to display to the user
-     * @throws ServletException If the request for the GET could not be handled
-     * @throws IOException      If an input or output error is detected when the servlet handles the GET request
-     */
-    public void listEmployee(String message) throws ServletException, IOException {
-        List<Employee> employees = employeeDAO.findAll(DEFAULT_SORT_TYPE, DEFAULT_PAGE_SIZE, DEFAULT_SORT_FIELD);
-        long numberOfEmployees = employeeDAO.count();
-
-        request.setAttribute("listEmployees", employees);
-        request.setAttribute("numberOfEmployees", numberOfEmployees);
-        request.setAttribute("totalEmployees", numberOfEmployees);
-
-        if (message != null)
-            request.setAttribute("message", message);
-
-        String listPage = "employee.jsp";
-        request.getRequestDispatcher(listPage).forward(request, response);
     }
 
     /**
@@ -62,6 +40,47 @@ public class EmployeeService {
      */
     public void listEmployee() throws ServletException, IOException {
         listEmployee(null);
+    }
+
+    /**
+     * Returns a list of employees and a response message to the user.
+     *
+     * @param message A message specified to display to the user
+     * @throws ServletException If the request for the GET could not be handled
+     * @throws IOException      If an input or output error is detected when the servlet handles the GET request
+     */
+    public void listEmployee(String message) throws ServletException, IOException {
+        String keyword = request.getParameter("keyword");
+        if (keyword == null)
+            keyword = "";
+        String pageNumberString = request.getParameter("pageNumber");
+        int pageNumber;
+
+        if (pageNumberString == null) {
+            pageNumber = 1;
+        } else {
+            pageNumber = Integer.parseInt(request.getParameter("pageNumber"));
+        }
+
+        long numberOfEmployees = employeeDAO.count();
+        int totalKeywordResults = employeeDAO.countByKeyword(keyword);
+
+        List<Employee> employees = employeeDAO.findAll(keyword, DEFAULT_SORT_FIELD, DEFAULT_SORT_TYPE, DEFAULT_PAGE_SIZE, pageNumber);
+
+        long totalPages = totalKeywordResults / DEFAULT_PAGE_SIZE;
+        if (numberOfEmployees % DEFAULT_PAGE_SIZE != 0) totalPages++;
+
+        request.setAttribute("currentPage", pageNumber);
+        request.setAttribute("totalPages", totalPages);
+        request.setAttribute("keyword", keyword);
+        request.setAttribute("numberOfEmployees", numberOfEmployees);
+        request.setAttribute("listEmployees", employees);
+
+        if (message != null)
+            request.setAttribute("message", message);
+
+        String listPage = "employee.jsp";
+        request.getRequestDispatcher(listPage).forward(request, response);
     }
 
     /**
@@ -84,54 +103,7 @@ public class EmployeeService {
     }
 
     /**
-     * Get the employee's information from the request and save it to the database.
-     *
-     * @throws ServletException If the request for the POST could not be handled
-     * @throws IOException      If an input or output error is detected when the servlet handles the POST request
-     */
-    public void save() throws ServletException, IOException {
-        request.setCharacterEncoding("UTF-8");
-        String imagePath = request.getParameter("imagePath");
-        String firstName = request.getParameter("firstName");
-        String lastName = request.getParameter("lastName");
-        String email = request.getParameter("email");
-        String password = request.getParameter("password");
-        String street = request.getParameter("street");
-        String ward = request.getParameter("ward");
-        String district = request.getParameter("district");
-        String city = request.getParameter("city");
-        String phone = request.getParameter("phone");
-        String[] roles = request.getParameterValues("roles");
-        boolean enabled = "on".equals(request.getParameter("enabled"));
-
-        boolean existEmployee = employeeDAO.checkEmailExists(email);
-
-        if (existEmployee) {
-            String message = "Email " + email + " đã tồn tại!!!";
-            request.setAttribute("message", message);
-
-            Employee employee = new Employee(firstName, lastName, phone, new Address(street, ward, district, city),
-                    imagePath, email, password, enabled);
-            getRolesDisplayedAdminInterface();
-            request.setAttribute("employee", employee);
-
-            String employeeFormPage = "employee-form.jsp";
-            request.getRequestDispatcher(employeeFormPage).forward(request, response);
-        } else {
-            Employee newEmployee = new Employee(firstName, lastName, phone, new Address(street, ward, district, city),
-                    imagePath, email, password, enabled);
-            for (String role : roles) {
-                newEmployee.addRole(new Role(Integer.parseInt(role)));
-            }
-            employeeDAO.save(newEmployee);
-
-            String message = "Nhân viên " + lastName + " " + firstName + " đã được thêm thành công !";
-            listEmployee(message);
-        }
-    }
-
-    /**
-     * Get role of employee from database and display it to user.
+     * Get role of employee corresponding from database and display it to user.
      *
      * @param employee The employee to get role.
      * @return A map of role and checked status.
@@ -145,7 +117,76 @@ public class EmployeeService {
     }
 
     /**
-     * Get the employee's infornamtions byid and display it to the user.
+     * Read employee information submitted from the form.
+     *
+     * @return An employee object with information read from form.
+     */
+    public Employee readAllEmployeeFieldsExceptRole() {
+        String firstName = request.getParameter("firstName");
+        String lastName = request.getParameter("lastName");
+        String email = request.getParameter("email");
+        String password = request.getParameter("password");
+        String street = request.getParameter("street");
+        String ward = request.getParameter("ward");
+        String district = request.getParameter("district");
+        String city = request.getParameter("city");
+        String phone = request.getParameter("phone");
+        boolean enabled = "on".equals(request.getParameter("enabled"));
+
+        Address address = new Address(street, ward, district, city);
+        return new Employee(firstName, lastName, phone, address, email, password, enabled);
+    }
+
+    /**
+     * Get employee information from the form and save it in the database.
+     *
+     * @throws ServletException If the request for the POST could not be handled.
+     * @throws IOException      If an input or output error is detected when the servlet handles the POST request.
+     */
+    public void saveEmployee() throws ServletException, IOException {
+        String[] roles = request.getParameterValues("roles");
+
+        Employee employee = readAllEmployeeFieldsExceptRole();
+        boolean existEmployee = employeeDAO.checkEmailExists(employee.getEmail());
+
+        if (existEmployee) {
+            String message = "Email " + employee.getEmail() + " đã tồn tại!!!";
+            request.setAttribute("message", message);
+
+            getRolesDisplayedAdminInterface();
+            request.setAttribute("employee", employee);
+
+            String employeeFormPage = "employee-form.jsp";
+            request.getRequestDispatcher(employeeFormPage).forward(request, response);
+        } else {
+            for (String role : roles) employee.addRole(new Role(Integer.parseInt(role)));
+
+            Part part = request.getPart("image");
+            String fileName = part.getSubmittedFileName();
+
+            String serverPath = request.getServletContext().getRealPath("");
+            String directoryServerPath = serverPath + File.separator + DEFAULT_IMAGE_DIRECTORY;
+
+            if (!fileName.isEmpty()) {
+                employee.setImagePath(fileName);
+                employeeDAO.save(employee);
+                Integer id = employeeDAO.findByEmail(employee.getEmail()).getId();
+
+                String nameDirectoryServer = "employee" + File.separator + id;
+                directoryServerPath = directoryServerPath + File.separator + nameDirectoryServer;
+                saveFile(directoryServerPath, fileName, part);
+                String fileServerPath = directoryServerPath + File.separator + fileName;
+                FileUploadUtils.copyFile(fileServerPath, nameDirectoryServer);
+            } else
+                employeeDAO.save(employee);
+
+            String message = "Nhân viên " + employee.getLastName() + " " + employee.getFirstName() + " đã được thêm thành công !";
+            listEmployee(message);
+        }
+    }
+
+    /**
+     * Get the employee's infornamtions by id from request and display it to user.
      *
      * @throws ServletException If the request for the GET could not be handled
      * @throws IOException      If an input or output error is detected when the servlet handles the GET request
@@ -172,26 +213,23 @@ public class EmployeeService {
         }
     }
 
+    /**
+     * Get the employee's information from the request and update it into the database.
+     *
+     * @throws ServletException If the request for the POST could not be handled
+     * @throws IOException      If an input or output error is detected when the servlet handles the POST request
+     */
     public void updateEmployee() throws ServletException, IOException {
-        request.setCharacterEncoding("UTF-8");
-
         Integer id = Integer.valueOf(request.getParameter("id"));
-        String imagePath = request.getParameter("imagePath");
-        String firstName = request.getParameter("firstName");
-        String lastName = request.getParameter("lastName");
-        String email = request.getParameter("email");
-        String password = request.getParameter("password");
         Integer addressId = Integer.valueOf(request.getParameter("addressId"));
-        String street = request.getParameter("street");
-        String ward = request.getParameter("ward");
-        String district = request.getParameter("district");
-        String city = request.getParameter("city");
-        String phone = request.getParameter("phone");
         String[] roles = request.getParameterValues("roles");
-        boolean enabled = "on".equals(request.getParameter("enabled"));
+
+        Employee employee = readAllEmployeeFieldsExceptRole();
+        employee.setId(id);
+        employee.getAddress().setId(addressId);
 
         Employee employeeById = employeeDAO.findById(id);
-        Employee employeeByEmail = employeeDAO.findByEmail(email);
+        Employee employeeByEmail = employeeDAO.findByEmail(employee.getEmail());
 
         String message;
 
@@ -200,11 +238,8 @@ public class EmployeeService {
             listEmployee(message);
         } else {
             if (employeeByEmail != null && id != employeeByEmail.getId()) {
-                message = "Email " + email + " đã tồn tại!!!";
+                message = "Email " + employee.getEmail() + " đã tồn tại!!!";
                 request.setAttribute("message", message);
-
-                Employee employee = new Employee(id, firstName, lastName, phone, new Address(addressId, street, ward, district, city),
-                        imagePath, email, password, enabled);
 
                 Map<Role, String> roleMap = getSelectedRoles(employeeById);
 
@@ -216,17 +251,121 @@ public class EmployeeService {
                 String updatePage = "employee-form.jsp";
                 request.getRequestDispatcher(updatePage).forward(request, response);
             } else {
-                Employee employee = new Employee(id, firstName, lastName, phone, new Address(addressId, street, ward, district, city),
-                        imagePath, email, password, enabled);
-                for (String role : roles) {
-                    employee.addRole(new Role(Integer.parseInt(role)));
-                }
+                for (String role : roles) employee.addRole(new Role(Integer.parseInt(role)));
 
-                employeeDAO.update(employee);
+                if (!employee.getPassword().isEmpty())
+                    employee.setPassword(HashGenerator.generateMD5(employee.getPassword()));
+                else
+                    employee.setPassword(employeeById.getPassword());
 
-                message = "Nhân viên " + lastName + " " + firstName + " đã được cập nhật thành công !";
+                Part part = request.getPart("image");
+                String fileName = part.getSubmittedFileName();
+
+                String serverPath = request.getServletContext().getRealPath("");
+                String directoryServerPath = serverPath + File.separator + DEFAULT_IMAGE_DIRECTORY;
+
+                if (!fileName.isEmpty()) {
+                    employee.setImagePath(fileName);
+                    String nameDirectoryServer = "employee" + File.separator + id;
+                    directoryServerPath = directoryServerPath + File.separator + nameDirectoryServer;
+
+                    cleanDir(directoryServerPath);
+                    cleanDir("E:\\ProjectJava\\motorbike-shop\\src\\main\\webapp\\images\\" + nameDirectoryServer);
+
+
+                    saveFile(directoryServerPath, fileName, part);
+                    String fileServerPath = directoryServerPath + File.separator + fileName;
+                    FileUploadUtils.copyFile(fileServerPath, nameDirectoryServer);
+
+                    employeeDAO.update(employee);
+                } else
+                    employeeDAO.update(employee);
+
+                message = "Nhân viên " + employee.getLastName() + " " + employee.getFirstName() + " đã được cập nhật thành công !";
                 listEmployee(message);
             }
+        }
+    }
+
+    /**
+     * Get the employee's id from the request and delete it from the database.
+     *
+     * @throws ServletException If the request for the GET could not be handled
+     * @throws IOException      If an input or output error is detected when the servlet handles the GET request
+     */
+    public void deleteEmployee() throws ServletException, IOException {
+        Integer id = Integer.valueOf(request.getParameter("id"));
+
+        Employee employee = employeeDAO.findById(id);
+
+        String message;
+
+        if (employee == null) {
+            message = "Không tìm thấy nhân viên hoặc nhân viên đã bị xóa";
+        } else {
+            employeeDAO.delete(id);
+            String serverPath = request.getServletContext().getRealPath("");
+            String directoryServerPath = serverPath + File.separator + DEFAULT_IMAGE_DIRECTORY;
+            String nameDirectoryServer = "employee" + File.separator + id;
+            directoryServerPath = directoryServerPath + File.separator + nameDirectoryServer;
+
+            removeDir(directoryServerPath);
+            removeDir("E:\\ProjectJava\\motorbike-shop\\src\\main\\webapp\\images\\" + nameDirectoryServer);
+
+            message = "Nhân viên " + employee.getLastName() + " " + employee.getFirstName() + " đã được xóa thành công !";
+        }
+        listEmployee(message);
+    }
+
+    /**
+     * Get the employee's id and enable status from the request and update it to the database.
+     *
+     * @throws ServletException If the request for the GET could not be handled
+     * @throws IOException      If an input or output error is detected when the servlet handles the GET request
+     */
+    public void enabledEmployee() throws ServletException, IOException {
+        Integer id = Integer.valueOf(request.getParameter("id"));
+        boolean enabled = Boolean.parseBoolean(request.getParameter("enabled"));
+
+        Employee employee = employeeDAO.findById(id);
+
+        String message;
+
+        if (employee == null) {
+            message = "Không tìm thấy nhân viên hoặc nhân viên đã bị xóa";
+        } else {
+            employeeDAO.updateEnabledStatus(id, enabled);
+            message = "Nhân viên " + employee.getLastName() + " " + employee.getFirstName() + " đã được "
+                    + (enabled ? "kích hoạt" : "vô hiệu hóa") + " thành công !";
+        }
+        listEmployee(message);
+    }
+
+    /**
+     * Check login information and redirect to the appropriate page.
+     *
+     * @throws ServletException If the request for the POST could not be handled
+     * @throws IOException      If an input or output error is detected when the servlet handles the POST request
+     */
+    public void checkLogin() throws ServletException, IOException {
+        String email = request.getParameter("email");
+        String password = HashGenerator.generateMD5(request.getParameter("password"));
+
+        Employee employee = employeeDAO.login(email, password);
+
+        if (employee != null) {
+            request.getSession().setAttribute("email", email);
+            request.getSession().setAttribute("firstName", employee.getFirstName());
+            request.getSession().setAttribute("lastName", employee.getLastName());
+            request.getSession().setAttribute("imagePath", employee.getImagePath());
+            request.getSession().setAttribute("id", employee.getId());
+
+            request.getRequestDispatcher("/backend/").forward(request, response);
+        } else {
+            String message = "Email hoặc mật khẩu không đúng";
+            request.setAttribute("message", message);
+
+            request.getRequestDispatcher("login.jsp").forward(request, response);
         }
     }
 }

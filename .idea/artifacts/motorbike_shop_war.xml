@@ -7,7 +7,7 @@
         <packaging>war</packaging>
       </options>
     </properties>
-    <root id="archive" name="motorbike-shop-1.0-SNAPSHOT.war">
+    <root id="archive" name="motorbike-shop.war">
       <element id="artifact" artifact-name="motorbike-shop:war exploded" />
     </root>
   </artifact>

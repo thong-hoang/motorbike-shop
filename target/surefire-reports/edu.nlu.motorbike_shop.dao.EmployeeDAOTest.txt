@@ -1,0 +1,24 @@
+-------------------------------------------------------------------------------
+Test set: edu.nlu.motorbike_shop.dao.EmployeeDAOTest
+-------------------------------------------------------------------------------
+Tests run: 11, Failures: 3, Errors: 2, Skipped: 0, Time elapsed: 0.612 s <<< FAILURE! - in edu.nlu.motorbike_shop.dao.EmployeeDAOTest
+testFindAll(edu.nlu.motorbike_shop.dao.EmployeeDAOTest)  Time elapsed: 0.017 s  <<< FAILURE!
+java.lang.AssertionError
+	at edu.nlu.motorbike_shop.dao.EmployeeDAOTest.testFindAll(EmployeeDAOTest.java:27)
+
+testFindEmployeeByEmail(edu.nlu.motorbike_shop.dao.EmployeeDAOTest)  Time elapsed: 0.015 s  <<< FAILURE!
+org.junit.ComparisonFailure: expected:<Hoàng[ Phạm]> but was:<Hoàng[]>
+	at edu.nlu.motorbike_shop.dao.EmployeeDAOTest.testFindEmployeeByEmail(EmployeeDAOTest.java:89)
+
+testUpdateEmployee(edu.nlu.motorbike_shop.dao.EmployeeDAOTest)  Time elapsed: 0.012 s  <<< ERROR!
+java.lang.NullPointerException: Cannot invoke "edu.nlu.motorbike_shop.entity.Employee.setLastName(String)" because "employee" is null
+	at edu.nlu.motorbike_shop.dao.EmployeeDAOTest.testUpdateEmployee(EmployeeDAOTest.java:63)
+
+testCreateEmployee(edu.nlu.motorbike_shop.dao.EmployeeDAOTest)  Time elapsed: 0.186 s  <<< FAILURE!
+java.lang.AssertionError
+	at edu.nlu.motorbike_shop.dao.EmployeeDAOTest.testCreateEmployee(EmployeeDAOTest.java:44)
+
+testFindEmployeeById(edu.nlu.motorbike_shop.dao.EmployeeDAOTest)  Time elapsed: 0.005 s  <<< ERROR!
+java.lang.NullPointerException: Cannot invoke "edu.nlu.motorbike_shop.entity.Employee.getEmail()" because "employee" is null
+	at edu.nlu.motorbike_shop.dao.EmployeeDAOTest.testFindEmployeeById(EmployeeDAOTest.java:52)
+

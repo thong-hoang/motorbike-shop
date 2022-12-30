@@ -1,12 +1,17 @@
 package edu.nlu.motorbike_shop.entity;
 
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.util.HashSet;
 import java.util.Set;
 
 @Getter
 @Setter
+@NoArgsConstructor
+@AllArgsConstructor
 public class Employee {
     private Integer id;
     private String firstName;
@@ -56,14 +61,39 @@ public class Employee {
         this.enabled = enabled;
     }
 
+    public Employee(Integer id, String firstName, String lastName, String email, String imagePath) {
+        this.id = id;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.imagePath = imagePath;
+    }
+
+    public Employee(Integer id, String firstName, String lastName, String email) {
+        this.id = id;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+    }
+
+    public Employee(String firstName, String lastName, String phoneNumber, Address address, String email, String password, boolean enabled) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.phoneNumber = phoneNumber;
+        this.address = address;
+        this.email = email;
+        this.password = password;
+        this.enabled = enabled;
+    }
+
     public void addRole(Role role) {
         this.roles.add(role);
     }
 
     @Override
     public String toString() {
-        return "Employee{" + "id='" + id + '\'' + ", firstName='" + firstName + '\'' + ", lastName='" + lastName + '\'' +
-                ", phoneNumber='" + phoneNumber + '\'' + ", address='" + address + '\'' + ", imagePath='" + imagePath + '\'' +
-                ", email='" + email + '\'' + ", password='" + password + '\'' + ", enabled=" + enabled + ", role='" + roles + '}';
+        return "Employee{" + "id=" + id + ", firstName='" + firstName + '\'' + ", lastName='" + lastName + '\'' +
+                ", phoneNumber='" + phoneNumber + '\'' + ", email='" + email + '\'' + ", password='" + password + '\'' +
+                ", enabled=" + enabled + ", roles=" + roles + ", address=" + address + '}';
     }
 }

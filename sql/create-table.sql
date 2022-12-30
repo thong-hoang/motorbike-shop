@@ -1,25 +1,3 @@
-CREATE TABLE `addresses`
-(
-    `id`          int                                                           NOT NULL AUTO_INCREMENT,
-    `street`      varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
-    `ward`        varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci  NULL DEFAULT NULL,
-    `district`    varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci  NULL DEFAULT NULL,
-    `city`        varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci  NULL DEFAULT NULL,
-    `user_id`     int                                                           NULL DEFAULT NULL,
-    `customer_id` int                                                           NULL DEFAULT NULL,
-    `order_id`    int                                                           NULL DEFAULT NULL,
-    PRIMARY KEY (`id`) USING BTREE,
-    INDEX `fk_address_user` (`user_id` ASC) USING BTREE,
-    INDEX `fk_address_customer` (`customer_id` ASC) USING BTREE,
-    INDEX `fk_address_order` (`order_id` ASC) USING BTREE,
-    CONSTRAINT `fk_address_user` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE RESTRICT,
-    CONSTRAINT `fk_address_customer` FOREIGN KEY (`customer_id`) REFERENCES `customers` (`id`) ON DELETE CASCADE ON UPDATE RESTRICT,
-    CONSTRAINT `fk_address_order` FOREIGN KEY (`order_id`) REFERENCES `orders` (`id`) ON DELETE CASCADE ON UPDATE RESTRICT
-) ENGINE = InnoDB
-  AUTO_INCREMENT = 2
-  CHARACTER SET = utf8mb4
-  COLLATE = utf8mb4_general_ci;
-
 CREATE TABLE `users`
 (
     `id`           int                                                           NOT NULL AUTO_INCREMENT,
@@ -173,7 +151,7 @@ CREATE TABLE `product_details`
 CREATE TABLE `product_images`
 (
     `id`         int                                                           NOT NULL AUTO_INCREMENT,
-    `image`      varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+    `image_path` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
     `product_id` int                                                           NOT NULL,
     PRIMARY KEY (`id`) USING BTREE,
     INDEX `fk_product_image_idx` (`product_id` ASC) USING BTREE,
@@ -260,6 +238,28 @@ CREATE TABLE `order_details`
     CONSTRAINT `fk_order_product` FOREIGN KEY (`product_id`) REFERENCES `products` (`id`) ON DELETE NO ACTION ON UPDATE RESTRICT
 ) ENGINE = InnoDB
   AUTO_INCREMENT = 1
+  CHARACTER SET = utf8mb4
+  COLLATE = utf8mb4_general_ci;
+
+CREATE TABLE `addresses`
+(
+    `id`          int                                                           NOT NULL AUTO_INCREMENT,
+    `street`      varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
+    `ward`        varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci  NULL DEFAULT NULL,
+    `district`    varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci  NULL DEFAULT NULL,
+    `city`        varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci  NULL DEFAULT NULL,
+    `user_id`     int                                                           NULL DEFAULT NULL,
+    `customer_id` int                                                           NULL DEFAULT NULL,
+    `order_id`    int                                                           NULL DEFAULT NULL,
+    PRIMARY KEY (`id`) USING BTREE,
+    INDEX `fk_address_user` (`user_id` ASC) USING BTREE,
+    INDEX `fk_address_customer` (`customer_id` ASC) USING BTREE,
+    INDEX `fk_address_order` (`order_id` ASC) USING BTREE,
+    CONSTRAINT `fk_address_user` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE RESTRICT,
+    CONSTRAINT `fk_address_customer` FOREIGN KEY (`customer_id`) REFERENCES `customers` (`id`) ON DELETE CASCADE ON UPDATE RESTRICT,
+    CONSTRAINT `fk_address_order` FOREIGN KEY (`order_id`) REFERENCES `orders` (`id`) ON DELETE CASCADE ON UPDATE RESTRICT
+) ENGINE = InnoDB
+  AUTO_INCREMENT = 2
   CHARACTER SET = utf8mb4
   COLLATE = utf8mb4_general_ci;
 

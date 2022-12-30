@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="edu.nlu.motorbike_shop.dao.EmployeeDAOTest" time="0.612" tests="11" errors="2" skipped="0" failures="3">
+  <properties>
+    <property name="java.specification.version" value="15"/>
+    <property name="sun.cpu.isalist" value="amd64"/>
+    <property name="sun.jnu.encoding" value="Cp1252"/>
+    <property name="java.class.path" value="C:\Users\thonghoang\.m2\repository\org\apache\maven\surefire\surefire-booter\2.22.1\surefire-booter-2.22.1.jar;C:\Users\thonghoang\.m2\repository\org\apache\maven\surefire\surefire-api\2.22.1\surefire-api-2.22.1.jar;C:\Users\thonghoang\.m2\repository\org\apache\maven\surefire\surefire-logger-api\2.22.1\surefire-logger-api-2.22.1.jar;E:\ProjectJava\motorbike-shop\target\test-classes;E:\ProjectJava\motorbike-shop\target\classes;C:\Users\thonghoang\.m2\repository\javax\servlet\javax.servlet-api\4.0.1\javax.servlet-api-4.0.1.jar;C:\Users\thonghoang\.m2\repository\javax\servlet\jstl\1.2\jstl-1.2.jar;C:\Users\thonghoang\.m2\repository\junit\junit\4.13.1\junit-4.13.1.jar;C:\Users\thonghoang\.m2\repository\org\hamcrest\hamcrest-core\1.3\hamcrest-core-1.3.jar;C:\Users\thonghoang\.m2\repository\mysql\mysql-connector-java\8.0.25\mysql-connector-java-8.0.25.jar;C:\Users\thonghoang\.m2\repository\com\google\protobuf\protobuf-java\3.11.4\protobuf-java-3.11.4.jar;C:\Users\thonghoang\.m2\repository\org\projectlombok\lombok\1.18.24\lombok-1.18.24.jar;C:\Users\thonghoang\.m2\repository\org\apache\maven\surefire\surefire-junit4\2.22.1\surefire-junit4-2.22.1.jar"/>
+    <property name="java.vm.vendor" value="Oracle Corporation"/>
+    <property name="sun.arch.data.model" value="64"/>
+    <property name="user.variant" value=""/>
+    <property name="java.vendor.url" value="https://java.oracle.com/"/>
+    <property name="user.timezone" value="Asia/Saigon"/>
+    <property name="os.name" value="Windows 10"/>
+    <property name="java.vm.specification.version" value="15"/>
+    <property name="sun.java.launcher" value="SUN_STANDARD"/>
+    <property name="user.country" value="US"/>
+    <property name="sun.boot.library.path" value="C:\Java\jdk-15.0.2\bin"/>
+    <property name="sun.java.command" value="org.apache.maven.surefire.booter.ForkedBooter C:\Users\thonghoang\AppData\Local\Temp\surefire4265544415513622760 2022-12-27T11-34-54_859-jvmRun1 surefire17523652396471421317tmp surefire_015766042314303663831tmp"/>
+    <property name="jdk.debug" value="release"/>
+    <property name="surefire.test.class.path" value="E:\ProjectJava\motorbike-shop\target\test-classes;E:\ProjectJava\motorbike-shop\target\classes;C:\Users\thonghoang\.m2\repository\javax\servlet\javax.servlet-api\4.0.1\javax.servlet-api-4.0.1.jar;C:\Users\thonghoang\.m2\repository\javax\servlet\jstl\1.2\jstl-1.2.jar;C:\Users\thonghoang\.m2\repository\junit\junit\4.13.1\junit-4.13.1.jar;C:\Users\thonghoang\.m2\repository\org\hamcrest\hamcrest-core\1.3\hamcrest-core-1.3.jar;C:\Users\thonghoang\.m2\repository\mysql\mysql-connector-java\8.0.25\mysql-connector-java-8.0.25.jar;C:\Users\thonghoang\.m2\repository\com\google\protobuf\protobuf-java\3.11.4\protobuf-java-3.11.4.jar;C:\Users\thonghoang\.m2\repository\org\projectlombok\lombok\1.18.24\lombok-1.18.24.jar;"/>
+    <property name="sun.cpu.endian" value="little"/>
+    <property name="user.home" value="C:\Users\thonghoang"/>
+    <property name="user.language" value="en"/>
+    <property name="java.specification.vendor" value="Oracle Corporation"/>
+    <property name="java.version.date" value="2021-01-19"/>
+    <property name="java.home" value="C:\Java\jdk-15.0.2"/>
+    <property name="file.separator" value="\"/>
+    <property name="basedir" value="E:\ProjectJava\motorbike-shop"/>
+    <property name="java.vm.compressedOopsMode" value="32-bit"/>
+    <property name="line.separator" value="&#10;"/>
+    <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
+    <property name="java.specification.name" value="Java Platform API Specification"/>
+    <property name="user.script" value=""/>
+    <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
+    <property name="java.runtime.version" value="15.0.2+7-27"/>
+    <property name="user.name" value="thonghoang"/>
+    <property name="path.separator" value=";"/>
+    <property name="os.version" value="10.0"/>
+    <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
+    <property name="file.encoding" value="Cp1252"/>
+    <property name="java.vm.name" value="Java HotSpot(TM) 64-Bit Server VM"/>
+    <property name="localRepository" value="C:\Users\thonghoang\.m2\repository"/>
+    <property name="java.vendor.url.bug" value="https://bugreport.java.com/bugreport/"/>
+    <property name="java.io.tmpdir" value="C:\Users\THONGH~1\AppData\Local\Temp\"/>
+    <property name="idea.version" value="2022.3.1"/>
+    <property name="java.version" value="15.0.2"/>
+    <property name="user.dir" value="E:\ProjectJava\motorbike-shop"/>
+    <property name="os.arch" value="amd64"/>
+    <property name="java.vm.specification.name" value="Java Virtual Machine Specification"/>
+    <property name="sun.os.patch.level" value=""/>
+    <property name="java.library.path" value="C:\Java\jdk-15.0.2\bin;C:\Windows\Sun\Java\bin;C:\Windows\system32;C:\Windows;C:\Program Files\Common Files\Oracle\Java\javapath;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Windows\System32\OpenSSH\;C:\Program Files\Git\cmd;C:\Users\thonghoang\AppData\Local\Microsoft\WindowsApps;;C:\Users\thonghoang\AppData\Local\Programs\Microsoft VS Code\bin;."/>
+    <property name="java.vm.info" value="mixed mode, sharing"/>
+    <property name="java.vendor" value="Oracle Corporation"/>
+    <property name="java.vm.version" value="15.0.2+7-27"/>
+    <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
+    <property name="java.class.version" value="59.0"/>
+  </properties>
+  <testcase name="testDeleteEmployee" classname="edu.nlu.motorbike_shop.dao.EmployeeDAOTest" time="0.217"/>
+  <testcase name="testFindAll" classname="edu.nlu.motorbike_shop.dao.EmployeeDAOTest" time="0.017">
+    <failure type="java.lang.AssertionError">java.lang.AssertionError
+	at edu.nlu.motorbike_shop.dao.EmployeeDAOTest.testFindAll(EmployeeDAOTest.java:27)
+</failure>
+    <system-err><![CDATA[java.sql.SQLSyntaxErrorException: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '-5' at line 1
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:120)
+	at com.mysql.cj.jdbc.exceptions.SQLExceptionsMapping.translateException(SQLExceptionsMapping.java:122)
+	at com.mysql.cj.jdbc.ClientPreparedStatement.executeInternal(ClientPreparedStatement.java:953)
+	at com.mysql.cj.jdbc.ClientPreparedStatement.executeQuery(ClientPreparedStatement.java:1003)
+	at edu.nlu.motorbike_shop.dao.EmployeeDAO.findAll(EmployeeDAO.java:224)
+	at edu.nlu.motorbike_shop.dao.EmployeeDAOTest.testFindAll(EmployeeDAOTest.java:27)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:64)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:564)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:59)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:56)
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
+	at org.junit.runners.ParentRunner$3.evaluate(ParentRunner.java:306)
+	at org.junit.runners.BlockJUnit4ClassRunner$1.evaluate(BlockJUnit4ClassRunner.java:100)
+	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:366)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:103)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:63)
+	at org.junit.runners.ParentRunner$4.run(ParentRunner.java:331)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:79)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:329)
+	at org.junit.runners.ParentRunner.access$100(ParentRunner.java:66)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:293)
+	at org.junit.runners.ParentRunner$3.evaluate(ParentRunner.java:306)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:413)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.execute(JUnit4Provider.java:365)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.executeWithRerun(JUnit4Provider.java:273)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.executeTestSet(JUnit4Provider.java:238)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.invoke(JUnit4Provider.java:159)
+	at org.apache.maven.surefire.booter.ForkedBooter.invokeProviderInSameClassLoader(ForkedBooter.java:384)
+	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:345)
+	at org.apache.maven.surefire.booter.ForkedBooter.execute(ForkedBooter.java:126)
+	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:418)
+]]></system-err>
+  </testcase>
+  <testcase name="testCount" classname="edu.nlu.motorbike_shop.dao.EmployeeDAOTest" time="0.004"/>
+  <testcase name="testCheckLoginFail" classname="edu.nlu.motorbike_shop.dao.EmployeeDAOTest" time="0.006"/>
+  <testcase name="testCheckEmailExists" classname="edu.nlu.motorbike_shop.dao.EmployeeDAOTest" time="0.004"/>
+  <testcase name="testFindEmployeeByEmail" classname="edu.nlu.motorbike_shop.dao.EmployeeDAOTest" time="0.015">
+    <failure message="expected:&lt;Hoàng[ Phạm]&gt; but was:&lt;Hoàng[]&gt;" type="org.junit.ComparisonFailure"><![CDATA[org.junit.ComparisonFailure: expected:<Hoàng[ Phạm]> but was:<Hoàng[]>
+	at edu.nlu.motorbike_shop.dao.EmployeeDAOTest.testFindEmployeeByEmail(EmployeeDAOTest.java:89)
+]]></failure>
+    <system-out><![CDATA[Employee{id=5, firstName='Thông', lastName='Hoàng', phoneNumber='0123', email='thong@gmail.com', password='00822c780b7e4c7a0e4b887d41ca0155', enabled=true, roles=[nhân viên bán hàng, nhân viên giao hàng], address=Address(id=4, street=???ng s? 12, ward=bình h?ng hòa, district=bình tân, city=h? chí minh, employee=null)}
+]]></system-out>
+  </testcase>
+  <testcase name="testUpdateEmployee" classname="edu.nlu.motorbike_shop.dao.EmployeeDAOTest" time="0.012">
+    <error message="Cannot invoke &quot;edu.nlu.motorbike_shop.entity.Employee.setLastName(String)&quot; because &quot;employee&quot; is null" type="java.lang.NullPointerException">java.lang.NullPointerException: Cannot invoke "edu.nlu.motorbike_shop.entity.Employee.setLastName(String)" because "employee" is null
+	at edu.nlu.motorbike_shop.dao.EmployeeDAOTest.testUpdateEmployee(EmployeeDAOTest.java:63)
+</error>
+  </testcase>
+  <testcase name="testCreateEmployee" classname="edu.nlu.motorbike_shop.dao.EmployeeDAOTest" time="0.186">
+    <failure type="java.lang.AssertionError">java.lang.AssertionError
+	at edu.nlu.motorbike_shop.dao.EmployeeDAOTest.testCreateEmployee(EmployeeDAOTest.java:44)
+</failure>
+    <system-err><![CDATA[java.sql.SQLIntegrityConstraintViolationException: Duplicate entry 'thong@gmail.com' for key 'email_UNIQUE'
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:117)
+	at com.mysql.cj.jdbc.exceptions.SQLExceptionsMapping.translateException(SQLExceptionsMapping.java:122)
+	at com.mysql.cj.jdbc.ClientPreparedStatement.executeInternal(ClientPreparedStatement.java:953)
+	at com.mysql.cj.jdbc.ClientPreparedStatement.executeUpdateInternal(ClientPreparedStatement.java:1092)
+	at com.mysql.cj.jdbc.ClientPreparedStatement.executeUpdateInternal(ClientPreparedStatement.java:1040)
+	at com.mysql.cj.jdbc.ClientPreparedStatement.executeLargeUpdate(ClientPreparedStatement.java:1348)
+	at com.mysql.cj.jdbc.ClientPreparedStatement.executeUpdate(ClientPreparedStatement.java:1025)
+	at edu.nlu.motorbike_shop.dao.EmployeeDAO.save(EmployeeDAO.java:286)
+	at edu.nlu.motorbike_shop.dao.EmployeeDAOTest.testCreateEmployee(EmployeeDAOTest.java:44)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:64)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:564)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:59)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:56)
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
+	at org.junit.runners.ParentRunner$3.evaluate(ParentRunner.java:306)
+	at org.junit.runners.BlockJUnit4ClassRunner$1.evaluate(BlockJUnit4ClassRunner.java:100)
+	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:366)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:103)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:63)
+	at org.junit.runners.ParentRunner$4.run(ParentRunner.java:331)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:79)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:329)
+	at org.junit.runners.ParentRunner.access$100(ParentRunner.java:66)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:293)
+	at org.junit.runners.ParentRunner$3.evaluate(ParentRunner.java:306)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:413)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.execute(JUnit4Provider.java:365)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.executeWithRerun(JUnit4Provider.java:273)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.executeTestSet(JUnit4Provider.java:238)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.invoke(JUnit4Provider.java:159)
+	at org.apache.maven.surefire.booter.ForkedBooter.invokeProviderInSameClassLoader(ForkedBooter.java:384)
+	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:345)
+	at org.apache.maven.surefire.booter.ForkedBooter.execute(ForkedBooter.java:126)
+	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:418)
+]]></system-err>
+  </testcase>
+  <testcase name="testCheckLoginSuccess" classname="edu.nlu.motorbike_shop.dao.EmployeeDAOTest" time="0.067"/>
+  <testcase name="testFindEmployeeById" classname="edu.nlu.motorbike_shop.dao.EmployeeDAOTest" time="0.005">
+    <error message="Cannot invoke &quot;edu.nlu.motorbike_shop.entity.Employee.getEmail()&quot; because &quot;employee&quot; is null" type="java.lang.NullPointerException">java.lang.NullPointerException: Cannot invoke "edu.nlu.motorbike_shop.entity.Employee.getEmail()" because "employee" is null
+	at edu.nlu.motorbike_shop.dao.EmployeeDAOTest.testFindEmployeeById(EmployeeDAOTest.java:52)
+</error>
+  </testcase>
+  <testcase name="testSearch" classname="edu.nlu.motorbike_shop.dao.EmployeeDAOTest" time="0.019"/>
+</testsuite>

@@ -2,10 +2,11 @@ package edu.nlu.motorbike_shop.dao;
 
 import edu.nlu.motorbike_shop.entity.Address;
 import edu.nlu.motorbike_shop.entity.Employee;
+import edu.nlu.motorbike_shop.entity.HashGenerator;
 import edu.nlu.motorbike_shop.entity.Role;
 import edu.nlu.motorbike_shop.util.DBUtils;
 
-import java.io.Serializable;
+import java.io.*;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -162,22 +163,25 @@ public class EmployeeDAO implements Serializable {
     /**
      * Returns all instance of employee with pagination
      *
-     * @param sortType Specify the sort type, ASC or DESC.
-     * @param pageSize Specify the number of records per page.
+     * @param sortType  Specify the sort type, ASC or DESC.
+     * @param pageSize  Specify the number of records per page.
+     * @param sortField Specify the column name to sort.
+     * @param index     Specify the page index.
      * @return List of Employee entities.
      */
-    public List<Employee> findAll(String sortType, int pageSize, String columnName) {
+    public List<Employee> findAll(String keyword, String sortField, String sortType, int pageSize, int index) {
         List<Employee> employees = new ArrayList<>();
         String sql = "SELECT id, image_path, first_name, last_name, email, phone_number, enabled " +
-                "FROM users ORDER BY ?, ? LIMIT ?";
+                "FROM users WHERE CONCAT(email, ' ', first_name, ' ', last_name) LIKE ? " +
+                "ORDER BY " + sortField + " " + sortType + " LIMIT ? OFFSET ?";
 
         // use try-with-resources Statement to auto close the connection.
         try (Connection conn = DBUtils.makeConnection();
              PreparedStatement stm = conn.prepareStatement(sql)) {
 
-            stm.setString(1, columnName);
-            stm.setString(2, sortType);
-            stm.setInt(3, pageSize);
+            stm.setString(1, "%" + keyword + "%");
+            stm.setInt(2, pageSize);
+            stm.setInt(3, (index - 1) * pageSize);
 
             // use try-with-resources Statement to auto close the ResultSet.
             try (ResultSet rs = stm.executeQuery()) {
@@ -194,8 +198,7 @@ public class EmployeeDAO implements Serializable {
                     Address address = findAddressByUserId(id);
 
                     Employee employee = new Employee(id, firstName, lastName, phoneNumber, address, imagePath, email, enabled);
-                    // findRolesByUserId(id).forEach(role -> employee.addRole(role));
-                    findRolesByUserId(id).forEach(employee::addRole);
+                    findRolesByUserId(id).forEach(employee::addRole); // forEach(role -> employee.addRole(role));
 
                     employees.add(employee);
                 }
@@ -225,9 +228,11 @@ public class EmployeeDAO implements Serializable {
             userStm.setString(1, employee.getFirstName());
             userStm.setString(2, employee.getLastName());
             userStm.setString(3, employee.getPhoneNumber());
+
             userStm.setString(4, employee.getImagePath());
+
             userStm.setString(5, employee.getEmail());
-            userStm.setString(6, employee.getPassword());
+            userStm.setString(6, HashGenerator.generateMD5(employee.getPassword()));
             userStm.setBoolean(7, employee.isEnabled());
 
             userStm.executeUpdate();
@@ -301,6 +306,7 @@ public class EmployeeDAO implements Serializable {
             stm.setString(2, employee.getLastName());
             stm.setString(3, employee.getPhoneNumber());
             stm.setString(4, employee.getImagePath());
+
             stm.setString(5, employee.getEmail());
             stm.setString(6, employee.getPassword());
             stm.setBoolean(7, employee.isEnabled());
@@ -440,7 +446,6 @@ public class EmployeeDAO implements Serializable {
      *
      * @return The number of Employee entities.
      */
-
     public long count() {
         String sql = "SELECT COUNT(id) FROM users";
         try (Connection conn = DBUtils.makeConnection();
@@ -454,5 +459,74 @@ public class EmployeeDAO implements Serializable {
         }
 
         return 0;
+    }
+
+    /**
+     * Total results keyword search.
+     *
+     * @return The number of results. 0 if no results.
+     */
+    public int countByKeyword(String keyword) {
+        String sql = "SELECT COUNT(id) FROM users WHERE CONCAT(email, ' ', first_name, ' ', last_name) LIKE ?";
+        try (Connection conn = DBUtils.makeConnection();
+             PreparedStatement stm = conn.prepareStatement(sql)) {
+            stm.setString(1, "%" + keyword + "%");
+            try (ResultSet rs = stm.executeQuery()) {
+                while (rs.next())
+                    return rs.getInt(1);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return 0;
+    }
+
+    /**
+     * Update enabled status of a user.
+     *
+     * @param id      The id of the user to be updated.
+     * @param enabled The updated enabled status.
+     */
+    public void updateEnabledStatus(Integer id, boolean enabled) {
+        String sql = "UPDATE users SET enabled = ? WHERE id = ?";
+
+        try (Connection conn = DBUtils.makeConnection();
+             PreparedStatement stm = conn.prepareStatement(sql)) {
+            stm.setBoolean(1, enabled);
+            stm.setInt(2, id);
+
+            stm.executeUpdate();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * Get the employee corresponding to the given email and password.
+     *
+     * @param email    The email of the employee.
+     * @param password The password of the employee.
+     * @return The employee corresponding to the given email and password. Null if no such employee exists.
+     */
+    public Employee login(String email, String password) {
+        String sql = "SELECT id, first_name, last_name, email, image_path FROM users WHERE email = ? AND password = ?";
+
+        try (Connection conn = DBUtils.makeConnection();
+             PreparedStatement stm = conn.prepareStatement(sql)) {
+            stm.setString(1, email);
+            stm.setString(2, password);
+
+            try (ResultSet rs = stm.executeQuery()) {
+                if (rs.next()) {
+                    return new Employee(rs.getInt(1), rs.getString(2),
+                            rs.getString(3), rs.getString(4), rs.getString(5));
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return null;
     }
 }
