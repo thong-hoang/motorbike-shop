@@ -2,6 +2,7 @@ package edu.nlu.motorbike_shop.service;
 
 import edu.nlu.motorbike_shop.dao.BannerDAO;
 import edu.nlu.motorbike_shop.entity.Banner;
+import edu.nlu.motorbike_shop.entity.Employee;
 import edu.nlu.motorbike_shop.util.FileUploadUtils;
 
 import javax.servlet.ServletException;
@@ -213,5 +214,29 @@ public class BannerService {
                 listBanner(message);
             }
         }
+    }
+
+    /**
+     * Get the banner's id and enable status from the request and update it to the database.
+     *
+     * @throws ServletException If the request for the GET could not be handled
+     * @throws IOException      If an input or output error is detected when the servlet handles the GET request
+     */
+    public void enabledBanner() throws ServletException, IOException {
+        Integer id = Integer.valueOf(request.getParameter("id"));
+        boolean enabled = Boolean.parseBoolean(request.getParameter("enabled"));
+
+        Banner banner = bannerDAO.findById(id);
+
+        String message;
+
+        if (banner == null) {
+            message = "Không tìm thấy quảng cáo hoặc quảng cáo này đã bị xóa";
+        } else {
+            bannerDAO.updateEnabledStatus(id, enabled);
+            message = "Quảng cáo này đã được " + (enabled ? "kích hoạt" : "vô hiệu hóa") + " thành công !";
+        }
+
+        listBanner(message);
     }
 }
