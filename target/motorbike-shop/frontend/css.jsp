@@ -4,11 +4,11 @@
       rel="stylesheet">
 
 <!-- Css Styles -->
-<link rel="stylesheet" href="css/bootstrap.min.css" type="text/css">
-<link rel="stylesheet" href="css/font-awesome.min.css" type="text/css">
-<link rel="stylesheet" href="css/elegant-icons.css" type="text/css">
-<link rel="stylesheet" href="css/jquery-ui.min.css" type="text/css">
-<link rel="stylesheet" href="css/magnific-popup.css" type="text/css">
-<link rel="stylesheet" href="css/owl.carousel.min.css" type="text/css">
-<link rel="stylesheet" href="css/slicknav.min.css" type="text/css">
-<link rel="stylesheet" href="css/style.css" type="text/css">
+<link rel="stylesheet" href="css/frontend/css/bootstrap.min.css" type="text/css">
+<link rel="stylesheet" href="css/frontend/css/font-awesome.min.css" type="text/css">
+<link rel="stylesheet" href="css/frontend/css/elegant-icons.css" type="text/css">
+<link rel="stylesheet" href="css/frontend/css/jquery-ui.min.css" type="text/css">
+<link rel="stylesheet" href="css/frontend/css/magnific-popup.css" type="text/css">
+<link rel="stylesheet" href="css/frontend/css/owl.carousel.min.css" type="text/css">
+<link rel="stylesheet" href="css/frontend/css/slicknav.min.css" type="text/css">
+<link rel="stylesheet" href="css/frontend/css/style.css" type="text/css">

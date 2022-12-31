@@ -1,8 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<div id="preloder">
-    <div class="loader"></div>
-</div>
+
 
 <div class="offcanvas-menu-overlay"></div>
 <div class="offcanvas-menu-wrapper">
@@ -31,7 +29,6 @@
             <div class="col-xl-3 col-lg-2">
                 <div class="header__logo">
                     <a href="/motorbike_shop/"><img src="../images/logo/logo.png" alt=""></a>
-                    <%--                    <a href="/motorbike_shop/"><img src="${logo}" alt=""></a>--%>
                 </div>
             </div>
             <div class="col-xl-6 col-lg-7">
@@ -64,39 +61,39 @@
             </div>
             <div class="col-lg-3">
                 <div class="header__right">
-
-                    <div class="header__right__auth">
-                        <a href="login.jsp">Đăng nhập</a>
-                    </div>
-                    <ul class="header__right__widget">
-                        <li><span class="icon_search search-switch"></span></li>
-                        <li><a href="cart.jsp"><span class="icon_bag_alt"></span>
-                            <div class="tip">2</div>
-                        </a></li>
-                    </ul>
-
-                    <!-- đăng nhập thành công -->
-                    <!-- <ul class="header__right__widget">
+                    <c:if test="${loggedCustomer == null}">
+                        <div class="header__right__auth">
+                            <a href="../login">Đăng nhập</a>
+                        </div>
+                        <ul class="header__right__widget">
+                            <li><span class="icon_search search-switch"></span></li>
+                            <li><a href="frontend/cart.jsp"><span class="icon_bag_alt"></span>
+                                <div class="tip">2</div>
+                            </a></li>
+                        </ul>
+                    </c:if>
+                    <c:if test="${loggedCustomer != null}">
+                        <ul class="header__right__widget">
                         <span class="header__menu">
                             <ul>
-                                <li><a href="#">hoàng phạm thông</a>
+                                <li><a href="../account-info"><i class="fa fa-user"></i> ${loggedCustomer.firstName}</a>
                                     <ul class="dropdown">
-                                        <li><a href="account.jsp">Tài khoản</a></li>
-                                        <li><a href="order.jsp">Đơn mua</a></li>
-                                        <li><a href="#">Đăng xuất</a></li>
+                                        <li><a href="../account-info">Tài khoản</a></li>
+                                        <li><a href="frontend/order.jsp">Đơn mua</a></li>
+                                        <li><a href="../logout">Đăng xuất</a></li>
                                     </ul>
                                 </li>
                                 <li><span class="icon_search search-switch"></span></li>
                                 <li>
-                                    <a href="cart.jsp">
+                                    <a href="frontend/cart.jsp">
                                         <span class="icon_bag_alt"></span>
                                         <div class="tip">2</div>
                                     </a>
                                 </li>
                             </ul>
                         </span>
-                    </ul> -->
-
+                        </ul>
+                    </c:if>
                 </div>
             </div>
         </div>
