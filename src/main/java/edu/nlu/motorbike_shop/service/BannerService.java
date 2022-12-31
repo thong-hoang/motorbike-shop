@@ -14,8 +14,8 @@ import java.io.IOException;
 import java.util.List;
 
 import static edu.nlu.motorbike_shop.constant.Constants.*;
-import static edu.nlu.motorbike_shop.util.FileUploadUtils.cleanDir;
-import static edu.nlu.motorbike_shop.util.FileUploadUtils.saveFile;
+import static edu.nlu.motorbike_shop.util.FileUploadUtils.*;
+import static edu.nlu.motorbike_shop.util.FileUploadUtils.removeDir;
 
 public class BannerService {
     private final HttpServletRequest request;
@@ -60,7 +60,7 @@ public class BannerService {
         int numberOfBanners = bannerDAO.count();
         int totalKeywordResults = bannerDAO.countByKeyword(keyword);
 
-        List<Banner> banners = bannerDAO.findAll(keyword, DEFAULT_SORT_FIELD, DEFAULT_SORT_TYPE, DEFAULT_PAGE_SIZE, pageNumber);
+        List<Banner> banners = bannerDAO.findAll(keyword, "created_time", "DESC", DEFAULT_PAGE_SIZE, pageNumber);
 
         long totalPages = totalKeywordResults / DEFAULT_PAGE_SIZE;
         if (numberOfBanners % DEFAULT_PAGE_SIZE != 0) totalPages++;
@@ -237,6 +237,36 @@ public class BannerService {
             message = "Quảng cáo này đã được " + (enabled ? "kích hoạt" : "vô hiệu hóa") + " thành công !";
         }
 
+        listBanner(message);
+    }
+
+    /**
+     * Get the banner's id from the request and delete it from the database.
+     *
+     * @throws ServletException If the request for the GET could not be handled
+     * @throws IOException      If an input or output error is detected when the servlet handles the GET request
+     */
+    public void deleteBanner() throws ServletException, IOException {
+        Integer id = Integer.valueOf(request.getParameter("id"));
+
+        Banner banner = bannerDAO.findById(id);
+
+        String message;
+
+        if (banner == null) {
+            message = "Không tìm thấy quảng cáo hoặc quảng cáo đã bị xóa";
+        } else {
+            bannerDAO.delete(id);
+            String serverPath = request.getServletContext().getRealPath("");
+            String directoryServerPath = serverPath + File.separator + DEFAULT_IMAGE_DIRECTORY;
+            String nameDirectoryServer = "banner" + File.separator + id;
+            directoryServerPath = directoryServerPath + File.separator + nameDirectoryServer;
+
+            removeDir(directoryServerPath);
+            removeDir(DEFAULT_APP_IMAGE_DIRECTORY + nameDirectoryServer);
+
+            message = "Quảng cáo đã được xóa thành công !";
+        }
         listBanner(message);
     }
 }
