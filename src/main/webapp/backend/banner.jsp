@@ -201,7 +201,8 @@
                                 <th>
                                     <a class="d-flex align-items-center" href="edit_banner?id=${banners.id}">
                                         <div class="avatar">
-                                            <img class="avatar-img" src="../images/banner/${banners.imagePath}"
+                                            <img class="avatar-img"
+                                                 src="../images/banner/${banners.id}/${banners.imagePath}"
                                                  alt="Image Description">
                                         </div>
                                         <div class="ml-3">
@@ -246,7 +247,8 @@
                                 <th>
                                     <a class="d-flex align-items-center" href="edit_banner?id=${banners.id}">
                                         <div class="avatar">
-                                            <img class="avatar-img" src="../images/banner/${banners.imagePath}"
+                                            <img class="avatar-img"
+                                                 src="../images/banner/${banners.id}/${banners.imagePath}"
                                                  alt="Image Description">
                                         </div>
                                         <div class="ml-3">

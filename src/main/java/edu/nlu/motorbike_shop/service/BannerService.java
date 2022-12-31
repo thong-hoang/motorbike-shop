@@ -2,8 +2,6 @@ package edu.nlu.motorbike_shop.service;
 
 import edu.nlu.motorbike_shop.dao.BannerDAO;
 import edu.nlu.motorbike_shop.entity.Banner;
-import edu.nlu.motorbike_shop.entity.Employee;
-import edu.nlu.motorbike_shop.entity.Role;
 import edu.nlu.motorbike_shop.util.FileUploadUtils;
 
 import javax.servlet.ServletException;
@@ -15,7 +13,7 @@ import java.io.IOException;
 import java.util.List;
 
 import static edu.nlu.motorbike_shop.constant.Constants.*;
-import static edu.nlu.motorbike_shop.constant.Constants.DEFAULT_PAGE_SIZE;
+import static edu.nlu.motorbike_shop.util.FileUploadUtils.cleanDir;
 import static edu.nlu.motorbike_shop.util.FileUploadUtils.saveFile;
 
 public class BannerService {
@@ -115,12 +113,14 @@ public class BannerService {
             String bannerFormPage = "banner-form.jsp";
             request.getRequestDispatcher(bannerFormPage).forward(request, response);
         } else {
-            String serverPath = request.getServletContext().getRealPath("");
-            String directoryServerPath = serverPath + File.separator + DEFAULT_IMAGE_DIRECTORY + File.separator;
-            String nameDirectoryServer = "banner";
-
             banner.setImagePath(fileName);
             bannerDAO.save(banner);
+
+            Integer id = bannerDAO.findByImagePath(fileName).getId();
+
+            String serverPath = request.getServletContext().getRealPath("");
+            String directoryServerPath = serverPath + File.separator + DEFAULT_IMAGE_DIRECTORY + File.separator;
+            String nameDirectoryServer = "banner" + File.separator + id;
 
             directoryServerPath = directoryServerPath + File.separator + nameDirectoryServer;
 
@@ -130,6 +130,88 @@ public class BannerService {
 
             String message = name + " đã được thêm thành công !";
             listBanner(message);
+        }
+    }
+
+    /**
+     * Get banner information corresponding to the given ID from the database and display it in the form.
+     *
+     * @throws IOException      If an input or output error is detected when the servlet handles the GET request.
+     * @throws ServletException If the request for the GET could not be handled.
+     */
+    public void editBanner() throws IOException, ServletException {
+        Integer id = Integer.valueOf(request.getParameter("id"));
+
+        Banner banner = bannerDAO.findById(id);
+
+        if (banner == null) {
+            String message = "Không tìm thấy quảng cáo này";
+            listBanner(message);
+        } else {
+            request.setAttribute("banner", banner);
+            request.setAttribute("title", "Chỉnh sửa quảng cáo");
+
+            String bannerFormPage = "banner-form.jsp";
+            request.getRequestDispatcher(bannerFormPage).forward(request, response);
+        }
+    }
+
+    /**
+     * Get the banner's information from the request and update it into the database.
+     *
+     * @throws ServletException If the request for the POST could not be handled
+     * @throws IOException      If an input or output error is detected when the servlet handles the POST request
+     */
+    public void updateBanner() throws ServletException, IOException {
+        Integer id = Integer.valueOf(request.getParameter("id"));
+        String name = request.getParameter("name");
+        boolean enabled = "on".equals(request.getParameter("enabled"));
+        Part part = request.getPart("image");
+        String fileName = part.getSubmittedFileName();
+
+        Banner banner = new Banner();
+        banner.setId(id);
+        banner.setName(name);
+        banner.setEnabled(enabled);
+        banner.setImagePath(fileName);
+
+        Banner bannerById = bannerDAO.findById(id);
+        Banner bannerByImagePath = bannerDAO.findByImagePath(fileName);
+
+        String message;
+
+        if (bannerById == null) {
+            message = "Không tìm thấy quảng cáo này";
+            listBanner(message);
+        } else {
+            if (bannerByImagePath != null && id != bannerByImagePath.getId()) {
+                message = banner.getImagePath() + " đã tồn tại!!!";
+                banner.setImagePath(null);
+                request.setAttribute("message", message);
+                request.setAttribute("banner", banner);
+                request.setAttribute("title", "Chỉnh sửa quảng cáo");
+
+                String updatePage = "banner-form.jsp";
+                request.getRequestDispatcher(updatePage).forward(request, response);
+            } else {
+                String serverPath = request.getServletContext().getRealPath("");
+                String directoryServerPath = serverPath + File.separator + DEFAULT_IMAGE_DIRECTORY;
+
+                String nameDirectoryServer = "banner" + File.separator + id;
+                directoryServerPath = directoryServerPath + File.separator + nameDirectoryServer;
+
+                cleanDir(directoryServerPath);
+                cleanDir(DEFAULT_APP_IMAGE_DIRECTORY + nameDirectoryServer);
+
+                saveFile(directoryServerPath, fileName, part);
+                String fileServerPath = directoryServerPath + File.separator + fileName;
+                FileUploadUtils.copyFile(fileServerPath, nameDirectoryServer);
+
+                bannerDAO.update(banner);
+
+                message = "Quảng cáo đã được cập nhật thành công !";
+                listBanner(message);
+            }
         }
     }
 }

@@ -48,7 +48,6 @@
         <c:if test="${not empty banner.id}">
         <form class="js-step-form py-md-5" action="update_banner" method="post" enctype="multipart/form-data">
             <input type="hidden" name="id" value="${banner.id}"/>
-            <input type="hidden" name="addressId" value="${banner.address.id}">
             </c:if>
 
             <c:if test="${empty banner.id}">
@@ -72,7 +71,7 @@
                                             <c:choose>
                                                 <c:when test="${not empty banner.imagePath}">
                                                     <img id="avatarImg"
-                                                         src="../images/banner/${banner.imagePath}"
+                                                         src="../images/banner/${banner.id}/${banner.imagePath}"
                                                          alt="Photos preview" class="img-fluid" style="width: 40%"/>
                                                 </c:when>
                                                 <c:otherwise>
@@ -85,7 +84,7 @@
 
                                     <div class="row form-group">
                                         <label for="nameLabel"
-                                               class="col-sm-3 col-form-label input-label">Tên</label>
+                                               class="col-sm-3 col-form-label input-label">Tiêu đề</label>
 
                                         <div class="col-sm-9">
                                             <input type="text" class="form-control" name="name" id="nameLabel"
@@ -94,8 +93,9 @@
                                     </div>
 
                                     <div class="row">
-                                        <label class="col-sm-3 col-form-label input-label" for="enabled">Hoạt
-                                            động</label>
+                                        <label class="col-sm-3 col-form-label input-label" for="enabled">
+                                            Hoạt động
+                                        </label>
                                         <div class="col-sm-9 pt-1">
                                             <c:choose>
                                                 <c:when test="${not empty banner}">
@@ -113,6 +113,7 @@
                                                 </c:otherwise>
                                             </c:choose>
                                         </div>
+
                                     </div>
                                 </div>
                             </div>

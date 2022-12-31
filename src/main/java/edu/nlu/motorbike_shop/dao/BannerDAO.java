@@ -176,6 +176,35 @@ public class BannerDAO implements Serializable {
     }
 
     /**
+     * Retrieves a banner entity by its image path.
+     *
+     * @param imagePath An image path specifying the image path of the banner.
+     * @return Banner entity if the banner entity with the given image path exists, null otherwise.
+     */
+    public Banner findByImagePath(String imagePath) {
+        String sql = "SELECT id, image_path FROM banners WHERE image_path = ?";
+
+        try (Connection conn = DBUtils.makeConnection();
+             PreparedStatement stm = conn.prepareStatement(sql)) {
+            stm.setString(1, imagePath);
+
+            try (ResultSet rs = stm.executeQuery()) {
+                if (rs.next()) {
+                    Integer id = rs.getInt(1);
+                    Banner banner = new Banner();
+                    banner.setId(id);
+                    banner.setImagePath(imagePath);
+
+                    return banner;
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    /**
      * Delete a banner from the database.
      *
      * @param id The id of the banner to be deleted.
