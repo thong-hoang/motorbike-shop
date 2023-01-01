@@ -282,4 +282,40 @@ public class BannerDAO implements Serializable {
             e.printStackTrace();
         }
     }
+
+    /**
+     * Returns all banners with active status.
+     *
+     * @param sortType  Specify the sort type, ASC or DESC.
+     * @param sortField Specify the column name to sort.
+     * @return List of banner entities.
+     */
+    public List<Banner> findAllEnabled(String sortField, String sortType) {
+        List<Banner> banners = new ArrayList<>();
+        String sql = "SELECT id, image_path FROM banners WHERE NOT enabled = 0 ORDER BY " + sortField + " " + sortType;
+
+        // use try-with-resources Statement to auto close the connection.
+        try (Connection conn = DBUtils.makeConnection();
+             PreparedStatement stm = conn.prepareStatement(sql)) {
+
+            // use try-with-resources Statement to auto close the ResultSet.
+            try (ResultSet rs = stm.executeQuery()) {
+                // fetch data from result set
+                while (rs.next()) {
+                    Integer id = rs.getInt(1);
+                    String imagePath = rs.getString(2);
+
+                    Banner banner = new Banner();
+                    banner.setId(id);
+                    banner.setImagePath(imagePath);
+
+                    banners.add(banner);
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return banners;
+    }
 }
