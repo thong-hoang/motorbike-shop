@@ -5,11 +5,9 @@
             <div class="col-lg-4 col-md-6 col-sm-7">
                 <div class="footer__about">
                     <div>
-                        <%--                        <p class="font-weight-bold">${companyName}.</p>--%>
-                        <p class="font-weight-bold">Công ty VTV Việt Nam.</p>
+                        <p class="font-weight-bold">${SITE_NAME}.</p>
                         <p>Cơ quan cấp: Phòng Đăng ký kinh doanh – Sở Kế hoạch và Đầu tư TP Hồ Chí Minh
-                            <%--                        <p>Địa chỉ: ${address}</p>--%>
-                        <p>Địa chỉ: Khu phố 6, Phường Linh Trung, TP. Thủ Đức, Việt Nam</p>
+                        <p>Địa chỉ: ${SITE_ADDRESS}</p>
                     </div>
                     <div class="footer__payment">
                         <a><img src="../images/general/logoSaleNoti.png" alt="" style="width: 150px;"></a>
@@ -22,10 +20,8 @@
                         <h6>Liên hệ</h6>
                     </a>
                     <ul>
-<%--                        <li><a>Hotline (miễn phí): ${hotline}</a></li>--%>
-<%--                        <li><a>Email: ${email}</a></li>--%>
-                        <li><a>Hotline (miễn phí): 1800....</a></li>
-                        <li><a>Email: cskhvtv@gmail.com</a></li>
+                        <li><a>Hotline (miễn phí): ${SITE_PHONE}</a></li>
+                        <li><a>Email: ${SITE_EMAIL}</a></li>
                     </ul>
                 </div>
             </div>

@@ -1,9 +1,12 @@
 package edu.nlu.motorbike_shop.service;
 
+import edu.nlu.motorbike_shop.constant.Constants;
 import edu.nlu.motorbike_shop.dao.CustomerDAO;
-import edu.nlu.motorbike_shop.entity.Customer;
+import edu.nlu.motorbike_shop.dao.SettingDAO;
 import edu.nlu.motorbike_shop.entity.Address;
+import edu.nlu.motorbike_shop.entity.Customer;
 import edu.nlu.motorbike_shop.entity.HashGenerator;
+import edu.nlu.motorbike_shop.entity.Setting;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -22,6 +25,7 @@ import static edu.nlu.motorbike_shop.constant.Constants.DEFAULT_PAGE_SIZE;
  */
 public class CustomerService {
     private final CustomerDAO customerDAO = CustomerDAO.getInstance();
+    private final SettingDAO settingDAO = SettingDAO.getInstance();
     private final HttpServletRequest request;
     private final HttpServletResponse response;
 
@@ -259,6 +263,11 @@ public class CustomerService {
                 showLogin(message);
             } else {
                 request.getSession().setAttribute("loggedCustomer", customer);
+                List<Setting> stores = settingDAO.findAllByCategory(Constants.GENERAL_SETTING_CATEGORY);
+
+                for (Setting store : stores) {
+                    request.setAttribute(store.getKey(), store.getValue());
+                }
                 String homePage = "frontend/index.jsp";
                 request.getRequestDispatcher(homePage).forward(request, response);
             }
@@ -273,6 +282,11 @@ public class CustomerService {
      */
     public void showAccountInfo() throws ServletException, IOException {
         String accountInfoPage = "frontend/account.jsp";
+        List<Setting> stores = settingDAO.findAllByCategory(Constants.GENERAL_SETTING_CATEGORY);
+
+        for (Setting store : stores) {
+            request.setAttribute(store.getKey(), store.getValue());
+        }
         request.getRequestDispatcher(accountInfoPage).forward(request, response);
     }
 

@@ -15,7 +15,7 @@
         </a></li>
     </ul>
     <div class="offcanvas__logo">
-        <a href="/motorbike_shop/"><img src="../images/logo/logo.png" alt=""></a>
+        <a href="/motorbike_shop/"><img src="../images/setting/logo/${SITE_LOGO}" alt=""></a>
     </div>
     <div id="mobile-menu-wrap"></div>
     <div class="offcanvas__auth">
@@ -28,7 +28,7 @@
         <div class="row">
             <div class="col-xl-3 col-lg-2">
                 <div class="header__logo">
-                    <a href="/motorbike_shop/"><img src="../images/logo/logo.png" alt=""></a>
+                    <a href="/motorbike_shop/"><img src="../images/setting/logo/${SITE_LOGO}" alt=""></a>
                 </div>
             </div>
             <div class="col-xl-6 col-lg-7">

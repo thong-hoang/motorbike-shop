@@ -147,17 +147,6 @@
         });
     });
 
-    function showModalDialog(title, message) {
-        $("#modalTitle").text(title);
-        $("#modalBody").text(message);
-        $("#modalDialog").modal();
-    }
-
-    const message = "${message}";
-    if (message !== "") {
-        showModalDialog("Warning", message)
-    }
-
     $(document).ready(function () {
         $("#btnCancel").on("click", function () {
             window.location = "setting.jsp";
