@@ -11,7 +11,7 @@ public class CategoryDAOTest {
     @Test
     public void testFindAll() {
         String sortType = "ASC";
-        int pageSize = 5;
+        int pageSize = 4;
         String sortField = "id";
         int index = 1;
         String keyword = "";
