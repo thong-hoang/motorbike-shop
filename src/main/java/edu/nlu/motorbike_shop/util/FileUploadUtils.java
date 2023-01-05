@@ -20,7 +20,7 @@ public class FileUploadUtils {
     public static void saveFile(String directoryPath, String fileName, Part part) throws IOException {
         File fileSaveDir = new File(directoryPath);
         if (!fileSaveDir.exists()) {
-            fileSaveDir.mkdir();
+            fileSaveDir.mkdirs();
         }
 
         part.write(directoryPath + File.separator + fileName);
@@ -38,7 +38,7 @@ public class FileUploadUtils {
 
         File fileSaveDir = new File(pathDirectoryApp);
         if (!fileSaveDir.exists()) {
-            fileSaveDir.mkdir();
+            fileSaveDir.mkdirs();
         }
 
         File originFile = new File(fileServerPath);
