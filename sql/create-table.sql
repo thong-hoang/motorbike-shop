@@ -1,3 +1,4 @@
+-- users
 CREATE TABLE `users`
 (
     `id`           int                                                           NOT NULL AUTO_INCREMENT,
@@ -11,7 +12,7 @@ CREATE TABLE `users`
     PRIMARY KEY (`id`) USING BTREE,
     UNIQUE INDEX `email_UNIQUE` (`email` ASC) USING BTREE
 ) ENGINE = InnoDB
-  AUTO_INCREMENT = 2
+  AUTO_INCREMENT = 5
   CHARACTER SET = utf8mb4
   COLLATE = utf8mb4_general_ci;
 
@@ -23,7 +24,7 @@ CREATE TABLE `roles`
     PRIMARY KEY (`id`) USING BTREE,
     UNIQUE INDEX `name_UNIQUE` (`name` ASC) USING BTREE
 ) ENGINE = InnoDB
-  AUTO_INCREMENT = 1
+  AUTO_INCREMENT = 14
   CHARACTER SET = utf8mb4
   COLLATE = utf8mb4_general_ci;
 
@@ -44,29 +45,30 @@ CREATE TABLE `customers`
     `id`                  int                                                           NOT NULL AUTO_INCREMENT,
     `first_name`          varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
     `last_name`           varchar(45) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci  NOT NULL,
-    `phone_number`        varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci  NULL DEFAULT NULL,
+    `phone_number`        varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci  NOT NULL,
     `email`               varchar(128) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
     `password`            varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci  NOT NULL,
     `created_time`        datetime                                                      NOT NULL,
-    `authentication_type` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci  NOT NULL,
+    `authentication_type` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci  NULL DEFAULT NULL,
     `verification_code`   varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci  NULL DEFAULT NULL,
     `enabled`             bit(1)                                                        NOT NULL,
     PRIMARY KEY (`id`) USING BTREE,
     UNIQUE INDEX `email_UNIQUE` (`email` ASC) USING BTREE
 ) ENGINE = InnoDB
-  AUTO_INCREMENT = 1
+  AUTO_INCREMENT = 3
   CHARACTER SET = utf8mb4
   COLLATE = utf8mb4_general_ci;
 
 CREATE TABLE `banners`
 (
-    `id`         int                                                           NOT NULL AUTO_INCREMENT,
-    `image_path` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
-    `name`       varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
-    `enabled`    bit(1)                                                        NOT NULL,
+    `id`           int                                                           NOT NULL AUTO_INCREMENT,
+    `image_path`   varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+    `name`         varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+    `created_time` datetime                                                      NOT NULL,
+    `enabled`      bit(1)                                                        NOT NULL,
     PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = InnoDB
-  AUTO_INCREMENT = 1
+  AUTO_INCREMENT = 4
   CHARACTER SET = utf8mb4
   COLLATE = utf8mb4_general_ci;
 
@@ -75,9 +77,10 @@ CREATE TABLE `brands`
     `id`         int                                                          NOT NULL AUTO_INCREMENT,
     `name`       varchar(45) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
     `image_path` varchar(45) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
+    `enabled`    bit(1)                                                       NOT NULL,
     PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = InnoDB
-  AUTO_INCREMENT = 2
+  AUTO_INCREMENT = 8
   CHARACTER SET = utf8mb4
   COLLATE = utf8mb4_general_ci;
 
@@ -93,7 +96,7 @@ CREATE TABLE `categories`
     INDEX `fk_category_idx` (`parent_id` ASC) USING BTREE,
     CONSTRAINT `fk_category` FOREIGN KEY (`parent_id`) REFERENCES `categories` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT
 ) ENGINE = InnoDB
-  AUTO_INCREMENT = 2
+  AUTO_INCREMENT = 6
   CHARACTER SET = utf8mb4
   COLLATE = utf8mb4_general_ci;
 
@@ -111,18 +114,17 @@ CREATE TABLE `brand_category`
 
 CREATE TABLE `products`
 (
-    `id`               int                                                           NOT NULL AUTO_INCREMENT,
-    `main_image_path`  varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
-    `name`             varchar(256) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
-    `alias`            varchar(256) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
-    `brand_id`         int                                                           NOT NULL,
-    `category_id`      int                                                           NOT NULL,
-    `description`      text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci         NULL,
-    `created_time`     datetime                                                      NOT NULL,
-    `updated_time`     datetime                                                      NULL DEFAULT NULL,
-    `price`            float                                                         NOT NULL,
-    `percent_discount` float                                                         NULL DEFAULT 0,
-    `quantity`         int                                                           NOT NULL,
+    `id`                int                                                           NOT NULL AUTO_INCREMENT,
+    `main_image_path`   varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+    `name`              varchar(256) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+    `alias`             varchar(256) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+    `brand_id`          int                                                           NOT NULL,
+    `category_id`       int                                                           NOT NULL,
+    `description`       text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci         NULL,
+    `last_updated_time` datetime                                                      NOT NULL,
+    `price`             int                                                           NOT NULL,
+    `percent_discount`  tinyint                                                       NULL DEFAULT 0,
+    `quantity`          int                                                           NOT NULL,
     PRIMARY KEY (`id`) USING BTREE,
     UNIQUE INDEX `name_UNIQUE` (`name` ASC) USING BTREE,
     INDEX `fk_product_brand_idx` (`brand_id` ASC) USING BTREE,
@@ -167,7 +169,7 @@ CREATE TABLE `status`
     `name` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
     PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = InnoDB
-  AUTO_INCREMENT = 1
+  AUTO_INCREMENT = 7
   CHARACTER SET = utf8mb4
   COLLATE = utf8mb4_general_ci;
 
@@ -177,8 +179,8 @@ CREATE TABLE `product_status`
     `status_id`  int NOT NULL,
     PRIMARY KEY (`product_id`, `status_id`) USING BTREE,
     INDEX `fk_status_product` (`status_id` ASC) USING BTREE,
-    CONSTRAINT `fk_status_product` FOREIGN KEY (`status_id`) REFERENCES `status` (`id`) ON DELETE CASCADE ON UPDATE RESTRICT,
-    CONSTRAINT `fk_product_status` FOREIGN KEY (`product_id`) REFERENCES `products` (`id`) ON DELETE CASCADE ON UPDATE RESTRICT
+    CONSTRAINT `fk_product_status` FOREIGN KEY (`product_id`) REFERENCES `products` (`id`) ON DELETE CASCADE ON UPDATE RESTRICT,
+    CONSTRAINT `fk_status_product` FOREIGN KEY (`status_id`) REFERENCES `status` (`id`) ON DELETE CASCADE ON UPDATE RESTRICT
 ) ENGINE = InnoDB
   CHARACTER SET = utf8mb4
   COLLATE = utf8mb4_general_ci;
@@ -255,11 +257,11 @@ CREATE TABLE `addresses`
     INDEX `fk_address_user` (`user_id` ASC) USING BTREE,
     INDEX `fk_address_customer` (`customer_id` ASC) USING BTREE,
     INDEX `fk_address_order` (`order_id` ASC) USING BTREE,
-    CONSTRAINT `fk_address_user` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE RESTRICT,
     CONSTRAINT `fk_address_customer` FOREIGN KEY (`customer_id`) REFERENCES `customers` (`id`) ON DELETE CASCADE ON UPDATE RESTRICT,
-    CONSTRAINT `fk_address_order` FOREIGN KEY (`order_id`) REFERENCES `orders` (`id`) ON DELETE CASCADE ON UPDATE RESTRICT
+    CONSTRAINT `fk_address_order` FOREIGN KEY (`order_id`) REFERENCES `orders` (`id`) ON DELETE CASCADE ON UPDATE RESTRICT,
+    CONSTRAINT `fk_address_user` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE RESTRICT
 ) ENGINE = InnoDB
-  AUTO_INCREMENT = 2
+  AUTO_INCREMENT = 6
   CHARACTER SET = utf8mb4
   COLLATE = utf8mb4_general_ci;
 
