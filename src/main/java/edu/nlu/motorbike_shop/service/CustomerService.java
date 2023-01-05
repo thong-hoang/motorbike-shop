@@ -1,12 +1,10 @@
 package edu.nlu.motorbike_shop.service;
 
 import edu.nlu.motorbike_shop.constant.Constants;
+import edu.nlu.motorbike_shop.dao.CategoryDAO;
 import edu.nlu.motorbike_shop.dao.CustomerDAO;
 import edu.nlu.motorbike_shop.dao.SettingDAO;
-import edu.nlu.motorbike_shop.entity.Address;
-import edu.nlu.motorbike_shop.entity.Customer;
-import edu.nlu.motorbike_shop.entity.HashGenerator;
-import edu.nlu.motorbike_shop.entity.Setting;
+import edu.nlu.motorbike_shop.entity.*;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -26,6 +24,7 @@ import static edu.nlu.motorbike_shop.constant.Constants.DEFAULT_PAGE_SIZE;
 public class CustomerService {
     private final CustomerDAO customerDAO = CustomerDAO.getInstance();
     private final SettingDAO settingDAO = SettingDAO.getInstance();
+    private final CategoryDAO categoryDAO = CategoryDAO.getInstance();
     private final HttpServletRequest request;
     private final HttpServletResponse response;
 
@@ -268,6 +267,13 @@ public class CustomerService {
                 for (Setting store : stores) {
                     request.setAttribute(store.getKey(), store.getValue());
                 }
+
+                // category
+                List<Category> parents = categoryDAO.findAllParentCategory();
+                List<Category> childs = categoryDAO.findAllChildCategory();
+                request.setAttribute("parents", parents);
+                request.setAttribute("childs", childs);
+
                 String homePage = "frontend/index.jsp";
                 request.getRequestDispatcher(homePage).forward(request, response);
             }

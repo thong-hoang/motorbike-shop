@@ -296,12 +296,80 @@ public class CategoryDAO implements Serializable {
                     String name = rs.getString(2);
                     Integer parentId = rs.getInt(3);
 
-                    Category Category = new Category();
-                    Category.setId(id);
-                    Category.setName(name);
-                    Category.setParentId(parentId);
+                    Category category = new Category();
+                    category.setId(id);
+                    category.setName(name);
+                    category.setParentId(parentId);
 
-                    categories.add(Category);
+                    categories.add(category);
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return categories;
+    }
+
+    /**
+     * Returns all parent categories.
+     *
+     * @return List of category entities.
+     */
+    public List<Category> findAllParentCategory() {
+        List<Category> categories = new ArrayList<>();
+        String sql = "SELECT name, alias FROM categories WHERE parent_id IS NULL AND NOT enabled = 0";
+
+        // use try-with-resources Statement to auto close the connection.
+        try (Connection conn = DBUtils.makeConnection();
+             PreparedStatement stm = conn.prepareStatement(sql)) {
+
+            // use try-with-resources Statement to auto close the ResultSet.
+            try (ResultSet rs = stm.executeQuery()) {
+                // fetch data from result set
+                while (rs.next()) {
+                    String name = rs.getString(1);
+                    String alias = rs.getString(2);
+
+                    Category category = new Category();
+                    category.setName(name);
+                    category.setAlias(alias);
+
+                    categories.add(category);
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return categories;
+    }
+
+    /**
+     * Returns all child categories.
+     *
+     * @return List of category entities.
+     */
+    public List<Category> findAllChildCategory() {
+        List<Category> categories = new ArrayList<>();
+        String sql = "SELECT name, alias FROM categories WHERE parent_id IS NOT NULL AND NOT enabled = 0";
+
+        // use try-with-resources Statement to auto close the connection.
+        try (Connection conn = DBUtils.makeConnection();
+             PreparedStatement stm = conn.prepareStatement(sql)) {
+
+            // use try-with-resources Statement to auto close the ResultSet.
+            try (ResultSet rs = stm.executeQuery()) {
+                // fetch data from result set
+                while (rs.next()) {
+                    String name = rs.getString(1);
+                    String alias = rs.getString(2);
+
+                    Category category = new Category();
+                    category.setName(name);
+                    category.setAlias(alias);
+
+                    categories.add(category);
                 }
             }
         } catch (Exception e) {

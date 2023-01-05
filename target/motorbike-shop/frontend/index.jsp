@@ -65,20 +65,16 @@
                             <a href="/motorbike_shop/">Trang chủ</a>
                         </li>
                         <li>
-                            <a href="frontend/shop.jsp">Xe Máy</a>
+                            <c:forEach var="parent" items="${parents}">
+                                <a href="frontend/shop.jsp">${parent.name}</a>
+                            </c:forEach>
+
                             <ul class="dropdown">
-                                <li>
-                                    <a href="#">Xe số</a>
-                                </li>
-                                <li>
-                                    <a href="#">Xe tay ga</a>
-                                </li>
-                                <li>
-                                    <a href="#">Xe côn tay</a>
-                                </li>
-                                <li>
-                                    <a href="#">Xe phân khối lớn</a>
-                                </li>
+                                <c:forEach items="${childs}" var="child">
+                                    <li>
+                                        <a href="#">${child.name}</a>
+                                    </li>
+                                </c:forEach>
                             </ul>
                         </li>
                         <!--<li><a href="./blog.html">Tin tức</a></li>

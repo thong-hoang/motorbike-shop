@@ -2,8 +2,10 @@ package edu.nlu.motorbike_shop.service;
 
 import edu.nlu.motorbike_shop.constant.Constants;
 import edu.nlu.motorbike_shop.dao.BannerDAO;
+import edu.nlu.motorbike_shop.dao.CategoryDAO;
 import edu.nlu.motorbike_shop.dao.SettingDAO;
 import edu.nlu.motorbike_shop.entity.Banner;
+import edu.nlu.motorbike_shop.entity.Category;
 import edu.nlu.motorbike_shop.entity.Setting;
 
 import javax.servlet.ServletException;
@@ -15,6 +17,7 @@ import java.util.List;
 public class HomeService {
     private final SettingDAO settingDAO = SettingDAO.getInstance();
     private final BannerDAO bannerDAO = BannerDAO.getInstance();
+    private final CategoryDAO categoryDAO = CategoryDAO.getInstance();
     private final HttpServletRequest request;
     private final HttpServletResponse response;
 
@@ -38,6 +41,12 @@ public class HomeService {
         for (Setting store : stores) {
             request.setAttribute(store.getKey(), store.getValue());
         }
+
+        // category
+        List<Category> parents = categoryDAO.findAllParentCategory();
+        List<Category> childs = categoryDAO.findAllChildCategory();
+        request.setAttribute("parents", parents);
+        request.setAttribute("childs", childs);
 
         request.getRequestDispatcher(homepage).forward(request, response);
     }
