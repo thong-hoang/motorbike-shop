@@ -1,15 +1,15 @@
 package edu.nlu.motorbike_shop.dao;
 
 import edu.nlu.motorbike_shop.entity.Brand;
+import edu.nlu.motorbike_shop.entity.Category;
+import edu.nlu.motorbike_shop.entity.Role;
 import edu.nlu.motorbike_shop.util.DBUtils;
 
 import java.io.Serializable;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLIntegrityConstraintViolationException;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 /**
  * Provides APIs for manipulating data with the database
@@ -30,6 +30,39 @@ public class BrandDAO implements Serializable {
             instance = new BrandDAO();
 
         return instance;
+    }
+
+    /**
+     * Return list of categories by brand id.
+     *
+     * @param id The id of the brand.
+     * @return List of brand entities.
+     */
+    public List<Category> findCategoriesByBrandId(Integer id) {
+        List<Category> categories = new ArrayList<>();
+        String sql = "SELECT c.* FROM brand_category br INNER JOIN categories c ON br.category_id = c.id " +
+                "WHERE br.brand_id = ?";
+
+        try (Connection conn = DBUtils.makeConnection();
+             PreparedStatement stm = conn.prepareStatement(sql)) {
+            stm.setInt(1, id);
+
+            try (ResultSet rs = stm.executeQuery()) {
+                while (rs.next()) {
+                    Integer categoryId = rs.getInt(1);
+                    String categoryName = rs.getString(2);
+
+                    Category category = new Category();
+                    category.setId(categoryId);
+                    category.setName(categoryName);
+
+                    categories.add(category);
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return categories;
     }
 
     /**
@@ -62,9 +95,10 @@ public class BrandDAO implements Serializable {
                     String name = rs.getString(2);
                     String imagePath = rs.getString(3);
                     boolean enabled = rs.getBoolean(4);
+                    Brand brand = new Brand(id, name, imagePath, enabled);
+                    findCategoriesByBrandId(id).forEach(brand::addCategory);
 
-
-                    brands.add(new Brand(id, name, imagePath, enabled));
+                    brands.add(brand);
                 }
             }
         } catch (Exception e) {
@@ -82,15 +116,34 @@ public class BrandDAO implements Serializable {
      */
     public boolean save(Brand brand) {
         String sql = "INSERT INTO brands (name, image_path, enabled) VALUES (?, ?, ?)";
+        String sqlInsertBrandCategory = "INSERT INTO brand_category (brand_id, category_id) value(?, ?)";
 
         try (Connection conn = DBUtils.makeConnection();
-             PreparedStatement stm = conn.prepareStatement(sql)) {
+             PreparedStatement stm = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+             PreparedStatement brandCategoryStm = conn.prepareStatement(sqlInsertBrandCategory)) {
 
             stm.setString(1, brand.getName());
             stm.setString(2, brand.getImagePath());
             stm.setBoolean(3, brand.isEnabled());
 
-            return stm.executeUpdate() > 0;
+            stm.executeUpdate();
+
+            ResultSet rs = stm.getGeneratedKeys();
+            int brandKey;
+
+            if (rs.next()) {
+                brandKey = rs.getInt(1);
+
+                Set<Category> categories = brand.getCategories();
+                for (Category category : categories) {
+                    brandCategoryStm.setInt(1, brandKey);
+                    brandCategoryStm.setInt(2, category.getId());
+                    brandCategoryStm.addBatch();
+                }
+
+                // execute multiple commands at the same time
+                if (brandCategoryStm.executeBatch().length > 0) return true;
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -98,27 +151,20 @@ public class BrandDAO implements Serializable {
     }
 
     /**
-     * Check if the image path is already used.
+     * Delete a brand_category record from the database.
      *
-     * @param name The image path to be checked.
-     * @return True if the image path is already in use, false otherwise.
+     * @param brandId The id of the user.
      */
-    public boolean checkNameExists(String name) {
-        String sql = "SELECT COUNT(name) FROM brands WHERE name = ?";
+    public void deleteBrandCategory(Integer brandId) {
+        String sql = "DELETE FROM brand_category WHERE brand_id = ?";
         try (Connection conn = DBUtils.makeConnection();
              PreparedStatement stm = conn.prepareStatement(sql)) {
-            stm.setString(1, name);
+            stm.setInt(1, brandId);
 
-            try (ResultSet rs = stm.executeQuery()) {
-                if (rs.next()) {
-                    return rs.getInt(1) > 0;
-                }
-            }
+            stm.executeUpdate();
         } catch (Exception e) {
             e.printStackTrace();
         }
-
-        return false;
     }
 
     /**
@@ -129,17 +175,30 @@ public class BrandDAO implements Serializable {
      * @throws SQLIntegrityConstraintViolationException If the name is already in use.
      */
     public boolean update(Brand brand) {
-        String sql = "UPDATE brands SET name = ?, image_path = ?, enabled = ? WHERE id = ?";
+        String sqlUpdate = "UPDATE brands SET name = ?, image_path = ?, enabled = ? WHERE id = ?";
+        String sqlInsertBrandCategory = "INSERT INTO brand_category (brand_id, category_id) value(?, ?)";
 
         try (Connection conn = DBUtils.makeConnection();
-             PreparedStatement stm = conn.prepareStatement(sql)) {
-            stm.setString(1, brand.getName());
-            stm.setString(2, brand.getImagePath());
-            stm.setBoolean(3, brand.isEnabled());
-            stm.setInt(4, brand.getId());
+             PreparedStatement brandStm = conn.prepareStatement(sqlUpdate);
+             PreparedStatement brandCategoryStm = conn.prepareStatement(sqlInsertBrandCategory)) {
+            brandStm.setString(1, brand.getName());
+            brandStm.setString(2, brand.getImagePath());
+            brandStm.setBoolean(3, brand.isEnabled());
+            brandStm.setInt(4, brand.getId());
 
-            return stm.executeUpdate() > 0;
+            brandStm.executeUpdate();
 
+            deleteBrandCategory(brand.getId());
+
+            Set<Category> categories = brand.getCategories();
+            for (Category category : categories) {
+                brandCategoryStm.setInt(1, brand.getId());
+                brandCategoryStm.setInt(2, category.getId());
+                brandCategoryStm.addBatch();
+            }
+
+            // execute multiple commands at the same time
+            if (brandCategoryStm.executeBatch().length > 0) return true;
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -164,8 +223,10 @@ public class BrandDAO implements Serializable {
                     String name = rs.getString(2);
                     String imagePath = rs.getString(3);
                     boolean enabled = rs.getBoolean(4);
+                    Brand brand = new Brand(id, name, imagePath, enabled);
+                    findCategoriesByBrandId(id).forEach(brand::addCategory);
 
-                    return new Brand(id, name, imagePath, enabled);
+                    return brand;
                 }
             }
         } catch (Exception e) {

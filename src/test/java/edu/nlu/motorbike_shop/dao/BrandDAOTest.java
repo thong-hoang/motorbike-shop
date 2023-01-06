@@ -1,6 +1,11 @@
 package edu.nlu.motorbike_shop.dao;
 
+import edu.nlu.motorbike_shop.entity.Brand;
+import edu.nlu.motorbike_shop.entity.Category;
 import org.junit.Test;
+
+import java.util.HashMap;
+import java.util.Map;
 
 import static org.junit.Assert.assertTrue;
 
@@ -26,50 +31,17 @@ public class BrandDAOTest {
         assertTrue(brandDAO.countByKeyword(keyword) > 0);
     }
 
-//    @Test
-//    public void testCreateRootCategory() {
-//        Category category = new Category("Xe máy", "xe-may", 0, true);
-//
-//        assertTrue(brandDAO.save(category));
-//    }
-//
-//    @Test
-//    public void testCreateChildCategory() {
-//        Category category = new Category("Xe số", "Xe-số", 1, true);
-//
-//        assertTrue(brandDAO.save(category));
-//    }
-//
-//    @Test
-//    public void testFindCategoryById() {
-//        Integer id = 1;
-//        Category category = brandDAO.findById(id);
-//
-//        assertEquals("Xe máy", category.getName());
-//    }
-//
-//    @Test
-//    public void testUpdateCategory() {
-//        Integer id = 1;
-//        Category category = brandDAO.findById(id);
-//        category.setAlias("Xe-máy");
-//
-//        brandDAO.update(category);
-//
-//        assertEquals("Xe-máy", category.getAlias());
-//    }
-//
-//    @Test
-//    public void testUpdateStatus() {
-//        Integer id = 1;
-//
-//        brandDAO.updateEnabledStatus(id, false);
-//
-//        assertFalse(brandDAO.findById(id).isEnabled());
-//    }
-//
-//    @Test
-//    public void testGetListCategories() {
-//        brandDAO.findAllCategory().forEach(System.out::println);
-//    }
+    @Test
+    public void test() {
+        Map<Category, String> categoryMap = new HashMap<>();
+
+        CategoryDAO.getInstance().findAllChildCategory().forEach(category -> categoryMap.put(category, ""));
+        Brand brand = brandDAO.findById(1);
+        System.out.println(brand);
+        brand.getCategories().forEach(category -> categoryMap.put(category, "checked"));
+
+        for (Map.Entry<Category, String> categoryStringEntry : categoryMap.entrySet()) {
+            System.out.println(categoryStringEntry.getKey() + " " + categoryStringEntry.getValue());
+        }
+    }
 }

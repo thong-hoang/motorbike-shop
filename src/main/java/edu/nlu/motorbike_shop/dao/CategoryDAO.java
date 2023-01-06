@@ -352,7 +352,7 @@ public class CategoryDAO implements Serializable {
      */
     public List<Category> findAllChildCategory() {
         List<Category> categories = new ArrayList<>();
-        String sql = "SELECT name, alias FROM categories WHERE parent_id IS NOT NULL AND NOT enabled = 0";
+        String sql = "SELECT id, name, alias FROM categories WHERE parent_id IS NOT NULL AND NOT enabled = 0";
 
         // use try-with-resources Statement to auto close the connection.
         try (Connection conn = DBUtils.makeConnection();
@@ -362,10 +362,12 @@ public class CategoryDAO implements Serializable {
             try (ResultSet rs = stm.executeQuery()) {
                 // fetch data from result set
                 while (rs.next()) {
-                    String name = rs.getString(1);
-                    String alias = rs.getString(2);
+                    Integer id = rs.getInt(1);
+                    String name = rs.getString(2);
+                    String alias = rs.getString(3);
 
                     Category category = new Category();
+                    category.setId(id);
                     category.setName(name);
                     category.setAlias(alias);
 

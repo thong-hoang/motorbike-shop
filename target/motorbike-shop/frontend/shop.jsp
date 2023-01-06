@@ -184,11 +184,19 @@
                                         <li>
                                             <a href="images/product/${product.id}/${product.mainImagePath}"
                                                class="image-popup">
-                                                <span class="arrow_expand"></span>
+                                                <span class="arrow_expand" style="padding-top: 15px"></span>
                                             </a>
                                         </li>
-                                        <li><a href="#"><span class="icon_heart_alt"></span></a></li>
-                                        <li><a href="#"><span class="icon_bag_alt"></span></a></li>
+                                        <li>
+                                            <a href="#">
+                                                <span class="icon_heart_alt" style="padding-top: 15px"></span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#">
+                                                <span class="icon_bag_alt" style="padding-top: 15px"></span>
+                                            </a>
+                                        </li>
                                     </ul>
                                 </div>
                                 <div class="product__item__text">
@@ -404,13 +412,6 @@
                     <%--                    </div>--%>
 
                     <div class="col-lg-12 text-center">
-                        <%--                        <div class="pagination__option">--%>
-                        <%--                            <a href="#">1</a>--%>
-                        <%--                            <a href="#">2</a>--%>
-                        <%--                            <a href="#">3</a>--%>
-                        <%--                            <a href="#"><i class="fa fa-angle-right"></i></a>--%>
-                        <%--                        </div>--%>
-
                         <c:if test="${totalPages > 0}">
                             <nav aria-label="Page navigation example">
                                 <ul class="pagination float-right">

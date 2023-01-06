@@ -66,7 +66,8 @@
                                     <div class="form-group row">
                                         <label class="col-sm-4 col-form-label">Ảnh đại diện:</label>
                                         <div class="col-sm-8">
-                                            <input type="file" id="avatarUploader" class="mb-2" name="image"/>
+                                            <input type="file" id="avatarUploader" class="mb-2"
+                                                   name="image" ${brand.id != null ? '' : 'required'}/>
                                             <c:choose>
                                                 <c:when test="${not empty brand.imagePath}">
                                                     <img id="avatarImg"
@@ -88,6 +89,30 @@
                                         <div class="col-sm-9">
                                             <input type="text" class="form-control" name="name" id="nameLabel"
                                                    value="${brand.name}" required>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <label class="col-sm-3 col-form-label input-label">
+                                            Thể loại
+                                        </label>
+                                        <div class="col-sm-9 pt-1">
+                                            <c:if test="${empty brand.id}">
+                                                <c:forEach var="s" items="${categories}">
+                                                    <input type="checkbox" class="mt-2" name="categories"
+                                                           value="${s.id}" ${s.id == 2 ? 'checked' : ''}> ${s.name}
+                                                    <br>
+                                                </c:forEach>
+                                            </c:if>
+
+                                            <c:if test="${not empty brand.id}">
+                                                <c:forEach var="status" items="${categoryMap}">
+                                                    <input type="checkbox" class="mt-2" name="categories"
+                                                           value="${status.key.id}"
+                                                        ${status.value}> ${status.key.name}
+                                                    <br>
+                                                </c:forEach>
+                                            </c:if>
                                         </div>
                                     </div>
 
