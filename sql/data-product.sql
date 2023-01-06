@@ -7,67 +7,119 @@ VALUES (1, 'tạm ngưng'),
        (5, 'sắp về');
 
 -- products
-INSERT INTO `products`(`id`, `main_image_path`, `name`, `alias`, `brand_id`, `category_id`, `description`, `last_updated_time`, `price`, `percent_discount`, `quantity`) VALUES (1, 'winner-x-tieuchuan-2022.jpg', 'honda winner x 2022', 'Honda', 1, 3, 'Uy tín và chất lượng', '0000-00-00 00:00:00', 100000000, 0.8, 50);
-INSERT INTO `products`(`id`, `main_image_path`, `name`, `alias`, `brand_id`, `category_id`, `description`, `last_updated_time`, `price`, `percent_discount`, `quantity`) VALUES (2, 'winner-x-dacbiet-2022.jpg', 'winner x dac biet 2022', 'Honda', 1, 3, 'Uy tín và chất lượng', '0000-00-00 00:00:00', 70000000, 0.8, 50);
-INSERT INTO `products`(`id`, `main_image_path`, `name`, `alias`, `brand_id`, `category_id`, `description`, `last_updated_time`, `price`, `percent_discount`, `quantity`) VALUES (3, 'winner-x-camo-2020.jpg', 'winner x camo 2020', 'Honda', 1, 3, 'Uy tín và chất lượng', '0000-00-00 00:00:00', 57000000, 0.8, 50);
-INSERT INTO `products`(`id`, `main_image_path`, `name`, `alias`, `brand_id`, `category_id`, `description`, `last_updated_time`, `price`, `percent_discount`, `quantity`) VALUES (4, 'winner-x-thethao-v3-2022.jpg', 'winner x thethao v3 2022', 'Honda', 1, 3, 'Uy tín và chất lượng', '0000-00-00 00:00:00', 35000000, 0.8, 50);
-INSERT INTO `products`(`id`, `main_image_path`, `name`, `alias`, `brand_id`, `category_id`, `description`, `last_updated_time`, `price`, `percent_discount`, `quantity`) VALUES (5, 'winner-x-dacbiet-v3-2022.jpg', 'winner x dacbiet v3 2022', 'Honda', 1, 3, 'Uy tín và chất lượng', '0000-00-00 00:00:00', 85000000, 0.8, 50);
-INSERT INTO `products`(`id`, `main_image_path`, `name`, `alias`, `brand_id`, `category_id`, `description`, `last_updated_time`, `price`, `percent_discount`, `quantity`) VALUES (6, 'winner-x-tieuchuan-v3-2022.jpg', 'winner x tieuchuan v3 2022', 'Honda', 1, 3, 'Uy tín và chất lượng', '0000-00-00 00:00:00', 55000000, 0.8, 50);
-INSERT INTO `products`(`id`, `main_image_path`, `name`, `alias`, `brand_id`, `category_id`, `description`, `last_updated_time`, `price`, `percent_discount`, `quantity`) VALUES (7, 'winner-x-camo-2022.jpg', 'winner x camo 2022', 'Honda', 1, 3, 'Uy tín và chất lượng', '0000-00-00 00:00:00', 122000000, 0.8, 50);
-INSERT INTO `products`(`id`, `main_image_path`, `name`, `alias`, `brand_id`, `category_id`, `description`, `last_updated_time`, `price`, `percent_discount`, `quantity`) VALUES (8, 'winner-x-thethao-2022.jpg', 'winner x thethao 2022', 'Honda', 1, 3, 'Uy tín và chất lượng', '0000-00-00 00:00:00', 32000000, 0.8, 50);
-INSERT INTO `products`(`id`, `main_image_path`, `name`, `alias`, `brand_id`, `category_id`, `description`, `last_updated_time`, `price`, `percent_discount`, `quantity`) VALUES (9, 'winner-150.png', 'winner 150', 'Honda', 1, 3, 'Uy tín và chất lượng', '0000-00-00 00:00:00', 62000000, 0.8, 50);
-INSERT INTO `products`(`id`, `main_image_path`, `name`, `alias`, `brand_id`, `category_id`, `description`, `last_updated_time`, `price`, `percent_discount`, `quantity`) VALUES (10, 'msx-2020.jpg', 'msx 2020', 'Honda', 1, 3, 'Uy tín và chất lượng', '0000-00-00 00:00:00', 34000000, 0.8, 50);
-INSERT INTO `products`(`id`, `main_image_path`, `name`, `alias`, `brand_id`, `category_id`, `description`, `last_updated_time`, `price`, `percent_discount`, `quantity`) VALUES (11, 'msx-2021.png', 'msx 2021', 'Honda', 1, 3, 'Uy tín và chất lượng', '0000-00-00 00:00:00', 38000000, 0.8, 50);
-INSERT INTO `products`(`id`, `main_image_path`, `name`, `alias`, `brand_id`, `category_id`, `description`, `last_updated_time`, `price`, `percent_discount`, `quantity`) VALUES (12, 'sonic-2021.jpg', 'sonic 2021', 'Honda', 1, 3, 'Uy tín và chất lượng', '0000-00-00 00:00:00', 88000000, 0.8, 50);
-INSERT INTO `products`(`id`, `main_image_path`, `name`, `alias`, `brand_id`, `category_id`, `description`, `last_updated_time`, `price`, `percent_discount`, `quantity`) VALUES (13, 'sonic-2022.jpg', 'sonic 2022', 'Honda', 1, 3, 'Uy tín và chất lượng', '0000-00-00 00:00:00', 88000000, 0.8, 50);
-INSERT INTO `products`(`id`, `main_image_path`, `name`, `alias`, `brand_id`, `category_id`, `description`, `last_updated_time`, `price`, `percent_discount`, `quantity`) VALUES (14, 'cb150r-streetster.png', 'cb150r streetster', 'Honda', 1, 3, 'Uy tín và chất lượng', '0000-00-00 00:00:00', 77000000, 0.8, 50);
-INSERT INTO `products`(`id`, `main_image_path`, `name`, `alias`, `brand_id`, `category_id`, `description`, `last_updated_time`, `price`, `percent_discount`, `quantity`) VALUES (15, 'cb150-verza.jpg', 'cb150 verza', 'Honda', 1, 3, 'Uy tín và chất lượng', '0000-00-00 00:00:00', 170000000, 0.8, 50);
-INSERT INTO `products`(`id`, `main_image_path`, `name`, `alias`, `brand_id`, `category_id`, `description`, `last_updated_time`, `price`, `percent_discount`, `quantity`) VALUES (16, 'cb150r-exmotion.png', 'cb150r exmotion', 'Honda', 1, 3, 'Uy tín và chất lượng', '0000-00-00 00:00:00', 120000000, 0.8, 50);
-INSERT INTO `products`(`id`, `main_image_path`, `name`, `alias`, `brand_id`, `category_id`, `description`, `last_updated_time`, `price`, `percent_discount`, `quantity`) VALUES (17, 'cb150r-streetfire.jpg', 'cb150r streetfire', 'Honda', 1, 3, 'Uy tín và chất lượng', '0000-00-00 00:00:00', 99000000, 0.8, 50);
-INSERT INTO `products`(`id`, `main_image_path`, `name`, `alias`, `brand_id`, `category_id`, `description`, `last_updated_time`, `price`, `percent_discount`, `quantity`) VALUES (18, 'cb150r-2021.jpg', 'cb150r 2021', 'Honda', 1, 3, 'Uy tín và chất lượng', '0000-00-00 00:00:00', 90000000, 0.8, 50);
-INSERT INTO `products`(`id`, `main_image_path`, `name`, `alias`, `brand_id`, `category_id`, `description`, `last_updated_time`, `price`, `percent_discount`, `quantity`) VALUES (19, 'cb150x-2022.jpg', 'cb150x 2022', 'Honda', 1, 3, 'Uy tín và chất lượng', '0000-00-00 00:00:00', 89000000, 0.8, 50);
-INSERT INTO `products`(`id`, `main_image_path`, `name`, `alias`, `brand_id`, `category_id`, `description`, `last_updated_time`, `price`, `percent_discount`, `quantity`) VALUES (20, 'cbr150r-tieuchuan.png', 'cbr150r tieuchuan', 'Honda', 1, 3, 'Uy tín và chất lượng', '0000-00-00 00:00:00', 69000000, 0.8, 50);
-INSERT INTO `products`(`id`, `main_image_path`, `name`, `alias`, `brand_id`, `category_id`, `description`, `last_updated_time`, `price`, `percent_discount`, `quantity`) VALUES (21, 'cbr150r-thethao.png', 'cbr150r thethao', 'Honda', 1, 3, 'Uy tín và chất lượng', '0000-00-00 00:00:00', 49000000, 0.8, 50);
-INSERT INTO `products`(`id`, `main_image_path`, `name`, `alias`, `brand_id`, `category_id`, `description`, `last_updated_time`, `price`, `percent_discount`, `quantity`) VALUES (22, 'cbr150r-dacbiet.jpg', 'cbr150r dacbiet', 'Honda', 1, 3, 'Uy tín và chất lượng', '0000-00-00 00:00:00', 79000000, 0.8, 50);
-INSERT INTO `products`(`id`, `main_image_path`, `name`, `alias`, `brand_id`, `category_id`, `description`, `last_updated_time`, `price`, `percent_discount`, `quantity`) VALUES (23, 'cbf125r-2021.jpg', 'cbf125r 2021', 'Honda', 1, 3, 'Uy tín và chất lượng', '0000-00-00 00:00:00', 76000000, 0.8, 50);
-INSERT INTO `products`(`id`, `main_image_path`, `name`, `alias`, `brand_id`, `category_id`, `description`, `last_updated_time`, `price`, `percent_discount`, `quantity`) VALUES (24, 'cb-hornet-160r.png', 'cb hornet 160r', 'Honda', 1, 3, 'Uy tín và chất lượng', '0000-00-00 00:00:00', 66000000, 0.8, 50);
-INSERT INTO `products`(`id`, `main_image_path`, `name`, `alias`, `brand_id`, `category_id`, `description`, `last_updated_time`, `price`, `percent_discount`, `quantity`) VALUES (25, 'monkey-2021.png', 'monkey 2021', 'Honda', 1, 3, 'Uy tín và chất lượng', '0000-00-00 00:00:00', 62000000, 0.8, 50);
-INSERT INTO `products`(`id`, `main_image_path`, `name`, `alias`, `brand_id`, `category_id`, `description`, `last_updated_time`, `price`, `percent_discount`, `quantity`) VALUES (26, 'rebel-1100.png', 'rebel 1100', 'Honda', 1, 5, 'Uy tín và chất lượng', '0000-00-00 00:00:00', 602000000, 0.8, 50);
-INSERT INTO `products`(`id`, `main_image_path`, `name`, `alias`, `brand_id`, `category_id`, `description`, `last_updated_time`, `price`, `percent_discount`, `quantity`) VALUES (27, 'rebel-1100-dct.png', 'rebel 1100 dct', 'Honda', 1, 5, 'Uy tín và chất lượng', '0000-00-00 00:00:00', 455000000, 0.8, 50);
-INSERT INTO `products`(`id`, `main_image_path`, `name`, `alias`, `brand_id`, `category_id`, `description`, `last_updated_time`, `price`, `percent_discount`, `quantity`) VALUES (28, 'cbr1000rr-fireblade.png', 'cbr1000rr fireblade', 'Honda', 1, 5, 'Uy tín và chất lượng', '0000-00-00 00:00:00', 355000000, 0.8, 50);
-INSERT INTO `products`(`id`, `main_image_path`, `name`, `alias`, `brand_id`, `category_id`, `description`, `last_updated_time`, `price`, `percent_discount`, `quantity`) VALUES (29, 'cbr1000rr-fireblade-sp-2018.png', 'cbr1000rr fireblade sp 2018', 'Honda', 1, 5, 'Uy tín và chất lượng', '0000-00-00 00:00:00', 278000000, 0.8, 50);
-INSERT INTO `products`(`id`, `main_image_path`, `name`, `alias`, `brand_id`, `category_id`, `description`, `last_updated_time`, `price`, `percent_discount`, `quantity`) VALUES (30, 'cbr1000rr-r-fireblade-2022.png', 'cbr1000rr r fireblade 2022', 'Honda', 1, 5, 'Uy tín và chất lượng', '0000-00-00 00:00:00', 499000000, 0.8, 50);
-INSERT INTO `products`(`id`, `main_image_path`, `name`, `alias`, `brand_id`, `category_id`, `description`, `last_updated_time`, `price`, `percent_discount`, `quantity`) VALUES (31, 'cbr1000rr-r-fireblade-sp-2022.png', 'cbr1000rr r fireblade sp 2022', 'Honda', 1, 5, 'Uy tín và chất lượng', '0000-00-00 00:00:00', 246000000, 0.8, 50);
-INSERT INTO `products`(`id`, `main_image_path`, `name`, `alias`, `brand_id`, `category_id`, `description`, `last_updated_time`, `price`, `percent_discount`, `quantity`) VALUES (32, 'x-adv-750.png', 'x adv 750', 'Honda', 1, 5, 'Uy tín và chất lượng', '0000-00-00 00:00:00', 500000000, 0.8, 50);
-INSERT INTO `products`(`id`, `main_image_path`, `name`, `alias`, `brand_id`, `category_id`, `description`, `last_updated_time`, `price`, `percent_discount`, `quantity`) VALUES (33, 'rebel-250.jpg', 'rebel 250', 'Honda', 1, 5, 'Uy tín và chất lượng', '0000-00-00 00:00:00', 345000000, 0.8, 50);
-INSERT INTO `products`(`id`, `main_image_path`, `name`, `alias`, `brand_id`, `category_id`, `description`, `last_updated_time`, `price`, `percent_discount`, `quantity`) VALUES (34, 'rebel-300.jpg', 'rebel 300', 'Honda', 1, 5, 'Uy tín và chất lượng', '0000-00-00 00:00:00', 278000000, 0.8, 50);
-INSERT INTO `products`(`id`, `main_image_path`, `name`, `alias`, `brand_id`, `category_id`, `description`, `last_updated_time`, `price`, `percent_discount`, `quantity`) VALUES (35, 'rebel-500.png', 'rebel 500', 'Honda', 1, 5, 'Uy tín và chất lượng', '0000-00-00 00:00:00', 338000000, 0.8, 50);
-INSERT INTO `products`(`id`, `main_image_path`, `name`, `alias`, `brand_id`, `category_id`, `description`, `last_updated_time`, `price`, `percent_discount`, `quantity`) VALUES (36, 'cbr250.jpg', 'cbr250', 'Honda', 1, 5, 'Uy tín và chất lượng', '0000-00-00 00:00:00', 200000000, 0.8, 50);
-INSERT INTO `products`(`id`, `main_image_path`, `name`, `alias`, `brand_id`, `category_id`, `description`, `last_updated_time`, `price`, `percent_discount`, `quantity`) VALUES (37, 'cbr500r.jpg', 'cbr500r', 'Honda', 1, 5, 'Uy tín và chất lượng', '0000-00-00 00:00:00', 379000000, 0.8, 50);
-INSERT INTO `products`(`id`, `main_image_path`, `name`, `alias`, `brand_id`, `category_id`, `description`, `last_updated_time`, `price`, `percent_discount`, `quantity`) VALUES (38, 'cbr650r-2021.png', 'cbr650r 2021', 'Honda', 1, 5, 'Uy tín và chất lượng', '0000-00-00 00:00:00', 369000000, 0.8, 50);
-INSERT INTO `products`(`id`, `main_image_path`, `name`, `alias`, `brand_id`, `category_id`, `description`, `last_updated_time`, `price`, `percent_discount`, `quantity`) VALUES (39, 'cbr650r-2022.jpg', 'cbr650r 2022', 'Honda', 1, 5, 'Uy tín và chất lượng', '0000-00-00 00:00:00', 600000000, 0.8, 50);
-INSERT INTO `products`(`id`, `main_image_path`, `name`, `alias`, `brand_id`, `category_id`, `description`, `last_updated_time`, `price`, `percent_discount`, `quantity`) VALUES (40, 'cbr650f.jpg', 'cbr650f', 'Honda', 1, 5, 'Uy tín và chất lượng', '0000-00-00 00:00:00', 456000000, 0.8, 50);
-INSERT INTO `products`(`id`, `main_image_path`, `name`, `alias`, `brand_id`, `category_id`, `description`, `last_updated_time`, `price`, `percent_discount`, `quantity`) VALUES (41, 'cb650r-2021.png', 'cb650r 2021', 'Honda', 1, 5, 'Uy tín và chất lượng', '0000-00-00 00:00:00', 542000000, 0.8, 50);
-INSERT INTO `products`(`id`, `main_image_path`, `name`, `alias`, `brand_id`, `category_id`, `description`, `last_updated_time`, `price`, `percent_discount`, `quantity`) VALUES (42, 'cb650r-2022.png', 'cb650r 2022', 'Honda', 1, 5, 'Uy tín và chất lượng', '0000-00-00 00:00:00', 355000000, 0.8, 50);
-INSERT INTO `products`(`id`, `main_image_path`, `name`, `alias`, `brand_id`, `category_id`, `description`, `last_updated_time`, `price`, `percent_discount`, `quantity`) VALUES (43, 'cb500f.jpg', 'cb500f', 'Honda', 1, 5, 'Uy tín và chất lượng', '0000-00-00 00:00:00', 322000000, 0.8, 50);
-INSERT INTO `products`(`id`, `main_image_path`, `name`, `alias`, `brand_id`, `category_id`, `description`, `last_updated_time`, `price`, `percent_discount`, `quantity`) VALUES (44, 'cb650f.jpg', 'cb650f', 'Honda', 1, 5, 'Uy tín và chất lượng', '0000-00-00 00:00:00', 440000000, 0.8, 50);
-INSERT INTO `products`(`id`, `main_image_path`, `name`, `alias`, `brand_id`, `category_id`, `description`, `last_updated_time`, `price`, `percent_discount`, `quantity`) VALUES (45, 'cb300r.png', 'cb300r', 'Honda', 1, 5, 'Uy tín và chất lượng', '0000-00-00 00:00:00', 320000000, 0.8, 50);
-INSERT INTO `products`(`id`, `main_image_path`, `name`, `alias`, `brand_id`, `category_id`, `description`, `last_updated_time`, `price`, `percent_discount`, `quantity`) VALUES (46, 'cb1000r.png', 'cb1000r', 'Honda', 1, 5, 'Uy tín và chất lượng', '0000-00-00 00:00:00', 390000000, 0.8, 50);
-INSERT INTO `products`(`id`, `main_image_path`, `name`, `alias`, `brand_id`, `category_id`, `description`, `last_updated_time`, `price`, `percent_discount`, `quantity`) VALUES (47, 'cb1000r-limited.jpg', 'cb1000r limited', 'Honda', 1, 5, 'Uy tín và chất lượng', '0000-00-00 00:00:00', 299000000, 0.8, 50);
-INSERT INTO `products`(`id`, `main_image_path`, `name`, `alias`, `brand_id`, `category_id`, `description`, `last_updated_time`, `price`, `percent_discount`, `quantity`) VALUES (48, 'cb1100.jpg', 'cb1000', 'Honda', 1, 5, 'Uy tín và chất lượng', '0000-00-00 00:00:00', 482000000, 0.8, 50);
-INSERT INTO `products`(`id`, `main_image_path`, `name`, `alias`, `brand_id`, `category_id`, `description`, `last_updated_time`, `price`, `percent_discount`, `quantity`) VALUES (49, 'cb500x.jpg', 'cb500x', 'Honda', 1, 5, 'Uy tín và chất lượng', '0000-00-00 00:00:00', 599000000, 0.8, 50);
-INSERT INTO `products`(`id`, `main_image_path`, `name`, `alias`, `brand_id`, `category_id`, `description`, `last_updated_time`, `price`, `percent_discount`, `quantity`) VALUES (50, 'cbs350rs.jpg', 'cbs350rs', 'Honda', 1, 5, 'Uy tín và chất lượng', '0000-00-00 00:00:00', 355000000, 0.8, 50);
-INSERT INTO `products`(`id`, `main_image_path`, `name`, `alias`, `brand_id`, `category_id`, `description`, `last_updated_time`, `price`, `percent_discount`, `quantity`) VALUES (51, 'intruder-150-2022.png', 'intruder 150 2022', 'Suzuki', 5, 3, 'Uy tín và chất lượng', '0000-00-00 00:00:00', 450000000, 0, 0);
-INSERT INTO `products`(`id`, `main_image_path`, `name`, `alias`, `brand_id`, `category_id`, `description`, `last_updated_time`, `price`, `percent_discount`, `quantity`) VALUES (52, 'suzuki-satria-2022.png', 'suzuki satria 2022', 'Suzuki', 5, 3, 'Uy tín và chất lượng', '0000-00-00 00:00:00', 100000000, 0.8, 50);
-INSERT INTO `products`(`id`, `main_image_path`, `name`, `alias`, `brand_id`, `category_id`, `description`, `last_updated_time`, `price`, `percent_discount`, `quantity`) VALUES (53, 'raider-2022.png', 'raider 2022', 'Suzuki', 5, 3, 'Uy tín và chất lượng', '0000-00-00 00:00:00', 100000000, 0.8, 50);
-INSERT INTO `products`(`id`, `main_image_path`, `name`, `alias`, `brand_id`, `category_id`, `description`, `last_updated_time`, `price`, `percent_discount`, `quantity`) VALUES (54, 'gsx150-bandit.png', 'gsx150 bandit', 'Suzuki', 5, 3, 'Uy tín và chất lượng', '0000-00-00 00:00:00', 100000000, 0.8, 50);
-INSERT INTO `products`(`id`, `main_image_path`, `name`, `alias`, `brand_id`, `category_id`, `description`, `last_updated_time`, `price`, `percent_discount`, `quantity`) VALUES (55, 'gd110.png', 'gd110', 'Suzuki', 5, 3, 'Uy tín và chất lượng', '0000-00-00 00:00:00', 100000000, 0.8, 50);
-INSERT INTO `products`(`id`, `main_image_path`, `name`, `alias`, `brand_id`, `category_id`, `description`, `last_updated_time`, `price`, `percent_discount`, `quantity`) VALUES (56, 'gsx-s150.jpg', 'gsx s150', 'Suzuki', 5, 3, 'Uy tín và chất lượng', '0000-00-00 00:00:00', 100000000, 0.8, 50);
-INSERT INTO `products`(`id`, `main_image_path`, `name`, `alias`, `brand_id`, `category_id`, `description`, `last_updated_time`, `price`, `percent_discount`, `quantity`) VALUES (57, 'gsx-r150.png', 'gsx r150', 'Suzuki', 5, 3, 'Uy tín và chất lượng', '0000-00-00 00:00:00', 100000000, 0.8, 50);
-INSERT INTO `products`(`id`, `main_image_path`, `name`, `alias`, `brand_id`, `category_id`, `description`, `last_updated_time`, `price`, `percent_discount`, `quantity`) VALUES (58, 'raider-150-fi.jpg', 'raider 150 fi', 'Suzuki', 5, 3, 'Uy tín và chất lượng', '0000-00-00 00:00:00', 100000000, 0.8, 50);
-INSERT INTO `products`(`id`, `main_image_path`, `name`, `alias`, `brand_id`, `category_id`, `description`, `last_updated_time`, `price`, `percent_discount`, `quantity`) VALUES (59, 'raider-150-2016.jpg', 'raider 150 2016', 'Suzuki', 5, 3, 'Uy tín và chất lượng', '0000-00-00 00:00:00', 100000000, 0.8, 50);
-INSERT INTO `products`(`id`, `main_image_path`, `name`, `alias`, `brand_id`, `category_id`, `description`, `last_updated_time`, `price`, `percent_discount`, `quantity`) VALUES (60, 'raider-150-2015.jpg', 'raider 150 2015', 'Suzuki', 5, 3, 'Uy tín và chất lượng', '0000-00-00 00:00:00', 100000000, 0.8, 50);
-INSERT INTO `products`(`id`, `main_image_path`, `name`, `alias`, `brand_id`, `category_id`, `description`, `last_updated_time`, `price`, `percent_discount`, `quantity`) VALUES (61, 'raider-150.jpg', 'raider 150', 'Suzuki', 5, 3, 'Uy tín và chất lượng', '0000-00-00 00:00:00', 100000000, 0.8, 50);
-INSERT INTO `products`(`id`, `main_image_path`, `name`, `alias`, `brand_id`, `category_id`, `description`, `last_updated_time`, `price`, `percent_discount`, `quantity`) VALUES (62, 'en-150a.jpg', 'en 150a', 'Suzuki', 5, 3, 'Uy tín và chất lượng', '0000-00-00 00:00:00', 100000000, 0.8, 50);
-INSERT INTO `products`(`id`, `main_image_path`, `name`, `alias`, `brand_id`, `category_id`, `description`, `last_updated_time`, `price`, `percent_discount`, `quantity`) VALUES (63, 'gz150-a-2020.png', 'gz150 a 2020', 'Suzuki', 5, 3, 'Uy tín và chất lượng', '0000-00-00 00:00:00', 100000000, 0.8, 50);
-INSERT INTO `products`(`id`, `main_image_path`, `name`, `alias`, `brand_id`, `category_id`, `description`, `last_updated_time`, `price`, `percent_discount`, `quantity`) VALUES (64, 'axelo-125-2017.jpg', 'axelo 125 2017', 'Suzuki', 5, 3, 'Uy tín và chất lượng', '0000-00-00 00:00:00', 100000000, 0.8, 50);
+INSERT INTO `products` (`id`, `main_image_path`, `name`, `alias`, `brand_id`, `category_id`, `description`,
+                        `last_updated_time`, `price`, `percent_discount`, `quantity`)
+VALUES (1, 'winner-x-tieuchuan-2022.jpg', 'honda winner x 2022', 'Honda', 1, 3, 'Uy tín và chất lượng',
+        '2023-01-04 11:25:45', 100000000, 1, 50),
+       (2, 'winner-x-dacbiet-2022.jpg', 'winner x dac biet 2022', 'Honda', 1, 3, 'Uy tín và chất lượng',
+        '2023-01-04 11:25:45', 70000000, 1, 50),
+       (3, 'winner-x-camo-2020.jpg', 'winner x camo 2020', 'Honda', 1, 3, 'Uy tín và chất lượng', '2023-01-04 11:25:45',
+        57000000, 1, 50),
+       (4, 'winner-x-thethao-v3-2022.jpg', 'winner x thethao v3 2022', 'Honda', 1, 3, 'Uy tín và chất lượng',
+        '2023-01-04 11:25:45', 35000000, 1, 50),
+       (5, 'winner-x-dacbiet-v3-2022.jpg', 'winner x dacbiet v3 2022', 'Honda', 1, 3, 'Uy tín và chất lượng',
+        '2023-01-04 11:25:45', 85000000, 1, 50),
+       (6, 'winner-x-tieuchuan-v3-2022.jpg', 'winner x tieuchuan v3 2022', 'Honda', 1, 3, 'Uy tín và chất lượng',
+        '2023-01-04 11:25:45', 55000000, 1, 50),
+       (7, 'winner-x-camo-2022.jpg', 'winner x camo 2022', 'Honda', 1, 3, 'Uy tín và chất lượng', '2023-01-04 11:25:45',
+        122000000, 1, 50),
+       (8, 'winner-x-thethao-2022.jpg', 'winner x thethao 2022', 'Honda', 1, 3, 'Uy tín và chất lượng',
+        '2023-01-04 11:25:45', 32000000, 1, 50),
+       (9, 'winner-150.png', 'winner 150', 'Honda', 1, 3, 'Uy tín và chất lượng', '2023-01-04 11:25:45', 62000000, 1,
+        50),
+       (10, 'msx-2020.jpg', 'msx 2020', 'Honda', 1, 3, 'Uy tín và chất lượng', '2023-01-04 11:25:45', 34000000, 1, 50),
+       (11, 'msx-2021.png', 'msx 2021', 'Honda', 1, 3, 'Uy tín và chất lượng', '2023-01-04 11:25:45', 38000000, 1, 50),
+       (12, 'sonic-2021.jpg', 'sonic 2021', 'Honda', 1, 3, 'Uy tín và chất lượng', '2023-01-04 11:25:45', 88000000, 1,
+        50),
+       (13, 'sonic-2022.jpg', 'sonic 2022', 'Honda', 1, 3, 'Uy tín và chất lượng', '2023-01-04 11:25:45', 88000000, 1,
+        50),
+       (14, 'cb150r-streetster.png', 'cb150r streetster', 'Honda', 1, 3, 'Uy tín và chất lượng', '2023-01-04 11:25:45',
+        77000000, 1, 50),
+       (15, 'cb150-verza.jpg', 'cb150 verza', 'Honda', 1, 3, 'Uy tín và chất lượng', '2023-01-04 11:25:45', 170000000,
+        1, 50),
+       (16, 'cb150r-exmotion.png', 'cb150r exmotion', 'Honda', 1, 3, 'Uy tín và chất lượng', '2023-01-04 11:25:45',
+        120000000, 1, 50),
+       (17, 'cb150r-streetfire.jpg', 'cb150r streetfire', 'Honda', 1, 3, 'Uy tín và chất lượng', '2023-01-04 11:25:45',
+        99000000, 1, 50),
+       (18, 'cb150r-2021.jpg', 'cb150r 2021', 'Honda', 1, 3, 'Uy tín và chất lượng', '2023-01-04 11:25:45', 90000000, 1,
+        50),
+       (19, 'cb150x-2022.jpg', 'cb150x 2022', 'Honda', 1, 3, 'Uy tín và chất lượng', '2023-01-04 11:25:45', 89000000, 1,
+        50),
+       (20, 'cbr150r-tieuchuan.png', 'cbr150r tieuchuan', 'Honda', 1, 3, 'Uy tín và chất lượng', '2023-01-04 11:25:45',
+        69000000, 1, 50),
+       (21, 'cbr150r-thethao.png', 'cbr150r thethao', 'Honda', 1, 3, 'Uy tín và chất lượng', '2023-01-04 11:25:45',
+        49000000, 1, 50),
+       (22, 'cbr150r-dacbiet.jpg', 'cbr150r dacbiet', 'Honda', 1, 3, 'Uy tín và chất lượng', '2023-01-04 11:25:45',
+        79000000, 1, 50),
+       (23, 'cbf125r-2021.jpg', 'cbf125r 2021', 'Honda', 1, 3, 'Uy tín và chất lượng', '2023-01-04 11:25:45', 76000000,
+        1, 50),
+       (24, 'cb-hornet-160r.png', 'cb hornet 160r', 'Honda', 1, 3, 'Uy tín và chất lượng', '2023-01-04 11:25:45',
+        66000000, 1, 50),
+       (25, 'monkey-2021.png', 'monkey 2021', 'Honda', 1, 3, 'Uy tín và chất lượng', '2023-01-04 11:25:45', 62000000, 1,
+        50),
+       (26, 'rebel-1100.png', 'rebel 1100', 'Honda', 1, 5, 'Uy tín và chất lượng', '2023-01-04 11:25:45', 602000000, 1,
+        50),
+       (27, 'rebel-1100-dct.png', 'rebel 1100 dct', 'Honda', 1, 5, 'Uy tín và chất lượng', '2023-01-04 11:25:45',
+        455000000, 1, 50),
+       (28, 'cbr1000rr-fireblade.png', 'cbr1000rr fireblade', 'Honda', 1, 5, 'Uy tín và chất lượng',
+        '2023-01-04 11:25:45', 355000000, 1, 50),
+       (29, 'cbr1000rr-fireblade-sp-2018.png', 'cbr1000rr fireblade sp 2018', 'Honda', 1, 5, 'Uy tín và chất lượng',
+        '2023-01-04 11:25:45', 278000000, 1, 50),
+       (30, 'cbr1000rr-r-fireblade-2022.png', 'cbr1000rr r fireblade 2022', 'Honda', 1, 5, 'Uy tín và chất lượng',
+        '2023-01-04 11:25:45', 499000000, 1, 50),
+       (31, 'cbr1000rr-r-fireblade-sp-2022.png', 'cbr1000rr r fireblade sp 2022', 'Honda', 1, 5, 'Uy tín và chất lượng',
+        '2023-01-04 11:25:45', 246000000, 1, 50),
+       (32, 'x-adv-750.png', 'x adv 750', 'Honda', 1, 5, 'Uy tín và chất lượng', '2023-01-04 11:25:45', 500000000, 1,
+        50),
+       (33, 'rebel-250.jpg', 'rebel 250', 'Honda', 1, 5, 'Uy tín và chất lượng', '2023-01-04 11:25:45', 345000000, 1,
+        50),
+       (34, 'rebel-300.jpg', 'rebel 300', 'Honda', 1, 5, 'Uy tín và chất lượng', '2023-01-04 11:25:45', 278000000, 1,
+        50),
+       (35, 'rebel-500.png', 'rebel 500', 'Honda', 1, 5, 'Uy tín và chất lượng', '2023-01-04 11:25:45', 338000000, 1,
+        50),
+       (36, 'cbr250.jpg', 'cbr250', 'Honda', 1, 5, 'Uy tín và chất lượng', '2023-01-04 11:25:45', 200000000, 1, 50),
+       (37, 'cbr500r.jpg', 'cbr500r', 'Honda', 1, 5, 'Uy tín và chất lượng', '2023-01-04 11:25:45', 379000000, 1, 50),
+       (38, 'cbr650r-2021.png', 'cbr650r 2021', 'Honda', 1, 5, 'Uy tín và chất lượng', '2023-01-04 11:25:45', 369000000,
+        1, 50),
+       (39, 'cbr650r-2022.jpg', 'cbr650r 2022', 'Honda', 1, 5, 'Uy tín và chất lượng', '2023-01-04 11:25:45', 600000000,
+        1, 50),
+       (40, 'cbr650f.jpg', 'cbr650f', 'Honda', 1, 5, 'Uy tín và chất lượng', '2023-01-04 11:25:45', 456000000, 1, 50),
+       (41, 'cb650r-2021.png', 'cb650r 2021', 'Honda', 1, 5, 'Uy tín và chất lượng', '2023-01-04 11:25:45', 542000000,
+        1, 50),
+       (42, 'cb650r-2022.png', 'cb650r 2022', 'Honda', 1, 5, 'Uy tín và chất lượng', '2023-01-04 11:25:45', 355000000,
+        1, 50),
+       (43, 'cb500f.jpg', 'cb500f', 'Honda', 1, 5, 'Uy tín và chất lượng', '2023-01-04 11:25:45', 322000000, 1, 50),
+       (44, 'cb650f.jpg', 'cb650f', 'Honda', 1, 5, 'Uy tín và chất lượng', '2023-01-04 11:25:45', 440000000, 1, 50),
+       (45, 'cb300r.png', 'cb300r', 'Honda', 1, 5, 'Uy tín và chất lượng', '2023-01-04 11:25:45', 320000000, 1, 50),
+       (46, 'cb1000r.png', 'cb1000r', 'Honda', 1, 5, 'Uy tín và chất lượng', '2023-01-04 11:25:45', 390000000, 1, 50),
+       (47, 'cb1000r-limited.jpg', 'cb1000r limited', 'Honda', 1, 5, 'Uy tín và chất lượng', '2023-01-04 11:25:45',
+        299000000, 1, 50),
+       (48, 'cb1100.jpg', 'cb1000', 'Honda', 1, 5, 'Uy tín và chất lượng', '2023-01-04 11:25:45', 482000000, 1, 50),
+       (49, 'cb500x.jpg', 'cb500x', 'Honda', 1, 5, 'Uy tín và chất lượng', '2023-01-04 11:25:45', 599000000, 1, 50),
+       (50, 'cbs350rs.jpg', 'cbs350rs', 'Honda', 1, 5, 'Uy tín và chất lượng', '2023-01-04 11:25:45', 355000000, 1, 50),
+       (51, 'intruder-150-2022.png', 'intruder 150 2022', 'Suzuki', 5, 3, 'Uy tín và chất lượng', '2023-01-04 11:25:45',
+        450000000, 0, 0),
+       (52, 'suzuki-satria-2022.png', 'suzuki satria 2022', 'Suzuki', 5, 3, 'Uy tín và chất lượng',
+        '2023-01-04 11:25:45', 100000000, 1, 50),
+       (53, 'raider-2022.png', 'raider 2022', 'Suzuki', 5, 3, 'Uy tín và chất lượng', '2023-01-04 11:25:45', 100000000,
+        1, 50),
+       (54, 'gsx150-bandit.png', 'gsx150 bandit', 'Suzuki', 5, 3, 'Uy tín và chất lượng', '2023-01-04 11:25:45',
+        100000000, 1, 50),
+       (55, 'gd110.png', 'gd110', 'Suzuki', 5, 3, 'Uy tín và chất lượng', '2023-01-04 11:25:45', 100000000, 1, 50),
+       (56, 'gsx-s150.jpg', 'gsx s150', 'Suzuki', 5, 3, 'Uy tín và chất lượng', '2023-01-04 11:25:45', 100000000, 1,
+        50),
+       (57, 'gsx-r150.png', 'gsx r150', 'Suzuki', 5, 3, 'Uy tín và chất lượng', '2023-01-04 11:25:45', 100000000, 1,
+        50),
+       (58, 'raider-150-fi.jpg', 'raider 150 fi', 'Suzuki', 5, 3, 'Uy tín và chất lượng', '2023-01-04 11:25:45',
+        100000000, 1, 50),
+       (59, 'raider-150-2016.jpg', 'raider 150 2016', 'Suzuki', 5, 3, 'Uy tín và chất lượng', '2023-01-04 11:25:45',
+        100000000, 1, 50),
+       (60, 'raider-150-2015.jpg', 'raider 150 2015', 'Suzuki', 5, 3, 'Uy tín và chất lượng', '2023-01-04 11:25:45',
+        100000000, 1, 50),
+       (61, 'raider-150.jpg', 'raider 150', 'Suzuki', 5, 3, 'Uy tín và chất lượng', '2023-01-04 11:25:45', 100000000, 1,
+        50),
+       (62, 'en-150a.jpg', 'en 150a', 'Suzuki', 5, 3, 'Uy tín và chất lượng', '2023-01-04 11:25:45', 100000000, 1, 50),
+       (63, 'gz150-a-2020.png', 'gz150 a 2020', 'Suzuki', 5, 3, 'Uy tín và chất lượng', '2023-01-04 11:25:45',
+        100000000, 1, 50),
+       (64, 'axelo-125-2017.jpg', 'axelo 125 2017', 'Suzuki', 5, 3, 'Uy tín và chất lượng', '2023-01-04 11:25:45',
+        100000000, 1, 50);
