@@ -1,10 +1,9 @@
 package edu.nlu.motorbike_shop.service;
 
+import edu.nlu.motorbike_shop.constant.Constants;
 import edu.nlu.motorbike_shop.dao.ProductDAO;
-import edu.nlu.motorbike_shop.entity.Brand;
-import edu.nlu.motorbike_shop.entity.Category;
-import edu.nlu.motorbike_shop.entity.Product;
-import edu.nlu.motorbike_shop.entity.Status;
+import edu.nlu.motorbike_shop.dao.SettingDAO;
+import edu.nlu.motorbike_shop.entity.*;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -21,6 +20,8 @@ import static edu.nlu.motorbike_shop.util.FileUploadUtils.*;
 
 public class ProductService {
     private final ProductDAO productDAO = ProductDAO.getInstance();
+
+    private final SettingDAO settingDAO = SettingDAO.getInstance();
     private final HttpServletRequest request;
     private final HttpServletResponse response;
 
@@ -319,5 +320,50 @@ public class ProductService {
             message = "Sản phẩm " + product.getName() + " đã được xóa thành công !";
         }
         listProduct(message);
+    }
+
+    /*--------------------Frontend--------------------*/
+
+    /**
+     * Show the product page to user.
+     */
+    public void showProduct() throws ServletException, IOException {
+        String categoryName = request.getParameter("category");
+        request.setAttribute("title", categoryName);
+
+        // setting
+        List<Setting> stores = settingDAO.findAllByCategory(Constants.GENERAL_SETTING_CATEGORY);
+
+        for (Setting store : stores) {
+            request.setAttribute(store.getKey(), store.getValue());
+        }
+
+        String keyword = request.getParameter("keyword");
+        if (keyword == null ||keyword.equals("xe máy"))
+            keyword = "";
+        String pageNumberString = request.getParameter("pageNumber");
+        int pageNumber;
+
+        if (pageNumberString == null) {
+            pageNumber = 1;
+        } else {
+            pageNumber = Integer.parseInt(request.getParameter("pageNumber"));
+        }
+
+        int numberOfProducts = productDAO.countActive();
+        int totalKeywordResults = productDAO.countByKeywordActive(keyword);
+
+        List<Product> products = productDAO.findAllActive(keyword, "last_updated_time", "DESC", 9, pageNumber);
+
+        int totalPages = totalKeywordResults / 9;
+        if (numberOfProducts % 9 != 0) totalPages++;
+
+        request.setAttribute("currentPage", pageNumber);
+        request.setAttribute("totalPages", totalPages);
+        request.setAttribute("keyword", keyword);
+        request.setAttribute("numberOfProducts", numberOfProducts);
+        request.setAttribute("listProducts", products);
+
+        request.getRequestDispatcher("/frontend/shop.jsp").forward(request, response);
     }
 }

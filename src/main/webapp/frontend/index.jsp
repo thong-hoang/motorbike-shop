@@ -66,13 +66,13 @@
                         </li>
                         <li>
                             <c:forEach var="parent" items="${parents}">
-                                <a href="frontend/shop.jsp">${parent.name}</a>
+                                <a href="search?keyword=${parent.name}">${parent.name}</a>
                             </c:forEach>
 
                             <ul class="dropdown">
                                 <c:forEach items="${childs}" var="child">
                                     <li>
-                                        <a href="#">${child.name}</a>
+                                        <a href="search?keyword=${child.name}">${child.name}</a>
                                     </li>
                                 </c:forEach>
                             </ul>

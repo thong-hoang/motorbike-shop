@@ -50,7 +50,7 @@ public class ProductDAOTest {
     @Test
     public void testFindById() {
         Product product = productDAO.findById(1);
-        assertEquals("Xe máy Winner X Tiêu chuẩn 2022", product.getName());
+        assertEquals("honda winner x 2022", product.getName());
     }
 
     @Test
@@ -81,5 +81,27 @@ public class ProductDAOTest {
     @Test
     public void testFindByName() {
         System.out.println(productDAO.findByName("Winner X tiêu chuẩn 2022"));
+    }
+
+    @Test
+    public void testFindAllActive() {
+        String sortType = "DESC";
+        int pageSize = 9;
+        String sortField = "last_updated_time";
+        int index = 1;
+
+        productDAO.findAllActive("", sortField, sortType, pageSize, index).forEach(System.out::println);
+
+        assertTrue(productDAO.findAll("", sortField, sortType, pageSize, index).size() > 0);
+    }
+
+    @Test
+    public void testCountActive() {
+        System.out.println(productDAO.countActive());
+    }
+
+    @Test
+    public void testCountByKeywordActive() {
+        System.out.println(productDAO.countByKeywordActive(""));
     }
 }

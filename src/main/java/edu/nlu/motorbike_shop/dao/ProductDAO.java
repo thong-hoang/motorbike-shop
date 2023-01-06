@@ -447,4 +447,98 @@ public class ProductDAO implements Serializable {
             e.printStackTrace();
         }
     }
+
+    /**
+     * Returns all instance of product with pagination and search.
+     *
+     * @param sortType  Specify the sort type, ASC or DESC.
+     * @param pageSize  Specify the number of records per page.
+     * @param sortField Specify the column name to sort.
+     * @param index     Specify the page index.
+     * @return List of product entities.
+     */
+    public List<Product> findAllActive(String keyword, String sortField, String sortType, int pageSize, int index) {
+        List<Product> products = new ArrayList<>();
+        String sql = "SELECT p.id, p.main_image_path, p.name, p.price, p.percent_discount " +
+                "FROM products p LEFT JOIN product_status ps ON p.id = ps.product_id " +
+                "WHERE ps.status_id NOT IN (1, 4) AND name LIKE ? " + "ORDER BY " + sortField + " " + sortType + " LIMIT ? OFFSET ?";
+
+        // use try-with-resources Statement to auto close the connection.
+        try (Connection conn = DBUtils.makeConnection();
+             PreparedStatement stm = conn.prepareStatement(sql)) {
+
+            stm.setString(1, "%" + keyword + "%");
+            stm.setInt(2, pageSize);
+            stm.setInt(3, (index - 1) * pageSize);
+
+            // use try-with-resources Statement to auto close the ResultSet.
+            try (ResultSet rs = stm.executeQuery()) {
+                // fetch data from result set
+                while (rs.next()) {
+                    Integer id = rs.getInt(1);
+                    String mainImagePath = rs.getString(2);
+                    String name = rs.getString(3);
+                    int price = rs.getInt(4);
+                    int percentDiscount = rs.getInt(5);
+
+                    Product product = new Product();
+                    product.setId(id);
+                    product.setMainImagePath(mainImagePath);
+                    product.setName(name);
+                    product.setPrice(price);
+                    product.setPercentDiscount(percentDiscount);
+
+                    products.add(product);
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return products;
+    }
+
+    /**
+     * Total number of products in the database.
+     *
+     * @return The number of product entities.
+     */
+
+    public int countActive() {
+        String sql = "SELECT COUNT(id) FROM products LEFT JOIN product_status ps on products.id = ps.product_id " +
+                "WHERE ps.status_id NOT IN (1, 4)";
+        try (Connection conn = DBUtils.makeConnection();
+             PreparedStatement stm = conn.prepareStatement(sql)) {
+            try (ResultSet rs = stm.executeQuery()) {
+                while (rs.next())
+                    return rs.getInt(1);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return 0;
+    }
+
+    /**
+     * Total results keyword search.
+     *
+     * @return The number of results. 0 if no results.
+     */
+    public int countByKeywordActive(String keyword) {
+        String sql = "SELECT COUNT(id) FROM products LEFT JOIN product_status ps on products.id = ps.product_id " +
+                "WHERE ps.status_id NOT IN (1, 4) AND name LIKE ?";
+        try (Connection conn = DBUtils.makeConnection();
+             PreparedStatement stm = conn.prepareStatement(sql)) {
+            stm.setString(1, "%" + keyword + "%");
+            try (ResultSet rs = stm.executeQuery()) {
+                while (rs.next())
+                    return rs.getInt(1);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return 0;
+    }
+
 }

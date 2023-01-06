@@ -1,4 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
 <html lang="zxx">
 
@@ -8,37 +9,24 @@
     <meta name="keywords" content="Ashion, unica, creative, html">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>VTV | Xe máy</title>
+    <title>VTV | ${title}</title>
 
-    <!-- Google Font -->
-    <link href="https://fonts.googleapis.com/css2?family=Cookie&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap"
-          rel="stylesheet">
-
-    <!-- Css Styles -->
-    <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css">
-
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link rel="stylesheet" href="css/elegant-icons.css" type="text/css">
-    <link rel="stylesheet" href="css/jquery-ui.min.css" type="text/css">
-    <link rel="stylesheet" href="css/magnific-popup.css" type="text/css">
-    <link rel="stylesheet" href="css/owl.carousel.min.css" type="text/css">
-    <link rel="stylesheet" href="css/slicknav.min.css" type="text/css">
+    <jsp:include page="css.jsp"/>
     <link rel="stylesheet" href="css/shop.css" type="text/css">
 </head>
 
 <body>
-<jsp:include page="header.jsp"/>
+<jsp:include page="header1.jsp"/>
 
 <div class="breadcrumb-option">
     <div class="container">
         <div class="row">
-            <div class="col-lg-12">
-                <div class="breadcrumb__links">
-                    <a href="/motorbike_shop/"><i class="fa fa-home"></i> Trang chủ</a>
-                    <span>Sản phẩm</span>
-                </div>
-            </div>
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb bg-white">
+                    <li class="breadcrumb-item"><a href="/motorbike_shop/">Trang chủ</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Sản phẩm</li>
+                </ol>
+            </nav>
         </div>
     </div>
 </div>
@@ -186,233 +174,263 @@
             </div>
             <div class="col-lg-9 col-md-9">
                 <div class="row">
-                    <div class="col-lg-4 col-md-6">
-                        <div class="product__item">
-                            <div class="product__item__pic set-bg"
-                                 data-setbg="../images/yamaha/xeso/7/sirius-dark-blue-007.png">
-                                <div class="label new">Mới</div>
-                                <ul class="product__hover">
-                                    <li><a href="../images/yamaha/xeso/7/sirius-dark-blue-007.png"
-                                           class="image-popup"><span class="arrow_expand"></span></a></li>
-                                    <li><a href="#"><span class="icon_heart_alt"></span></a></li>
-                                    <li><a href="#"><span class="icon_bag_alt"></span></a></li>
-                                </ul>
-                            </div>
-                            <div class="product__item__text">
-                                <h6><a href="product-details.html">Sirius xanh đen</a></h6>
-                                <div class="rating">
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
+                    <c:forEach items="${listProducts}" var="product">
+                        <div class="col-lg-4 col-md-6">
+                            <div class="product__item">
+                                <div class="product__item__pic set-bg"
+                                     data-setbg="images/product/${product.id}/${product.mainImagePath}">
+                                    <div class="label new">Mới</div>
+                                    <ul class="product__hover">
+                                        <li>
+                                            <a href="images/product/${product.id}/${product.mainImagePath}"
+                                               class="image-popup">
+                                                <span class="arrow_expand"></span>
+                                            </a>
+                                        </li>
+                                        <li><a href="#"><span class="icon_heart_alt"></span></a></li>
+                                        <li><a href="#"><span class="icon_bag_alt"></span></a></li>
+                                    </ul>
                                 </div>
-                                <div class="product__price">27.000.000 VNĐ</div>
+                                <div class="product__item__text">
+                                    <h6><a href="product-details.html">${product.name}</a></h6>
+                                    <div class="rating">
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                    </div>
+                                    <div class="product__price">${product.price} VNĐ</div>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="col-lg-4 col-md-6">
-                        <div class="product__item">
-                            <div class="product__item__pic set-bg"
-                                 data-setbg="../images/yamaha/xeso/11/sirius-black-drum-004-1.png">
-                                <ul class="product__hover">
-                                    <li><a href="../images/yamaha/xeso/11/sirius-black-drum-004-1.png"
-                                           class="image-popup"><span class="arrow_expand"></span></a></li>
-                                    <li><a href="#"><span class="icon_heart_alt"></span></a></li>
-                                    <li><a href="#"><span class="icon_bag_alt"></span></a></li>
-                                </ul>
-                            </div>
-                            <div class="product__item__text">
-                                <h6><a href="#">Sirius Drum</a></h6>
-                                <div class="rating">
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                </div>
-                                <div class="product__price">30.000.000 VNĐ</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-6">
-                        <div class="product__item">
-                            <div class="product__item__pic set-bg"
-                                 data-setbg="../images/yamaha/xecontay/7/ex155-yellow-grey-004.png">
-                                <ul class="product__hover">
-                                    <li><a href="../images/yamaha/xecontay/7/ex155-yellow-grey-004.png"
-                                           class="image-popup"><span class="arrow_expand"></span></a></li>
-                                    <li><a href="#"><span class="icon_heart_alt"></span></a></li>
-                                    <li><a href="#"><span class="icon_bag_alt"></span></a></li>
-                                </ul>
-                            </div>
-                            <div class="product__item__text">
-                                <h6><a href="#">Exciter 155</a></h6>
-                                <div class="rating">
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                </div>
-                                <div class="product__price">47.000.000 VNĐ</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-6">
-                        <div class="product__item">
-                            <div class="product__item__pic set-bg"
-                                 data-setbg="../images/yamaha/xecontay/12/exciter-150-pearl-white-004.png">
-                                <ul class="product__hover">
-                                    <li><a href="../images/yamaha/xecontay/12/exciter-150-pearl-white-004.png"
-                                           class="image-popup"><span class="arrow_expand"></span></a></li>
-                                    <li><a href="#"><span class="icon_heart_alt"></span></a></li>
-                                    <li><a href="#"><span class="icon_bag_alt"></span></a></li>
-                                </ul>
-                            </div>
-                            <div class="product__item__text">
-                                <h6><a href="#">Exciter 150 pearl</a></h6>
-                                <div class="rating">
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                </div>
-                                <div class="product__price">49.000.000 VNĐ</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-6">
-                        <div class="product__item sale">
-                            <div class="product__item__pic set-bg"
-                                 data-setbg="../images/yamaha/xeso/3/jupiter-finn-urban-blue-004.png">
-                                <div class="label">Giảm giá</div>
-                                <ul class="product__hover">
-                                    <li><a href="../images/yamaha/xeso/3/jupiter-finn-urban-blue-004.png"
-                                           class="image-popup"><span class="arrow_expand"></span></a></li>
-                                    <li><a href="#"><span class="icon_heart_alt"></span></a></li>
-                                    <li><a href="#"><span class="icon_bag_alt"></span></a></li>
-                                </ul>
-                            </div>
-                            <div class="product__item__text">
-                                <h6><a href="#">Jupiter finn urban</a></h6>
-                                <div class="rating">
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                </div>
-                                <div class="product__price"><span>31.000.000</span> 29.000.000 VNĐ</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-6">
-                        <div class="product__item">
-                            <div class="product__item__pic set-bg"
-                                 data-setbg="../images/yamaha/xetayga/7/latte-dark-grey-004.png">
-                                <ul class="product__hover">
-                                    <li><a href="../images/yamaha/xetayga/7/latte-dark-grey-004.png"
-                                           class="image-popup"><span class="arrow_expand"></span></a></li>
-                                    <li><a href="#"><span class="icon_heart_alt"></span></a></li>
-                                    <li><a href="#"><span class="icon_bag_alt"></span></a></li>
-                                </ul>
-                            </div>
-                            <div class="product__item__text">
-                                <h6><a href="#">Latte xám đen</a></h6>
-                                <div class="rating">
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                </div>
-                                <div class="product__price">39.000.000 VNĐ</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-6">
-                        <div class="product__item">
-                            <div class="product__item__pic set-bg"
-                                 data-setbg="../images/yamaha/xephankhoilon/7/r15m-anni-60th-004.png">
-                                <ul class="product__hover">
-                                    <li><a href="../images/yamaha/xephankhoilon/7/r15m-anni-60th-004.png"
-                                           class="image-popup"><span class="arrow_expand"></span></a></li>
-                                    <li><a href="#"><span class="icon_heart_alt"></span></a></li>
-                                    <li><a href="#"><span class="icon_bag_alt"></span></a></li>
-                                </ul>
-                            </div>
-                            <div class="product__item__text">
-                                <h6><a href="#">R15m Anni 60th</a></h6>
-                                <div class="rating">
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                </div>
-                                <div class="product__price">399.000.000 VNĐ</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-6">
-                        <div class="product__item">
-                            <div class="product__item__pic set-bg"
-                                 data-setbg="../images/yamaha/xephankhoilon/15/yamaha-mt-15-22.png">
-                                <div class="label stockout stockblue">Hết hàng</div>
-                                <ul class="product__hover">
-                                    <li><a href="../images/yamaha/xephankhoilon/15/yamaha-mt-15-22.png"
-                                           class="image-popup"><span class="arrow_expand"></span></a></li>
-                                    <li><a href="#"><span class="icon_heart_alt"></span></a></li>
-                                    <li><a href="#"><span class="icon_bag_alt"></span></a></li>
-                                </ul>
-                            </div>
-                            <div class="product__item__text">
-                                <h6><a href="#">Yamaha MT 1522</a></h6>
-                                <div class="rating">
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                </div>
-                                <div class="product__price">479.000.000 VNĐ</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-6">
-                        <div class="product__item sale">
-                            <div class="product__item__pic set-bg"
-                                 data-setbg="../images/yamaha/xetayga/14/yamaha-smax-2020.png">
-                                <div class="label">Giảm giá</div>
-                                <ul class="product__hover">
-                                    <li><a href="../images/yamaha/xetayga/14/yamaha-smax-2020.png"
-                                           class="image-popup"><span class="arrow_expand"></span></a></li>
-                                    <li><a href="#"><span class="icon_heart_alt"></span></a></li>
-                                    <li><a href="#"><span class="icon_bag_alt"></span></a></li>
-                                </ul>
-                            </div>
-                            <div class="product__item__text">
-                                <h6><a href="#">Yamaha Smax 2020</a></h6>
-                                <div class="rating">
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                </div>
-                                <div class="product__price"><span>435.000.000</span> 429.000.000 VNĐ</div>
-                            </div>
-                        </div>
-                    </div>
+                    </c:forEach>
+
+
+                    <%--                    <div class="col-lg-4 col-md-6">--%>
+                    <%--                        <div class="product__item">--%>
+                    <%--                            <div class="product__item__pic set-bg"--%>
+                    <%--                                 data-setbg="../images/yamaha/xeso/11/sirius-black-drum-004-1.png">--%>
+                    <%--                                <ul class="product__hover">--%>
+                    <%--                                    <li><a href="../images/yamaha/xeso/11/sirius-black-drum-004-1.png"--%>
+                    <%--                                           class="image-popup"><span class="arrow_expand"></span></a></li>--%>
+                    <%--                                    <li><a href="#"><span class="icon_heart_alt"></span></a></li>--%>
+                    <%--                                    <li><a href="#"><span class="icon_bag_alt"></span></a></li>--%>
+                    <%--                                </ul>--%>
+                    <%--                            </div>--%>
+                    <%--                            <div class="product__item__text">--%>
+                    <%--                                <h6><a href="#">Sirius Drum</a></h6>--%>
+                    <%--                                <div class="rating">--%>
+                    <%--                                    <i class="fa fa-star"></i>--%>
+                    <%--                                    <i class="fa fa-star"></i>--%>
+                    <%--                                    <i class="fa fa-star"></i>--%>
+                    <%--                                    <i class="fa fa-star"></i>--%>
+                    <%--                                    <i class="fa fa-star"></i>--%>
+                    <%--                                </div>--%>
+                    <%--                                <div class="product__price">30.000.000 VNĐ</div>--%>
+                    <%--                            </div>--%>
+                    <%--                        </div>--%>
+                    <%--                    </div>--%>
+                    <%--                    <div class="col-lg-4 col-md-6">--%>
+                    <%--                        <div class="product__item">--%>
+                    <%--                            <div class="product__item__pic set-bg"--%>
+                    <%--                                 data-setbg="../images/yamaha/xecontay/7/ex155-yellow-grey-004.png">--%>
+                    <%--                                <ul class="product__hover">--%>
+                    <%--                                    <li><a href="../images/yamaha/xecontay/7/ex155-yellow-grey-004.png"--%>
+                    <%--                                           class="image-popup"><span class="arrow_expand"></span></a></li>--%>
+                    <%--                                    <li><a href="#"><span class="icon_heart_alt"></span></a></li>--%>
+                    <%--                                    <li><a href="#"><span class="icon_bag_alt"></span></a></li>--%>
+                    <%--                                </ul>--%>
+                    <%--                            </div>--%>
+                    <%--                            <div class="product__item__text">--%>
+                    <%--                                <h6><a href="#">Exciter 155</a></h6>--%>
+                    <%--                                <div class="rating">--%>
+                    <%--                                    <i class="fa fa-star"></i>--%>
+                    <%--                                    <i class="fa fa-star"></i>--%>
+                    <%--                                    <i class="fa fa-star"></i>--%>
+                    <%--                                    <i class="fa fa-star"></i>--%>
+                    <%--                                    <i class="fa fa-star"></i>--%>
+                    <%--                                </div>--%>
+                    <%--                                <div class="product__price">47.000.000 VNĐ</div>--%>
+                    <%--                            </div>--%>
+                    <%--                        </div>--%>
+                    <%--                    </div>--%>
+                    <%--                    <div class="col-lg-4 col-md-6">--%>
+                    <%--                        <div class="product__item">--%>
+                    <%--                            <div class="product__item__pic set-bg"--%>
+                    <%--                                 data-setbg="../images/yamaha/xecontay/12/exciter-150-pearl-white-004.png">--%>
+                    <%--                                <ul class="product__hover">--%>
+                    <%--                                    <li><a href="../images/yamaha/xecontay/12/exciter-150-pearl-white-004.png"--%>
+                    <%--                                           class="image-popup"><span class="arrow_expand"></span></a></li>--%>
+                    <%--                                    <li><a href="#"><span class="icon_heart_alt"></span></a></li>--%>
+                    <%--                                    <li><a href="#"><span class="icon_bag_alt"></span></a></li>--%>
+                    <%--                                </ul>--%>
+                    <%--                            </div>--%>
+                    <%--                            <div class="product__item__text">--%>
+                    <%--                                <h6><a href="#">Exciter 150 pearl</a></h6>--%>
+                    <%--                                <div class="rating">--%>
+                    <%--                                    <i class="fa fa-star"></i>--%>
+                    <%--                                    <i class="fa fa-star"></i>--%>
+                    <%--                                    <i class="fa fa-star"></i>--%>
+                    <%--                                    <i class="fa fa-star"></i>--%>
+                    <%--                                    <i class="fa fa-star"></i>--%>
+                    <%--                                </div>--%>
+                    <%--                                <div class="product__price">49.000.000 VNĐ</div>--%>
+                    <%--                            </div>--%>
+                    <%--                        </div>--%>
+                    <%--                    </div>--%>
+                    <%--                    <div class="col-lg-4 col-md-6">--%>
+                    <%--                        <div class="product__item sale">--%>
+                    <%--                            <div class="product__item__pic set-bg"--%>
+                    <%--                                 data-setbg="../images/yamaha/xeso/3/jupiter-finn-urban-blue-004.png">--%>
+                    <%--                                <div class="label">Giảm giá</div>--%>
+                    <%--                                <ul class="product__hover">--%>
+                    <%--                                    <li><a href="../images/yamaha/xeso/3/jupiter-finn-urban-blue-004.png"--%>
+                    <%--                                           class="image-popup"><span class="arrow_expand"></span></a></li>--%>
+                    <%--                                    <li><a href="#"><span class="icon_heart_alt"></span></a></li>--%>
+                    <%--                                    <li><a href="#"><span class="icon_bag_alt"></span></a></li>--%>
+                    <%--                                </ul>--%>
+                    <%--                            </div>--%>
+                    <%--                            <div class="product__item__text">--%>
+                    <%--                                <h6><a href="#">Jupiter finn urban</a></h6>--%>
+                    <%--                                <div class="rating">--%>
+                    <%--                                    <i class="fa fa-star"></i>--%>
+                    <%--                                    <i class="fa fa-star"></i>--%>
+                    <%--                                    <i class="fa fa-star"></i>--%>
+                    <%--                                    <i class="fa fa-star"></i>--%>
+                    <%--                                    <i class="fa fa-star"></i>--%>
+                    <%--                                </div>--%>
+                    <%--                                <div class="product__price"><span>31.000.000</span> 29.000.000 VNĐ</div>--%>
+                    <%--                            </div>--%>
+                    <%--                        </div>--%>
+                    <%--                    </div>--%>
+                    <%--                    <div class="col-lg-4 col-md-6">--%>
+                    <%--                        <div class="product__item">--%>
+                    <%--                            <div class="product__item__pic set-bg"--%>
+                    <%--                                 data-setbg="../images/yamaha/xetayga/7/latte-dark-grey-004.png">--%>
+                    <%--                                <ul class="product__hover">--%>
+                    <%--                                    <li><a href="../images/yamaha/xetayga/7/latte-dark-grey-004.png"--%>
+                    <%--                                           class="image-popup"><span class="arrow_expand"></span></a></li>--%>
+                    <%--                                    <li><a href="#"><span class="icon_heart_alt"></span></a></li>--%>
+                    <%--                                    <li><a href="#"><span class="icon_bag_alt"></span></a></li>--%>
+                    <%--                                </ul>--%>
+                    <%--                            </div>--%>
+                    <%--                            <div class="product__item__text">--%>
+                    <%--                                <h6><a href="#">Latte xám đen</a></h6>--%>
+                    <%--                                <div class="rating">--%>
+                    <%--                                    <i class="fa fa-star"></i>--%>
+                    <%--                                    <i class="fa fa-star"></i>--%>
+                    <%--                                    <i class="fa fa-star"></i>--%>
+                    <%--                                    <i class="fa fa-star"></i>--%>
+                    <%--                                    <i class="fa fa-star"></i>--%>
+                    <%--                                </div>--%>
+                    <%--                                <div class="product__price">39.000.000 VNĐ</div>--%>
+                    <%--                            </div>--%>
+                    <%--                        </div>--%>
+                    <%--                    </div>--%>
+                    <%--                    <div class="col-lg-4 col-md-6">--%>
+                    <%--                        <div class="product__item">--%>
+                    <%--                            <div class="product__item__pic set-bg"--%>
+                    <%--                                 data-setbg="../images/yamaha/xephankhoilon/7/r15m-anni-60th-004.png">--%>
+                    <%--                                <ul class="product__hover">--%>
+                    <%--                                    <li><a href="../images/yamaha/xephankhoilon/7/r15m-anni-60th-004.png"--%>
+                    <%--                                           class="image-popup"><span class="arrow_expand"></span></a></li>--%>
+                    <%--                                    <li><a href="#"><span class="icon_heart_alt"></span></a></li>--%>
+                    <%--                                    <li><a href="#"><span class="icon_bag_alt"></span></a></li>--%>
+                    <%--                                </ul>--%>
+                    <%--                            </div>--%>
+                    <%--                            <div class="product__item__text">--%>
+                    <%--                                <h6><a href="#">R15m Anni 60th</a></h6>--%>
+                    <%--                                <div class="rating">--%>
+                    <%--                                    <i class="fa fa-star"></i>--%>
+                    <%--                                    <i class="fa fa-star"></i>--%>
+                    <%--                                    <i class="fa fa-star"></i>--%>
+                    <%--                                    <i class="fa fa-star"></i>--%>
+                    <%--                                    <i class="fa fa-star"></i>--%>
+                    <%--                                </div>--%>
+                    <%--                                <div class="product__price">399.000.000 VNĐ</div>--%>
+                    <%--                            </div>--%>
+                    <%--                        </div>--%>
+                    <%--                    </div>--%>
+                    <%--                    <div class="col-lg-4 col-md-6">--%>
+                    <%--                        <div class="product__item">--%>
+                    <%--                            <div class="product__item__pic set-bg"--%>
+                    <%--                                 data-setbg="../images/yamaha/xephankhoilon/15/yamaha-mt-15-22.png">--%>
+                    <%--                                <div class="label stockout stockblue">Hết hàng</div>--%>
+                    <%--                                <ul class="product__hover">--%>
+                    <%--                                    <li><a href="../images/yamaha/xephankhoilon/15/yamaha-mt-15-22.png"--%>
+                    <%--                                           class="image-popup"><span class="arrow_expand"></span></a></li>--%>
+                    <%--                                    <li><a href="#"><span class="icon_heart_alt"></span></a></li>--%>
+                    <%--                                    <li><a href="#"><span class="icon_bag_alt"></span></a></li>--%>
+                    <%--                                </ul>--%>
+                    <%--                            </div>--%>
+                    <%--                            <div class="product__item__text">--%>
+                    <%--                                <h6><a href="#">Yamaha MT 1522</a></h6>--%>
+                    <%--                                <div class="rating">--%>
+                    <%--                                    <i class="fa fa-star"></i>--%>
+                    <%--                                    <i class="fa fa-star"></i>--%>
+                    <%--                                    <i class="fa fa-star"></i>--%>
+                    <%--                                    <i class="fa fa-star"></i>--%>
+                    <%--                                    <i class="fa fa-star"></i>--%>
+                    <%--                                </div>--%>
+                    <%--                                <div class="product__price">479.000.000 VNĐ</div>--%>
+                    <%--                            </div>--%>
+                    <%--                        </div>--%>
+                    <%--                    </div>--%>
+                    <%--                    <div class="col-lg-4 col-md-6">--%>
+                    <%--                        <div class="product__item sale">--%>
+                    <%--                            <div class="product__item__pic set-bg"--%>
+                    <%--                                 data-setbg="../images/yamaha/xetayga/14/yamaha-smax-2020.png">--%>
+                    <%--                                <div class="label">Giảm giá</div>--%>
+                    <%--                                <ul class="product__hover">--%>
+                    <%--                                    <li><a href="../images/yamaha/xetayga/14/yamaha-smax-2020.png"--%>
+                    <%--                                           class="image-popup"><span class="arrow_expand"></span></a></li>--%>
+                    <%--                                    <li><a href="#"><span class="icon_heart_alt"></span></a></li>--%>
+                    <%--                                    <li><a href="#"><span class="icon_bag_alt"></span></a></li>--%>
+                    <%--                                </ul>--%>
+                    <%--                            </div>--%>
+                    <%--                            <div class="product__item__text">--%>
+                    <%--                                <h6><a href="#">Yamaha Smax 2020</a></h6>--%>
+                    <%--                                <div class="rating">--%>
+                    <%--                                    <i class="fa fa-star"></i>--%>
+                    <%--                                    <i class="fa fa-star"></i>--%>
+                    <%--                                    <i class="fa fa-star"></i>--%>
+                    <%--                                    <i class="fa fa-star"></i>--%>
+                    <%--                                    <i class="fa fa-star"></i>--%>
+                    <%--                                </div>--%>
+                    <%--                                <div class="product__price"><span>435.000.000</span> 429.000.000 VNĐ</div>--%>
+                    <%--                            </div>--%>
+                    <%--                        </div>--%>
+                    <%--                    </div>--%>
+
                     <div class="col-lg-12 text-center">
-                        <div class="pagination__option">
-                            <a href="#">1</a>
-                            <a href="#">2</a>
-                            <a href="#">3</a>
-                            <a href="#"><i class="fa fa-angle-right"></i></a>
-                        </div>
+                        <%--                        <div class="pagination__option">--%>
+                        <%--                            <a href="#">1</a>--%>
+                        <%--                            <a href="#">2</a>--%>
+                        <%--                            <a href="#">3</a>--%>
+                        <%--                            <a href="#"><i class="fa fa-angle-right"></i></a>--%>
+                        <%--                        </div>--%>
+
+                        <c:if test="${totalPages > 0}">
+                            <nav aria-label="Page navigation example">
+                                <ul class="pagination float-right">
+                                    <li class="${currentPage > 1 ? 'page-item' : 'page-item disabled'}">
+                                        <a class="page-link"
+                                           href="search?pageNumber=${currentPage - 1}&keyword=${keyword}">Trước</a>
+                                    </li>
+                                    <c:forEach var="i" begin="1" end="${totalPages}">
+                                        <li class="${currentPage != i ? 'page-item' : 'page-item active'}">
+                                            <a class="page-link"
+                                               href="search?pageNumber=${i}&keyword=${keyword}">${i}</a>
+                                        </li>
+                                    </c:forEach>
+                                    <li class="${currentPage < totalPages ? 'page-item' : 'page-item disabled'}">
+                                        <a class="page-link"
+                                           href="search?pageNumber=${currentPage + 1}&keyword=${keyword}">Sau</a>
+                                    </li>
+                                </ul>
+                            </nav>
+                        </c:if>
                     </div>
                 </div>
             </div>
@@ -420,7 +438,7 @@
     </div>
 </section>
 
-<jsp:include page="footer.jsp"/>
+<jsp:include page="footer1.jsp"/>
 
 <jsp:include page="js.jsp"/>
 </body>
