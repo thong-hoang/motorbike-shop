@@ -1480,22 +1480,26 @@ ol {
     background-color: #e8715b;
     color: white;
 }
-.sidebar__sizes,
+.sidebar__categories,
+.sidebar__brand,
 .sidebar__color {
     margin-bottom: 40px;
 }
 
-.sidebar__sizes .section-title,
+.sidebar__categories .section-title,
+.sidebar__brand .section-title,
 .sidebar__color .section-title {
     margin-bottom: 35px;
 }
 
-.sidebar__sizes .section-title h4,
+.sidebar__categories .section-title h4,
+.sidebar__brand .section-title h4,
 .sidebar__color .section-title h4 {
     font-size: 18px;
 }
 
-.sidebar__sizes .size__list label,
+.sidebar__categories .size__list label,
+.sidebar__brand .size__list label,
 .sidebar__color .size__list label {
     display: block;
     padding-left: 20px;
@@ -1506,24 +1510,28 @@ ol {
     cursor: pointer;
 }
 
-.sidebar__sizes .size__list label input,
+.sidebar__categories .size__list label input,
+.sidebar__brand .size__list label input,
 .sidebar__color .size__list label input {
     position: absolute;
     visibility: hidden;
 }
 
-.sidebar__sizes .size__list label input:checked~.checkmark,
+.sidebar__categories .size__list label input:checked~.checkmark,
+.sidebar__brand .size__list label input:checked~.checkmark,
 .sidebar__color .size__list label input:checked~.checkmark {
     border-color: #ca1515;
 }
 
-.sidebar__sizes .size__list label input:checked~.checkmark:after,
+.sidebar__categories .size__list label input:checked~.checkmark:after,
+.sidebar__brand .size__list label input:checked~.checkmark:after,
 .sidebar__color .size__list label input:checked~.checkmark:after {
     border-color: #ca1515;
     opacity: 1;
 }
 
-.sidebar__sizes .size__list label .checkmark,
+.sidebar__categories .size__list label .checkmark,
+.sidebar__brand .size__list label .checkmark,
 .sidebar__color .size__list label .checkmark {
     position: absolute;
     left: 0;
@@ -1534,7 +1542,8 @@ ol {
     border-radius: 2px;
 }
 
-.sidebar__sizes .size__list label .checkmark:after,
+.sidebar__categories .size__list label .checkmark:after,
+.sidebar__brand .size__list label .checkmark:after,
 .sidebar__color .size__list label .checkmark:after {
     position: absolute;
     left: 0px;
@@ -1550,6 +1559,8 @@ ol {
     content: "";
 }
 
+.sidebar__categories .categories__list label,
+.sidebar__brand .brand__list label,
 .sidebar__color .color__list label {
     text-transform: capitalize;
 }
