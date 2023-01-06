@@ -75,7 +75,33 @@
                             </label>
                         </div>
                     </div>
-
+                    <div class="sidebar__categories">
+                        <div class="section-title">
+                            <h4>Phân loại</h4>
+                        </div>
+                        <div class="size__list categories__list">
+                            <label for="xeso">
+                                Xe số
+                                <input type="checkbox" id="xeso">
+                                <span class="checkmark"></span>
+                            </label>
+                            <label for="xetayga">
+                                Xe tay ga
+                                <input type="checkbox" id="xetayga">
+                                <span class="checkmark"></span>
+                            </label>
+                            <label for="xecontay">
+                                Xe côn tay
+                                <input type="checkbox" id="xecontay">
+                                <span class="checkmark"></span>
+                            </label>
+                            <label for="xephankhoilon">
+                                Xe phân khối lớn
+                                <input type="checkbox" id="xephankhoilon">
+                                <span class="checkmark"></span>
+                            </label>
+                        </div>
+                    </div>
                     <div class="sidebar__filter">
                         <div class="section-title">
                             <h4>Lọc theo giá</h4>
