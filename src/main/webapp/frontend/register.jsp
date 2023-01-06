@@ -67,6 +67,12 @@
                                 style="padding-left: 2.5rem; padding-right: 2.5rem;">Đăng ký
                         </button>
                     </div>
+                    <div class="form-outline mb-4">
+                        <div class="text-center text-lg-start mt-4 pt-2">
+                            <span>Bạn đã có tài khoản?</span>
+                            <a href="login">Đăng nhập</a>
+                        </div>
+                    </div>
                 </form>
             </div>
         </div>
