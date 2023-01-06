@@ -11,8 +11,20 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>VTV | ${title}</title>
 
-    <jsp:include page="css.jsp"/>
-    <link rel="stylesheet" href="css/shop.css" type="text/css">
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Cookie&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap"
+          rel="stylesheet">
+
+    <!-- Css Styles -->
+    <link rel="stylesheet" href="css/frontend/css/bootstrap.min.css" type="text/css">
+    <link rel="stylesheet" href="css/frontend/css/font-awesome.min.css" type="text/css">
+    <link rel="stylesheet" href="css/frontend/css/elegant-icons.css" type="text/css">
+    <link rel="stylesheet" href="css/frontend/css/jquery-ui.min.css" type="text/css">
+    <link rel="stylesheet" href="css/frontend/css/magnific-popup.css" type="text/css">
+    <link rel="stylesheet" href="css/frontend/css/owl.carousel.min.css" type="text/css">
+    <link rel="stylesheet" href="css/frontend/css/slicknav.min.css" type="text/css">
+    <link rel="stylesheet" href="css/frontend/css/shop.css" type="text/css">
 </head>
 
 <body>
@@ -36,72 +48,34 @@
         <div class="row">
             <div class="col-lg-3 col-md-3">
                 <div class="shop__sidebar">
-                    <div class="sidebar__categories">
+                    <div class="sidebar__brand">
                         <div class="section-title">
-                            <h4>Phân loại</h4>
+                            <h4>Thương hiệu</h4>
                         </div>
-                        <div class="categories__accordion">
-                            <div class="accordion" id="accordionExample">
-                                <div class="card">
-                                    <div class="card-heading active">
-                                        <a data-toggle="collapse" data-target="#collapseOne">Xe số</a>
-                                    </div>
-                                    <div id="collapseOne" class="collapse show" data-parent="#accordionExample">
-                                        <div class="card-body">
-                                            <ul>
-                                                <li><a href="#">Honda</a></li>
-                                                <li><a href="#">Yamaha</a></li>
-                                                <li><a href="#">Future</a></li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="card">
-                                    <div class="card-heading">
-                                        <a data-toggle="collapse" data-target="#collapseTwo">Xe tay ga</a>
-                                    </div>
-                                    <div id="collapseTwo" class="collapse" data-parent="#accordionExample">
-                                        <div class="card-body">
-                                            <ul>
-                                                <li><a href="#">Honda</a></li>
-                                                <li><a href="#">Yamaha</a></li>
-                                                <li><a href="#">Future</a></li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="card">
-                                    <div class="card-heading">
-                                        <a data-toggle="collapse" data-target="#collapseThree">Xe côn tay</a>
-                                    </div>
-                                    <div id="collapseThree" class="collapse" data-parent="#accordionExample">
-                                        <div class="card-body">
-                                            <ul>
-                                                <li><a href="#">Honda</a></li>
-                                                <li><a href="#">Yamaha</a></li>
-                                                <li><a href="#">Future</a></li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="card">
-                                    <div class="card-heading">
-                                        <a data-toggle="collapse" data-target="#collapseFour">Xe phân khối lớn</a>
-                                    </div>
-                                    <div id="collapseFour" class="collapse" data-parent="#accordionExample">
-                                        <div class="card-body">
-                                            <ul>
-                                                <li><a href="#">Honda</a></li>
-                                                <li><a href="#">Yamaha</a></li>
-                                                <li><a href="#">Future</a></li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-
-                            </div>
+                        <div class="size__list brand__list">
+                            <label for="honda">
+                                Honda
+                                <input type="checkbox" id="honda">
+                                <span class="checkmark"></span>
+                            </label>
+                            <label for="yamaha">
+                                Yamaha
+                                <input type="checkbox" id="yamaha">
+                                <span class="checkmark"></span>
+                            </label>
+                            <label for="suzuki">
+                                Suzuki
+                                <input type="checkbox" id="suzuki">
+                                <span class="checkmark"></span>
+                            </label>
+                            <label for="sym">
+                                SYM
+                                <input type="checkbox" id="sym">
+                                <span class="checkmark"></span>
+                            </label>
                         </div>
                     </div>
+
                     <div class="sidebar__filter">
                         <div class="section-title">
                             <h4>Lọc theo giá</h4>
@@ -440,7 +414,16 @@
 
 <jsp:include page="footer1.jsp"/>
 
-<jsp:include page="js.jsp"/>
+<script src="frontend/js/jquery-3.3.1.min.js"></script>
+<script src="frontend/js/bootstrap.min.js"></script>
+<script src="frontend/js/jquery.magnific-popup.min.js"></script>
+<script src="frontend/js/jquery-ui.min.js"></script>
+<script src="frontend/js/mixitup.min.js"></script>
+<script src="frontend/js/jquery.countdown.min.js"></script>
+<script src="frontend/js/jquery.slicknav.js"></script>
+<script src="frontend/js/owl.carousel.min.js"></script>
+<script src="frontend/js/jquery.nicescroll.min.js"></script>
+<script src="js/frontend/js/main.js"></script>
 </body>
 
 </html>
