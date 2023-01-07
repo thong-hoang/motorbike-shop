@@ -40,14 +40,15 @@ public class ShoppingCartService {
             request.getSession().setAttribute("cart", shoppingCart);
         }
 
-        Product product = productDAO.findById(7);
-//        Product product = new Product();
-//        product.setId(7);
-//        product.setMainImagePath("winner-x-camo-2022.jpg");
-//        product.setPrice(46000000);
+        Product product1 = productDAO.findById(7);
+        Product product2 = productDAO.findById(8);
+        Product product3 = productDAO.findById(9);
 
         ShoppingCart shoppingCart = (ShoppingCart) request.getSession().getAttribute("cart");
-        shoppingCart.addItem(product);
+        shoppingCart.addItem(product1);
+        shoppingCart.addItem(product2);
+        shoppingCart.addItem(product2);
+        shoppingCart.addItem(product3);
 
         request.getRequestDispatcher("/frontend/cart.jsp").forward(request, response);
     }

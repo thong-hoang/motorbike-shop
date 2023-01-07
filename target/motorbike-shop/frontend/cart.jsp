@@ -1,5 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 
 <html lang="zxx">
 
@@ -77,13 +78,19 @@
                                             </div>
                                         </div>
                                     </td>
-                                    <td class="cart__price">${item.key.price} VNĐ</td>
+                                    <td class="cart__price">
+                                        <fmt:setLocale value="vi_VN"/>
+                                        <fmt:formatNumber value="${item.key.price}" type="currency"/>
+                                    </td>
                                     <td class="cart__quantity">
                                         <div class="pro-qty">
                                             <input type="text" value="${item.value}">
                                         </div>
                                     </td>
-                                    <td class="cart__total">${item.value * item.key.price} VNĐ</td>
+                                    <td class="cart__total">
+                                        <fmt:setLocale value="vi_VN"/>
+                                        <fmt:formatNumber value="${item.value * item.key.price}" type="currency"/>
+                                    </td>
                                     <td class="cart__close"><span class="icon_close"></span></td>
                                 </tr>
                             </c:forEach>
@@ -121,9 +128,19 @@
                 <div class="cart__total__procced">
                     <h6>Giỏ hàng</h6>
                     <ul>
-                        <li>Tổng tiền hàng <span> 57.000.000 VNĐ</span></li>
-                        <li>Giảm giá sản phẩm <span> - 0 VNĐ</span></li>
-                        <li>Tổng số tiền <span> 57.000.000 VNĐ</span></li>
+                        <%--                        <li>Tổng tiền hàng--%>
+                        <%--                            <span>--%>
+                        <%--                                <fmt:setLocale value="vi_VN"/>--%>
+                        <%--                                <fmt:formatNumber value="${cart.totalAmount}" type="currency"/>--%>
+                        <%--                            </span>--%>
+                        <%--                        </li>--%>
+                        <%--                        <li>Giảm giá sản phẩm <span> - 0 VNĐ</span></li>--%>
+                        <li>Tổng số tiền
+                            <span>
+                                <fmt:setLocale value="vi_VN"/>
+                                <fmt:formatNumber value="${cart.totalAmount}" type="currency"/>
+                            </span>
+                        </li>
                     </ul>
                     <a href="checkout.html" class="primary-btn">Đặt hàng</a>
                 </div>

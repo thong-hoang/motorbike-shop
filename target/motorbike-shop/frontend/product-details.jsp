@@ -114,7 +114,9 @@
                         </div>
                         <br><br><br>
                         <a href="./cart.html" class="buy-btn"> Mua ngay</a>
-                        <a href="./cart.html" class="cart-btn"><span class="icon_bag_alt"></span> Thêm vào giỏ hàng</a>
+                        <a href="./cart.html" class="cart-btn">
+                            <span class="icon_bag_alt"></span> Thêm vào giỏ hàng
+                        </a>
                         <!--    <ul>
                               <li><a href="#"><span class="icon_heart_alt"></span></a></li>
                                <li><a href="#"><span class="icon_adjust-horiz"></span></a></li>
