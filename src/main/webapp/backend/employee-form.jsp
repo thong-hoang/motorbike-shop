@@ -76,7 +76,7 @@
                                                          alt="Photos preview" class="img-fluid" style="width: 40%"/>
                                                 </c:when>
                                                 <c:otherwise>
-                                                    <img id="avatarImg" src="../images/employee/default.jpg"
+                                                    <img id="avatarImg" src="../images/default.jpg"
                                                          alt="Photos preview" class="img-fluid" style="width: 40%"/>
                                                 </c:otherwise>
                                             </c:choose>
@@ -179,7 +179,7 @@
                                             <c:if test="${empty employee.id}">
                                                 <c:forEach var="role" items="${roles}">
                                                     <input id="roleLabel" type="checkbox" class="mt-2" name="roles"
-                                                           value="${role.id}"> ${role.name}
+                                                           value="${role.id}" ${role.id == 2 ? 'checked' : '' }> ${role.name}
                                                     - <small>${role.description}</small><br>
                                                 </c:forEach>
                                             </c:if>

@@ -1,6 +1,8 @@
 package edu.nlu.motorbike_shop.controller.backend.admin;
 
+import edu.nlu.motorbike_shop.dao.CustomerDAO;
 import edu.nlu.motorbike_shop.dao.EmployeeDAO;
+import edu.nlu.motorbike_shop.dao.ProductDAO;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -17,8 +19,8 @@ public class AdminHomeServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String homepage = "index.jsp";
         long numberOfEmployees = EmployeeDAO.getInstance().count();
-        long numberOfCustomers = 50;
-        long numberOfProducts = 400;
+        long numberOfCustomers = CustomerDAO.getInstance().count();
+        long numberOfProducts = ProductDAO.getInstance().count();
         long numberOfOrders = 70;
 
         request.setAttribute("totalEmployees", numberOfEmployees);
