@@ -67,7 +67,8 @@
                                     <div class="form-group row">
                                         <label class="col-sm-4 col-form-label">Ảnh đại diện:</label>
                                         <div class="col-sm-8">
-                                            <input type="file" id="avatarUploader" class="mb-2" name="image" required/>
+                                            <input type="file" id="avatarUploader" class="mb-2" name="image"
+                                            ${banner.id != null ? '' : 'required'}/>
                                             <c:choose>
                                                 <c:when test="${not empty banner.imagePath}">
                                                     <img id="avatarImg"

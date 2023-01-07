@@ -2,6 +2,8 @@ package edu.nlu.motorbike_shop.service;
 
 import edu.nlu.motorbike_shop.dao.BannerDAO;
 import edu.nlu.motorbike_shop.entity.Banner;
+import edu.nlu.motorbike_shop.entity.Brand;
+import edu.nlu.motorbike_shop.entity.Category;
 import edu.nlu.motorbike_shop.entity.Employee;
 import edu.nlu.motorbike_shop.util.FileUploadUtils;
 
@@ -89,47 +91,57 @@ public class BannerService {
     }
 
     /**
+     * Read banner information submitted from the form.
+     *
+     * @return A brand object with information read from form.
+     */
+    public Banner readAllBannerFields(Banner banner) {
+        String name = request.getParameter("name");
+        boolean enabled = "on".equals(request.getParameter("enabled"));
+
+        banner.setName(name);
+        banner.setEnabled(enabled);
+
+        return banner;
+    }
+
+    /**
      * Get banner information from the form and save it in the database.
      *
      * @throws ServletException If the request for the POST could not be handled.
      * @throws IOException      If an input or output error is detected when the servlet handles the POST request.
      */
     public void saveBanner() throws ServletException, IOException {
-        String name = request.getParameter("name");
-        boolean enabled = "on".equals(request.getParameter("enabled"));
+        Banner banner = new Banner();
+        banner = readAllBannerFields(banner);
+
         Part part = request.getPart("image");
         String fileName = part.getSubmittedFileName();
-
-        Banner banner = new Banner();
-        banner.setName(name);
-        banner.setEnabled(enabled);
 
         boolean existImagePath = bannerDAO.checkImagePathExists(fileName);
 
         if (existImagePath) {
-            String message = "Ảnh " + fileName + " đã tồn tại!!!";
+            String message = "Ảnh quảng cáo " + fileName + " đã tồn tại!!!";
+            banner.setImagePath(null);
             request.setAttribute("message", message);
             request.setAttribute("banner", banner);
 
-            String bannerFormPage = "banner-form.jsp";
-            request.getRequestDispatcher(bannerFormPage).forward(request, response);
+            createBanner();
         } else {
             banner.setImagePath(fileName);
             bannerDAO.save(banner);
 
             Integer id = bannerDAO.findByImagePath(fileName).getId();
-
             String serverPath = request.getServletContext().getRealPath("");
             String directoryServerPath = serverPath + File.separator + DEFAULT_IMAGE_DIRECTORY + File.separator;
             String nameDirectoryServer = "banner" + File.separator + id;
 
             directoryServerPath = directoryServerPath + File.separator + nameDirectoryServer;
-
             saveFile(directoryServerPath, fileName, part);
             String fileServerPath = directoryServerPath + File.separator + fileName;
-            FileUploadUtils.copyFile(fileServerPath, nameDirectoryServer);
+            copyFile(fileServerPath, nameDirectoryServer);
 
-            String message = name + " đã được thêm thành công !";
+            String message = banner.getName() + " đã được thêm thành công !";
             listBanner(message);
         }
     }
@@ -152,8 +164,7 @@ public class BannerService {
             request.setAttribute("banner", banner);
             request.setAttribute("title", "Chỉnh sửa quảng cáo");
 
-            String bannerFormPage = "banner-form.jsp";
-            request.getRequestDispatcher(bannerFormPage).forward(request, response);
+            createBanner();
         }
     }
 
@@ -165,16 +176,12 @@ public class BannerService {
      */
     public void updateBanner() throws ServletException, IOException {
         Integer id = Integer.valueOf(request.getParameter("id"));
-        String name = request.getParameter("name");
-        boolean enabled = "on".equals(request.getParameter("enabled"));
+        Banner banner = new Banner();
+        banner = readAllBannerFields(banner);
+        banner.setId(id);
+
         Part part = request.getPart("image");
         String fileName = part.getSubmittedFileName();
-
-        Banner banner = new Banner();
-        banner.setId(id);
-        banner.setName(name);
-        banner.setEnabled(enabled);
-        banner.setImagePath(fileName);
 
         Banner bannerById = bannerDAO.findById(id);
         Banner bannerByImagePath = bannerDAO.findByImagePath(fileName);
@@ -186,27 +193,31 @@ public class BannerService {
             listBanner(message);
         } else {
             if (bannerByImagePath != null && id != bannerByImagePath.getId()) {
-                message = banner.getImagePath() + " đã tồn tại!!!";
-                banner.setImagePath(null);
+                message = "Ảnh quảng cáo " + bannerByImagePath.getImagePath() + " đã tồn tại!!!";
+                banner.setImagePath(bannerById.getImagePath());
                 request.setAttribute("message", message);
                 request.setAttribute("banner", banner);
                 request.setAttribute("title", "Chỉnh sửa quảng cáo");
 
-                String updatePage = "banner-form.jsp";
-                request.getRequestDispatcher(updatePage).forward(request, response);
+                createBanner();
             } else {
-                String serverPath = request.getServletContext().getRealPath("");
-                String directoryServerPath = serverPath + File.separator + DEFAULT_IMAGE_DIRECTORY;
+                if (fileName.isEmpty()) {
+                    banner.setImagePath(bannerById.getImagePath());
+                } else {
+                    banner.setImagePath(fileName);
+                    String serverPath = request.getServletContext().getRealPath("");
+                    String directoryServerPath = serverPath + File.separator + DEFAULT_IMAGE_DIRECTORY;
 
-                String nameDirectoryServer = "banner" + File.separator + id;
-                directoryServerPath = directoryServerPath + File.separator + nameDirectoryServer;
+                    String nameDirectoryServer = "banner" + File.separator + id;
+                    directoryServerPath = directoryServerPath + File.separator + nameDirectoryServer;
 
-                cleanDir(directoryServerPath);
-                cleanDir(DEFAULT_APP_IMAGE_DIRECTORY + nameDirectoryServer);
+                    cleanDir(directoryServerPath);
+                    cleanDir(DEFAULT_APP_IMAGE_DIRECTORY + nameDirectoryServer);
 
-                saveFile(directoryServerPath, fileName, part);
-                String fileServerPath = directoryServerPath + File.separator + fileName;
-                FileUploadUtils.copyFile(fileServerPath, nameDirectoryServer);
+                    saveFile(directoryServerPath, fileName, part);
+                    String fileServerPath = directoryServerPath + File.separator + fileName;
+                    copyFile(fileServerPath, nameDirectoryServer);
+                }
 
                 bannerDAO.update(banner);
 
