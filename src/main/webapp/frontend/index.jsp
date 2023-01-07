@@ -93,7 +93,7 @@
                         </div>
                         <ul class="header__right__widget">
                             <li><span class="icon_search search-switch"></span></li>
-                            <li><a href="frontend/cart.jsp"><span class="icon_bag_alt"></span>
+                            <li><a href="cart"><span class="icon_bag_alt"></span>
                                 <div class="tip">2</div>
                             </a></li>
                         </ul>
@@ -111,7 +111,7 @@
                                 </li>
                                 <li><span class="icon_search search-switch"></span></li>
                                 <li>
-                                    <a href="frontend/cart.jsp">
+                                    <a href="cart">
                                         <span class="icon_bag_alt"></span>
                                         <div class="tip">2</div>
                                     </a>
