@@ -342,4 +342,31 @@ public class BrandDAO implements Serializable {
             e.printStackTrace();
         }
     }
+
+    /**
+     * Retrieves all brand in the database.
+     *
+     * @return A list of brand entities.
+     */
+    public List<Brand> findAll() {
+        List<Brand> brands = new ArrayList<>();
+        String sql = "SELECT id, name FROM brands WHERE enabled = 1";
+
+        try (Connection conn = DBUtils.makeConnection();
+             PreparedStatement stm = conn.prepareStatement(sql)) {
+            try (ResultSet rs = stm.executeQuery()) {
+                while (rs.next()) {
+                    Integer id = rs.getInt(1);
+                    String name = rs.getString(2);
+                    Brand brand = new Brand();
+                    brand.setId(id);
+                    brand.setName(name);
+                    brands.add(brand);
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return brands;
+    }
 }

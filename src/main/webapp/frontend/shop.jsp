@@ -11,19 +11,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>VTV | ${title}</title>
 
-    <!-- Google Font -->
-    <link href="https://fonts.googleapis.com/css2?family=Cookie&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap"
-          rel="stylesheet">
-
-    <!-- Css Styles -->
-    <link rel="stylesheet" href="css/frontend/css/bootstrap.min.css" type="text/css">
-    <link rel="stylesheet" href="css/frontend/css/font-awesome.min.css" type="text/css">
-    <link rel="stylesheet" href="css/frontend/css/elegant-icons.css" type="text/css">
-    <link rel="stylesheet" href="css/frontend/css/jquery-ui.min.css" type="text/css">
-    <link rel="stylesheet" href="css/frontend/css/magnific-popup.css" type="text/css">
-    <link rel="stylesheet" href="css/frontend/css/owl.carousel.min.css" type="text/css">
-    <link rel="stylesheet" href="css/frontend/css/slicknav.min.css" type="text/css">
+    <jsp:include page="css.jsp"/>
     <link rel="stylesheet" href="css/frontend/css/shop.css" type="text/css">
 </head>
 
@@ -53,26 +41,13 @@
                             <h4>Thương hiệu</h4>
                         </div>
                         <div class="size__list brand__list">
-                            <label for="honda">
-                                Honda
-                                <input type="checkbox" id="honda">
-                                <span class="checkmark"></span>
-                            </label>
-                            <label for="yamaha">
-                                Yamaha
-                                <input type="checkbox" id="yamaha">
-                                <span class="checkmark"></span>
-                            </label>
-                            <label for="suzuki">
-                                Suzuki
-                                <input type="checkbox" id="suzuki">
-                                <span class="checkmark"></span>
-                            </label>
-                            <label for="sym">
-                                SYM
-                                <input type="checkbox" id="sym">
-                                <span class="checkmark"></span>
-                            </label>
+                            <c:forEach items="${brands}" var="brand">
+                                <label for="${brand.name}">
+                                        ${brand.name}
+                                    <input type="checkbox" id="${brand.name}" value="${brand.id}">
+                                    <span class="checkmark"></span>
+                                </label>
+                            </c:forEach>
                         </div>
                     </div>
                     <div class="sidebar__categories">
@@ -200,7 +175,7 @@
                                     </ul>
                                 </div>
                                 <div class="product__item__text">
-                                    <h6><a href="product-details.html">${product.name}</a></h6>
+                                    <h6><a href="product?id=${product.id}">${product.name}</a></h6>
                                     <div class="rating">
                                         <i class="fa fa-star"></i>
                                         <i class="fa fa-star"></i>
@@ -441,16 +416,7 @@
 
 <jsp:include page="footer1.jsp"/>
 
-<script src="frontend/js/jquery-3.3.1.min.js"></script>
-<script src="frontend/js/bootstrap.min.js"></script>
-<script src="frontend/js/jquery.magnific-popup.min.js"></script>
-<script src="frontend/js/jquery-ui.min.js"></script>
-<script src="frontend/js/mixitup.min.js"></script>
-<script src="frontend/js/jquery.countdown.min.js"></script>
-<script src="frontend/js/jquery.slicknav.js"></script>
-<script src="frontend/js/owl.carousel.min.js"></script>
-<script src="frontend/js/jquery.nicescroll.min.js"></script>
-<script src="js/frontend/js/main.js"></script>
+<jsp:include page="js.jsp"/>
 </body>
 
 </html>

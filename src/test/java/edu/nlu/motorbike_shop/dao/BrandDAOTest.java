@@ -33,15 +33,6 @@ public class BrandDAOTest {
 
     @Test
     public void test() {
-        Map<Category, String> categoryMap = new HashMap<>();
-
-        CategoryDAO.getInstance().findAllChildCategory().forEach(category -> categoryMap.put(category, ""));
-        Brand brand = brandDAO.findById(1);
-        System.out.println(brand);
-        brand.getCategories().forEach(category -> categoryMap.put(category, "checked"));
-
-        for (Map.Entry<Category, String> categoryStringEntry : categoryMap.entrySet()) {
-            System.out.println(categoryStringEntry.getKey() + " " + categoryStringEntry.getValue());
-        }
+       brandDAO.findAll().forEach(System.out::println);
     }
 }

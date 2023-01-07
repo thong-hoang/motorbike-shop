@@ -1,6 +1,7 @@
 package edu.nlu.motorbike_shop.service;
 
 import edu.nlu.motorbike_shop.constant.Constants;
+import edu.nlu.motorbike_shop.dao.BrandDAO;
 import edu.nlu.motorbike_shop.dao.ProductDAO;
 import edu.nlu.motorbike_shop.dao.SettingDAO;
 import edu.nlu.motorbike_shop.entity.*;
@@ -20,8 +21,8 @@ import static edu.nlu.motorbike_shop.util.FileUploadUtils.*;
 
 public class ProductService {
     private final ProductDAO productDAO = ProductDAO.getInstance();
-
     private final SettingDAO settingDAO = SettingDAO.getInstance();
+    private final BrandDAO brandDAO = BrandDAO.getInstance();
     private final HttpServletRequest request;
     private final HttpServletResponse response;
 
@@ -328,8 +329,8 @@ public class ProductService {
      * Show the product page to user.
      */
     public void showProduct() throws ServletException, IOException {
-        String categoryName = request.getParameter("category");
-        request.setAttribute("title", categoryName);
+        String keyword = request.getParameter("keyword");
+        request.setAttribute("title", keyword);
 
         // setting
         List<Setting> stores = settingDAO.findAllByCategory(Constants.GENERAL_SETTING_CATEGORY);
@@ -338,8 +339,12 @@ public class ProductService {
             request.setAttribute(store.getKey(), store.getValue());
         }
 
-        String keyword = request.getParameter("keyword");
-        if (keyword == null ||keyword.equals("xe máy"))
+        // brand
+        List<Brand> brands = brandDAO.findAll();
+        request.setAttribute("brands", brands);
+
+
+        if (keyword == null || keyword.equals("xe máy"))
             keyword = "";
         String pageNumberString = request.getParameter("pageNumber");
         int pageNumber;
@@ -365,5 +370,20 @@ public class ProductService {
         request.setAttribute("listProducts", products);
 
         request.getRequestDispatcher("/frontend/shop.jsp").forward(request, response);
+    }
+
+    public void showProductDetail() throws ServletException, IOException {
+        Integer id = Integer.valueOf(request.getParameter("id"));
+        Product product = productDAO.findById(id);
+        request.setAttribute("product", product);
+
+        // setting
+        List<Setting> stores = settingDAO.findAllByCategory(Constants.GENERAL_SETTING_CATEGORY);
+
+        for (Setting store : stores) {
+            request.setAttribute(store.getKey(), store.getValue());
+        }
+
+        request.getRequestDispatcher("/frontend/product-details.jsp").forward(request, response);
     }
 }
