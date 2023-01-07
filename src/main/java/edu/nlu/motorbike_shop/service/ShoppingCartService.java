@@ -40,16 +40,28 @@ public class ShoppingCartService {
             request.getSession().setAttribute("cart", shoppingCart);
         }
 
-        Product product1 = productDAO.findById(7);
-        Product product2 = productDAO.findById(8);
-        Product product3 = productDAO.findById(9);
-
-        ShoppingCart shoppingCart = (ShoppingCart) request.getSession().getAttribute("cart");
-        shoppingCart.addItem(product1);
-        shoppingCart.addItem(product2);
-        shoppingCart.addItem(product2);
-        shoppingCart.addItem(product3);
-
         request.getRequestDispatcher("/frontend/cart.jsp").forward(request, response);
+    }
+
+    public void addToCart() throws ServletException, IOException {
+        Integer productId = Integer.parseInt(request.getParameter("productId"));
+
+        Object cart = request.getSession().getAttribute("cart");
+
+        ShoppingCart shoppingCart = null;
+
+        if (cart != null && cart instanceof ShoppingCart) {
+            shoppingCart = (ShoppingCart) cart;
+        } else {
+            shoppingCart = new ShoppingCart();
+            request.getSession().setAttribute("cart", shoppingCart);
+        }
+
+        Product product = productDAO.findById(productId);
+
+        shoppingCart.addItem(product);
+
+        String cartPage = request.getContextPath().concat("/cart");
+        response.sendRedirect(cartPage);
     }
 }
