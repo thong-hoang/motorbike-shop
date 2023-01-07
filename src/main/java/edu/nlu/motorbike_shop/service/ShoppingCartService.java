@@ -48,7 +48,7 @@ public class ShoppingCartService {
 
         Object cart = request.getSession().getAttribute("cart");
 
-        ShoppingCart shoppingCart = null;
+        ShoppingCart shoppingCart;
 
         if (cart != null && cart instanceof ShoppingCart) {
             shoppingCart = (ShoppingCart) cart;

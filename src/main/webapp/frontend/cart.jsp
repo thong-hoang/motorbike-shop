@@ -91,7 +91,7 @@
                                         <fmt:setLocale value="vi_VN"/>
                                         <fmt:formatNumber value="${item.value * item.key.price}" type="currency"/>
                                     </td>
-                                    <td class="cart__close"><span class="icon_close"></span></td>
+                                    <td class="cart__close"><a href="remove_from_cart?product_id=${item.key.id}" class="icon_close"></a></td>
                                 </tr>
                             </c:forEach>
                         </c:if>
