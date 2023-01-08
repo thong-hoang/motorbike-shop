@@ -243,7 +243,7 @@
                                    href="list_products?pageNumber=${currentPage - 1}&keyword=${keyword}">Trước</a>
                             </li>
                             <c:forEach var="i" begin="1" end="${totalPages}">
-                                <li class="${currentPage != i ? 'page-item' : 'page-item active'}">
+                                <li style="${currentPage - 3 > i ||currentPage + 3 < i ? 'display:none ' : ' '}" class="${currentPage != i ? 'page-item ' : 'page-item active'}">
                                     <a class="page-link"
                                        href="list_products?pageNumber=${i}&keyword=${keyword}">${i}</a>
                                 </li>
