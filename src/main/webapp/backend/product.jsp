@@ -200,7 +200,7 @@
                     <c:forEach var="products" items="${empty result ? listproducts : result}">
                         <tr>
                             <td class="table-column">
-                                <a class="media align-items-center" href="ecommerce-product-details.html">
+                                <a class="media align-items-center" href="edit_product?id=${products.id}">
                                     <img class="avatar avatar-lg mr-3"
                                          src="../images/product/${products.id}/${products.mainImagePath}"
                                          alt="Image Description">
