@@ -16,7 +16,7 @@ import java.util.Set;
  *
  * @author Hoang Pham Thong
  * @version 1.0
- * @since 2022-11-9
+ * @since 2022-11-30
  */
 public class BrandDAO implements Serializable {
     private static BrandDAO instance;
