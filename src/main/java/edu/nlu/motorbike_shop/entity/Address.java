@@ -15,7 +15,7 @@ public class Address {
     private String city;
     private Employee employee;
     private Customer customer;
-//    private Order order;
+    private Order order;
 
     public Address(String street, String ward, String district, String city) {
         this.street = street;
