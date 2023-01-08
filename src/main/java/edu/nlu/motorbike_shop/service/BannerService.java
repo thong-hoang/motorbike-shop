@@ -2,10 +2,6 @@ package edu.nlu.motorbike_shop.service;
 
 import edu.nlu.motorbike_shop.dao.BannerDAO;
 import edu.nlu.motorbike_shop.entity.Banner;
-import edu.nlu.motorbike_shop.entity.Brand;
-import edu.nlu.motorbike_shop.entity.Category;
-import edu.nlu.motorbike_shop.entity.Employee;
-import edu.nlu.motorbike_shop.util.FileUploadUtils;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -17,7 +13,6 @@ import java.util.List;
 
 import static edu.nlu.motorbike_shop.constant.Constants.*;
 import static edu.nlu.motorbike_shop.util.FileUploadUtils.*;
-import static edu.nlu.motorbike_shop.util.FileUploadUtils.removeDir;
 
 public class BannerService {
     private final HttpServletRequest request;
