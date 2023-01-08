@@ -5,6 +5,7 @@
 <script src="assets\js\vendor.min.js"></script>
 <script src="assets\js\theme.min.js"></script>
 <script src="assets\vendor\chart.js\dist\Chart.min.js"></script>
+<script src="../js/jquery.validate.min.js"></script>
 
 <script>
     $(document).on('ready', function () {
