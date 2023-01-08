@@ -40,79 +40,86 @@
 
 <section class="shop-cart spad">
     <div class="container">
-        <div class="row">
-            <div class="col-lg-12">
-                <div class="shop__cart__table">
-                    <table>
-                        <thead>
-                        <tr>
-                            <th>Sản phẩm</th>
-                            <th>Giá</th>
-                            <th>Số lượng</th>
-                            <th>Giá tổng</th>
-                            <th></th>
-                        </tr>
-                        </thead>
-                        <tbody>
-
-                        <c:set var="cart" value="${sessionScope['cart']}"/>
-                        <c:if test="${cart.totalItems == 0}">
+        <form action="update_cart" method="post" id="cardForm">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="shop__cart__table">
+                        <table>
+                            <thead>
                             <tr>
-                                <td colspan="5" class="text-center">Không có sản phẩm nào trong giỏ hàng</td>
+                                <th>Sản phẩm</th>
+                                <th>Giá</th>
+                                <th>Số lượng</th>
+                                <th>Giá tổng</th>
+                                <th></th>
                             </tr>
-                        </c:if>
+                            </thead>
+                            <tbody>
 
-                        <c:if test="${cart.totalItems > 0}">
-                            <c:forEach items="${cart.items}" var="item" varStatus="status">
+                            <c:set var="cart" value="${sessionScope['cart']}"/>
+                            <c:if test="${cart.totalItems == 0}">
                                 <tr>
-                                    <td class="cart__product__item">
-                                        <img src="images/product/${item.key.id}/${item.key.mainImagePath}" alt="">
-                                        <div class="cart__product__item__title">
-                                            <h6>${item.key.name}</h6>
-                                            <div class="rating">
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td class="cart__price">
-                                        <fmt:setLocale value="vi_VN"/>
-                                        <fmt:formatNumber value="${item.key.price}" type="currency"/>
-                                    </td>
-                                    <td class="cart__quantity">
-                                        <div class="pro-qty">
-                                            <input type="text" value="${item.value}">
-                                        </div>
-                                    </td>
-                                    <td class="cart__total">
-                                        <fmt:setLocale value="vi_VN"/>
-                                        <fmt:formatNumber value="${item.value * item.key.price}" type="currency"/>
-                                    </td>
-                                    <td class="cart__close"><a href="remove_from_cart?product_id=${item.key.id}" class="icon_close"></a></td>
+                                    <td colspan="5" class="text-center">Không có sản phẩm nào trong giỏ hàng</td>
                                 </tr>
-                            </c:forEach>
-                        </c:if>
+                            </c:if>
 
-                        </tbody>
-                    </table>
+                            <c:if test="${cart.totalItems > 0}">
+                                <c:forEach items="${cart.items}" var="item" varStatus="status">
+                                    <tr>
+                                        <td class="cart__product__item">
+                                            <img src="images/product/${item.key.id}/${item.key.mainImagePath}" alt="">
+                                            <div class="cart__product__item__title">
+                                                <h6>${item.key.name}</h6>
+                                                <div class="rating">
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star"></i>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td class="cart__price">
+                                            <fmt:setLocale value="vi_VN"/>
+                                            <fmt:formatNumber value="${item.key.price}" type="currency"/>
+                                        </td>
+                                        <td class="cart__quantity">
+                                            <input type="hidden" name="productId" value="${item.key.id}">
+                                            <div class="pro-qty">
+                                                <input type="text" value="${item.value}"
+                                                       name="quantity${status.index + 1}"
+                                                       size="5"/>
+                                            </div>
+                                        </td>
+                                        <td class="cart__total">
+                                            <fmt:setLocale value="vi_VN"/>
+                                            <fmt:formatNumber value="${item.value * item.key.price}" type="currency"/>
+                                        </td>
+                                        <td class="cart__close"><a href="remove_from_cart?product_id=${item.key.id}"
+                                                                   class="icon_close"></a></td>
+                                    </tr>
+                                </c:forEach>
+                            </c:if>
+
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="row">
-            <div class="col-lg-6 col-md-6 col-sm-6">
-                <div class="cart__btn">
-                    <a href="shop.html">Tiếp tục mua hàng</a>
+            <div class="row">
+                <div class="col-lg-6 col-md-6 col-sm-6">
+                    <div class="cart__btn">
+                        <a href="search">Tiếp tục mua hàng</a>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-6">
+                    <div class="cart__btn update__btn">
+                        <%--                        <a href="shop-cart.html"><span class="icon_loading"></span> Cập nhập giỏ hàng</a>--%>
+                        <button type="submit"><span class="icon_loading"></span> Cập nhập giỏ hàng</button>
+                    </div>
                 </div>
             </div>
-            <div class="col-lg-6 col-md-6 col-sm-6">
-                <div class="cart__btn update__btn">
-                    <a href="shop-cart.html"><span class="icon_loading"></span> Cập nhập giỏ hàng</a>
-                </div>
-            </div>
-        </div>
+        </form>
         <div class="row">
             <div class="col-lg-6">
                 <div class="discount__content">

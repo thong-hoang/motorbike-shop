@@ -1,5 +1,7 @@
 package edu.nlu.motorbike_shop.entity;
 
+import edu.nlu.motorbike_shop.dao.ProductDAO;
+
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
@@ -48,6 +50,14 @@ public class ShoppingCart {
 
     public int getTotalItems() {
         return cart.size();
+    }
+
+    public void updateCart(int[] productIds, int[] quantities) {
+        for (int i = 0; i < productIds.length; i++) {
+            Product key = ProductDAO.getInstance().findById(productIds[i]);
+            Integer value = quantities[i];
+            cart.put(key, value);
+        }
     }
 
     public Map<Product, Integer> getItems() {

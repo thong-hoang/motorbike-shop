@@ -1,5 +1,6 @@
 package edu.nlu.motorbike_shop.entity;
 
+import edu.nlu.motorbike_shop.dao.ProductDAO;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
@@ -60,5 +61,22 @@ public class ShoppingCartTest {
         cart.addItem(product);
 
         assertEquals(200, cart.getTotalAmount());
+    }
+
+    @Test
+    public void testUpdateCart() {
+        ShoppingCart cart = new ShoppingCart();
+        Product product1 = ProductDAO.getInstance().findById(1);
+        Product product2 = ProductDAO.getInstance().findById(2);
+
+        cart.addItem(product1);
+        cart.addItem(product2);
+
+        int[] productIds = {1, 2};
+        int[] quantities = {3, 4};
+
+        cart.updateCart(productIds, quantities);
+
+        assertEquals(7, cart.getTotalQuantity());
     }
 }
