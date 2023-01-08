@@ -122,7 +122,7 @@
                                                        id="password">
                                             </c:if>
                                             <c:if test="${not empty employee}">
-                                                <input type="password" class="form-control" name="password"
+                                                <input type="password" class="form-control ignore" name="password"
                                                        id="password"
                                                        placeholder="Để trống nếu không muốn thay đổi mật khẩu">
                                             </c:if>
@@ -245,6 +245,7 @@
     $(document).ready(function () {
         // validation
         $("#userForm").validate({
+            ignore: ".ignore",
             rules: {
                 firstName: {
                     required: true
