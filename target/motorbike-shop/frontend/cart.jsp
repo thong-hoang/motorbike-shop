@@ -107,14 +107,18 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-lg-6 col-md-6 col-sm-6">
+                <div class="col-lg-4 col-md-4 col-sm-4">
                     <div class="cart__btn">
                         <a href="search">Tiếp tục mua hàng</a>
                     </div>
                 </div>
-                <div class="col-lg-6 col-md-6 col-sm-6">
+                <div class="col-lg-4 col-md-4 col-sm-4">
+                    <div class="cart__btn">
+                        <a href="clear_cart">Xoá giỏ hàng</a>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-4 col-sm-4">
                     <div class="cart__btn update__btn">
-                        <%--                        <a href="shop-cart.html"><span class="icon_loading"></span> Cập nhập giỏ hàng</a>--%>
                         <button type="submit"><span class="icon_loading"></span> Cập nhập giỏ hàng</button>
                     </div>
                 </div>
