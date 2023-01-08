@@ -200,7 +200,7 @@
                     <c:forEach var="products" items="${empty result ? listproducts : result}">
                         <tr>
                             <td class="table-column">
-                                <a class="media align-items-center" href="ecommerce-product-details.html">
+                                <a class="media align-items-center" href="edit_product?id=${products.id}">
                                     <img class="avatar avatar-lg mr-3"
                                          src="../images/product/${products.id}/${products.mainImagePath}"
                                          alt="Image Description">
@@ -243,7 +243,7 @@
                                    href="list_products?pageNumber=${currentPage - 1}&keyword=${keyword}">Trước</a>
                             </li>
                             <c:forEach var="i" begin="1" end="${totalPages}">
-                                <li class="${currentPage != i ? 'page-item' : 'page-item active'}">
+                                <li style="${currentPage - 7 > i ||currentPage + 7 < i ? 'display:none ' : ' '}" class="${currentPage != i ? 'page-item ' : 'page-item active'}">
                                     <a class="page-link"
                                        href="list_products?pageNumber=${i}&keyword=${keyword}">${i}</a>
                                 </li>
