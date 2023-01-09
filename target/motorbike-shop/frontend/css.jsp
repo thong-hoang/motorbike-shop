@@ -12,3 +12,4 @@
 <link rel="stylesheet" href="css/frontend/css/owl.carousel.min.css" type="text/css">
 <link rel="stylesheet" href="css/frontend/css/slicknav.min.css" type="text/css">
 <link rel="stylesheet" href="css/frontend/css/style.css" type="text/css">
+<link rel="stylesheet" href="css/style.css">
