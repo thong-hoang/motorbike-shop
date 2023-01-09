@@ -1,7 +1,10 @@
 package edu.nlu.motorbike_shop.service;
 
+import edu.nlu.motorbike_shop.constant.Constants;
 import edu.nlu.motorbike_shop.dao.OrderDAO;
+import edu.nlu.motorbike_shop.dao.SettingDAO;
 import edu.nlu.motorbike_shop.entity.Order;
+import edu.nlu.motorbike_shop.entity.Setting;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -13,6 +16,8 @@ import static edu.nlu.motorbike_shop.constant.Constants.*;
 
 public class OrderService {
     private final OrderDAO orderDAO = OrderDAO.getInstance();
+
+    private final SettingDAO settingDAO = SettingDAO.getInstance();
     private final HttpServletRequest request;
     private final HttpServletResponse response;
 
@@ -76,8 +81,25 @@ public class OrderService {
         Integer orderId = Integer.parseInt(request.getParameter("id"));
 
         Order order = orderDAO.findById(orderId);
-        request.setAttribute("order", order);
 
-        request.getRequestDispatcher("order-detail.jsp").forward(request, response);
+        if (order == null) {
+            String message = "Không tìm thấy đơn hàng";
+            listOrder(message);
+        } else {
+            request.setAttribute("order", order);
+
+            request.getRequestDispatcher("order-detail.jsp").forward(request, response);
+        }
+    }
+
+    public void showCheckoutPage() throws ServletException, IOException {
+        // setting
+        List<Setting> stores = settingDAO.findAllByCategory(Constants.GENERAL_SETTING_CATEGORY);
+
+        for (Setting store : stores) {
+            request.setAttribute(store.getKey(), store.getValue());
+        }
+
+        request.getRequestDispatcher("frontend/checkout.jsp").forward(request, response);
     }
 }

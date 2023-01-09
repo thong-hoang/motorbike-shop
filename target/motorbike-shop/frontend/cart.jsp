@@ -153,7 +153,7 @@
                             </span>
                         </li>
                     </ul>
-                    <a href="checkout.html" class="primary-btn">Đặt hàng</a>
+                    <a href="checkout" class="primary-btn">Đặt hàng</a>
                 </div>
             </div>
         </div>
