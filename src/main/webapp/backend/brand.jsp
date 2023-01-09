@@ -22,7 +22,16 @@
         <div class="page-header">
             <div class="row align-items-end">
                 <div class="col-sm mb-2 mb-sm-0">
-
+                    <div class="">
+                        <nav aria-label="breadcrumb">
+                            <ol class="breadcrumb breadcrumb-no-gutter">
+                                <li class="breadcrumb-item">
+                                    <a class="breadcrumb-link" href="setting.jsp">
+                                        <i class="tio-back-ui"></i> Cấu hình</a>
+                                </li>
+                            </ol>
+                        </nav>
+                    </div>
                     <h1 class="page-header-title">Quản lý thương hiệu<span class="badge badge-soft-dark ml-2">
                         ${numberOfBrands}</span></h1>
                 </div>
