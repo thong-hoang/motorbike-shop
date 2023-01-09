@@ -1,4 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <html>
 
@@ -19,7 +20,7 @@
         <div class="container">
             <div class="row">
                 <nav aria-label="breadcrumb">
-                    <ol class="breadcrumb">
+                    <ol class="breadcrumb" style="background-color: #eeeeee;">
                         <li class="breadcrumb-item"><a href="/motorbike_shop/">Trang chủ</a></li>
                         <li class="breadcrumb-item active" aria-current="page">Tài khoản</li>
                     </ol>
@@ -27,6 +28,10 @@
             </div>
         </div>
     </div>
+
+    <c:if test="${message != null}">
+        <div class="alert alert-success text-center" id="hideMessage">${message}</div>
+    </c:if>
 
     <div class="row">
         <div class="col-lg-4">
@@ -44,11 +49,11 @@
                     <ul class="list-group list-group-flush rounded-3">
                         <li class="list-group-item d-flex justify-content-between align-items-center p-3">
                             <a href="account-info">
-                                <button class="mb-0  active">Cập nhật thông tin cá nhân</button>
+                                <button class="mb-0 active">Cập nhật thông tin cá nhân</button>
                             </a>
                         </li>
                         <li class="list-group-item d-flex justify-content-between align-items-center p-3">
-                            <a href="reset-password">
+                            <a href="reset_password">
                                 <button class="mb-0">Thay đổi mật khẩu</button>
                             </a>
                         </li>
@@ -58,7 +63,7 @@
         </div>
 
         <div class="col-lg-8">
-            <form action="account-info" method="post">
+            <form action="account-info" method="post" id="account">
                 <input type="hidden" value="${loggedCustomer.id}" name="id">
                 <input type="hidden" value="${loggedCustomer.address.id}" name="addressId">
                 <input type="hidden" value="${loggedCustomer.password}" name="password">
@@ -70,7 +75,7 @@
                             </div>
                             <div class="col-sm-9">
                                 <input type="text" class="text-muted mb-0" value="${loggedCustomer.lastName}"
-                                       name="lastName">
+                                       name="lastName" id="lastName">
                             </div>
                         </div>
                         <hr>
@@ -80,7 +85,7 @@
                             </div>
                             <div class="col-sm-9">
                                 <input type="text" class="text-muted mb-0" value="${loggedCustomer.firstName}"
-                                       name="firstName">
+                                       name="firstName" id="firstName">
                             </div>
                         </div>
                         <hr>
@@ -90,8 +95,7 @@
                             </div>
                             <div class="col-sm-9">
                                 <input type="text" class="text-muted mb-0 font-weight-bold"
-                                       value="${loggedCustomer.email}"
-                                       name="email" readonly>
+                                       value="${loggedCustomer.email}" name="email" readonly>
                             </div>
                         </div>
                         <hr>
@@ -101,7 +105,7 @@
                             </div>
                             <div class="col-sm-9">
                                 <input type="text" class="text-muted mb-0" value="${loggedCustomer.phoneNumber}"
-                                       name="phone">
+                                       name="phone" id="phone">
                             </div>
                         </div>
                         <hr>
@@ -111,7 +115,7 @@
                             </div>
                             <div class="col-sm-9">
                                 <input type="text" class="text-muted mb-0"
-                                       value="${loggedCustomer.address.street}" name="street">
+                                       value="${loggedCustomer.address.street}" name="street" id="street">
                             </div>
                         </div>
                         <hr>
@@ -121,7 +125,7 @@
                             </div>
                             <div class="col-sm-9">
                                 <input type="text" class="text-muted mb-0" value="${loggedCustomer.address.ward}"
-                                       name="ward">
+                                       name="ward" id="ward">
                             </div>
                         </div>
                         <hr>
@@ -131,7 +135,7 @@
                             </div>
                             <div class="col-sm-9">
                                 <input type="text" class="text-muted mb-0"
-                                       value="${loggedCustomer.address.district}" name="district">
+                                       value="${loggedCustomer.address.district}" name="district" id="district">
                             </div>
                         </div>
                         <hr>
@@ -141,7 +145,7 @@
                             </div>
                             <div class="col-sm-9">
                                 <input type="text" class="text-muted mb-0" value="${loggedCustomer.address.city}"
-                                       name="city">
+                                       name="city" id="city">
                             </div>
                         </div>
                     </div>
@@ -157,6 +161,77 @@
 <jsp:include page="footer1.jsp"/>
 
 <jsp:include page="js.jsp"/>
+
+<script>
+    $(document).ready(function () {
+        // validation
+        $("#account").validate({
+            ignore: ".ignore",
+            rules: {
+                firstName: {
+                    required: true
+                },
+                lastName: {
+                    required: true
+                },
+                street: {
+                    required: true
+                },
+                ward: {
+                    required: true
+                },
+                district: {
+                    required: true
+                },
+                city: {
+                    required: true
+                },
+                phone: {
+                    required: true,
+                    number: true,
+                    minlength: 10,
+                    maxlength: 11
+                },
+            },
+            messages: {
+                firstName: {
+                    required: "Vui lòng nhập tên đầy đủ"
+                },
+                lastName: {
+                    required: "Vui lòng nhập họ đầy đủ"
+                },
+                street: {
+                    required: "Vui lòng nhập địa chỉ"
+                },
+                ward: {
+                    required: "Vui lòng nhập phường / xã"
+                },
+                district: {
+                    required: "Vui lòng nhập quận / huyện"
+                },
+                city: {
+                    required: "Vui lòng nhập tỉnh / thành phố"
+                },
+                phone: {
+                    required: "Vui lòng nhập số điện thoại",
+                    number: "Số điện thoại không hợp lệ",
+                    minlength: "Số điện thoại không hợp lệ",
+                    maxlength: "Số điện thoại không hợp lệ"
+                },
+            },
+        });
+
+        const message = document.getElementById('hideMessage');
+
+        if (message !== null) {
+            function hideMessage() {
+                message.style.display = 'none';
+            }
+
+            setTimeout(hideMessage, 5000);
+        }
+    });
+</script>
 
 </body>
 

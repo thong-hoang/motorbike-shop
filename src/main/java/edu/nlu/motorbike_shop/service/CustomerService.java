@@ -1,6 +1,5 @@
 package edu.nlu.motorbike_shop.service;
 
-import edu.nlu.motorbike_shop.constant.Constants;
 import edu.nlu.motorbike_shop.dao.CategoryDAO;
 import edu.nlu.motorbike_shop.dao.CustomerDAO;
 import edu.nlu.motorbike_shop.dao.SettingDAO;
@@ -13,6 +12,7 @@ import java.io.IOException;
 import java.util.List;
 
 import static edu.nlu.motorbike_shop.constant.Constants.DEFAULT_PAGE_SIZE;
+import static edu.nlu.motorbike_shop.constant.Constants.GENERAL_SETTING_CATEGORY;
 
 /**
  * Handle logic between user and server
@@ -262,7 +262,7 @@ public class CustomerService {
                 showLogin(message);
             } else {
                 request.getSession().setAttribute("loggedCustomer", customer);
-                List<Setting> stores = settingDAO.findAllByCategory(Constants.GENERAL_SETTING_CATEGORY);
+                List<Setting> stores = settingDAO.findAllByCategory(GENERAL_SETTING_CATEGORY);
 
                 for (Setting store : stores) {
                     request.setAttribute(store.getKey(), store.getValue());
@@ -280,19 +280,26 @@ public class CustomerService {
         }
     }
 
+    public void showAccountInfo() throws ServletException, IOException {
+        showAccountInfo(null);
+    }
+
     /**
      * Show the customer's profile to the user.
      *
      * @throws ServletException If the request for the GET could not be handled
      * @throws IOException      If an input or output error is detected when the servlet handles the GET request
      */
-    public void showAccountInfo() throws ServletException, IOException {
+    public void showAccountInfo(String message) throws ServletException, IOException {
         String accountInfoPage = "frontend/account.jsp";
-        List<Setting> stores = settingDAO.findAllByCategory(Constants.GENERAL_SETTING_CATEGORY);
+        List<Setting> stores = settingDAO.findAllByCategory(GENERAL_SETTING_CATEGORY);
 
         for (Setting store : stores) {
             request.setAttribute(store.getKey(), store.getValue());
         }
+
+        if (message != null) request.setAttribute("message", message);
+
         request.getRequestDispatcher(accountInfoPage).forward(request, response);
     }
 
@@ -312,8 +319,29 @@ public class CustomerService {
         customer.setPassword(password);
         customer.getAddress().setId(addressId);
 
+        String message = "Cập nhật thông tin cá nhân thành công";
+
         customerDAO.update(customer);
 
-        showAccountInfo();
+        showAccountInfo(message);
+    }
+
+    /**
+     * Show the reset password form to the user.
+     *
+     * @throws ServletException If the request for the GET could not be handled
+     * @throws IOException      If an input or output error is detected when the servlet handles the GET request
+     */
+    public void showResetPasswordForm() throws ServletException, IOException {
+        List<Setting> stores = settingDAO.findAllByCategory(GENERAL_SETTING_CATEGORY);
+
+        for (Setting store : stores) {
+            request.setAttribute(store.getKey(), store.getValue());
+        }
+
+        request.getRequestDispatcher("frontend/reset-password.jsp").forward(request, response);
+    }
+
+    public void processResetPassword() {
     }
 }
