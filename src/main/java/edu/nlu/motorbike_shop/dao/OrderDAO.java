@@ -93,6 +93,39 @@ public class OrderDAO implements Serializable {
     }
 
     /**
+     * Get product by id.
+     *
+     * @param productId The id of the product.
+     * @return The product entity.
+     */
+    public Product findProductByOrderId(Integer productId) {
+        String sql = "SELECT main_image_path, name, price FROM products WHERE id = ?";
+        Product product = null;
+
+        try (Connection conn = DBUtils.makeConnection();
+             PreparedStatement stm = conn.prepareStatement(sql)) {
+            stm.setInt(1, productId);
+
+            try (ResultSet rs = stm.executeQuery()) {
+                if (rs.next()) {
+                    String mainImagePath = rs.getString(1);
+                    String name = rs.getString(2);
+                    int price = rs.getInt(3);
+
+                    product = new Product();
+                    product.setId(productId);
+                    product.setMainImagePath(mainImagePath);
+                    product.setName(name);
+                    product.setPrice(price);
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return product;
+    }
+
+    /**
      * Return list of order details by order id.
      *
      * @param id The id of the order.
@@ -112,9 +145,7 @@ public class OrderDAO implements Serializable {
                     int orderId = rs.getInt(1);
                     Order order = new Order();
                     order.setId(orderId);
-                    int productId = rs.getInt(2);
-                    Product product = new Product();
-                    product.setId(productId);
+                    Product product = findProductByOrderId(rs.getInt(2));
                     int quantity = rs.getInt(3);
                     int productCost = rs.getInt(4);
                     int subtotal = rs.getInt(5);
@@ -374,8 +405,7 @@ public class OrderDAO implements Serializable {
             try (ResultSet rs = stm.executeQuery()) {
                 if (rs.next()) {
                     int customerId = rs.getInt(2);
-                    Customer customer = new Customer();
-                    customer.setId(customerId);
+                    Customer customer = findCustomerByOrderId(customerId);
                     Date orderDate = rs.getTimestamp(3);
                     String paymentMethod = rs.getString(4);
                     int price = rs.getInt(5);

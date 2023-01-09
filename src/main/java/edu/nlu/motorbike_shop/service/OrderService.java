@@ -71,4 +71,13 @@ public class OrderService {
         String listPage = "order.jsp";
         request.getRequestDispatcher(listPage).forward(request, response);
     }
+
+    public void viewOrderDetail() throws ServletException, IOException {
+        Integer orderId = Integer.parseInt(request.getParameter("id"));
+
+        Order order = orderDAO.findById(orderId);
+        request.setAttribute("order", order);
+
+        request.getRequestDispatcher("order-detail.jsp").forward(request, response);
+    }
 }

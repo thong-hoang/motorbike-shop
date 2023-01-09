@@ -181,6 +181,7 @@
                    }'>
                     <thead class="thead-light">
                     <tr>
+                        <th>Mã đơn hàng</th>
                         <th>Khách hàng</th>
                         <th>Số lượng</th>
                         <th>Tổng cộng</th>
@@ -196,6 +197,11 @@
                     <c:if test="${empty result}">
                         <c:forEach var="orders" items="${listOrders}">
                             <tr>
+                                <td>
+                                    <span class="d-block font-size-sm">
+                                      <a href="detail_order?id=${orders.id}">#${orders.id}</a>
+                                    </span>
+                                </td>
                                 <td>
                                     <span class="d-block font-size-sm">${orders.customer.lastName} ${orders.customer.firstName}</span>
                                 </td>
@@ -241,6 +247,11 @@
                         <c:forEach var="orders" items="${result}">
                             <tr>
                                 <td>
+                                    <span class="d-block font-size-sm">
+                                        <a href="detail_order?id=${orders.id}">#${orders.id}</a>
+                                    </span>
+                                </td>
+                                <td>
                                     <span class="d-block font-size-sm">${orders.customer.lastName} ${order.customer.firstName}</span>
                                 </td>
                                 <td>
@@ -260,6 +271,9 @@
                                 </td>
                                 <td>
                                     <div class="btn-group" role="group">
+                                        <a class="btn btn-sm btn-white" href="detail_order?id=${orders.id}">
+                                            <i class="tio-book"></i> Chi tiết
+                                        </a>
                                         <a class="btn btn-sm btn-white" href="edit_order?id=${orders.id}">
                                             <i class="tio-edit"></i> Chỉnh sửa
                                         </a>
