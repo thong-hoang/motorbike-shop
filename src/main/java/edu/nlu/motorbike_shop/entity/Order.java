@@ -46,6 +46,15 @@ public class Order {
         this.orderDetails.add(orderDetail);
     }
 
+    public int getQuantity() {
+        int quantity = 0;
+
+        for (OrderDetail orderDetail : orderDetails)
+            quantity += orderDetail.getQuantity();
+
+        return quantity;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
