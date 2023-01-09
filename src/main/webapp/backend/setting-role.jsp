@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <!-- Title -->
-    <title>VTV | Admin - Danh sách thể loại</title>
+    <title>VTV | Admin - Danh sách vai trò</title>
 
     <jsp:include page="css.jsp"/>
 </head>
@@ -22,14 +22,23 @@
         <div class="page-header">
             <div class="row align-items-end">
                 <div class="col-sm mb-2 mb-sm-0">
-
-                    <h1 class="page-header-title">Quản lý thể loại<span class="badge badge-soft-dark ml-2">
+                    <div class="">
+                        <nav aria-label="breadcrumb">
+                            <ol class="breadcrumb breadcrumb-no-gutter">
+                                <li class="breadcrumb-item">
+                                    <a class="breadcrumb-link" href="setting.jsp">
+                                        <i class="tio-back-ui"></i> Cấu hình</a>
+                                </li>
+                            </ol>
+                        </nav>
+                    </div>
+                    <h1 class="page-header-title">Quản lý vai trò<span class="badge badge-soft-dark ml-2">
                         ${numberOfRoles}</span></h1>
                 </div>
 
                 <div class="col-sm-auto">
                     <a class="btn btn-primary" href="create_role">
-                        <i class="tio-user-add mr-1"></i> Thêm thể loại
+                        <i class="tio-user-add mr-1"></i> Thêm vai trò
                     </a>
                 </div>
             </div>
@@ -50,7 +59,7 @@
                                         <i class="tio-search"></i>
                                     </div>
                                 </div>
-                                <input type="search" class="form-control" placeholder="Tìm kiếm thể loại"
+                                <input type="search" class="form-control" placeholder="Tìm kiếm vai trò"
                                        name="keyword" value="${keyword}">
                             </div>
                         </form>
