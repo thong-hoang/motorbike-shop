@@ -232,10 +232,6 @@
                                         <a class="btn btn-sm btn-white" href="edit_brand?id=${brands.id}">
                                             <i class="tio-edit"></i> Chỉnh sửa
                                         </a>
-                                        <a class="btn btn-sm btn-white link-delete"
-                                           href="delete_brand?id=${brands.id}" entityId="${brands.id}">
-                                            <i class="tio-delete"></i> Xóa
-                                        </a>
                                     </div>
                                 </td>
                             </tr>
@@ -274,10 +270,6 @@
                                     <div class="btn-group" role="group">
                                         <a class="btn btn-sm btn-white" href="edit_brand?id=${brands.id}">
                                             <i class="tio-edit"></i> Chỉnh sửa
-                                        </a>
-                                        <a class="btn btn-sm btn-white link-delete"
-                                           href="delete_brand?id=${brands.id}" entityId="${brands.id}">
-                                            <i class="tio-delete"></i> Xóa
                                         </a>
                                     </div>
                                 </td>

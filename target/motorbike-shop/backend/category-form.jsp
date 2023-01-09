@@ -163,7 +163,7 @@
                 name: "required",
             },
             messages: {
-                name: "Vui lòng nhập tên quảng cáo đầy đủ",
+                name: "Vui lòng nhập tên thể loại đầy đủ",
             }
         });
 

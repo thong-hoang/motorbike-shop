@@ -4,9 +4,6 @@ import edu.nlu.motorbike_shop.dao.BrandDAO;
 import edu.nlu.motorbike_shop.dao.CategoryDAO;
 import edu.nlu.motorbike_shop.entity.Brand;
 import edu.nlu.motorbike_shop.entity.Category;
-import edu.nlu.motorbike_shop.entity.Product;
-import edu.nlu.motorbike_shop.entity.Status;
-import edu.nlu.motorbike_shop.util.FileUploadUtils;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -151,7 +148,7 @@ public class BrandService {
             directoryServerPath = directoryServerPath + File.separator + nameDirectoryServer;
             saveFile(directoryServerPath, fileName, part);
             String fileServerPath = directoryServerPath + File.separator + fileName;
-            FileUploadUtils.copyFile(fileServerPath, nameDirectoryServer);
+            copyFile(fileServerPath, nameDirectoryServer);
 
 
             String message = "Thương hiệu " + brand.getName() + " đã được thêm thành công !";
@@ -189,12 +186,12 @@ public class BrandService {
         request.setAttribute("categoryMap", categoryMap);
 
         if (brand == null) {
-            String message = "Không tìm thấy quảng cáo này";
+            String message = "Không tìm thấy thương hiệu này";
 
             listBrand(message);
         } else {
             request.setAttribute("brand", brand);
-            request.setAttribute("title", "Chỉnh sửa quảng cáo");
+            request.setAttribute("title", "Chỉnh sửa thương hiệu");
 
             createBrand();
         }
@@ -238,8 +235,6 @@ public class BrandService {
 
                 if (fileName.isEmpty()) {
                     brand.setImagePath(brandById.getImagePath());
-
-                    brandDAO.update(brand);
                 } else {
                     brand.setImagePath(fileName);
                     String serverPath = request.getServletContext().getRealPath("");
@@ -255,8 +250,8 @@ public class BrandService {
                     String fileServerPath = directoryServerPath + File.separator + fileName;
                     copyFile(fileServerPath, nameDirectoryServer);
 
-                    brandDAO.update(brand);
                 }
+                brandDAO.update(brand);
                 message = "Thương hiệu " + brand.getName() + " đã được cập nhật thành công !";
                 listBrand(message);
             }
@@ -284,36 +279,6 @@ public class BrandService {
             message = "Thương hiệu " + brand.getName() + " này đã được " + (enabled ? "kích hoạt" : "vô hiệu hóa") + " thành công !";
         }
 
-        listBrand(message);
-    }
-
-    /**
-     * Get the brand id from the request and delete it from the database.
-     *
-     * @throws ServletException If the request for the GET could not be handled
-     * @throws IOException      If an input or output error is detected when the servlet handles the GET request
-     */
-    public void deleteBrand() throws ServletException, IOException {
-        Integer id = Integer.valueOf(request.getParameter("id"));
-
-        Brand brand = brandDAO.findById(id);
-
-        String message;
-
-        if (brand == null) {
-            message = "Không tìm thấy thương hiệu hoặc thương hiệu đã bị xóa";
-        } else {
-            brandDAO.delete(id);
-            String serverPath = request.getServletContext().getRealPath("");
-            String directoryServerPath = serverPath + File.separator + DEFAULT_IMAGE_DIRECTORY;
-            String nameDirectoryServer = "brand" + File.separator + id;
-            directoryServerPath = directoryServerPath + File.separator + nameDirectoryServer;
-
-            removeDir(directoryServerPath);
-            removeDir(DEFAULT_APP_IMAGE_DIRECTORY + nameDirectoryServer);
-
-            message = "Thương hiệu " + brand.getName() + " đã được xóa thành công !";
-        }
         listBrand(message);
     }
 }

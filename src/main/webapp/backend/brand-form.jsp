@@ -45,12 +45,14 @@
         </div>
 
         <c:if test="${not empty brand.id}">
-        <form class="js-step-form py-md-5" action="update_brand" method="post" enctype="multipart/form-data">
+        <form class="js-step-form py-md-5" action="update_brand" method="post" enctype="multipart/form-data"
+              id="brandForm">
             <input type="hidden" name="id" value="${brand.id}"/>
             </c:if>
 
             <c:if test="${empty brand.id}">
-            <form class="js-step-form py-md-5" action="create_brand" method="post" enctype="multipart/form-data">
+            <form class="js-step-form py-md-5" action="create_brand" method="post" enctype="multipart/form-data"
+                  id="brandForm">
                 </c:if>
                 <div class="row justify-content-lg-center">
                     <div class="col-lg-8">
@@ -66,8 +68,8 @@
                                     <div class="form-group row">
                                         <label class="col-sm-4 col-form-label">Ảnh đại diện:</label>
                                         <div class="col-sm-8">
-                                            <input type="file" id="avatarUploader" class="mb-2"
-                                                   name="image" ${brand.id != null ? '' : 'required'}/>
+                                            <input type="file" id="image"
+                                                   class="mb-2  ${brand.id != null ? 'ignore' : ''}" name="image"/>
                                             <c:choose>
                                                 <c:when test="${not empty brand.imagePath}">
                                                     <img id="avatarImg"
@@ -75,7 +77,7 @@
                                                          alt="Photos preview" class="img-fluid" style="width: 40%"/>
                                                 </c:when>
                                                 <c:otherwise>
-                                                    <img id="avatarImg" src="../images/employee/default.jpg"
+                                                    <img id="avatarImg" src="../images/default.jpg"
                                                          alt="Photos preview" class="img-fluid" style="width: 40%"/>
                                                 </c:otherwise>
                                             </c:choose>
@@ -83,12 +85,12 @@
                                     </div>
 
                                     <div class="row form-group">
-                                        <label for="nameLabel"
+                                        <label for="name"
                                                class="col-sm-3 col-form-label input-label">Tên thương hiệu</label>
 
                                         <div class="col-sm-9">
-                                            <input type="text" class="form-control" name="name" id="nameLabel"
-                                                   value="${brand.name}" required>
+                                            <input type="text" class="form-control" name="name" id="name"
+                                                   value="${brand.name}">
                                         </div>
                                     </div>
 
@@ -163,13 +165,30 @@
 
 <script type="text/javascript">
     $(document).ready(function () {
+        $("#brandForm").validate({
+            ignore: ".ignore",
+
+            rules: {
+                image: "required",
+                name: "required",
+            },
+            messages: {
+                image: "Vui lòng chọn ảnh quảng cáo có định dạng jpg, jpeg, png",
+                name: "Vui lòng nhập tên thương hiệu đầy đủ",
+            }
+        });
+
         // check image file size
-        $("#avatarUploader").change(function () { // is executed every time the event is fired
+        $("#image").change(function () { // is executed every time the event is fired
             if (!checkFileSize(this)) {
                 return;
             }
 
             showImageThumbnail(this);
+        });
+
+        $("#btnCancel").on("click", function () {
+            window.location = "list_brands";
         });
     });
 
@@ -183,12 +202,6 @@
     if (message !== "") {
         showModalDialog("Warning", message)
     }
-
-    $(document).ready(function () {
-        $("#btnCancel").on("click", function () {
-            window.location = "list_brands";
-        });
-    });
 
     function showImageThumbnail(fileInput) {
         var file = fileInput.files[0];
