@@ -1,4 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <html>
 
@@ -23,7 +24,7 @@
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb breadcrumb-no-gutter">
                         <li class="breadcrumb-item">
-                            <a class="breadcrumb-link" href="setting_stores">
+                            <a class="breadcrumb-link" href="setting.jsp">
                                 <i class="tio-back-ui"></i> Cấu hình</a>
                         </li>
                     </ol>
@@ -32,7 +33,11 @@
             <h1 class="page-header-title mt-2 ml-3">Thông tin cửa hàng</h1>
         </div>
 
-        <form action="setting_stores" method="post" enctype="multipart/form-data">
+        <c:if test="${message != null}">
+            <div class="alert alert-success text-center" id="hideMessage">${message}</div>
+        </c:if>
+
+        <form action="setting_stores" method="post" enctype="multipart/form-data" id="storeForm">
             <div class="row justify-content-lg-center">
                 <div class="col-lg-9">
                     <div class="card card-lg mb-3 mb-lg-5">
@@ -64,7 +69,7 @@
                                         </div>
                                     </div>
                                     <input type="text" class="form-control" name="SITE_NAME"
-                                           placeholder="Nhập vào tên công ty" value="${SITE_NAME}">
+                                           placeholder="Nhập vào tên công ty" value="${SITE_NAME}" id="name">
                                 </div>
                             </div>
                             <div class="form-group">
@@ -137,6 +142,37 @@
 
 <script type="text/javascript">
     $(document).ready(function () {
+        $("#storeForm").validate({
+            rules: {
+                SITE_NAME: "required",
+                SITE_ADDRESS: "required",
+                SITE_PHONE:{
+                    required: true,
+                    number: true,
+                    minlength: 8,
+                    maxlength: 11
+                },
+                SITE_EMAIL: {
+                    required: true,
+                    email: true
+                }
+            },
+            messages: {
+                SITE_NAME: "Vui lòng nhập tên công ty",
+                SITE_ADDRESS: "Vui lòng nhập địa chỉ",
+                SITE_PHONE: {
+                    required: "Vui lòng nhập số điện thoại",
+                    number: "Số điện thoại phải là số",
+                    minlength: "Số điện thoại phải từ 8 đến 11 số",
+                    maxlength: "Số điện thoại phải từ 8 đến 11 số"
+                },
+                SITE_EMAIL: {
+                    required: "Vui lòng nhập email",
+                    email: "Email không hợp lệ, vd: abc@gmail.com"
+                }
+            }
+        });
+
         // check image file size
         $("#avatarUploader").change(function () { // is executed every time the event is fired
             if (!checkFileSize(this)) {
@@ -145,9 +181,6 @@
 
             showImageThumbnail(this);
         });
-    });
-
-    $(document).ready(function () {
         $("#btnCancel").on("click", function () {
             window.location = "setting.jsp";
         });
@@ -179,6 +212,16 @@
 
             return true;
         }
+    }
+
+    const message = document.getElementById('hideMessage');
+
+    if (message !== null) {
+        function hideMessage() {
+            message.style.display = 'none';
+        }
+
+        setTimeout(hideMessage, 5000);
     }
 </script>
 
