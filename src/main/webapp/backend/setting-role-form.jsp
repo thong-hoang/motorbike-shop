@@ -58,12 +58,12 @@
             <div class="col-lg-8">
 
                 <c:if test="${role.id != null}">
-                <form action="update_role" method="post">
+                <form action="update_role" method="post" id="roleForm">
                     <input type="hidden" name="id" value="${role.id}"/>
                     </c:if>
 
                     <c:if test="${role.id == null}">
-                    <form action="create_role" method="post">
+                    <form action="create_role" method="post" id="roleForm">
                         </c:if>
 
                         <div class="card">
@@ -71,8 +71,8 @@
                                 <div class="row">
                                     <div class="col-sm-6">
                                         <div class="form-group">
-                                            <label for="roleName" class="input-label">Tên vai trò</label>
-                                            <input type="text" class="form-control" name="name" id="roleName"
+                                            <label for="name" class="input-label">Tên vai trò</label>
+                                            <input type="text" class="form-control" name="name" id="name"
                                                    placeholder="Nhập tên vai trò" value="${role.name}">
                                         </div>
                                     </div>
@@ -82,7 +82,7 @@
                                             <label for="description" class="input-label">Chú thích</label>
                                             <textarea id="description" cols="30" rows="3" class="form-control"
                                                       name="description"
-                                                      id="lastNameAddressLabel">${role.description}</textarea>
+                                                      id="description">${role.description}</textarea>
                                         </div>
                                     </div>
                                 </div>
@@ -108,6 +108,20 @@
 <jsp:include page="js.jsp"/>
 
 <script>
+    $(document).ready(function () {
+        // validation
+        $("#roleForm").validate({
+            rules: {
+                name: "required",
+                description: "required"
+            },
+            messages: {
+                name: "Vui lòng nhập tên vai trò đầy đủ",
+                description: "Vui lòng nhập mô tả cho vai trò"
+            }
+        });
+    });
+
     function showModalDialog(title, message) {
         $("#modalTitle").text(title);
         $("#modalBody").text(message);

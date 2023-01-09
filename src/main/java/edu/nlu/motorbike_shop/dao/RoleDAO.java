@@ -35,25 +35,80 @@ public class RoleDAO implements Serializable {
     }
 
     /**
-     * Find all roles in the database.
-     * @return a list of roles. If there is no role in the database, return an empty list.
+     * Total number of roles in the database.
+     *
+     * @return the total number of roles.
      */
 
-    public List<Role> findAll() {
-        List<Role> roles = new ArrayList<>();
-        String sql = "SELECT * FROM roles";
+    public int count() {
+        String sql = "SELECT COUNT(id) FROM roles";
 
         try (Connection conn = DBUtils.makeConnection();
              PreparedStatement stm = conn.prepareStatement(sql)) {
             try (ResultSet rs = stm.executeQuery()) {
+                while (rs.next())
+                    return rs.getInt(1);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return 0;
+    }
+
+    /**
+     * Total results keyword search.
+     *
+     * @return The number of results. 0 if no results.
+     */
+    public int countByKeyword(String keyword) {
+        String sql = "SELECT COUNT(id) FROM roles WHERE name LIKE ?";
+        try (Connection conn = DBUtils.makeConnection();
+             PreparedStatement stm = conn.prepareStatement(sql)) {
+            stm.setString(1, "%" + keyword + "%");
+            try (ResultSet rs = stm.executeQuery()) {
+                while (rs.next())
+                    return rs.getInt(1);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return 0;
+    }
+
+    /**
+     * Returns all instance of role with pagination.
+     *
+     * @param sortType  Specify the sort type, ASC or DESC.
+     * @param pageSize  Specify the number of records per page.
+     * @param sortField Specify the column name to sort.
+     * @param index     Specify the page index.
+     * @return List of role entities.
+     */
+    public List<Role> findAll(String keyword, String sortField, String sortType, int pageSize, int index) {
+        List<Role> roles = new ArrayList<>();
+        String sql = "SELECT id, name, description FROM roles WHERE name LIKE ? " +
+                "ORDER BY " + sortField + " " + sortType + " LIMIT ? OFFSET ?";
+
+        // use try-with-resources Statement to auto close the connection.
+        try (Connection conn = DBUtils.makeConnection();
+             PreparedStatement stm = conn.prepareStatement(sql)) {
+
+            stm.setString(1, "%" + keyword + "%");
+            stm.setInt(2, pageSize);
+            stm.setInt(3, (index - 1) * pageSize);
+
+            // use try-with-resources Statement to auto close the ResultSet.
+            try (ResultSet rs = stm.executeQuery()) {
+                // fetch data from result set
                 while (rs.next()) {
-                    Integer id = rs.getInt("id");
-                    String name = rs.getString("name");
-                    String description = rs.getString("description");
+                    Integer id = rs.getInt(1);
+                    String name = rs.getString(2);
+                    String description = rs.getString(3);
 
-                    Role role = new Role(id, name, description);
 
-                    roles.add(role);
+                    roles.add(new Role(id, name, description));
                 }
             }
         } catch (Exception e) {
@@ -172,6 +227,7 @@ public class RoleDAO implements Serializable {
 
     /**
      * Delete a role by its id.
+     *
      * @param id the id of the role.
      */
 
@@ -188,30 +244,10 @@ public class RoleDAO implements Serializable {
         }
     }
 
-    /**
-     * Total number of roles in the database.
-     *
-     * @return the total number of roles.
-     */
-
-    public long count() {
-        String sql = "SELECT COUNT (*) FROM roles";
-
-        try (Connection conn = DBUtils.makeConnection();
-             PreparedStatement stm = conn.prepareStatement(sql)) {
-            try (ResultSet rs = stm.executeQuery()) {
-                while (rs.next())
-                    return rs.getLong(1);
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-        return 0;
-    }
 
     /**
      * Return all roles in the database except admin
+     *
      * @return a list of roles except admin. If there is no role in the database, return an empty list.
      */
 
