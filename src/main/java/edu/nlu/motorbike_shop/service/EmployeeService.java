@@ -284,6 +284,7 @@ public class EmployeeService {
                 request.getSession().setAttribute("lastName", employee.getLastName());
                 request.getSession().setAttribute("imagePath", employee.getImagePath());
                 request.getSession().setAttribute("id", employee.getId());
+                request.getSession().setAttribute("roles", employee.getRoles());
 
                 employeeDAO.update(employee);
                 message = "Nhân viên " + employee.getLastName() + " " + employee.getFirstName() + " đã được cập nhật thành công !";
@@ -364,6 +365,7 @@ public class EmployeeService {
             request.getSession().setAttribute("lastName", employee.getLastName());
             request.getSession().setAttribute("imagePath", employee.getImagePath());
             request.getSession().setAttribute("id", employee.getId());
+            request.getSession().setAttribute("roles", employee.getRoles());
 
             request.getRequestDispatcher("/backend/").forward(request, response);
         } else {

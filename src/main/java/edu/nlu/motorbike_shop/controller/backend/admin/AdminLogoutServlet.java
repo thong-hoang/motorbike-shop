@@ -15,6 +15,7 @@ public class AdminLogoutServlet extends HttpServlet {
         session.removeAttribute("firstName");
         session.removeAttribute("lastName");
         session.removeAttribute("imagePath");
+        session.removeAttribute("roles");
 
         request.getRequestDispatcher("login.jsp").forward(request, response);
     }

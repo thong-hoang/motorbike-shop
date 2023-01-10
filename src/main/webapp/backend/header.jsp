@@ -162,85 +162,109 @@
 
                 <div class="navbar-vertical-content">
                     <ul class="navbar-nav navbar-nav-lg nav-tabs">
-                        <li class="navbar-vertical-aside-has-menu">
-                            <a class="js-navbar-vertical-aside-menu-link nav-link" href="/motorbike_shop/backend/"
-                               title="Dashboards">
-                                <i class="tio-home-vs-1-outlined nav-icon"></i>
-                                <span class="navbar-vertical-aside-mini-mode-hidden-elements text-truncate">Trang
-                    chủ</span>
-                            </a>
-                        </li>
+                        <c:forEach items="${sessionScope.roles}" var="role">
+                            <c:if test="${role.id == 1 || role.id == 2 || role.id == 3 || role.id == 4}">
+                                <li class="navbar-vertical-aside-has-menu">
+                                    <a class="js-navbar-vertical-aside-menu-link nav-link"
+                                       href="/motorbike_shop/backend/"
+                                       title="Dashboards">
+                                        <i class="tio-home-vs-1-outlined nav-icon"></i>
+                                        <span class="navbar-vertical-aside-mini-mode-hidden-elements text-truncate">
+                                        Trang chủ
+                                    </span>
+                                    </a>
+                                </li>
+                            </c:if>
+                            <c:if test="${role.id == 1}">
+                                <li class="navbar-vertical-aside-has-menu">
+                                    <a class="js-navbar-vertical-aside-menu-link nav-link" href="list_employees"
+                                       title="Nhân viên">
+                                        <i class="tio-users-switch nav-icon"></i>
+                                        <span class="navbar-vertical-aside-mini-mode-hidden-elements text-truncate">
+                                        Nhân viên
+                                    </span>
+                                    </a>
+                                </li>
+                            </c:if>
 
-                        <li class="navbar-vertical-aside-has-menu">
-                            <a class="js-navbar-vertical-aside-menu-link nav-link" href="list_employees"
-                               title="Nhân viên">
-                                <i class="tio-users-switch nav-icon"></i>
-                                <span class="navbar-vertical-aside-mini-mode-hidden-elements text-truncate">Nhân
-                    viên</span>
-                            </a>
-                        </li>
+                            <c:if test="${role.id == 1}">
+                                <li class="navbar-vertical-aside-has-menu">
+                                    <a class="js-navbar-vertical-aside-menu-link nav-link" href="list_customers"
+                                       title="Khách hàng">
+                                        <i class="tio-user-big-outlined nav-icon"></i>
+                                        <span class="navbar-vertical-aside-mini-mode-hidden-elements text-truncate">
+                                        Khách hàng
+                                    </span>
+                                    </a>
+                                </li>
+                            </c:if>
 
-                        <li class="navbar-vertical-aside-has-menu">
-                            <a class="js-navbar-vertical-aside-menu-link nav-link" href="list_customers"
-                               title="Khách hàng">
-                                <i class="tio-user-big-outlined nav-icon"></i>
-                                <span class="navbar-vertical-aside-mini-mode-hidden-elements text-truncate">Khách
-                    hàng</span>
-                            </a>
-                        </li>
+                            <c:if test="${role.id == 1 || role.id == 4}">
+                                <li class="navbar-vertical-aside-has-menu ">
+                                    <a class="js-navbar-vertical-aside-menu-link nav-link" href="list_banners"
+                                       title="Quảng cáo">
+                                        <i class="tio-panorama-image nav-icon"></i>
+                                        <span class="navbar-vertical-aside-mini-mode-hidden-elements text-truncate">
+                                            Quảng cáo
+                                        </span>
+                                    </a>
+                                </li>
+                            </c:if>
 
-                        <li class="navbar-vertical-aside-has-menu ">
-                            <a class="js-navbar-vertical-aside-menu-link nav-link" href="list_banners"
-                               title="Quảng cáo">
-                                <i class="tio-panorama-image nav-icon"></i>
-                                <span class="navbar-vertical-aside-mini-mode-hidden-elements text-truncate">Quảng
-                    cáo</span>
-                            </a>
-                        </li>
+                            <c:if test="${role.id == 1 || role.id == 2}">
+                                <li class="navbar-vertical-aside-has-menu ">
+                                    <a class="js-navbar-vertical-aside-menu-link nav-link" href="list_products"
+                                       title="Quảng cáo">
+                                        <i class="tio-motocycle nav-icon"></i>
+                                        <span class="navbar-vertical-aside-mini-mode-hidden-elements text-truncate">
+                                            Sản phẩm
+                                        </span>
+                                    </a>
+                                </li>
+                            </c:if>
 
-                        <li class="navbar-vertical-aside-has-menu ">
-                            <a class="js-navbar-vertical-aside-menu-link nav-link" href="list_products"
-                               title="Quảng cáo">
-                                <i class="tio-motocycle nav-icon"></i>
-                                <span class="navbar-vertical-aside-mini-mode-hidden-elements text-truncate">Sản phẩm</span>
-                            </a>
-                        </li>
+                            <c:if test="${role.id == 1 || role.id == 3}">
+                                <li class="navbar-vertical-aside-has-menu ">
+                                    <a class="js-navbar-vertical-aside-menu-link nav-link" href="list_orders"
+                                       title="Đơn hàng">
+                                        <i class="tio-receipt-outlined nav-icon"></i>
+                                        <span class="navbar-vertical-aside-mini-mode-hidden-elements text-truncate">
+                                            Đơn hàng
+                                        </span>
+                                    </a>
+                                </li>
+                            </c:if>
 
-                        <li class="navbar-vertical-aside-has-menu ">
-                            <a class="js-navbar-vertical-aside-menu-link nav-link" href="list_orders"
-                               title="Đơn hàng">
-                                <i class="tio-receipt-outlined nav-icon"></i>
-                                <span class="navbar-vertical-aside-mini-mode-hidden-elements text-truncate">Đơn
-                    hàng</span>
-                            </a>
-                        </li>
+                            <%--                            <li class="navbar-vertical-aside-has-menu ">--%>
+                            <%--                                <a class="js-navbar-vertical-aside-menu-link nav-link" href="list_reviews"--%>
+                            <%--                                   title="Đánh giá">--%>
+                            <%--                                    <i class="tio-comment-vs-outlined nav-icon"></i>--%>
+                            <%--                                    <span class="navbar-vertical-aside-mini-mode-hidden-elements text-truncate">Đánh--%>
+                            <%--                    giá</span>--%>
+                            <%--                                </a>--%>
+                            <%--                            </li>--%>
 
-                        <li class="navbar-vertical-aside-has-menu ">
-                            <a class="js-navbar-vertical-aside-menu-link nav-link" href="list_reviews"
-                               title="Đánh giá">
-                                <i class="tio-comment-vs-outlined nav-icon"></i>
-                                <span class="navbar-vertical-aside-mini-mode-hidden-elements text-truncate">Đánh
-                    giá</span>
-                            </a>
-                        </li>
+                            <%--                            <li class="navbar-vertical-aside-has-menu ">--%>
+                            <%--                                <a class="js-navbar-vertical-aside-menu-link nav-link" href="list_statistics"--%>
+                            <%--                                   title="Thống kê">--%>
+                            <%--                                    <i class="tio-chart-bar-1 nav-icon"></i>--%>
+                            <%--                                    <span class="navbar-vertical-aside-mini-mode-hidden-elements text-truncate">Thống--%>
+                            <%--                    kê</span>--%>
+                            <%--                                </a>--%>
+                            <%--                            </li>--%>
 
-                        <li class="navbar-vertical-aside-has-menu ">
-                            <a class="js-navbar-vertical-aside-menu-link nav-link" href="list_statistics"
-                               title="Thống kê">
-                                <i class="tio-chart-bar-1 nav-icon"></i>
-                                <span class="navbar-vertical-aside-mini-mode-hidden-elements text-truncate">Thống
-                    kê</span>
-                            </a>
-                        </li>
-
-                        <li class="navbar-vertical-aside-has-menu ">
-                            <a class="js-navbar-vertical-aside-menu-link nav-link" href="setting.jsp"
-                               title="Cấu hình">
-                                <i class="tio-settings nav-icon"></i>
-                                <span class="navbar-vertical-aside-mini-mode-hidden-elements text-truncate">Cấu
-                    hình</span>
-                            </a>
-                        </li>
+                            <c:if test="${role.id == 1 || role.id == 4}">
+                                <li class="navbar-vertical-aside-has-menu ">
+                                    <a class="js-navbar-vertical-aside-menu-link nav-link" href="setting.jsp"
+                                       title="Cấu hình">
+                                        <i class="tio-settings nav-icon"></i>
+                                        <span class="navbar-vertical-aside-mini-mode-hidden-elements text-truncate">
+                                            Cấu hình
+                                        </span>
+                                    </a>
+                                </li>
+                            </c:if>
+                        </c:forEach>
                     </ul>
                 </div>
             </div>

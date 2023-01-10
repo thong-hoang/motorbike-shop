@@ -519,8 +519,10 @@ public class EmployeeDAO implements Serializable {
 
             try (ResultSet rs = stm.executeQuery()) {
                 if (rs.next()) {
-                    return new Employee(rs.getInt(1), rs.getString(2),
+                    Employee employee = new Employee(rs.getInt(1), rs.getString(2),
                             rs.getString(3), rs.getString(4), rs.getString(5));
+                    findRolesByUserId(employee.getId()).forEach(employee::addRole);
+                    return employee;
                 }
             }
         } catch (Exception e) {
