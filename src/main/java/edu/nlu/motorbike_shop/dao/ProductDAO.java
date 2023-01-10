@@ -365,8 +365,7 @@ public class ProductDAO implements Serializable {
                     int percentDiscount = rs.getInt(10);
                     int quantity = rs.getInt(11);
 
-                    Brand brand = new Brand();
-                    brand.setId(brandId);
+                    Brand brand = findByBrandId(brandId);
 
                     Category category = new Category();
                     category.setId(categoryId);
@@ -376,6 +375,29 @@ public class ProductDAO implements Serializable {
                     findStatusesByProductId(id).forEach(product::addStatus);
 
                     return product;
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    private Brand findByBrandId(Integer brandId) {
+        String sql = "SELECT name FROM brands WHERE id = ?";
+
+        try (Connection conn = DBUtils.makeConnection();
+             PreparedStatement stm = conn.prepareStatement(sql)) {
+            stm.setInt(1, brandId);
+
+            try (ResultSet rs = stm.executeQuery()) {
+                if (rs.next()) {
+                    String name = rs.getString(1);
+                    Brand brand = new Brand();
+                    brand.setId(brandId);
+                    brand.setName(name);
+
+                    return brand;
                 }
             }
         } catch (Exception e) {

@@ -1,5 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 
 <html lang="zxx">
 
@@ -102,7 +103,10 @@
                         <i class="fa fa-star"></i>
                         <span>( 138 lượt xem )</span>
                     </div>
-                    <div class="product__details__price">${product.price} VNĐ <span></span></div>
+                    <div class="product__details__price">
+                        <fmt:setLocale value="vi_VN"/>
+                        <fmt:formatNumber value="${product.price}" type="currency"/>
+                    </div>
                     <p></p>
                     <div class="product__details__button">
                         <div class="quantity">
@@ -136,7 +140,7 @@
                                  </li>   -->
                             <li>
                                 <span>Thương hiệu:</span>
-                                <p>${product.brand}</p>
+                                <p>${product.brand.name}</p>
                             </li>
                             <li>
                                 <span>Loại xe:</span>
