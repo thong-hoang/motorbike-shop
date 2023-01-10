@@ -2,6 +2,7 @@ package edu.nlu.motorbike_shop.controller.backend.admin;
 
 import edu.nlu.motorbike_shop.dao.CustomerDAO;
 import edu.nlu.motorbike_shop.dao.EmployeeDAO;
+import edu.nlu.motorbike_shop.dao.OrderDAO;
 import edu.nlu.motorbike_shop.dao.ProductDAO;
 
 import javax.servlet.RequestDispatcher;
@@ -21,7 +22,7 @@ public class AdminHomeServlet extends HttpServlet {
         long numberOfEmployees = EmployeeDAO.getInstance().count();
         long numberOfCustomers = CustomerDAO.getInstance().count();
         long numberOfProducts = ProductDAO.getInstance().count();
-        long numberOfOrders = 70;
+        long numberOfOrders = OrderDAO.getInstance().count();
 
         request.setAttribute("totalEmployees", numberOfEmployees);
         request.setAttribute("totalCustomers", numberOfCustomers);

@@ -81,7 +81,7 @@
                                 <li><a href="../account-info"><i class="fa fa-user"></i> ${loggedCustomer.firstName}</a>
                                     <ul class="dropdown">
                                         <li><a href="../account-info">Tài khoản</a></li>
-                                        <li><a href="frontend/order.jsp">Đơn mua</a></li>
+                                        <li><a href="../order_history">Đơn mua</a></li>
                                         <li><a href="../logout">Đăng xuất</a></li>
                                     </ul>
                                 </li>

@@ -494,4 +494,49 @@ public class OrderDAO implements Serializable {
 
         return 0;
     }
+
+    public List<Order> findAllByCustomer(String keyword, int customerId) {
+        List<Order> orders = new ArrayList<>();
+        String sql = "SELECT o.* FROM orders o INNER JOIN customers c ON o.customer_id = c.id " +
+                "WHERE o.customer_id = ? AND CONCAT(c.first_name, ' ', c.last_name) LIKE ? " +
+                "ORDER BY created_time DESC";
+
+        // use try-with-resources Statement to auto close the connection.
+        try (Connection conn = DBUtils.makeConnection();
+             PreparedStatement stm = conn.prepareStatement(sql)) {
+
+            stm.setInt(1, customerId);
+            stm.setString(2, "%" + keyword + "%");
+
+            // use try-with-resources Statement to auto close the ResultSet.
+            try (ResultSet rs = stm.executeQuery()) {
+                // fetch data from result set
+                while (rs.next()) {
+                    Integer id = rs.getInt(1);
+                    Customer customer = findCustomerByOrderId(rs.getInt(2));
+                    Date orderDate = rs.getTimestamp(3);
+                    String paymentMethod = rs.getString(4);
+                    int price = rs.getInt(5);
+                    int discount = rs.getInt(6);
+                    int tax = rs.getInt(7);
+                    int total = rs.getInt(8);
+                    String status = rs.getString(9);
+                    String recipientName = rs.getString(10);
+                    String recipientPhone = rs.getString(11);
+
+                    Address address = findAddressByOrderId(id);
+
+                    Order order = new Order(id, customer, orderDate, paymentMethod, price, discount, tax, total, status,
+                            recipientName, recipientPhone, address);
+
+                    findOrderDetailsByOrderId(id).forEach(order::addOrderDetail);
+
+                    orders.add(order);
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return orders;
+    }
 }

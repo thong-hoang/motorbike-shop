@@ -73,10 +73,12 @@ public class OrderService {
         if (message != null)
             request.setAttribute("message", message);
 
+        Map<Integer, Integer> statusIds = new HashMap<>();
         for (Order order : orders) {
             int statusId = getStatusId(order.getStatus());
-            request.setAttribute("statusId", statusId);
+            statusIds.put(order.getId(), statusId);
         }
+        request.setAttribute("statusIds", statusIds);
 
         String listPage = "order.jsp";
         request.getRequestDispatcher(listPage).forward(request, response);
@@ -240,5 +242,33 @@ public class OrderService {
         request.setAttribute("buttonLink", "/motorbike_shop/");
 
         request.getRequestDispatcher("frontend/message.jsp").forward(request, response);
+    }
+
+    public void showOrderHistory() throws ServletException, IOException {
+        // setting
+        List<Setting> stores = settingDAO.findAllByCategory(Constants.GENERAL_SETTING_CATEGORY);
+
+        for (Setting store : stores) {
+            request.setAttribute(store.getKey(), store.getValue());
+        }
+
+        // category
+        List<Category> parents = categoryDAO.findAllParentCategory();
+        List<Category> childs = categoryDAO.findAllChildCategory();
+        request.setAttribute("parents", parents);
+        request.setAttribute("childs", childs);
+
+        Customer customer = (Customer) request.getSession().getAttribute("loggedCustomer");
+
+        List<Order> orders = orderDAO.findAllByCustomer("", customer.getId());
+        request.setAttribute("listOrders", orders);
+        Map<Integer, Integer> statusIds = new HashMap<>();
+        for (Order order : orders) {
+            int statusId = getStatusId(order.getStatus());
+            statusIds.put(order.getId(), statusId);
+        }
+        request.setAttribute("statusIds", statusIds);
+
+        request.getRequestDispatcher("frontend/order.jsp").forward(request, response);
     }
 }

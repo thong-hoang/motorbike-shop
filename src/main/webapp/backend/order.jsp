@@ -218,23 +218,24 @@
                                     <span class="d-block font-size-sm">${orders.paymentMethod}</span>
                                 </td>
                                 <td>
-                                    <c:if test="${statusId == 1}">
+                                    <c:forEach items="${statusIds}" var="statusId">
+                                        <c:if test="${statusId.value == 1 && statusId.key == orders.id}">
                                         <span class="badge badge-soft-warning">
                                             <span class="legend-indicator bg-warning"></span>${orders.status}
                                         </span>
-                                    </c:if>
-
-                                    <c:if test="${statusId == 2}">
+                                        </c:if>
+                                        <c:if test="${statusId.value == 2 && statusId.key == orders.id}">
                                         <span class="badge badge-soft-success">
                                             <span class="legend-indicator bg-success"></span>${orders.status}
                                         </span>
-                                    </c:if>
-
-                                    <c:if test="${statusId == 3}">
+                                        </c:if>
+                                        <c:if test="${statusId.value == 3 && statusId.key == orders.id}">
                                         <span class="badge badge-soft-danger">
                                             <span class="legend-indicator bg-danger"></span>${orders.status}
                                         </span>
-                                    </c:if>
+                                        </c:if>
+                                    </c:forEach>
+
                                 </td>
                                 <td>
                                     <span class="d-block font-size-sm">
