@@ -169,7 +169,7 @@
                                             </a>
                                         </li>
                                         <li>
-                                            <a href="#">
+                                            <a href="add_to_cart?productId=${product.id}">
                                                 <span class="icon_bag_alt" style="padding-top: 15px"></span>
                                             </a>
                                         </li>

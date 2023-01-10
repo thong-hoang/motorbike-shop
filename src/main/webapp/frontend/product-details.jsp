@@ -113,8 +113,8 @@
 
                         </div>
                         <br><br><br>
-                        <a href="./cart.html" class="buy-btn"> Mua ngay</a>
-                        <a href="add_to_cart?productId=${product.id}" class="cart-btn" id="btnAddCart">
+                        <a href="add_to_cart?productId=${product.id}" class="buy-btn"> Mua ngay</a>
+                        <a href="add_to_cart?productId=${product.id}" class="cart-btn">
                             <span class="icon_bag_alt"></span> Thêm vào giỏ hàng
                         </a>
                         <!--    <ul>
