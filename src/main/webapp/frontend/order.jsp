@@ -22,7 +22,8 @@
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb bg-white">
                         <li class="breadcrumb-item"><a href="/motorbike_shop/">Trang chủ</a></li>
-                        <li class="breadcrumb-item active" aria-current="page">Tài khoản</li>
+                        <li class="breadcrumb-item" aria-current="page">Tài khoản</li>
+                        <li class="breadcrumb-item active" aria-current="page">Lịch sử mua hàng</li>
                     </ol>
                 </nav>
             </div>
