@@ -83,25 +83,18 @@ public class ProductService {
     }
 
     /**
-     * Displays all categories and brands from database to product form.
-     */
-    public void getCategoriesAndBrandsDisplayedAdminInterface() {
-        List<Category> categories = productDAO.findAllCategoryExceptParent();
-        List<Brand> brands = productDAO.findAllBrand();
-        List<Status> statuses = productDAO.findAllStatus();
-        request.setAttribute("categories", categories);
-        request.setAttribute("brands", brands);
-        request.setAttribute("statuses", statuses);
-    }
-
-    /**
      * Display product form to user.
      *
      * @throws ServletException If the request for the GET could not be handled
      * @throws IOException      If an input or output error is detected when the servlet handles the GET request
      */
     public void createProduct() throws ServletException, IOException {
-        getCategoriesAndBrandsDisplayedAdminInterface();
+        List<Category> categories = productDAO.findAllCategoryExceptParent();
+        List<Brand> brands = productDAO.findAllBrand();
+        List<Status> statuses = productDAO.findAllStatus();
+        request.setAttribute("categories", categories);
+        request.setAttribute("brands", brands);
+        request.setAttribute("statuses", statuses);
         request.getRequestDispatcher("product-form.jsp").forward(request, response);
     }
 
@@ -280,13 +273,11 @@ public class ProductService {
                     saveFile(directoryServerPath, fileName, part);
                     String fileServerPath = directoryServerPath + File.separator + fileName;
                     copyFile(fileServerPath, nameDirectoryServer);
-
-                    productDAO.update(product);
                 } else {
                     product.setMainImagePath(productById.getMainImagePath());
-                    productDAO.update(product);
                 }
 
+                productDAO.update(product);
                 message = "Sản phẩm " + product.getName() + " đã được cập nhật thành công !";
                 listProduct(message);
             }

@@ -45,12 +45,14 @@
         </div>
 
         <c:if test="${not empty product.id}">
-        <form class="js-step-form py-md-5" action="update_product" method="post" enctype="multipart/form-data">
+        <form class="js-step-form py-md-5" action="update_product" method="post" enctype="multipart/form-data"
+              id="productForm">
             <input type="hidden" name="id" value="${product.id}"/>
             </c:if>
 
             <c:if test="${empty product.id}">
-            <form class="js-step-form py-md-5" action="create_product" method="post" enctype="multipart/form-data">
+            <form class="js-step-form py-md-5" action="create_product" method="post" enctype="multipart/form-data"
+                  id="productForm">
                 </c:if>
                 <div class="row justify-content-lg-center">
                     <div class="col-lg-8">
@@ -90,20 +92,20 @@
                                     </div>
 
                                     <div class="row form-group">
-                                        <label for="nameLabel"
+                                        <label for="name"
                                                class="col-sm-3 col-form-label input-label">Tên</label>
 
                                         <div class="col-sm-9">
-                                            <input type="text" class="form-control" name="name" id="nameLabel"
-                                                   value="${product.name}" required>
+                                            <input type="text" class="form-control" name="name" id="name"
+                                                   value="${product.name}">
                                         </div>
                                     </div>
 
                                     <div class="row form-group">
-                                        <label for="aliasLabel"
+                                        <label for="alias"
                                                class="col-sm-3 col-form-label input-label">Bí danh</label>
                                         <div class="col-sm-9">
-                                            <input type="text" class="form-control" name="alias" id="aliasLabel"
+                                            <input type="text" class="form-control ignore" name="alias" id="alias"
                                                    value="${product.alias}"
                                                    placeholder="Mặc định khoảng cách được thay thế bằng dấu -">
                                         </div>
@@ -112,8 +114,9 @@
                                     <div class="form-group row">
                                         <label class="col-sm-4 col-form-label">Ảnh sản phẩm:</label>
                                         <div class="col-sm-8">
-                                            <input type="file" id="avatarUploader" class="mb-2"
-                                                   name="image" ${product.id != null ? '' : 'required'}/>
+                                            <input type="file" id="image"
+                                                   class="mb-2 ${product.id != null ? 'ignore' : ''}"
+                                                   name="image"/>
                                             <c:choose>
                                                 <c:when test="${not empty product.mainImagePath}">
                                                     <img id="avatarImg"
@@ -131,38 +134,38 @@
                                     <div class="row form-group">
                                         <label class="col-sm-3 col-form-label input-label">Mô tả</label>
                                         <div class="col-sm-9">
-                                            <textarea name="description" rows="4" cols="55" required>
+                                            <textarea name="description" rows="5" cols="50" id="description">
                                                 ${product.description}
                                             </textarea>
                                         </div>
                                     </div>
 
                                     <div class="row form-group">
-                                        <label for="priceLabel"
+                                        <label for="price"
                                                class="col-sm-3 col-form-label input-label">Giá</label>
                                         <div class="col-sm-9">
-                                            <input type="text" class="form-control" name="price" id="priceLabel"
-                                                   value="${product.price}" required>
+                                            <input type="text" class="form-control" name="price" id="price"
+                                                   value="${product.price}">
                                         </div>
                                     </div>
 
                                     <div class="row form-group">
-                                        <label for="discountLabel"
+                                        <label for="percentDiscount"
                                                class="col-sm-3 col-form-label input-label">Giảm giá</label>
                                         <div class="col-sm-9">
-                                            <input type="text" class="form-control" name="percentDiscount"
-                                                   id="discountLabel"
+                                            <input type="text" class="form-control ignore" name="percentDiscount"
+                                                   id="percentDiscount"
                                                    value="${product.percentDiscount}"
-                                                   placeholder="Nhập % giá giảm nếu có" required>
+                                                   placeholder="Nhập % giá giảm nếu có">
                                         </div>
                                     </div>
 
                                     <div class="row form-group">
-                                        <label for="quantityLabel" class="col-sm-3 col-form-label input-label">Số
+                                        <label for="quantity" class="col-sm-3 col-form-label input-label">Số
                                             lượng</label>
                                         <div class="col-sm-9">
-                                            <input type="text" class="form-control" name="quantity" id="quantityLabel"
-                                                   value="${product.quantity}" required>
+                                            <input type="text" class="form-control" name="quantity" id="quantity"
+                                                   value="${product.quantity}">
                                         </div>
                                     </div>
 
@@ -211,13 +214,53 @@
 
 <script type="text/javascript">
     $(document).ready(function () {
+
+        $("#productForm").validate({
+            ignore: ".ignore",
+
+            rules: {
+                name: "required",
+                image: "required",
+                description: "required",
+                price: {
+                    required: true,
+                    number: true,
+                    min: 1000
+                },
+                quantity: {
+                    required: true,
+                    number: true,
+                    min: 1
+                }
+            },
+            messages: {
+                name: "Vui lòng nhập tên sản phẩm đầy đủ",
+                image: "Vui lòng chọn ảnh quảng cáo có định dạng jpg, jpeg, png",
+                description: "Vui lòng nhập mô tả sản phẩm",
+                price: {
+                    required: "Vui lòng nhập giá sản phẩm",
+                    number: "Giá sản phẩm phải là số",
+                    min: "Giá sản phẩm phải lớn hơn 1000 đ"
+                },
+                quantity: {
+                    required: "Vui lòng nhập số lượng sản phẩm",
+                    number: "Số lượng sản phẩm phải là số",
+                    min: "Số lượng sản phẩm phải lớn hơn 0"
+                }
+            }
+        });
+
         // check image file size
-        $("#avatarUploader").change(function () { // is executed every time the event is fired
+        $("#image").change(function () { // is executed every time the event is fired
             if (!checkFileSize(this)) {
                 return;
             }
 
             showImageThumbnail(this);
+        });
+
+        $("#btnCancel").on("click", function () {
+            window.location = "list_products";
         });
     });
 
@@ -231,12 +274,6 @@
     if (message !== "") {
         showModalDialog("Warning", message)
     }
-
-    $(document).ready(function () {
-        $("#btnCancel").on("click", function () {
-            window.location = "list_products";
-        });
-    });
 
     function showImageThumbnail(fileInput) {
         let file = fileInput.files[0];
