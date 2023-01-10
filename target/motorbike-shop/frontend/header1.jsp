@@ -1,7 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
-
 <div class="offcanvas-menu-overlay"></div>
 <div class="offcanvas-menu-wrapper">
     <div class="offcanvas__close">+</div>
@@ -10,16 +9,20 @@
         <li><a href="#"><span class="icon_heart_alt"></span>
             <div class="tip">2</div>
         </a></li>
-        <li><a href="#"><span class="icon_bag_alt"></span>
-            <div class="tip">2</div>
-        </a></li>
+        <li>
+            <a href="cart">
+                <span class="icon_bag_alt"></span>
+                <c:set var="cart" value="${sessionScope['cart']}"/>
+                <div class="tip">${cart.totalItems}</div>
+            </a>
+        </li>
     </ul>
     <div class="offcanvas__logo">
         <a href="/motorbike_shop/"><img src="images/setting/logo/${SITE_LOGO}" alt=""></a>
     </div>
     <div id="mobile-menu-wrap"></div>
     <div class="offcanvas__auth">
-        <a href="login.jsp">Đăng nhập</a>
+        <a href="login">Đăng nhập</a>
     </div>
 </div>
 
@@ -38,24 +41,22 @@
                             <a href="/motorbike_shop/">Trang chủ</a>
                         </li>
                         <li>
-                            <a href="shop.jsp">Xe Máy</a>
+                            <a href="search">Xe Máy</a>
                             <ul class="dropdown">
                                 <li>
-                                    <a href="#">Xe số</a>
+                                    <a href="search">Xe số</a>
                                 </li>
                                 <li>
-                                    <a href="#">Xe tay ga</a>
+                                    <a href="search">Xe tay ga</a>
                                 </li>
                                 <li>
-                                    <a href="#">Xe côn tay</a>
+                                    <a href="search">Xe côn tay</a>
                                 </li>
                                 <li>
-                                    <a href="#">Xe phân khối lớn</a>
+                                    <a href="search">Xe phân khối lớn</a>
                                 </li>
                             </ul>
                         </li>
-                        <!--<li><a href="./blog.html">Tin tức</a></li>
-                        <li><a href="./contact.html">Liên hệ</a></li>-->
                     </ul>
                 </nav>
             </div>
@@ -67,9 +68,13 @@
                         </div>
                         <ul class="header__right__widget">
                             <li><span class="icon_search search-switch"></span></li>
-                            <li><a href="frontend/cart.jsp"><span class="icon_bag_alt"></span>
-                                <div class="tip">2</div>
-                            </a></li>
+                            <li>
+                                <a href="cart">
+                                    <span class="icon_bag_alt"></span>
+                                    <c:set var="cart" value="${sessionScope['cart']}"/>
+                                    <div class="tip">${cart.totalItems}</div>
+                                </a>
+                            </li>
                         </ul>
                     </c:if>
                     <c:if test="${loggedCustomer != null}">
@@ -85,9 +90,10 @@
                                 </li>
                                 <li><span class="icon_search search-switch"></span></li>
                                 <li>
-                                    <a href="frontend/cart.jsp">
+                                    <a href="cart">
                                         <span class="icon_bag_alt"></span>
-                                        <div class="tip">2</div>
+                                        <c:set var="cart" value="${sessionScope['cart']}"/>
+                                        <div class="tip">${cart.totalItems}</div>
                                     </a>
                                 </li>
                             </ul>

@@ -37,16 +37,20 @@
         <li><a href="#"><span class="icon_heart_alt"></span>
             <div class="tip">2</div>
         </a></li>
-        <li><a href="#"><span class="icon_bag_alt"></span>
-            <div class="tip">2</div>
-        </a></li>
+        <li>
+            <a href="cart">
+                <span class="icon_bag_alt"></span>
+                <c:set var="cart" value="${sessionScope['cart']}"/>
+                <div class="tip">${cart.totalItems}</div>
+            </a>
+        </li>
     </ul>
     <div class="offcanvas__logo">
         <a href="/motorbike_shop/"><img src="images/setting/logo/${SITE_LOGO}" alt=""></a>
     </div>
     <div id="mobile-menu-wrap"></div>
     <div class="offcanvas__auth">
-        <a href="frontend/login.jsp">Đăng nhập</a>
+        <a href="login">Đăng nhập</a>
     </div>
 </div>
 
@@ -77,8 +81,6 @@
                                 </c:forEach>
                             </ul>
                         </li>
-                        <!--<li><a href="./blog.html">Tin tức</a></li>
-                        <li><a href="./contact.html">Liên hệ</a></li>-->
                     </ul>
                 </nav>
             </div>
@@ -90,9 +92,13 @@
                         </div>
                         <ul class="header__right__widget">
                             <li><span class="icon_search search-switch"></span></li>
-                            <li><a href="cart"><span class="icon_bag_alt"></span>
-                                <div class="tip">2</div>
-                            </a></li>
+                            <li>
+                                <a href="cart">
+                                    <span class="icon_bag_alt"></span>
+                                    <c:set var="cart" value="${sessionScope['cart']}"/>
+                                    <div class="tip">${cart.totalItems}</div>
+                                </a>
+                            </li>
                         </ul>
                     </c:if>
                     <c:if test="${loggedCustomer != null}">
@@ -110,7 +116,8 @@
                                 <li>
                                     <a href="cart">
                                         <span class="icon_bag_alt"></span>
-                                        <div class="tip">2</div>
+                                        <c:set var="cart" value="${sessionScope['cart']}"/>
+                                        <div class="tip">${cart.totalItems}</div>
                                     </a>
                                 </li>
                             </ul>
