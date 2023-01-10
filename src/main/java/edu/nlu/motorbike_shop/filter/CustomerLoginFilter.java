@@ -10,7 +10,7 @@ import java.io.IOException;
 public class CustomerLoginFilter implements Filter {
 
     private static final String[] loginRequiredURLs = {
-            "/account-info", "/reset_password", "/checkout"
+            "/account-info", "/reset_password", "/checkout", "/order_history"
     };
 
     public void init(FilterConfig config) throws ServletException {
