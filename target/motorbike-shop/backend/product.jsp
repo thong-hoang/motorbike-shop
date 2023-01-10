@@ -240,10 +240,14 @@
                         <ul class="pagination float-right">
                             <li class="${currentPage > 1 ? 'page-item' : 'page-item disabled'}">
                                 <a class="page-link"
+                                   href="list_products?pageNumber=${1}&keyword=${keyword}">Đầu</a>
+                            </li>
+                            <li class="${currentPage > 1 ? 'page-item' : 'page-item disabled'}">
+                                <a class="page-link"
                                    href="list_products?pageNumber=${currentPage - 1}&keyword=${keyword}">Trước</a>
                             </li>
                             <c:forEach var="i" begin="1" end="${totalPages}">
-                                <li style="${currentPage - 7 > i ||currentPage + 7 < i ? 'display:none ' : ' '}" class="${currentPage != i ? 'page-item ' : 'page-item active'}">
+                                <li style="${currentPage - 4 > i ||currentPage + 4 < i ? 'display:none ' : ' '}" class="${currentPage != i ? 'page-item ' : 'page-item active'}">
                                     <a class="page-link"
                                        href="list_products?pageNumber=${i}&keyword=${keyword}">${i}</a>
                                 </li>
@@ -251,6 +255,10 @@
                             <li class="${currentPage < totalPages ? 'page-item' : 'page-item disabled'}">
                                 <a class="page-link"
                                    href="list_products?pageNumber=${currentPage + 1}&keyword=${keyword}">Sau</a>
+                            </li>
+                            <li class="${currentPage < totalPages ? 'page-item' : 'page-item disabled'}">
+                                <a class="page-link"
+                                   href="list_products?pageNumber=${totalPages}&keyword=${keyword}">Cuối</a>
                             </li>
                         </ul>
                     </nav>

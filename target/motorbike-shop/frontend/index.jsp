@@ -168,10 +168,10 @@
             <div class="col-lg-4 col-md-6 col-sm-6 mix xeso">
                 <div class="product__item sale">
                     <div class="product__item__pic set-bg"
-                         data-setbg="images/yamaha/xeso/1/jupiter-pearl-white-004.png">
+                         data-setbg="images/yamaha/xeso/195/jupiter-pearl-white-004.png">
                         <div class="label sale">giảm giá</div>
                         <ul class="product__hover">
-                            <li><a href="images/yamaha/xeso/1/jupiter-pearl-white-004.png"
+                            <li><a href="images/yamaha/xeso/195/jupiter-pearl-white-004.png"
                                    class="image-popup"><span class="arrow_expand"></span></a></li>
                             <li><a href="#"><span class="icon_heart_alt"></span></a></li>
                             <li><a href="#"><span class="icon_bag_alt"></span></a></li>
@@ -193,10 +193,10 @@
             <div class="col-lg-4 col-md-6 col-sm-6 mix xecontay">
                 <div class="product__item">
                     <div class="product__item__pic set-bg"
-                         data-setbg="images/yamaha/xecontay/1/born-to-ride-004.png">
+                         data-setbg="images/yamaha/xecontay/163/born-to-ride-004.png">
                         <div class="label new">mới</div>
                         <ul class="product__hover">
-                            <li><a href="images/honda/xecontay/1/winner-x-tieuchuan-2022.jpg"
+                            <li><a href="images/honda/xecontay/163/winner-x-tieuchuan-2022.jpg"
                                    class="image-popup"><span class="arrow_expand"></span></a></li>
                             <li><a href="#"><span class="icon_heart_alt"></span></a></li>
                             <li><a href="#"><span class="icon_bag_alt"></span></a></li>
@@ -218,11 +218,11 @@
             <div class="col-lg-4 col-md-6 col-sm-6 mix xephankhoilon">
                 <div class="product__item">
                     <div class="product__item__pic set-bg"
-                         data-setbg="images/yamaha/xephankhoilon/1/2021_mtn320-a_pgd_usa_mt-03_storm-fluo_360_036-1.png">
+                         data-setbg="images/yamaha/xephankhoilon/179/2021_mtn320-a_pgd_usa_mt-03_storm-fluo_360_036-1.png">
                         <div class="label new">mới</div>
                         <ul class="product__hover">
                             <li>
-                                <a href="images/yamaha/xephankhoilon/1/2021_mtn320-a_pgd_usa_mt-03_storm-fluo_360_036-1.png"
+                                <a href="images/yamaha/xephankhoilon/179/2021_mtn320-a_pgd_usa_mt-03_storm-fluo_360_036-1.png"
                                    class="image-popup"><span class="arrow_expand"></span></a></li>
                             <li><a href="#"><span class="icon_heart_alt"></span></a></li>
                             <li><a href="#"><span class="icon_bag_alt"></span></a></li>
@@ -245,7 +245,7 @@
         </div>
         <div class="row justify-content-center">
             <div class="btn btn-light text-black">
-                <a href="frontend/shop.jsp" class="border-btn">Xem thêm</a>
+                <a href="search" class="border-btn">Xem thêm</a>
             </div>
         </div>
     </div>
