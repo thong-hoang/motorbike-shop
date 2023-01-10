@@ -41,20 +41,16 @@
                             <a href="/motorbike_shop/">Trang chủ</a>
                         </li>
                         <li>
-                            <a href="search">Xe Máy</a>
+                            <c:forEach var="parent" items="${parents}">
+                                <a href="search?keyword=${parent.name}&categoryId=1">${parent.name}</a>
+                            </c:forEach>
+
                             <ul class="dropdown">
-                                <li>
-                                    <a href="search">Xe số</a>
-                                </li>
-                                <li>
-                                    <a href="search">Xe tay ga</a>
-                                </li>
-                                <li>
-                                    <a href="search">Xe côn tay</a>
-                                </li>
-                                <li>
-                                    <a href="search">Xe phân khối lớn</a>
-                                </li>
+                                <c:forEach items="${childs}" var="child">
+                                    <li>
+                                        <a href="search?keyword=${child.name}&categoryId=${child.id}">${child.name}</a>
+                                    </li>
+                                </c:forEach>
                             </ul>
                         </li>
                     </ul>

@@ -541,4 +541,74 @@ public class ProductDAO implements Serializable {
         return 0;
     }
 
+    /**
+     * Total results keyword search.
+     *
+     * @return The number of results. 0 if no results.
+     */
+    public int countByKeywordCategoryActive(String keyword, int categoryId) {
+        String sql = "SELECT COUNT(id) FROM products LEFT JOIN product_status ps on products.id = ps.product_id " +
+                "WHERE ps.status_id NOT IN (1, 4) AND category_id = ? AND name LIKE ?";
+        try (Connection conn = DBUtils.makeConnection();
+             PreparedStatement stm = conn.prepareStatement(sql)) {
+            stm.setInt(1, categoryId);
+            stm.setString(2, "%" + keyword + "%");
+            try (ResultSet rs = stm.executeQuery()) {
+                while (rs.next())
+                    return rs.getInt(1);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return 0;
+    }
+
+    /**
+     * Returns all instance of product with pagination and search.
+     *
+     * @param pageSize Specify the number of records per page.
+     * @param index    Specify the page index.
+     * @return List of product entities.
+     */
+    public List<Product> findAllByCategory(String keyword, int pageSize, int index, int categoryId) {
+        List<Product> products = new ArrayList<>();
+        String sql = "SELECT id, main_image_path, name, brand_id, price, percent_discount, quantity " +
+                "FROM products p LEFT JOIN product_status ps ON p.id = ps.product_id " +
+                "WHERE ps.status_id NOT IN (1, 4) AND category_id = ? AND name LIKE ? " +
+                "ORDER BY last_updated_time DESC LIMIT ? OFFSET ?";
+
+        // use try-with-resources Statement to auto close the connection.
+        try (Connection conn = DBUtils.makeConnection();
+             PreparedStatement stm = conn.prepareStatement(sql)) {
+            stm.setInt(1, categoryId);
+            stm.setString(2, "%" + keyword + "%");
+            stm.setInt(3, pageSize);
+            stm.setInt(4, (index - 1) * pageSize);
+
+            // use try-with-resources Statement to auto close the ResultSet.
+            try (ResultSet rs = stm.executeQuery()) {
+                // fetch data from result set
+                while (rs.next()) {
+                    Integer id = rs.getInt(1);
+                    String mainImagePath = rs.getString(2);
+                    String name = rs.getString(3);
+                    Integer brandId = rs.getInt(4);
+                    int price = rs.getInt(5);
+                    int percentDiscount = rs.getInt(6);
+                    int quantity = rs.getInt(7);
+
+                    Brand brand = BrandDAO.getInstance().findById(brandId);
+
+                    Product product = new Product(id, mainImagePath, name, brand, price, percentDiscount, quantity);
+                    findStatusesByProductId(id).forEach(product::addStatus);
+
+                    products.add(product);
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return products;
+    }
 }

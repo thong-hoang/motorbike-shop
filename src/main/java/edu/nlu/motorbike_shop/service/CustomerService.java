@@ -309,6 +309,12 @@ public class CustomerService {
             request.setAttribute(store.getKey(), store.getValue());
         }
 
+        // category
+        List<Category> parents = categoryDAO.findAllParentCategory();
+        List<Category> childs = categoryDAO.findAllChildCategory();
+        request.setAttribute("parents", parents);
+        request.setAttribute("childs", childs);
+
         if (message != null) request.setAttribute("message", message);
 
         request.getRequestDispatcher(accountInfoPage).forward(request, response);
@@ -349,6 +355,12 @@ public class CustomerService {
         for (Setting store : stores) {
             request.setAttribute(store.getKey(), store.getValue());
         }
+
+        // category
+        List<Category> parents = categoryDAO.findAllParentCategory();
+        List<Category> childs = categoryDAO.findAllChildCategory();
+        request.setAttribute("parents", parents);
+        request.setAttribute("childs", childs);
 
         request.getRequestDispatcher("frontend/reset-password.jsp").forward(request, response);
     }

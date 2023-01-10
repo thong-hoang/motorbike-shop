@@ -186,7 +186,7 @@
                                     </div>
                                     <div class="product__price">
                                         <fmt:setLocale value="vi_VN"/>
-                                        <fmt:formatNumber value = "${product.price}" type = "currency"/>
+                                        <fmt:formatNumber value="${product.price}" type="currency"/>
                                     </div>
                                 </div>
                             </div>
@@ -396,17 +396,18 @@
                                 <ul class="pagination float-right">
                                     <li class="${currentPage > 1 ? 'page-item' : 'page-item disabled'}">
                                         <a class="page-link"
-                                           href="search?pageNumber=${currentPage - 1}&keyword=${keyword}">Trước</a>
+                                           href="search?pageNumber=${currentPage - 1}&keyword=${keyword}&categoryId=${categoryId}">Trước</a>
                                     </li>
                                     <c:forEach var="i" begin="1" end="${totalPages}">
-                                        <li style="${currentPage - 5 > i ||currentPage + 5 < i ? 'display:none ' : ' '}" class="${currentPage != i ? 'page-item ' : 'page-item active'}">
+                                        <li style="${currentPage - 5 > i ||currentPage + 5 < i ? 'display:none ' : ' '}"
+                                            class="${currentPage != i ? 'page-item ' : 'page-item active'}">
                                             <a class="page-link"
-                                               href="search?pageNumber=${i}&keyword=${keyword}">${i}</a>
+                                               href="search?pageNumber=${i}&keyword=${keyword}&categoryId=${categoryId}">${i}</a>
                                         </li>
                                     </c:forEach>
                                     <li class="${currentPage < totalPages ? 'page-item' : 'page-item disabled'}">
                                         <a class="page-link"
-                                           href="search?pageNumber=${currentPage + 1}&keyword=${keyword}">Sau</a>
+                                           href="search?pageNumber=${currentPage + 1}&keyword=${keyword}&categoryId=${categoryId}">Sau</a>
                                     </li>
                                 </ul>
                             </nav>

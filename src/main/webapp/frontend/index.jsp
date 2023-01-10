@@ -33,7 +33,7 @@
 <div class="offcanvas-menu-wrapper">
     <div class="offcanvas__close">+</div>
     <ul class="offcanvas__widget">
-        <li><span class="icon_search search-switch"></span></li>
+<%--        <li><span class="icon_search search-switch"></span></li>--%>
         <li><a href="#"><span class="icon_heart_alt"></span>
             <div class="tip">2</div>
         </a></li>
@@ -70,13 +70,13 @@
                         </li>
                         <li>
                             <c:forEach var="parent" items="${parents}">
-                                <a href="search?keyword=${parent.name}">${parent.name}</a>
+                                <a href="search?keyword=${parent.name}&categoryId=1">${parent.name}</a>
                             </c:forEach>
 
                             <ul class="dropdown">
                                 <c:forEach items="${childs}" var="child">
                                     <li>
-                                        <a href="search?keyword=${child.name}">${child.name}</a>
+                                        <a href="search?keyword=${child.name}&categoryId=${child.id}">${child.name}</a>
                                     </li>
                                 </c:forEach>
                             </ul>
@@ -91,7 +91,7 @@
                             <a href="login">Đăng nhập</a>
                         </div>
                         <ul class="header__right__widget">
-                            <li><span class="icon_search search-switch"></span></li>
+<%--                            <li><span class="icon_search search-switch"></span></li>--%>
                             <li>
                                 <a href="cart">
                                     <span class="icon_bag_alt"></span>
@@ -112,7 +112,7 @@
                                         <li><a href="logout">Đăng xuất</a></li>
                                     </ul>
                                 </li>
-                                <li><span class="icon_search search-switch"></span></li>
+<%--                                <li><span class="icon_search search-switch"></span></li>--%>
                                 <li>
                                     <a href="cart">
                                         <span class="icon_bag_alt"></span>
@@ -259,7 +259,6 @@
 </section>
 <!-- Product Section End -->
 
-<%@ page contentType="text/html;charset=UTF-8" %>
 <footer class="footer">
     <div class="container">
         <div class="row">
@@ -307,14 +306,14 @@
     </div>
 </footer>
 
-<div class="search-model">
-    <div class="h-100 d-flex align-items-center justify-content-center">
-        <div class="search-close-switch">+</div>
-        <form class="search-model-form">
-            <input type="text" id="search-input" placeholder="Tìm kiếm">
-        </form>
-    </div>
-</div>
+<%--<div class="search-model">--%>
+<%--    <div class="h-100 d-flex align-items-center justify-content-center">--%>
+<%--        <div class="search-close-switch">+</div>--%>
+<%--        <form class="search-model-form" action="search" method="get">--%>
+<%--            <input type="text" id="search-input" placeholder="Tìm kiếm" name="keyword">--%>
+<%--        </form>--%>
+<%--    </div>--%>
+<%--</div>--%>
 
 <script src="frontend/js/jquery-3.3.1.min.js"></script>
 <script src="frontend/js/bootstrap.min.js"></script>

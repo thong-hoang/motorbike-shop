@@ -2,8 +2,10 @@ package edu.nlu.motorbike_shop.service;
 
 import edu.nlu.motorbike_shop.constant.Constants;
 import edu.nlu.motorbike_shop.dao.BrandDAO;
+import edu.nlu.motorbike_shop.dao.CategoryDAO;
 import edu.nlu.motorbike_shop.dao.ProductDAO;
 import edu.nlu.motorbike_shop.dao.SettingDAO;
+import edu.nlu.motorbike_shop.entity.Category;
 import edu.nlu.motorbike_shop.entity.Product;
 import edu.nlu.motorbike_shop.entity.Setting;
 import edu.nlu.motorbike_shop.entity.ShoppingCart;
@@ -17,6 +19,7 @@ import java.util.List;
 public class ShoppingCartService {
     private final ProductDAO productDAO = ProductDAO.getInstance();
     private final SettingDAO settingDAO = SettingDAO.getInstance();
+    private final CategoryDAO categoryDAO = CategoryDAO.getInstance();
     private final HttpServletRequest request;
     private final HttpServletResponse response;
 
@@ -32,6 +35,12 @@ public class ShoppingCartService {
         for (Setting store : stores) {
             request.setAttribute(store.getKey(), store.getValue());
         }
+
+        // category
+        List<Category> parents = categoryDAO.findAllParentCategory();
+        List<Category> childs = categoryDAO.findAllChildCategory();
+        request.setAttribute("parents", parents);
+        request.setAttribute("childs", childs);
 
         Object cart = request.getSession().getAttribute("cart");
 

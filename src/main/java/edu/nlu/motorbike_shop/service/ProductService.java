@@ -2,6 +2,7 @@ package edu.nlu.motorbike_shop.service;
 
 import edu.nlu.motorbike_shop.constant.Constants;
 import edu.nlu.motorbike_shop.dao.BrandDAO;
+import edu.nlu.motorbike_shop.dao.CategoryDAO;
 import edu.nlu.motorbike_shop.dao.ProductDAO;
 import edu.nlu.motorbike_shop.dao.SettingDAO;
 import edu.nlu.motorbike_shop.entity.*;
@@ -22,6 +23,7 @@ import static edu.nlu.motorbike_shop.util.FileUploadUtils.*;
 public class ProductService {
     private final ProductDAO productDAO = ProductDAO.getInstance();
     private final SettingDAO settingDAO = SettingDAO.getInstance();
+    private final CategoryDAO categoryDAO = CategoryDAO.getInstance();
     private final BrandDAO brandDAO = BrandDAO.getInstance();
     private final HttpServletRequest request;
     private final HttpServletResponse response;
@@ -320,9 +322,6 @@ public class ProductService {
      * Show the product page to user.
      */
     public void showProduct() throws ServletException, IOException {
-        String keyword = request.getParameter("keyword");
-        request.setAttribute("title", keyword);
-
         // setting
         List<Setting> stores = settingDAO.findAllByCategory(Constants.GENERAL_SETTING_CATEGORY);
 
@@ -334,9 +333,22 @@ public class ProductService {
         List<Brand> brands = brandDAO.findAll();
         request.setAttribute("brands", brands);
 
+        // category
+        List<Category> parents = categoryDAO.findAllParentCategory();
+        List<Category> childs = categoryDAO.findAllChildCategory();
+        request.setAttribute("parents", parents);
+        request.setAttribute("childs", childs);
 
-        if (keyword == null || keyword.equals("xe máy"))
+        String keyword = request.getParameter("keyword");
+        Integer categoryId = Integer.valueOf(request.getParameter("categoryId"));
+
+        request.setAttribute("title", keyword);
+
+        if (keyword == null || keyword.equals("xe máy") || keyword.equals("xe số") || keyword.equals("xe tay ga")
+                || keyword.equals("xe côn tay") || keyword.equals("xe mô tô")) {
             keyword = "";
+        }
+
         String pageNumberString = request.getParameter("pageNumber");
         int pageNumber;
 
@@ -347,9 +359,16 @@ public class ProductService {
         }
 
         int numberOfProducts = productDAO.countActive();
-        int totalKeywordResults = productDAO.countByKeywordActive(keyword);
+        int totalKeywordResults;
+        List<Product> products;
 
-        List<Product> products = productDAO.findAllActive(keyword, "last_updated_time", "DESC", 9, pageNumber);
+        if (categoryId == 1) {
+            products = productDAO.findAllActive(keyword, "last_updated_time", "DESC", 9, pageNumber);
+            totalKeywordResults = productDAO.countByKeywordActive(keyword);
+        } else {
+            products = productDAO.findAllByCategory(keyword, 9, pageNumber, categoryId);
+            totalKeywordResults = productDAO.countByKeywordCategoryActive(keyword, categoryId);
+        }
 
         int totalPages = totalKeywordResults / 9;
         if (numberOfProducts % 9 != 0) totalPages++;
@@ -357,6 +376,7 @@ public class ProductService {
         request.setAttribute("currentPage", pageNumber);
         request.setAttribute("totalPages", totalPages);
         request.setAttribute("keyword", keyword);
+        request.setAttribute("categoryId", categoryId);
         request.setAttribute("numberOfProducts", numberOfProducts);
         request.setAttribute("listProducts", products);
 

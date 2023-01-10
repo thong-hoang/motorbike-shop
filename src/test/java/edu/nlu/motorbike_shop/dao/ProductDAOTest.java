@@ -104,4 +104,9 @@ public class ProductDAOTest {
     public void testCountByKeywordActive() {
         System.out.println(productDAO.countByKeywordActive(""));
     }
+
+    @Test
+    public void testCountByKeywordCategoryActive() {
+        System.out.println(productDAO.countByKeywordCategoryActive("", 5));
+    }
 }
