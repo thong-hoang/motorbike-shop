@@ -8,6 +8,7 @@ import edu.nlu.motorbike_shop.entity.*;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.List;
 
@@ -261,21 +262,31 @@ public class CustomerService {
                 request.setAttribute("message", message);
                 showLogin(message);
             } else {
-                request.getSession().setAttribute("loggedCustomer", customer);
-                List<Setting> stores = settingDAO.findAllByCategory(GENERAL_SETTING_CATEGORY);
+                HttpSession session = request.getSession();
+                session.setAttribute("loggedCustomer", customer);
 
-                for (Setting store : stores) {
-                    request.setAttribute(store.getKey(), store.getValue());
+                Object redirectURL = session.getAttribute("redirectURL");
+
+                if (redirectURL != null) {
+                    String redirect = (String) redirectURL;
+                    session.removeAttribute("redirectURL");
+                    response.sendRedirect(redirect);
+                } else {
+                    List<Setting> stores = settingDAO.findAllByCategory(GENERAL_SETTING_CATEGORY);
+
+                    for (Setting store : stores) {
+                        request.setAttribute(store.getKey(), store.getValue());
+                    }
+
+                    // category
+                    List<Category> parents = categoryDAO.findAllParentCategory();
+                    List<Category> childs = categoryDAO.findAllChildCategory();
+                    request.setAttribute("parents", parents);
+                    request.setAttribute("childs", childs);
+
+                    String homePage = "frontend/index.jsp";
+                    request.getRequestDispatcher(homePage).forward(request, response);
                 }
-
-                // category
-                List<Category> parents = categoryDAO.findAllParentCategory();
-                List<Category> childs = categoryDAO.findAllChildCategory();
-                request.setAttribute("parents", parents);
-                request.setAttribute("childs", childs);
-
-                String homePage = "frontend/index.jsp";
-                request.getRequestDispatcher(homePage).forward(request, response);
             }
         }
     }
