@@ -206,8 +206,12 @@ public class CustomerService {
         } else {
             customerDAO.save(customer);
 
-            String homePage = "frontend/index.jsp";
-            request.getRequestDispatcher(homePage).forward(request, response);
+            String message = "Đăng ký tài khoản thành công";
+            request.setAttribute("message", message);
+            request.setAttribute("buttonName", "Quay trở lại trang đăng nhập");
+            request.setAttribute("buttonLink", "login");
+
+            request.getRequestDispatcher("frontend/message.jsp").forward(request, response);
         }
     }
 

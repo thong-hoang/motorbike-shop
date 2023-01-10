@@ -109,7 +109,7 @@
             <div class="row">
                 <div class="col-lg-4 col-md-4 col-sm-4">
                     <div class="cart__btn">
-                        <a href="search">Tiếp tục mua hàng</a>
+                        <a href="search?keyword=xe máy&categoryId=1">Tiếp tục mua hàng</a>
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-4 col-sm-4">
