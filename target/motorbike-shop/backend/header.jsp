@@ -187,7 +187,7 @@
                                 </li>
                             </c:if>
 
-                            <c:if test="${role.id == 1 || role.id == 3}">
+                            <c:if test="${role.id == 1}">
                                 <li class="navbar-vertical-aside-has-menu">
                                     <a class="js-navbar-vertical-aside-menu-link nav-link" href="list_customers"
                                        title="Khách hàng">
