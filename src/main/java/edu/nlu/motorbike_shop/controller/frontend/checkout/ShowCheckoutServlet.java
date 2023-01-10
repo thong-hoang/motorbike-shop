@@ -14,4 +14,9 @@ public class ShowCheckoutServlet extends HttpServlet {
         OrderService orderService = new OrderService(request, response);
         orderService.showCheckoutPage();
     }
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        OrderService orderService = new OrderService(request, response);
+        orderService.placeOrder();
+    }
 }

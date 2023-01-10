@@ -36,7 +36,7 @@
 <section class="checkout spad">
     <div class="container">
 
-        <form action="#" class="checkout__form" id="checkoutForm">
+        <form action="checkout" method="post" class="checkout__form" id="checkoutForm">
             <div class="row">
                 <div class="col-lg-6">
                     <h5>Nhập thông tin đặt hàng</h5>
@@ -44,27 +44,29 @@
                         <div class="col-lg-12">
                             <div class="checkout__form__input">
                                 <p>Tên người nhận <span>*</span></p>
-                                <input type="text" id="fullName" name="fullName">
+                                <input type="text" id="fullName" name="fullName"
+                                       value="${loggedCustomer.lastName} ${loggedCustomer.firstName}">
                             </div>
                             <div class="checkout__form__input">
                                 <p>Số điện thoại <span>*</span></p>
-                                <input type="text" name="phone" id="phone">
+                                <input type="text" name="phone" id="phone" value="${loggedCustomer.phoneNumber}">
                             </div>
                             <div class="checkout__form__input">
                                 <p>Địa chỉ <span>*</span></p>
-                                <input type="text" name="street" id="street">
+                                <input type="text" name="street" id="street" value="${loggedCustomer.address.street}">
                             </div>
                             <div class="checkout__form__input">
                                 <p>Phường/Xã <span>*</span></p>
-                                <input type="text" name="ward" id="ward">
+                                <input type="text" name="ward" id="ward" value="${loggedCustomer.address.ward}">
                             </div>
                             <div class="checkout__form__input">
                                 <p>Quận/Huyện <span>*</span></p>
-                                <input type="text" name="district" id="district">
+                                <input type="text" name="district" id="district"
+                                       value="${loggedCustomer.address.district}">
                             </div>
                             <div class="checkout__form__input">
                                 <p>Tỉnh/Thành phố <span>*</span></p>
-                                <input type="text" id="city" name="city">
+                                <input type="text" id="city" name="city" value="${loggedCustomer.address.city}">
                             </div>
                         </div>
 
@@ -105,14 +107,14 @@
                                 <div class="form-check">
                                     <input class="form-check-input" type="radio" name="flexRadioDefault"
                                            id="flexRadioDefault1">
-                                    <label class="form-check-label" for="flexRadioDefault1">
-                                        ATM
-                                    </label>
+<%--                                    <label class="form-check-label" for="flexRadioDefault1">--%>
+<%--                                        ATM--%>
+<%--                                    </label>--%>
                                 </div>
                                 <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="flexRadioDefault"
-                                           id="flexRadioDefault2" checked>
-                                    <label class="form-check-label" for="flexRadioDefault2">
+                                    <input class="form-check-input" type="radio" name="paymentMethod"
+                                           id="paymentMethod" checked>
+                                    <label class="form-check-label" for="paymentMethod">
                                         Thanh toán khi nhận hàng (COD)
                                     </label>
                                 </div>

@@ -3,14 +3,13 @@ package edu.nlu.motorbike_shop.service;
 import edu.nlu.motorbike_shop.constant.Constants;
 import edu.nlu.motorbike_shop.dao.OrderDAO;
 import edu.nlu.motorbike_shop.dao.SettingDAO;
-import edu.nlu.motorbike_shop.entity.Order;
-import edu.nlu.motorbike_shop.entity.Setting;
+import edu.nlu.motorbike_shop.entity.*;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.List;
+import java.util.*;
 
 import static edu.nlu.motorbike_shop.constant.Constants.*;
 
@@ -101,5 +100,61 @@ public class OrderService {
         }
 
         request.getRequestDispatcher("frontend/checkout.jsp").forward(request, response);
+    }
+
+    public void placeOrder() throws ServletException, IOException {
+        String recipientName = request.getParameter("fullName");
+        String recipientPhone = request.getParameter("phone");
+        String street = request.getParameter("street");
+        String ward = request.getParameter("ward");
+        String district = request.getParameter("district");
+        String city = request.getParameter("city");
+
+        Address address = new Address(street, ward, district, city);
+
+        Customer customer = (Customer) request.getSession().getAttribute("loggedCustomer");
+
+        Order order = new Order();
+        order.setCustomer(customer);
+        order.setPaymentMethod("Thanh toán khi nhận hàng");
+        order.setRecipientName(recipientName);
+        order.setRecipientPhone(recipientPhone);
+        order.setAddress(address);
+
+        ShoppingCart shoppingCart = (ShoppingCart) request.getSession().getAttribute("cart");
+        Map<Product, Integer> items = shoppingCart.getItems();
+        Iterator<Product> iterator = items.keySet().iterator();
+
+        Set<OrderDetail> orderDetails = new HashSet<>();
+
+        while (iterator.hasNext()) {
+            Product product = iterator.next();
+            Integer quantity = items.get(product);
+            int subtotal = product.getPrice() * quantity;
+
+            OrderDetail orderDetail = new OrderDetail();
+            orderDetail.setProduct(product);
+            orderDetail.setQuantity(quantity);
+            orderDetail.setOrder(order);
+            orderDetail.setSubTotal(subtotal);
+            orderDetail.setProductCost(product.getPrice());
+
+            orderDetails.add(orderDetail);
+        }
+
+        order.setOrderDetails(orderDetails);
+        order.setTotal(shoppingCart.getTotalAmount());
+        order.setStatus("Đang xử lý");
+
+        orderDAO.save(order);
+
+        shoppingCart.clear();
+
+        String message = "Đặt hàng thành công. Chúng tôi sẽ giao hàng cho bạn trong một vài ngày tới";
+        request.setAttribute("message", message);
+        request.setAttribute("buttonName", "Quay trở lại trang chủ");
+        request.setAttribute("buttonLink", "/motorbike_shop/");
+
+        request.getRequestDispatcher("frontend/message.jsp").forward(request, response);
     }
 }
