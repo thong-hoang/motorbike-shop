@@ -399,7 +399,7 @@
                                            href="search?pageNumber=${currentPage - 1}&keyword=${keyword}">Trước</a>
                                     </li>
                                     <c:forEach var="i" begin="1" end="${totalPages}">
-                                        <li class="${currentPage != i ? 'page-item' : 'page-item active'}">
+                                        <li style="${currentPage - 5 > i ||currentPage + 5 < i ? 'display:none ' : ' '}" class="${currentPage != i ? 'page-item ' : 'page-item active'}">
                                             <a class="page-link"
                                                href="search?pageNumber=${i}&keyword=${keyword}">${i}</a>
                                         </li>
