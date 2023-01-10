@@ -76,202 +76,12 @@
                                 </a>
                             </div>
                         </div>
-                        <!-- End Unfold -->
                     </div>
-                </div>
-
-                <div class="col-sm-auto">
-                    <a class="btn btn-icon btn-sm btn-ghost-secondary rounded-circle mr-1" href="#"
-                       data-toggle="tooltip"
-                       data-placement="top" title="Đơn trước">
-                        <i class="tio-arrow-backward"></i>
-                    </a>
-                    <a class="btn btn-icon btn-sm btn-ghost-secondary rounded-circle" href="#" data-toggle="tooltip"
-                       data-placement="top" title="Đơn sau">
-                        <i class="tio-arrow-forward"></i>
-                    </a>
                 </div>
             </div>
         </div>
 
         <div class="row">
-            <div class="col-lg-8 mb-3 mb-lg-0">
-                <!-- Card -->
-                <div class="card mb-3 mb-lg-5">
-                    <!-- Header -->
-                    <div class="card-header">
-                        <h4 class="card-header-title">Chi tiết đơn hàng
-                            <span class="badge badge-soft-dark rounded-circle ml-1">${order.quantity}</span>
-                        </h4>
-                        <a class="link" href="#">Chỉnh sửa</a>
-                    </div>
-                    <!-- End Header -->
-
-                    <div class="card-body">
-                        <c:forEach items="${order.orderDetails}" var="detail">
-                            <div class="media">
-                                <div class="media-body d-flex flex-row">
-                                    <div class="avatar avatar-xl mr-2">
-                                        <img class="img-fluid"
-                                             src="../images/product/${detail.product.id}/${detail.product.mainImagePath}"
-                                             alt="Image Description">
-                                    </div>
-                                    <div class="info">
-                                        <span class="h5 d-block">${detail.product.name}</span>
-                                        <div class="font-size-sm text-body">
-                                            <span>Màu:</span>
-                                            <span class="font-weight-bold">Đỏ đen</span>
-                                        </div>
-                                    </div>
-
-                                    <div class="align-self-center text-dark ml-5">
-                                        <span>
-                                            <fmt:setLocale value="vi_VN"/>
-                                            <fmt:formatNumber value="${detail.product.price}" type="currency"/>
-                                        </span>
-                                    </div>
-
-                                    <div class="col align-self-center text-dark">
-                                        <span>${detail.quantity}</span>
-                                    </div>
-
-                                    <div class="align-self-center text-dark">
-                                        <span>
-                                            <fmt:setLocale value="vi_VN"/>
-                                            <fmt:formatNumber value="${detail.subTotal}" type="currency"/>
-                                        </span>
-                                    </div>
-                                </div>
-                            </div>
-                        </c:forEach>
-
-                        <hr>
-
-                        <div class="row justify-content-md-end mb-3">
-                            <div class="col-md-8 col-lg-7">
-                                <dl class="row text-sm-right">
-                                    <dt class="col-sm-6">Tổng giá sản phẩm:</dt>
-                                    <dd class="col-sm-6">
-                                        <fmt:setLocale value="vi_VN"/>
-                                        <fmt:formatNumber value="${order.total}" type="currency"/>
-                                    </dd>
-                                    <dt class="col-sm-6">Giảm giá:</dt>
-                                    <dd class="col-sm-6">
-                                        <fmt:setLocale value="vi_VN"/>
-                                        <fmt:formatNumber value="0" type="currency"/>
-                                    </dd>
-                                    <dt class="col-sm-6">Thành tiền:</dt>
-                                    <dd class="col-sm-6">
-                                        <fmt:setLocale value="vi_VN"/>
-                                        <fmt:formatNumber value="${order.total}" type="currency"/>
-                                    </dd>
-                                </dl>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <%--                <div class="card">--%>
-                <%--                    <!-- Header -->--%>
-                <%--                    <div class="card-header">--%>
-                <%--                        <h4 class="card-header-title">--%>
-                <%--                            Trạng thái giao hàng--%>
-                <%--                        </h4>--%>
-                <%--                    </div>--%>
-                <%--                    <!-- End Header -->--%>
-
-                <%--                    <!-- Body -->--%>
-                <%--                    <div class="card-body">--%>
-                <%--                        <!-- Step -->--%>
-                <%--                        <ul class="step step-icon-xs">--%>
-                <%--                            <!-- Step Item -->--%>
-                <%--                            <li class="step-item">--%>
-                <%--                                <div class="step-content-wrapper">--%>
-                <%--                                    <small class="step-divider">Thứ 2, 15/11/2022</small>--%>
-                <%--                                </div>--%>
-                <%--                            </li>--%>
-                <%--                            <!-- End Step Item -->--%>
-
-                <%--                            <!-- Step Item -->--%>
-                <%--                            <li class="step-item">--%>
-                <%--                                <div class="step-content-wrapper">--%>
-                <%--                                    <span class="step-icon step-icon-soft-dark step-icon-pseudo"></span>--%>
-
-                <%--                                    <div class="step-content">--%>
-                <%--                                        <h5 class="mb-1">--%>
-                <%--                                            <a class="text-dark" href="#">Nhận hàng</a>--%>
-                <%--                                        </h5>--%>
-
-                <%--                                        <p class="font-size-sm mb-0">7:30</p>--%>
-                <%--                                    </div>--%>
-                <%--                                </div>--%>
-                <%--                            </li>--%>
-                <%--                            <!-- End Step Item -->--%>
-
-                <%--                            <!-- Step Item -->--%>
-                <%--                            <li class="step-item">--%>
-                <%--                                <div class="step-content-wrapper">--%>
-                <%--                                    <span class="step-icon step-icon-soft-dark step-icon-pseudo"></span>--%>
-
-                <%--                                    <div class="step-content">--%>
-                <%--                                        <h5 class="mb-1">--%>
-                <%--                                            <a class="text-dark" href="#">Đóng gói bảo vệ</a>--%>
-                <%--                                        </h5>--%>
-
-                <%--                                        <p class="font-size-sm mb-0">8:30</p>--%>
-                <%--                                    </div>--%>
-                <%--                                </div>--%>
-                <%--                            </li>--%>
-                <%--                            <!-- End Step Item -->--%>
-
-                <%--                            <!-- Step Item -->--%>
-                <%--                            <li class="step-item">--%>
-                <%--                                <div class="step-content-wrapper">--%>
-                <%--                                    <span class="step-icon step-icon-soft-dark step-icon-pseudo"></span>--%>
-
-                <%--                                    <div class="step-content">--%>
-                <%--                                        <h5 class="mb-1">--%>
-                <%--                                            <a class="text-dark" href="#">Đang giao hàng</a>--%>
-                <%--                                        </h5>--%>
-
-                <%--                                        <p class="font-size-sm mb-0">9:00</p>--%>
-                <%--                                    </div>--%>
-                <%--                                </div>--%>
-                <%--                            </li>--%>
-                <%--                            <!-- End Step Item -->--%>
-
-                <%--                            <!--                  &lt;!&ndash; Step Item &ndash;&gt;-->--%>
-                <%--                            <!--                  <li class="step-item">-->--%>
-                <%--                            <!--                    <div class="step-content-wrapper">-->--%>
-                <%--                            <!--                      <small class="step-divider">Tuesday, 18 August</small>-->--%>
-                <%--                            <!--                    </div>-->--%>
-                <%--                            <!--                  </li>-->--%>
-                <%--                            <!--                  &lt;!&ndash; End Step Item &ndash;&gt;-->--%>
-
-                <%--                            <!-- Step Item -->--%>
-                <%--                            <li class="step-item">--%>
-                <%--                                <div class="step-content-wrapper">--%>
-                <%--                                    <span class="step-icon step-icon-soft-dark step-icon-pseudo"></span>--%>
-
-                <%--                                    <div class="step-content">--%>
-                <%--                                        <h5 class="mb-1">--%>
-                <%--                                            <a class="text-dark" href="#">Giao hàng thành công</a>--%>
-                <%--                                        </h5>--%>
-                <%--                                        <p class="font-size-sm mb-0">6:29 AM</p>--%>
-                <%--                                        <p class="font-size-sm mb-0">#32543</p>--%>
-                <%--                                    </div>--%>
-                <%--                                </div>--%>
-                <%--                            </li>--%>
-                <%--                            <!-- End Step Item -->--%>
-                <%--                        </ul>--%>
-                <%--                        <!-- End Step -->--%>
-
-                <%--                        <small>Thời gian được hiển thị theo múi giờ địa phương.</small>--%>
-                <%--                    </div>--%>
-                <%--                    <!-- End Body -->--%>
-                <%--                </div>--%>
-            </div>
-
             <div class="col-lg-4">
                 <div class="card">
                     <div class="card-header">
@@ -322,6 +132,90 @@
                     </div>
                 </div>
             </div>
+        </div>
+
+        <br>
+
+        <div class="row">
+            <div class="col-lg-12 mb-3 mb-lg-0">
+                <div class="card mb-3 mb-lg-5">
+                    <div class="card-header">
+                        <h4 class="card-header-title">Chi tiết đơn hàng
+                            <span class="badge badge-soft-dark rounded-circle ml-1">${order.quantity}</span>
+                        </h4>
+                        <a class="link" href="#">Chỉnh sửa</a>
+                    </div>
+
+                    <div class="card-body">
+                        <c:forEach items="${order.orderDetails}" var="detail">
+                            <div class="media">
+                                <div class="avatar avatar-xl mr-3">
+                                    <img class="img-fluid"
+                                         src="../images/product/${detail.product.id}/${detail.product.mainImagePath}"
+                                         alt="Image Description">
+                                </div>
+
+                                <div class="media-body">
+                                    <div class="row">
+                                        <div class="col-md-6 mb-3 mb-md-0">
+                                            <span class="h5 d-block">${detail.product.name}</span>
+
+                                            <div class="font-size-sm text-body">
+                                                <span>Màu:</span>
+                                                <span class="font-weight-bold">Đen</span>
+                                            </div>
+                                        </div>
+
+                                        <div class="col col-md-2 align-self-center">
+                                            <h5>
+                                                <fmt:setLocale value="vi_VN"/>
+                                                <fmt:formatNumber value="${detail.product.price}" type="currency"/>
+                                            </h5>
+                                        </div>
+
+                                        <div class="col col-md-2 align-self-center">
+                                            <h5>${detail.quantity}</h5>
+                                        </div>
+
+                                        <div class="col col-md-2 align-self-center text-right">
+                                            <h5>
+                                                <fmt:setLocale value="vi_VN"/>
+                                                <fmt:formatNumber value="${detail.subTotal}" type="currency"/>
+                                            </h5>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </c:forEach>
+
+                        <hr>
+
+                        <div class="row justify-content-md-end mb-3">
+                            <div class="col-md-8 col-lg-7">
+                                <dl class="row text-sm-right">
+                                    <dt class="col-sm-6">Tổng giá sản phẩm:</dt>
+                                    <dd class="col-sm-6">
+                                        <fmt:setLocale value="vi_VN"/>
+                                        <fmt:formatNumber value="${order.total}" type="currency"/>
+                                    </dd>
+                                    <dt class="col-sm-6">Giảm giá:</dt>
+                                    <dd class="col-sm-6">
+                                        <fmt:setLocale value="vi_VN"/>
+                                        <fmt:formatNumber value="0" type="currency"/>
+                                    </dd>
+                                    <dt class="col-sm-6">Thành tiền:</dt>
+                                    <dd class="col-sm-6">
+                                        <fmt:setLocale value="vi_VN"/>
+                                        <fmt:formatNumber value="${order.total}" type="currency"/>
+                                    </dd>
+                                </dl>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
         </div>
     </div>
 

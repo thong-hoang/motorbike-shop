@@ -73,8 +73,49 @@ public class OrderService {
         if (message != null)
             request.setAttribute("message", message);
 
+        for (Order order : orders) {
+            int statusId = getStatusId(order.getStatus());
+            request.setAttribute("statusId", statusId);
+        }
+
         String listPage = "order.jsp";
         request.getRequestDispatcher(listPage).forward(request, response);
+    }
+
+    public void editOrder() throws ServletException, IOException {
+        Integer id = Integer.valueOf(request.getParameter("id"));
+
+        Order order = orderDAO.findById(id);
+
+        String message;
+
+        if (order == null) {
+            message = "Không tìm thấy đơn hàng";
+            listOrder(message);
+        } else {
+            String status = order.getStatus();
+            int statusId = getStatusId(status);
+            request.setAttribute("statusId", statusId);
+            request.setAttribute("order", order);
+            request.setAttribute("title", "Chỉnh sửa trạng thái đơn hàng");
+            request.getRequestDispatcher("order-form.jsp").forward(request, response);
+        }
+    }
+
+    private int getStatusId(String status) {
+        int statusId = 0;
+        switch (status) {
+            case "Đang xử lý":
+                statusId = 1;
+                break;
+            case "Đã giao hàng":
+                statusId = 2;
+                break;
+            case "Huỷ đơn hàng":
+                statusId = 3;
+                break;
+        }
+        return statusId;
     }
 
     public void viewOrderDetail() throws ServletException, IOException {
@@ -91,6 +132,42 @@ public class OrderService {
             request.getRequestDispatcher("order-detail.jsp").forward(request, response);
         }
     }
+
+    public void updateOrder() throws ServletException, IOException {
+        Integer orderId = Integer.parseInt(request.getParameter("id"));
+        Integer statusId = Integer.valueOf(request.getParameter("status"));
+
+        Order order = orderDAO.findById(orderId);
+
+        if (order == null) {
+            String message = "Không tìm thấy đơn hàng";
+            listOrder(message);
+        } else {
+            String status = getStatus(statusId);
+            order.setStatus(status);
+            orderDAO.update(order);
+            String message = "Cập nhật trạng thái đơn hàng thành công";
+            listOrder(message);
+        }
+    }
+
+    private String getStatus(Integer statusId) {
+        String status = null;
+        switch (statusId) {
+            case 1:
+                status = "Đang xử lý";
+                break;
+            case 2:
+                status = "Đã giao hàng";
+                break;
+            case 3:
+                status = "Huỷ đơn hàng";
+                break;
+        }
+        return status;
+    }
+
+    /*---------------frontend---------------*/
 
     public void showCheckoutPage() throws ServletException, IOException {
         // setting

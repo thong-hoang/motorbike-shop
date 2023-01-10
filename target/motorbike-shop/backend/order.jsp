@@ -218,7 +218,23 @@
                                     <span class="d-block font-size-sm">${orders.paymentMethod}</span>
                                 </td>
                                 <td>
-                                    <span class="d-block font-size-sm">${orders.status}</span>
+                                    <c:if test="${statusId == 1}">
+                                        <span class="badge badge-soft-warning">
+                                            <span class="legend-indicator bg-warning"></span>${orders.status}
+                                        </span>
+                                    </c:if>
+
+                                    <c:if test="${statusId == 2}">
+                                        <span class="badge badge-soft-success">
+                                            <span class="legend-indicator bg-success"></span>${orders.status}
+                                        </span>
+                                    </c:if>
+
+                                    <c:if test="${statusId == 3}">
+                                        <span class="badge badge-soft-danger">
+                                            <span class="legend-indicator bg-danger"></span>${orders.status}
+                                        </span>
+                                    </c:if>
                                 </td>
                                 <td>
                                     <span class="d-block font-size-sm">
