@@ -245,7 +245,7 @@
         </div>
         <div class="row justify-content-center">
             <div class="btn btn-light text-black">
-                <a href="frontend/shop.jsp" class="border-btn">Xem thêm</a>
+                <a href="search" class="border-btn">Xem thêm</a>
             </div>
         </div>
     </div>
