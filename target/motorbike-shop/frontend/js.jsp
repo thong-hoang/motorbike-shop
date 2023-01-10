@@ -8,3 +8,4 @@
 <script src="js/frontend/js/owl.carousel.min.js"></script>
 <script src="js/frontend/js/jquery.nicescroll.min.js"></script>
 <script src="js/frontend/js/main.js"></script>
+<script src="js/jquery.validate.min.js"></script>

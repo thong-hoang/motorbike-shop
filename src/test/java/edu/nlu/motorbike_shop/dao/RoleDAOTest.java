@@ -13,9 +13,15 @@ public class RoleDAOTest {
 
     @Test
     public void testListAllRoles() {
-        List<Role> roles = roleDAO.findAll();
+        String sortType = "ASC";
+        int pageSize = 5;
+        String sortField = "id";
+        int index = 1;
+        String keyword = "";
 
-        assertTrue(roles.size() > 0);
+        roleDAO.findAll(keyword, sortField, sortType, pageSize, index).forEach(System.out::println);
+
+        assertTrue(roleDAO.findAll(keyword, sortField, sortType, pageSize, index).size() > 0);
     }
 
     @Test

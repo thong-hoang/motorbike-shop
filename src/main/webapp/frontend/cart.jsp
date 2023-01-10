@@ -85,11 +85,11 @@
                                         </td>
                                         <td class="cart__quantity">
                                             <input type="hidden" name="productId" value="${item.key.id}">
-                                            <div class="pro-qty">
-                                                <input type="text" value="${item.value}"
-                                                       name="quantity${status.index + 1}"
-                                                       size="5"/>
-                                            </div>
+                                            <input type="text" value="${item.value}"
+                                                   name="quantity${status.index + 1}"
+                                                   size="5"/>
+                                                <%--                                            <div class="pro-qty">--%>
+                                                <%--                                            </div>--%>
                                         </td>
                                         <td class="cart__total">
                                             <fmt:setLocale value="vi_VN"/>
@@ -153,7 +153,7 @@
                             </span>
                         </li>
                     </ul>
-                    <a href="checkout.html" class="primary-btn">Đặt hàng</a>
+                    <a href="checkout" class="primary-btn">Đặt hàng</a>
                 </div>
             </div>
         </div>
@@ -163,6 +163,33 @@
 <jsp:include page="footer1.jsp"/>
 
 <jsp:include page="js.jsp"/>
+
+<script>
+    $(document).ready(function () {
+        // validation
+        $("#cardForm").validate({
+            rules: {
+                <c:forEach items="${cart.items}" var="item" varStatus="status">
+                quantity${status.index + 1}: {
+                    required: true,
+                    number: true,
+                    min: 1
+                },
+                </c:forEach>
+            },
+            messages: {
+                <c:forEach items="${cart.items}" var="item" varStatus="status">
+                quantity${status.index + 1}: {
+                    required: "Vui lòng nhập số lượng",
+                    number: "Số lượng phải là số",
+                    min: "Số lượng phải lớn hơn 0"
+                },
+                </c:forEach>
+            }
+        });
+    })
+</script>
+
 </body>
 
 </html>

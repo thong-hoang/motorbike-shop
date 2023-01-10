@@ -46,13 +46,15 @@
         </div>
 
         <c:if test="${not empty employee.id}">
-        <form class="js-step-form py-md-5" action="update_employee" method="post" enctype="multipart/form-data">
+        <form class="js-step-form py-md-5" action="update_employee" method="post" enctype="multipart/form-data"
+              id="userForm">
             <input type="hidden" name="id" value="${employee.id}"/>
             <input type="hidden" name="addressId" value="${employee.address.id}">
             </c:if>
 
             <c:if test="${empty employee.id}">
-            <form class="js-step-form py-md-5" action="create_employee" method="post" enctype="multipart/form-data">
+            <form class="js-step-form py-md-5" action="create_employee" method="post" enctype="multipart/form-data"
+                  id="userForm">
                 </c:if>
                 <div class="row justify-content-lg-center">
                     <div class="col-lg-8">
@@ -84,101 +86,101 @@
                                     </div>
 
                                     <div class="row form-group">
-                                        <label for="lastNameLabel"
+                                        <label for="lastName"
                                                class="col-sm-3 col-form-label input-label">Họ</label>
 
                                         <div class="col-sm-9">
-                                            <input type="text" class="form-control" name="lastName" id="lastNameLabel"
-                                                   value="${employee.lastName}" required>
+                                            <input type="text" class="form-control" name="lastName" id="lastName"
+                                                   value="${employee.lastName}">
                                         </div>
                                     </div>
 
                                     <div class="row form-group">
-                                        <label for="firstNameLabel"
+                                        <label for="firstName"
                                                class="col-sm-3 col-form-label input-label">Tên</label>
                                         <div class="col-sm-9">
-                                            <input type="text" class="form-control" name="firstName" id="firstNameLabel"
-                                                   value="${employee.firstName}" required>
+                                            <input type="text" class="form-control" name="firstName" id="firstName"
+                                                   value="${employee.firstName}">
                                         </div>
                                     </div>
 
                                     <div class="row form-group">
-                                        <label for="emailLabel"
+                                        <label for="email"
                                                class="col-sm-3 col-form-label input-label">Email</label>
                                         <div class="col-sm-9">
-                                            <input type="email" class="form-control" name="email" id="emailLabel"
-                                                   value="${employee.email}" required>
+                                            <input type="email" class="form-control" name="email" id="email"
+                                                   value="${employee.email}">
                                         </div>
                                     </div>
 
                                     <div class="row form-group">
-                                        <label for="passwordLabel" class="col-sm-3 col-form-label input-label">Mật
+                                        <label for="password" class="col-sm-3 col-form-label input-label">Mật
                                             khẩu</label>
                                         <div class="col-sm-9">
                                             <c:if test="${empty employee}">
                                                 <input type="password" class="form-control" name="password"
-                                                       id="passwordLabel" required>
+                                                       id="password">
                                             </c:if>
                                             <c:if test="${not empty employee}">
-                                                <input type="password" class="form-control" name="password"
-                                                       id="passwordLabel"
+                                                <input type="password" class="form-control ignore" name="password"
+                                                       id="password"
                                                        placeholder="Để trống nếu không muốn thay đổi mật khẩu">
                                             </c:if>
                                         </div>
                                     </div>
 
                                     <div class="row form-group">
-                                        <label for="addressLabel" class="col-sm-3 col-form-label input-label">Địa
+                                        <label for="street" class="col-sm-3 col-form-label input-label">Địa
                                             chỉ</label>
                                         <div class="col-sm-9">
-                                            <input type="text" class="form-control" name="street" id="addressLabel"
-                                                   value="${employee.address.street}" required>
+                                            <input type="text" class="form-control" name="street" id="street"
+                                                   value="${employee.address.street}">
                                         </div>
                                     </div>
 
                                     <div class="row form-group">
-                                        <label for="wardLabel" class="col-sm-3 col-form-label input-label">Phường /
+                                        <label for="ward" class="col-sm-3 col-form-label input-label">Phường /
                                             Xã</label>
                                         <div class="col-sm-9">
-                                            <input type="text" class="form-control" name="ward" id="wardLabel"
-                                                   value="${employee.address.ward}" required>
+                                            <input type="text" class="form-control" name="ward" id="ward"
+                                                   value="${employee.address.ward}">
                                         </div>
                                     </div>
 
                                     <div class="row form-group">
-                                        <label for="districtLabel" class="col-sm-3 col-form-label input-label">Quận /
+                                        <label for="district" class="col-sm-3 col-form-label input-label">Quận /
                                             Huyện</label>
                                         <div class="col-sm-9">
-                                            <input type="text" class="form-control" name="district" id="districtLabel"
-                                                   value="${employee.address.district}" required>
+                                            <input type="text" class="form-control" name="district" id="district"
+                                                   value="${employee.address.district}">
                                         </div>
                                     </div>
 
                                     <div class="row form-group">
-                                        <label for="cityLabel" class="col-sm-3 col-form-label input-label">Tỉnh / Thành
+                                        <label for="city" class="col-sm-3 col-form-label input-label">Tỉnh / Thành
                                             phố</label>
                                         <div class="col-sm-9">
-                                            <input type="text" class="form-control" name="city" id="cityLabel"
-                                                   value="${employee.address.city}" required>
+                                            <input type="text" class="form-control" name="city" id="city"
+                                                   value="${employee.address.city}">
                                         </div>
                                     </div>
 
                                     <div class="row form-group">
-                                        <label for="phoneLabel" class="col-sm-3 col-form-label input-label">Số điện
+                                        <label for="phone" class="col-sm-3 col-form-label input-label">Số điện
                                             thoại</label>
                                         <div class="col-sm-9">
-                                            <input type="text" class="form-control" name="phone" id="phoneLabel"
-                                                   value="${employee.phoneNumber}" required>
+                                            <input type="text" class="form-control" name="phone" id="phone"
+                                                   value="${employee.phoneNumber}">
                                         </div>
                                     </div>
 
                                     <div class="row">
-                                        <label class="col-sm-3 col-form-label input-label" for="roleLabel">Vai
+                                        <label class="col-sm-3 col-form-label input-label" for="role">Vai
                                             trò</label>
                                         <div class="col-sm-9 pt-1">
                                             <c:if test="${empty employee.id}">
                                                 <c:forEach var="role" items="${roles}">
-                                                    <input id="roleLabel" type="checkbox" class="mt-2" name="roles"
+                                                    <input id="role" type="checkbox" class="mt-2" name="roles"
                                                            value="${role.id}" ${role.id == 2 ? 'checked' : '' }> ${role.name}
                                                     - <small>${role.description}</small><br>
                                                 </c:forEach>
@@ -186,7 +188,7 @@
 
                                             <c:if test="${not empty employee.id}">
                                                 <c:forEach var="role" items="${roleMap}">
-                                                    <input id="roleLabel" type="checkbox" class="mt-2" name="roles"
+                                                    <input id="role" type="checkbox" class="mt-2" name="roles"
                                                            value="${role.key.id}"
                                                         ${role.value}> ${role.key.name}
                                                     - <small>${role.key.description}</small><br>
@@ -241,6 +243,77 @@
 
 <script type="text/javascript">
     $(document).ready(function () {
+        // validation
+        $("#userForm").validate({
+            ignore: ".ignore",
+            rules: {
+                firstName: {
+                    required: true
+                },
+                lastName: {
+                    required: true
+                },
+                email: {
+                    required: true,
+                    email: true
+                },
+                password: {
+                    required: true
+                },
+                street: {
+                    required: true
+                },
+                ward: {
+                    required: true
+                },
+                district: {
+                    required: true
+                },
+                city: {
+                    required: true
+                },
+                phone: {
+                    required: true,
+                    number: true,
+                    minlength: 10,
+                    maxlength: 11
+                },
+            },
+            messages: {
+                firstName: {
+                    required: "Vui lòng nhập tên đầy đủ"
+                },
+                lastName: {
+                    required: "Vui lòng nhập họ đầy đủ"
+                },
+                email: {
+                    required: "Vui lòng nhập email",
+                    email: "Email không hợp lệ, vd: abc@gmail.com"
+                },
+                password: {
+                    required: "Vui lòng nhập mật khẩu"
+                },
+                street: {
+                    required: "Vui lòng nhập địa chỉ"
+                },
+                ward: {
+                    required: "Vui lòng nhập phường / xã"
+                },
+                district: {
+                    required: "Vui lòng nhập quận / huyện"
+                },
+                city: {
+                    required: "Vui lòng nhập tỉnh / thành phố"
+                },
+                phone: {
+                    required: "Vui lòng nhập số điện thoại",
+                    number: "Số điện thoại không hợp lệ",
+                    minlength: "Số điện thoại không hợp lệ",
+                    maxlength: "Số điện thoại không hợp lệ"
+                },
+            },
+        });
+
         // check image file size
         $("#avatarUploader").change(function () { // is executed every time the event is fired
             if (!checkFileSize(this)) {
@@ -248,6 +321,10 @@
             }
 
             showImageThumbnail(this);
+        });
+
+        $("#btnCancel").on("click", function () {
+            window.location = "list_employees";
         });
     });
 
@@ -261,12 +338,6 @@
     if (message !== "") {
         showModalDialog("Warning", message)
     }
-
-    $(document).ready(function () {
-        $("#btnCancel").on("click", function () {
-            window.location = "list_employees";
-        });
-    });
 
     function showImageThumbnail(fileInput) {
         var file = fileInput.files[0];

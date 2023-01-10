@@ -63,6 +63,69 @@ public class OrderDAO implements Serializable {
     }
 
     /**
+     * Get customer by order id.
+     *
+     * @param customerId The id of the customer.
+     * @return The customer entity.
+     */
+    public Customer findCustomerByOrderId(Integer customerId) {
+        String sql = "SELECT first_name, last_name FROM customers WHERE id = ?";
+        Customer customer = null;
+
+        try (Connection conn = DBUtils.makeConnection();
+             PreparedStatement stm = conn.prepareStatement(sql)) {
+            stm.setInt(1, customerId);
+
+            try (ResultSet rs = stm.executeQuery()) {
+                if (rs.next()) {
+                    String firstName = rs.getString(1);
+                    String lastName = rs.getString(2);
+
+                    customer = new Customer();
+                    customer.setFirstName(firstName);
+                    customer.setLastName(lastName);
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return customer;
+    }
+
+    /**
+     * Get product by id.
+     *
+     * @param productId The id of the product.
+     * @return The product entity.
+     */
+    public Product findProductByOrderId(Integer productId) {
+        String sql = "SELECT main_image_path, name, price FROM products WHERE id = ?";
+        Product product = null;
+
+        try (Connection conn = DBUtils.makeConnection();
+             PreparedStatement stm = conn.prepareStatement(sql)) {
+            stm.setInt(1, productId);
+
+            try (ResultSet rs = stm.executeQuery()) {
+                if (rs.next()) {
+                    String mainImagePath = rs.getString(1);
+                    String name = rs.getString(2);
+                    int price = rs.getInt(3);
+
+                    product = new Product();
+                    product.setId(productId);
+                    product.setMainImagePath(mainImagePath);
+                    product.setName(name);
+                    product.setPrice(price);
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return product;
+    }
+
+    /**
      * Return list of order details by order id.
      *
      * @param id The id of the order.
@@ -82,9 +145,7 @@ public class OrderDAO implements Serializable {
                     int orderId = rs.getInt(1);
                     Order order = new Order();
                     order.setId(orderId);
-                    int productId = rs.getInt(2);
-                    Product product = new Product();
-                    product.setId(productId);
+                    Product product = findProductByOrderId(rs.getInt(2));
                     int quantity = rs.getInt(3);
                     int productCost = rs.getInt(4);
                     int subtotal = rs.getInt(5);
@@ -111,7 +172,8 @@ public class OrderDAO implements Serializable {
      */
     public List<Order> findAll(String keyword, String sortField, String sortType, int pageSize, int index) {
         List<Order> orders = new ArrayList<>();
-        String sql = "SELECT * FROM orders WHERE recipient_name LIKE ? " +
+        String sql = "SELECT o.* FROM orders o INNER JOIN customers c ON o.customer_id = c.id " +
+                "WHERE CONCAT(c.first_name, ' ', c.last_name) LIKE ? " +
                 "ORDER BY " + sortField + " " + sortType + " LIMIT ? OFFSET ?";
 
         // use try-with-resources Statement to auto close the connection.
@@ -127,9 +189,8 @@ public class OrderDAO implements Serializable {
                 // fetch data from result set
                 while (rs.next()) {
                     Integer id = rs.getInt(1);
-                    Customer customer = new Customer();
-                    customer.setId(rs.getInt(2));
-                    Date orderDate = rs.getDate(3);
+                    Customer customer = findCustomerByOrderId(rs.getInt(2));
+                    Date orderDate = rs.getTimestamp(3);
                     String paymentMethod = rs.getString(4);
                     int price = rs.getInt(5);
                     int discount = rs.getInt(6);
@@ -344,9 +405,8 @@ public class OrderDAO implements Serializable {
             try (ResultSet rs = stm.executeQuery()) {
                 if (rs.next()) {
                     int customerId = rs.getInt(2);
-                    Customer customer = new Customer();
-                    customer.setId(customerId);
-                    Date orderDate = rs.getDate(3);
+                    Customer customer = findCustomerByOrderId(customerId);
+                    Date orderDate = rs.getTimestamp(3);
                     String paymentMethod = rs.getString(4);
                     int price = rs.getInt(5);
                     int discount = rs.getInt(6);

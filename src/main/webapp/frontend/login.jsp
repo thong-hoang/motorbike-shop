@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="css/frontend/css/bootstrap.min.css" type="text/css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
     <link rel="stylesheet" href="css/frontend/css/login.css" type="text/css">
+    <link rel="stylesheet" href="css/style.css">
 </head>
 
 <body>
@@ -22,18 +23,18 @@
                 <a href="/motorbike_shop/"><img src="images/logo/logo-login.png" class="img-fluid" alt="logo"></a>
             </div>
             <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
-                <form action="login" method="post">
+                <form action="login" method="post" id="loginForm">
                     <h2 class="text-center mb-4">
                         Đăng Nhập
                     </h2>
                     <div class="form-outline mb-4">
                         <span class="text-danger" id="hideMessage">${message}</span>
-                        <input type="email" id="form3Example3" class="form-control form-control-lg"
+                        <input type="email" id="email" class="form-control form-control-lg"
                                placeholder="Email" name="email"/>
                     </div>
 
                     <div class="form-outline mb-3">
-                        <input type="password" id="form3Example4" class="form-control form-control-lg"
+                        <input type="password" id="password" class="form-control form-control-lg"
                                placeholder="Mật khẩu" name="password"/>
                     </div>
 
@@ -76,8 +77,29 @@
 
 <script src="js/frontend/js/jquery-3.3.1.min.js"></script>
 <script src="js/frontend/js/bootstrap.min.js"></script>
+<script src="js/jquery.validate.min.js"></script>
 
 <script>
+    $(document).ready(function () {
+        // validation
+        $("#loginForm").validate({
+            rules: {
+                email: {
+                    required: true,
+                    email: true
+                },
+                password: "required",
+            },
+            messages: {
+                email: {
+                    required: "Vui lòng nhập email đầy đủ",
+                    email: "Email không hợp lệ, vd abc@gmail.com"
+                },
+                password: "Vui lòng nhập mật khẩu đầy đủ",
+            }
+        });
+    })
+
     const message = document.getElementById('hideMessage');
 
     if (message !== null) {

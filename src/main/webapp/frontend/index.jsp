@@ -88,9 +88,6 @@
                         <div class="header__right__auth">
                             <a href="login">Đăng nhập</a>
                         </div>
-                        <div class="header__right__auth">
-                            <a href="register">Đăng ký</a>
-                        </div>
                         <ul class="header__right__widget">
                             <li><span class="icon_search search-switch"></span></li>
                             <li><a href="cart"><span class="icon_bag_alt"></span>

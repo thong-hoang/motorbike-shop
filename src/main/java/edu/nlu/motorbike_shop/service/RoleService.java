@@ -9,6 +9,8 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
+import static edu.nlu.motorbike_shop.constant.Constants.*;
+
 /**
  * Handle logic between user and server
  *
@@ -18,33 +20,13 @@ import java.util.List;
  */
 
 public class RoleService {
-    private RoleDAO roleRepo = RoleDAO.getInstance();
-    private HttpServletRequest request;
-    private HttpServletResponse response;
+    private final RoleDAO roleDAO = RoleDAO.getInstance();
+    private final HttpServletRequest request;
+    private final HttpServletResponse response;
 
     public RoleService(HttpServletRequest request, HttpServletResponse response) {
         this.request = request;
         this.response = response;
-    }
-
-    /**
-     * Returns a list of roles and a response message to the user.
-     *
-     * @param message A String specified to display to the user
-     * @throws ServletException If the request for the GET could not be handled
-     * @throws IOException      If an input or output error is detected when the servlet handles the GET request
-     */
-
-    public void listRole(String message) throws ServletException, IOException {
-        List<Role> roles = roleRepo.findAll();
-
-        request.setAttribute("listRoles", roles);
-
-        if (message != null)
-            request.setAttribute("message", message);
-
-        String listPage = "setting-role.jsp";
-        request.getRequestDispatcher(listPage).forward(request, response);
     }
 
     /**
@@ -59,35 +41,81 @@ public class RoleService {
     }
 
     /**
-     * Allows a servlet to process a request to save a new role.
+     * Returns a list of roles and a response message to the user.
      *
-     * <p>If a new role with a name already exists, it cannot be saved.
+     * @param message A String specified to display to the user
+     * @throws ServletException If the request for the GET could not be handled
+     * @throws IOException      If an input or output error is detected when the servlet handles the GET request
+     */
+
+    public void listRole(String message) throws ServletException, IOException {
+        String keyword = request.getParameter("keyword");
+        if (keyword == null)
+            keyword = "";
+        String pageNumberString = request.getParameter("pageNumber");
+        int pageNumber;
+
+        if (pageNumberString == null) {
+            pageNumber = 1;
+        } else {
+            pageNumber = Integer.parseInt(request.getParameter("pageNumber"));
+        }
+
+        int numberOfRoles = roleDAO.count();
+        int totalKeywordResults = roleDAO.countByKeyword(keyword);
+
+        List<Role> roles = roleDAO.findAll(keyword, DEFAULT_SORT_FIELD, DEFAULT_SORT_TYPE, DEFAULT_PAGE_SIZE, pageNumber);
+
+        long totalPages = totalKeywordResults / DEFAULT_PAGE_SIZE;
+        if (numberOfRoles % DEFAULT_PAGE_SIZE != 0) totalPages++;
+
+        request.setAttribute("currentPage", pageNumber);
+        request.setAttribute("totalPages", totalPages);
+        request.setAttribute("keyword", keyword);
+        request.setAttribute("numberOfRoles", numberOfRoles);
+        request.setAttribute("listRoles", roles);
+
+        if (message != null)
+            request.setAttribute("message", message);
+
+        String listPage = "setting-role.jsp";
+        request.getRequestDispatcher(listPage).forward(request, response);
+    }
+
+    /**
+     * Display role form to user.
+     *
+     * @throws ServletException If the request for the GET could not be handled
+     * @throws IOException      If an input or output error is detected when the servlet handles the GET request
+     */
+    public void createRole() throws ServletException, IOException {
+        request.getRequestDispatcher("setting-role-form.jsp").forward(request, response);
+    }
+
+    /**
+     * Allows a servlet to process a request to save a new role. If a new role with a name already exists, it cannot be saved.
      *
      * @throws ServletException If the request for the GET could not be handled
      * @throws IOException      If an input or output error is detected when the servlet handles the GET request
      */
 
     public void save() throws ServletException, IOException {
-        request.setCharacterEncoding("UTF-8");
         String name = request.getParameter("name");
         String description = request.getParameter("description");
+        Role role = new Role(name, description);
 
-        Role existRole = roleRepo.findByName(name);
+        Role existRole = roleDAO.findByName(name);
 
         if (existRole != null) {
             String message = "Vai trò " + name + " đã tồn tại!!!";
             request.setAttribute("message", message);
-
-            Role role = new Role(name, description);
             request.setAttribute("role", role);
 
-            String roleFormPage = "setting-role-form.jsp";
-            request.getRequestDispatcher(roleFormPage).forward(request, response);
+            createRole();
         } else {
-            Role newRole = new Role(name, description);
-            roleRepo.save(newRole);
+            roleDAO.save(role);
 
-            String message = "Vai trò " + name + " đã được thêm thành công !";
+            String message = "Vai trò " + name + " đã được thêm thành công";
             listRole(message);
         }
     }
@@ -101,17 +129,14 @@ public class RoleService {
 
     public void editRole() throws ServletException, IOException {
         Integer id = Integer.valueOf(request.getParameter("id"));
-        Role role = roleRepo.findById(id);
-        String message;
-
+        Role role = roleDAO.findById(id);
         if (role == null) {
-            message = "Không tìm thấy vai trò";
+            String message = "Không tìm thấy vai trò";
             listRole(message);
         } else {
             request.setAttribute("role", role);
             request.setAttribute("title", "Chỉnh sửa vai trò " + role.getName());
-            String roleFormPage = "setting-role-form.jsp";
-            request.getRequestDispatcher(roleFormPage).forward(request, response);
+            createRole();
         }
     }
 
@@ -121,17 +146,17 @@ public class RoleService {
      * <p> If the name of the role matches another role, it will not be able to update.
      *
      * @throws ServletException If the request for the GET could not be handled
-     * @throws IOException If an input or output is detected when the servlet handles the GET request
+     * @throws IOException      If an input or output is detected when the servlet handles the GET request
      */
 
     public void updateRole() throws ServletException, IOException {
-        request.setCharacterEncoding("UTF-8");
-
         Integer id = Integer.valueOf(request.getParameter("id"));
         String name = request.getParameter("name");
         String description = request.getParameter("description");
-        Role roleByName = roleRepo.findByName(name);
-        Role roleById = roleRepo.findById(id);
+        Role role = new Role(id, name, description);
+
+        Role roleByName = roleDAO.findByName(name);
+        Role roleById = roleDAO.findById(id);
         String message;
 
         if (roleById == null) {
@@ -141,17 +166,12 @@ public class RoleService {
             if (roleByName != null && id != roleByName.getId()) {
                 message = "Vai trò " + name + " đã tồn tại!!!";
                 request.setAttribute("message", message);
-
-                Role role = new Role(id, name, description);
                 request.setAttribute("role", role);
-                request.setAttribute("title", "Chỉnh sửa vai trò " + roleById.getName());
+                request.setAttribute("title", "Chỉnh sửa vai trò ");
 
-                String updatePage = "setting-role-form.jsp";
-                request.getRequestDispatcher(updatePage).forward(request, response);
+                createRole();
             } else {
-                Role role = new Role(id, name, description);
-
-                roleRepo.update(role);
+                roleDAO.update(role);
 
                 message = "Vai trò " + name + " đã được cập nhật thành công !";
                 listRole(message);

@@ -1,22 +1,15 @@
 package edu.nlu.motorbike_shop.service;
 
-import edu.nlu.motorbike_shop.entity.*;
+import edu.nlu.motorbike_shop.dao.CategoryDAO;
+import edu.nlu.motorbike_shop.entity.Category;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.Part;
-import java.io.File;
 import java.io.IOException;
 import java.util.List;
-import java.util.Map;
-
-import edu.nlu.motorbike_shop.dao.CategoryDAO;
-import edu.nlu.motorbike_shop.util.FileUploadUtils;
 
 import static edu.nlu.motorbike_shop.constant.Constants.*;
-import static edu.nlu.motorbike_shop.util.FileUploadUtils.cleanDir;
-import static edu.nlu.motorbike_shop.util.FileUploadUtils.saveFile;
 
 public class CategoryService {
     private final CategoryDAO categoryDAO = CategoryDAO.getInstance();
