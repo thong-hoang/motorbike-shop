@@ -1,5 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 
 <html>
 
@@ -213,10 +214,13 @@
                                 <span class="d-block font-size-sm">${products.brand.name}</span>
                             </td>
                             <td>
-                                <span class="d-block font-size-sm">${products.price}000 đ</span>
+                                <span class="d-block font-size-sm">
+                                    <fmt:setLocale value="vi_VN"/>
+                                    <fmt:formatNumber value="${products.price}" type="currency"/>
+                                </span>
                             </td>
-                            <td>${products.percentDiscount}%</td>
-                            <td>${products.quantity}</td>
+                            <td><span class="d-block font-size-sm">${products.percentDiscount}%</span></td>
+                            <td><span class="d-block font-size-sm">${products.quantity}</span></td>
                             <td>
                                 <div class="btn-group" role="group">
                                     <a class="btn btn-sm btn-white" href="edit_product?id=${products.id}">
@@ -247,7 +251,8 @@
                                    href="list_products?pageNumber=${currentPage - 1}&keyword=${keyword}">Trước</a>
                             </li>
                             <c:forEach var="i" begin="1" end="${totalPages}">
-                                <li style="${currentPage - 4 > i ||currentPage + 4 < i ? 'display:none ' : ' '}" class="${currentPage != i ? 'page-item ' : 'page-item active'}">
+                                <li style="${currentPage - 4 > i ||currentPage + 4 < i ? 'display:none ' : ' '}"
+                                    class="${currentPage != i ? 'page-item ' : 'page-item active'}">
                                     <a class="page-link"
                                        href="list_products?pageNumber=${i}&keyword=${keyword}">${i}</a>
                                 </li>

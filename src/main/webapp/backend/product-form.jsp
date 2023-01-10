@@ -134,9 +134,8 @@
                                     <div class="row form-group">
                                         <label class="col-sm-3 col-form-label input-label">Mô tả</label>
                                         <div class="col-sm-9">
-                                            <textarea name="description" rows="5" cols="50" id="description">
-                                                ${product.description}
-                                            </textarea>
+                                            <textarea name="description" rows="5" cols="50"
+                                                      id="description">${product.description}</textarea>
                                         </div>
                                     </div>
 
