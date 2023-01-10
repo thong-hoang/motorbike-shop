@@ -35,22 +35,22 @@
                 <nav class="header__menu">
                     <ul>
                         <li class="active">
-                            <a href="/motorbike_shop/">Trang chủ</a>
+                            <a href="/">Trang chủ</a>
                         </li>
                         <li>
-                            <a href="shop.jsp">Xe Máy</a>
+                            <a href="/search">Xe Máy</a>
                             <ul class="dropdown">
                                 <li>
-                                    <a href="#">Xe số</a>
+                                    <a href="/search">Xe số</a>
                                 </li>
                                 <li>
-                                    <a href="#">Xe tay ga</a>
+                                    <a href="/search">Xe tay ga</a>
                                 </li>
                                 <li>
-                                    <a href="#">Xe côn tay</a>
+                                    <a href="/search">Xe côn tay</a>
                                 </li>
                                 <li>
-                                    <a href="#">Xe phân khối lớn</a>
+                                    <a href="/search">Xe phân khối lớn</a>
                                 </li>
                             </ul>
                         </li>
